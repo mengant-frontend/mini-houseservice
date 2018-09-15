@@ -1,0 +1,9 @@
+{
+	"setting": {
+		"newFeature": true
+	},
+	"appid": "wx4988115d181e147a",
+	"projectname": "housekeeping-service",
+	"condition": {},
+	"miniprogramRoot": "./dist"
+}
