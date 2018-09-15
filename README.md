@@ -31,14 +31,16 @@ yarn build
 使用微信扫一扫体验小程序组件示例
 
 <img width="200" src="https://raw.githubusercontent.com/TalkingData/iview-weapp/master/assets/code.jpg">
+
 ### 使用之前
+
 在开始使用 iView Weapp 之前，你需要先阅读 [微信小程序自定义组件](https://developers.weixin.qq.com/miniprogram/dev/framework/custom-component/) 的相关文档。
 
 ### 如何使用
 1. 添加需要的组件。在页面的 json 中配置（路径根据自己项目位置配置）：
 ```json
 "usingComponents": {
-    "i-button": "../../ivew/button/index"
+    "i-button": "../../iview/button/index"
 }
 ```
 2. 在 wxml 中使用组件：
@@ -46,5 +48,5 @@ yarn build
 <i-button type="primary" bind:click="handleClick">这是一个按钮</i-button>
 ```
 ### 小程序开发资源
-(http://www.cnblogs.com/zxj95121/p/9224163.html)
+<p>http://www.cnblogs.com/zxj95121/p/9224163.html</p>
 Copyright (c) 2018-present, lifuzhao
