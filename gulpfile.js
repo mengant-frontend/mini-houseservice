@@ -5,14 +5,14 @@ const rename = require('gulp-rename')
 const htmlmin = require('gulp-htmlmin')
 const jsonmin = require('gulp-jsonmin')
 const plumber = require('gulp-plumber')
-const clean = require('gulp-clean')
+// const clean = require('gulp-clean')
 const uglify = require('gulp-uglify')
-const pump = require('pump')
-gulp.task('default', ['babel', 'less', 'wxml', 'json'], () => {
+const imagemin = require('gulp-imagemin')
+gulp.task('default', ['babel', 'less', 'wxml', 'json', 'fonts', 'images'], () => {
   console.log('tasks have started successfully')
 })
 
-gulp.task('babel', ['clean-js'], cb => {
+gulp.task('babel', cb => {
   return gulp
           .src('src/**/*.js')
           .pipe(plumber())
@@ -26,7 +26,7 @@ gulp.task('clean-js', cb => {
           .pipe(clean())
 })
 
-gulp.task('less', ['clean-wxss'], cb => {
+gulp.task('less', cb => {
   return gulp
           .src(['src/**/*.less', 'src/**/*.wxss'])
           .pipe(plumber())
@@ -42,7 +42,7 @@ gulp.task('clean-wxss', cb => {
           .pipe(clean())
 })
 
-gulp.task('wxml', ['clean-wxml'], cb => {
+gulp.task('wxml', cb => {
   return gulp
           .src('src/**/*.wxml')
           // .pipe(htmlmin({
@@ -56,17 +56,43 @@ gulp.task('clean-wxml', cb => {
           .pipe(clean())
 })
 
-gulp.task('json', ['clean-json'], cb => {
+gulp.task('json', cb => {
   return gulp
           .src('src/**/*.json')
           .pipe(plumber())
           .pipe(jsonmin())
+          .pipe(plumber.stop())
           .pipe(gulp.dest('dist'))
 
 })
 gulp.task('clean-json', cb => {
   return gulp
           .src('dist/**/*.json')
+          .pipe(clean())
+})
+
+gulp.task('images', cb => {
+  return gulp
+          .src('src/images/**/*')
+          .pipe(imagemin())
+          .pipe(gulp.dest('dist/images'))
+})
+
+gulp.task('clean-images', cb => {
+  return gulp
+          .src('dist/images/**/*')
+          .pipe(clean())
+})
+
+gulp.task('fonts', cb => {
+  return gulp
+          .src('src/fonts/**/*')
+          .pipe(gulp.dest('dist/fonts'))
+})
+
+gulp.task('clean-fonts', cb => {
+  return gulp
+          .src('dist/fonts/**/*')
           .pipe(clean())
 })
 

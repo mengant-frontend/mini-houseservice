@@ -1,5 +1,5 @@
-let test = async () => {
-  await new Promise(resolve => {
-    resolve(5)
-  })
-}
+App({
+  onLaunch(){
+    console.log('onLaunch');
+  }
+})

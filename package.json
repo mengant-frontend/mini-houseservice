@@ -21,15 +21,16 @@
   },
   "homepage": "https://github.com/mengant-frontend/housekeeping-service#readme",
   "devDependencies": {
-    "@babel/core": "^7.0.1",
     "autoprefixer": "^9.1.5",
-    "babel-plugin-syntax-async-functions": "^6.13.0",
-    "babel-plugin-transform-object-rest-spread": "^7.0.0-beta.3",
-    "babel-preset-env": "^7.0.0-beta.3",
+    "babel-core": "6",
+    "babel-plugin-transform-async-to-generator": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
     "gulp": "^3.9.1",
-    "gulp-babel": "^8.0.0-beta.2",
+    "gulp-babel": "7",
     "gulp-clean": "^0.4.0",
     "gulp-htmlmin": "^5.0.1",
+    "gulp-imagemin": "^4.1.0",
     "gulp-jsonmin": "^1.2.0",
     "gulp-plumber": "^1.2.0",
     "gulp-postcss": "^8.0.0",
@@ -43,5 +44,9 @@
     "> 1%",
     "last 2 versions",
     "not ie <= 8"
-  ]
+  ],
+  "dependencies": {
+    "@babel/runtime": "^7.0.0",
+    "babel-polyfill": "^6.26.0"
+  }
 }

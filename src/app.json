@@ -1,0 +1,31 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/orders/index",
+    "pages/account/index"
+  ],
+  "window": {
+    "navigationBarTitleText": "久房通"
+  },
+  "tabBar": {
+    "color": "#80848f",
+    "selectedColor": "#19be6b",
+    "list": [{
+      "pagePath": "pages/index/index",
+      "text": "首页",
+      "iconPath": "images/index.png",
+      "selectedIconPath": "images/selected-index.png"
+    }, {
+      "pagePath": "pages/orders/index",
+      "text": "订单",
+      "iconPath": "images/orders.png",
+      "selectedIconPath": "images/selected-orders.png"
+    }, {
+      "pagePath": "pages/account/index",
+      "text": "我的",
+      "iconPath": "images/account.png",
+      "selectedIconPath": "images/selected-account.png"
+    }]
+  },
+  "debug": true
+}
