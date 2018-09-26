@@ -4,6 +4,32 @@
 	},
 	"appid": "wxd11ca80b97562519",
 	"projectname": "housekeeping-service",
-	"condition": {},
-	"miniprogramRoot": "./dist"
+	"miniprogramRoot": "./src",
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"list": []
+		},
+		"miniprogram": {
+			"current": 0,
+			"list": [
+				{
+					"id": -1,
+					"name": "订单",
+					"pathName": "pages/orders/index"
+				}
+			]
+		}
+	}
 }

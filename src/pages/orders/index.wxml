@@ -1,3 +1,47 @@
-<view>
-  <text>order-index</text>
-</view>
+<i-tabs fixed current='{{current}}' bindchange='tabsChange'>
+  <i-tab key='0' title='待付款' count='{{unpaidNum}}'></i-tab>
+  <i-tab key='1' title='待确认' count='{{unconfirmedNum}}'></i-tab>
+  <i-tab key='2' title='待评价' count='{{unevaluateNum}}'></i-tab>
+  <i-tab key='3' title='已完成'></i-tab>
+</i-tabs>
+
+<swiper current='{{current}}' bindchange='swiperChange'>
+  <swiper-item>
+    <scroll-view scroll-y bindscrolltolower='unpaidScroll'>
+      <view class='unpaid' wx:for='{{unpaidList}}' wx:key='id'>
+        <view class='header'>
+          <text>订单号：{{item.orderNum}}</text>
+          <i-icon type='trash' size='20' color='#2b85e4' data-id='{{item.id}}' bindtap='deleteOrder'></i-icon>
+        </view>
+        <view class='content'>
+          <image mode='aspectFit' src='{{item.imgUrl}}' />
+          <text class='money'>{{item.money}} 元</text>
+          <view class='state'>
+            <text>{{item.state}}</text>
+            <i-button i-class='i-button' type='primary' data-id='{{item.id}}' bindtap='pay'>付款</i-button>
+          </view>
+        </view>
+      </view>
+      <!-- 上拉触底加载数据的提示 -->
+      <i-load-more tip='{{unpaidNoMore?noMoreText:loadingText}}' loading='{{unpaidNoMore?false:true}}' wx:if='{{unpaidShow}}' />
+    </scroll-view>
+  </swiper-item>
+  <swiper-item>
+    <scroll-view scroll-y bindscrolltolower='unconfirmedScroll'>
+      <!-- 上拉触底加载数据的提示 -->
+      <i-load-more tip='{{unconfirmedNoMore?noMoreText:loadingText}}' loading='{{unconfirmedNoMore?false:true}}' wx:if='{{unconfirmedShow}}' />
+    </scroll-view>
+  </swiper-item>
+  <swiper-item>
+    <scroll-view scroll-y bindscrolltolower='unevaluateScroll'>
+      <!-- 上拉触底加载数据的提示 -->
+      <i-load-more tip='{{unevaluateNoMore?noMoreText:loadingText}}' loading='{{unevaluateNoMore?false:true}}' wx:if='{{unevaluateShow}}' />
+    </scroll-view>
+  </swiper-item>
+  <swiper-item>
+    <scroll-view scroll-y bindscrolltolower='completedScroll'>
+      <!-- 上拉触底加载数据的提示 -->
+      <i-load-more tip='{{completedNoMore?noMoreText:loadingText}}' loading='{{completedNoMore?false:true}}' wx:if='{{completedShow}}' />
+    </scroll-view>
+  </swiper-item>
+</swiper>
