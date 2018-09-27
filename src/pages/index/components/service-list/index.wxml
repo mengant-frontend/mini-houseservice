@@ -1,0 +1,28 @@
+<view class='container'>
+  <view class='header'>
+    <text class='type'>{{type}}</text>
+    <navigator url='{{url}}'>
+      <text class='else'>查看更多</text>
+      <text class='arrow'></text>
+      <text class='arrow'></text>
+      <text class='arrow'></text>
+    </navigator>
+  </view>
+
+  <view class='content'>
+    <navigator class='item' wx:for='{{list}}' wx:key='id' url='{{url + "?id=" + item.id}}'>
+      <image class='img' mode='aspectFit' src='{{item.imgUrl}}' />
+      <text class='title'>{{item.title}}</text>
+      <view class='amount'>
+        <view class='sales'>
+          总销量
+          <text class='num-color'> {{item.totalSales}}</text>
+        </view>
+        <view class='money'>
+          成交额
+          <text class='num-color'> {{item.money}}</text>
+        </view>
+      </view>
+    </navigator>
+  </view>
+</view>

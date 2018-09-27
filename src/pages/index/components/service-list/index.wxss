@@ -1,0 +1,72 @@
+.container {
+  background: #fff;
+}
+
+.header {
+  padding: 15rpx 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.type {
+  font-size: 32rpx; /* iview 推荐主标题样式 */
+  color: #464c5b;
+  font-weight: bold;
+  border-left: 14rpx solid #2d8cf0; /* iview 推荐 primary 主色 */
+  padding-left: 20rpx;
+}
+.else {
+  font-size: 28rpx; /* iview 推荐次级标题样式，这里不加粗 */
+  color: #464c5b;
+  margin-right: 5rpx;
+}
+.arrow:after {
+  content: '';
+  display: inline-block;
+  width: 14rpx;
+  height: 14rpx;
+  border: 1rpx solid #464c5b; /* 跟随 iview 次级标题颜色 */
+  border-bottom: none;
+  border-left: none;
+  transform: rotate(45deg);
+  margin-bottom: 2rpx; /* 看起来与文字垂直对齐 */
+}
+
+.content {
+  padding: 0 35rpx 30rpx;
+  margin-bottom: 30rpx;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.item {
+  margin-top: 40rpx;
+  width: 320rpx; /* 以 .img 宽度为准 */
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+}
+.img {
+  width: 320rpx;
+  height: 180rpx;
+  border: 1rpx solid #e1e1e1;
+  border-radius: 10rpx;
+}
+.title {
+  margin: 14rpx 0;
+  font-size: 28rpx; /* iview 推荐次级标题样式 */
+  font-weight: bold;
+  color: #464c5b;
+}
+.amount {
+  display: flex;
+  width: 100%;
+}
+.sales,
+.money {
+  flex-grow: 1;
+  text-align: center;
+}
+.num-color {
+  color: #ff9900; /* iview 推荐 warning 辅助色 */
+}

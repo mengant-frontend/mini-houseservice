@@ -1,3 +1,49 @@
-<view>
-  <text>hello world</text>
+<view class='header'>
+  <picker mode="region" bindchange="locationChoose">
+    <view>
+      {{location[2]}}
+      <i-icon type='unfold' size='12'></i-icon>
+    </view>
+  </picker>
+  <navigator class='search' url='{{searchPage}}'>
+    <icon type='search' size='10' color='#d8d8d8' />
+    搜索
+  </navigator>
+  <i-icon type='scan' size='24' bindtap='scan'></i-icon>
 </view>
+
+<swiper indicator-dots indicator-active-color='#2d8cf0' autoplay>
+  <swiper-item wx:for='{{bannerImg}}'>
+    <image mode='aspectFit' src='{{item}}' />
+  </swiper-item>
+</swiper>
+
+<i-notice-bar icon="systemprompt" loop>
+  【红包攻略】
+  <text wx:for='{{noticeContent}}'>{{item}}</text>
+</i-notice-bar>
+
+<view class='menu'>
+  <navigator class='item' url='{{houseServiceUrl}}'>
+    <image mode='aspectFit' src='/images/house.png' />
+    <text>家政服务</text>
+  </navigator>
+  <navigator class='item' url='{{maintainServiceUrl}}'>
+    <image mode='aspectFit' src='/images/maintain.png' />
+    <text>维修服务</text>
+  </navigator>
+  <navigator class='item' url='{{rankUrl}}'>
+    <image mode='aspectFit' src='/images/rank.png' />
+    <text>服务排行</text>
+  </navigator>
+</view>
+
+<navigator class='hall' url='{{hallUrl}}'>
+  <image mode='aspectFit' src='/images/hall.png' />
+  <text class='title'>服务大厅</text>
+  <text class='arrow'></text>
+</navigator>
+
+<service-list type='家政服务' url='{{houseServiceUrl}}' list='{{houseServiceList}}' wx:if='{{houseServiceList.length > 0}}'></service-list>
+
+<service-list type='维修服务' url='{{maintainServiceUrl}}' list='{{maintainServiceList}}' wx:if='{{maintainServiceList.length > 0}}'></service-list>

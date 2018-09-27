@@ -1,5 +1,7 @@
 page {
   font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif; /* iview 推荐字体 */
+  font-size: 24rpx;
+  color: #657180;
   background: #f7f7f7;
   padding-top: 42px; /* i-tabs 的高度 */
   box-sizing: border-box;
