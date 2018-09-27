@@ -44,6 +44,12 @@
   <text class='arrow'></text>
 </navigator>
 
-<service-list type='家政服务' url='{{houseServiceUrl}}' list='{{houseServiceList}}' wx:if='{{houseServiceList.length > 0}}'></service-list>
+<block wx:if='{{houseServiceList.length > 0}}'>
+  <service-title-bar title='家政服务' url='{{houseServiceUrl}}'></service-title-bar>
+  <service-list url='{{houseServiceUrl}}' list='{{houseServiceList}}'></service-list>
+</block>
 
-<service-list type='维修服务' url='{{maintainServiceUrl}}' list='{{maintainServiceList}}' wx:if='{{maintainServiceList.length > 0}}'></service-list>
+<block wx:if='{{maintainServiceList.length > 0}}'>
+  <service-title-bar title='维修服务' url='{{maintainServiceUrl}}'></service-title-bar>
+  <service-list url='{{maintainServiceUrl}}' list='{{maintainServiceList}}'></service-list>
+</block>

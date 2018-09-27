@@ -2,6 +2,7 @@
   "usingComponents": {
     "i-icon": "../../iview/icon/index",
     "i-notice-bar": "../../iview/notice-bar/index",
+    "service-title-bar": "components/service-title-bar/index",
     "service-list": "components/service-list/index"
   }
 }

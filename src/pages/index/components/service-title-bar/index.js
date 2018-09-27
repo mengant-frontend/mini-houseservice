@@ -1,10 +1,10 @@
 Component({
   properties: {
-    url: {
+    title: {
       type: String
     },
-    list: {
-      type: Array
+    url: {
+      type: String
     }
   }
 });
