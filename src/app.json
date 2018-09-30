@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/community/index",
     "pages/orders/index",
     "pages/account/index"
   ],
@@ -15,6 +16,11 @@
       "text": "首页",
       "iconPath": "images/index.png",
       "selectedIconPath": "images/selected-index.png"
+    }, {
+      "pagePath": "pages/community/index",
+      "text": "圈子",
+      "iconPath": "images/orders.png",
+      "selectedIconPath": "images/selected-orders.png"
     }, {
       "pagePath": "pages/orders/index",
       "text": "订单",

@@ -2,17 +2,17 @@ page {
   font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif; /* iview 推荐字体 */
   font-size: 24rpx;
   color: #657180;
-  background: #f7f7f7;
-  padding-top: 42px; /* i-tabs 的高度 */
+  padding-top: 42px; /* 以下是使用 tabs-swiper-page 组件需要的样式 */
   box-sizing: border-box;
-  height: 100%; /* 让 swiper、scroll-view 参照 */
-}
-
-swiper,
-scroll-view {
   height: 100%;
 }
 
+/* 为 tabs-swiper-page 组件设置内容区域背景色 */
+.bg-color {
+  background: #f2f2f2;
+}
+
+/* 待付款列表 start */
 .unpaid {
   margin-top: 20rpx;
   background: #fff;
@@ -52,3 +52,4 @@ scroll-view {
   height: 70rpx;
   line-height: 70rpx;
 }
+/* 待付款列表 end */

@@ -2,7 +2,7 @@ page {
   font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif; /* iview 推荐字体 */
   font-size: 24rpx;
   color: #657180;
-  background: #f7f7f7;
+  background: #f2f2f2;
 }
 
 /* 顶部区域、搜索、扫描 start */
