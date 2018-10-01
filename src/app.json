@@ -2,7 +2,8 @@
   "pages": [
     "pages/index/index",
     "pages/orders/index",
-    "pages/account/index"
+    "pages/account/index",
+    "pages/seller/index"
   ],
   "window": {
     "navigationBarTitleText": "久房通"

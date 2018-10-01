@@ -1,3 +1,42 @@
-<view>
-  <text>account-index</text>
+<view class="container__account">
+  <view class="header__account">
+    <view class='main__account'>
+      <view class='container__avatar'>
+        <i-avatar i-class='avatar' src='../../images/avatar.jpg' size='large'></i-avatar>
+      </view>
+      <view class='area__edit'>
+        <text bindtap='edit'>编辑</text>
+      </view>
+      <view class='box__message'>
+        <i-row wx:for='{{messages}}' wx:for-item='message' wx:for-index='index' wx:key='index' i-class='row__message'>
+          <i-col span='10' i-class='title__message'>
+            <text>{{message.title}}</text>
+          </i-col>
+          <i-col span='14' i-class='desc__message'>
+            <text>{{message_data[message.key]}}</text>
+          </i-col>
+        </i-row>
+      </view>
+    </view>
+  </view>
+  <view class="panels__account">
+    <view class="panel__account" wx:for='{{panels}}' wx:for-item='panel' wx:for-index='index' wx:key='index'>
+      <view class="key__panel">
+        <text>{{panel_data[panel.key]}}</text>
+      </view>
+      <view class="title__panel">
+        <text>{{panel.title}}</text>
+      </view>
+    </view>
+  </view>
+  <i-cell-group>
+    <i-cell 
+      wx:for='{{urls}}' 
+      wx:for-item='url_item'
+      wx:for-index='index'
+      wx:key='index'
+      title="{{url_item.title}}" 
+      url="{{url_item.url}}"
+      is-link ></i-cell>
+</i-cell-group>
 </view>

@@ -6,6 +6,7 @@ const htmlmin = require('gulp-htmlmin')
 const jsonmin = require('gulp-jsonmin')
 const plumber = require('gulp-plumber')
 // const clean = require('gulp-clean')
+const less = require('gulp-less')
 const uglify = require('gulp-uglify')
 const imagemin = require('gulp-imagemin')
 gulp.task('default', ['babel', 'less', 'wxml', 'json', 'fonts', 'images'], () => {
@@ -30,6 +31,7 @@ gulp.task('less', cb => {
   return gulp
           .src(['src/**/*.less', 'src/**/*.wxss'])
           .pipe(plumber())
+          .pipe(less())
           .pipe(postcss())
           .pipe(rename(path => {
             path.extname = '.wxss'
@@ -97,8 +99,13 @@ gulp.task('clean-fonts', cb => {
 })
 
 gulp.task('watch', ['default'], cb => {
-  let watcher = gulp.watch('src/**/*', ['default'])
-  watcher.on('change', e => {
-    console.log('File' + e.path + ' was ' + e.type + ' , running tasks')
-  })
+  gulp.watch('src/**/*.js', ['babel'], watch)
+  gulp.watch('src/**/*.less', ['less'], watch)
+  gulp.watch('src/**/*.wxml', ['wxml'], watch)
+  gulp.watch('src/**/*.json', ['json'], watch)
+  gulp.watch('src/fonts/**/*', ['fonts'], watch)
+  gulp.watch('src/images/**/*', ['images'], watch)
 })
+function watch(e){
+  console.log('File' + e.path + ' was ' + e.type + ' , running tasks')
+}
