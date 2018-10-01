@@ -9,3 +9,8 @@
 .scroll-view {
   height: 100%;
 }
+
+/* 内容区域高度需要超过 scroll-view，剩下的 padding-bottom 在节点 style 中动态设置 */
+.container {
+  min-height: 100%;
+}

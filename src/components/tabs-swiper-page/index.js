@@ -17,11 +17,13 @@ Component({
       observer (newVal) {
         if (newVal) {
           this.setData({
-            loadMore: '正在加载'
+            loadMore: '正在加载',
+            paddingBottom: '0'
           });
         } else {
           this.setData({
-            loadMore: '上拉显示更多'
+            loadMore: '上拉显示更多',
+            paddingBottom: '20px'
           });
         }
       }
@@ -30,7 +32,8 @@ Component({
 
   data: {
     loadMore: '上拉显示更多',
-    noMore: '没有更多数据了'
+    noMore: '没有更多数据了',
+    paddingBottom: '20px' // 让内容区域超过 scroll-view 的高度才能滚动
   },
 
   methods: {
