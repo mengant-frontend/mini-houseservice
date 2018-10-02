@@ -1,0 +1,13 @@
+<navigator class='container' wx:for='{{list}}' wx:key='id' url='{{url + "?id=" + item.id}}'>
+  <image class='img' mode='aspectFit' src='{{item.imgUrl}}' />
+  <view class='info'>
+    <text class='title'>{{item.title}}</text>
+    <view class='date'>
+      <text>{{item.date}}</text>
+      <view class='view-num'>
+        <i-icon type='browse_fill' size='16' color='{{item.ifView?"#2b85e4":"#9ea7b4"}}'></i-icon>
+        {{item.viewNum}}
+      </view>
+    </view>
+  </view>
+</navigator>

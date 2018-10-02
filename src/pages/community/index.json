@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "圈子",
+  "usingComponents": {
+    "tabs-swiper-page": "/components/tabs-swiper-page/index",
+    "community-list": "/components/community-list/index"
+  }
+}

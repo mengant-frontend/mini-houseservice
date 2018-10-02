@@ -1,3 +1,17 @@
-<view>
-  <text>order-index</text>
-</view>
+<tabs-swiper-page bg-color='bg-color' tabs-current='{{tabsCurrent}}' tabs-list='{{tabsList}}' if-loading='{{ifLoading}}' bind:tabsChange='intOrderList' bind:scrolltolower='getOrderList'>
+  <!-- 待付款列表 -->
+  <view slot='unpaid' class='unpaid' wx:for='{{unpaidList}}' wx:key='id'>
+    <view class='header'>
+      <text>订单号：{{item.orderNum}}</text>
+      <i-icon type='trash' size='20' color='#2b85e4' data-id='{{item.id}}' bindtap='deleteOrder'></i-icon>
+    </view>
+    <view class='content'>
+      <image mode='aspectFit' src='{{item.imgUrl}}' />
+      <text class='money'>{{item.money}} 元</text>
+      <view class='state'>
+        <text>{{item.state}}</text>
+        <i-button i-class='i-button' type='primary' data-id='{{item.id}}' bindtap='payOrder'>付款</i-button>
+      </view>
+    </view>
+  </view>
+</tabs-swiper-page>

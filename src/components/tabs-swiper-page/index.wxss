@@ -1,0 +1,16 @@
+/**
+  * 组件使用者需要在 page 页面组件设置样式：
+  *  padding-top: 42px; // i-tabs 组件的高度
+  *  box-sizing: border-box; // 让 .swiper、.scroll-view 撑开内容区域
+  *  height: 100%;
+  */
+
+.swiper,
+.scroll-view {
+  height: 100%;
+}
+
+/* 内容区域高度需要超过 scroll-view，剩下的 padding-bottom 在节点 style 中动态设置 */
+.container {
+  min-height: 100%;
+}

@@ -1,0 +1,9 @@
+<view class='container'>
+    <text class='title'>{{title}}</text>
+    <navigator url='{{url}}'>
+      <text class='else'>查看更多</text>
+      <text class='arrow'></text>
+      <text class='arrow'></text>
+      <text class='arrow'></text>
+    </navigator>
+  </view>

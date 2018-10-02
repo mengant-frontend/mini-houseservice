@@ -1,0 +1,55 @@
+page {
+  font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif; /* iview 推荐字体 */
+  font-size: 24rpx;
+  color: #657180;
+  padding-top: 42px; /* 以下是使用 tabs-swiper-page 组件需要的样式 */
+  box-sizing: border-box;
+  height: 100%;
+}
+
+/* 为 tabs-swiper-page 组件设置内容区域背景色 */
+.bg-color {
+  background: #f2f2f2;
+}
+
+/* 待付款列表 start */
+.unpaid {
+  margin-top: 20rpx;
+  background: #fff;
+}
+.unpaid .header {
+  padding: 0 30rpx;
+  display: flex;
+  justify-content: space-between;
+  line-height: 2.8;
+  font-size: 32rpx; /* iview 推荐主标题样式，这里不加粗 */
+  color: #464c5b;
+  border-bottom: 1rpx solid #dddee1;
+}
+.unpaid .content {
+  padding: 30rpx;
+  display: flex;
+}
+.unpaid image {
+  width: 280rpx;
+  height: 200rpx;
+}
+.unpaid .money {
+  flex-grow: 1;
+  font-size: 40rpx;
+  color: #2d8cf0; /* iview 推荐 primary 主色 */
+}
+.unpaid .state {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: right;
+  font-size: 32rpx; /* 同 .hearder 字体样式 */
+  color: #464c5b;
+}
+.unpaid .i-button { /* 修改 i-button 组件默认样式 */
+  margin: 0;
+  height: 70rpx;
+  line-height: 70rpx;
+}
+/* 待付款列表 end */

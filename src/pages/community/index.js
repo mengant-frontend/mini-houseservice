@@ -4,44 +4,49 @@ Page({
     ifLoading: true, // 打开页面时是否显示正在加载数据
     tabsList: [ // tabs 列表数据
       {
-        name: 'unpaid',
-        title: '待付款',
+        name: 'house',
+        title: '久房通',
         count: 10,
         ifNoMore: false
       },
       {
-        name: 'unconfirmed',
-        title: '待确认',
+        name: 'property',
+        title: '物业通知',
         count: 0,
         ifNoMore: false
       },
       {
-        name: 'unevaluate',
-        title: '待评价',
+        name: 'nous',
+        title: '生活常识',
         count: 0,
         ifNoMore: false
       },
       {
-        name: 'completed',
-        title: '已完成',
+        name: 'recruit',
+        title: '失物招领',
         count: 0,
         ifNoMore: false
       }
-    ]
+    ],
+    houseUrl: '',
+    propertyUrl: '',
+    nousUrl: '',
+    recruitUrl: '',
   },
-  
+
   // 模拟数据加载过程
-  onLoad () {
+  onLoad() {
     var that = this;
     setTimeout(function () {
       that.setData({
-        unpaidList: [
+        houseList: [
           {
             id: 0,
-            orderNum: '54387654343456',
+            title: '短租房的特点',
             imgUrl: '../../images/404.png',
-            money: '1.00',
-            state: '待付款'
+            date: '2018-07-09',
+            ifView: false,
+            viewNum: 28
           }
         ],
         ifLoading: false
@@ -49,49 +54,49 @@ Page({
     }, 800);
   },
 
-  // 初次切换 tabs 交互（加载对应类型的订单数据列表）
-  intOrderList ({ detail }) {
+  // 初次切换 tabs 交互（加载对应类型的圈子数据列表）
+  intCommunityList({ detail }) {
     switch (detail.tabsCurrent) {
       case 0:
-        this.data.unpaidList? '':this.getUnpaidList();
+        this.data.houseList ? '' : this.getHouseList();
         break;
       case 1:
-        this.data.unconfirmedList ? '' :this.getUnconfirmedList();
+        this.data.propertyList ? '' : this.getPropertyList();
         break;
       case 2:
-        this.data.unevaluateList ? '' :this.getUnevaluateList();
+        this.data.nousList ? '' : this.getNousList();
         break;
       case 3:
-        this.data.completedList ? '' :this.getCompletedList();
+        this.data.recruitList ? '' : this.getRecruitList();
         break;
     }
   },
 
-  // 内容区域上拉触底交互（加载对应类型的订单数据列表）
-  getOrderList ({ detail }) {
+  // 内容区域上拉触底交互（加载对应类型的圈子数据列表）
+  getCommunityList({ detail }) {
     switch (detail.tabsCurrent) {
       case 0:
-        this.getUnpaidList();
+        this.getHouseList();
         break;
       case 1:
-        this.getUnconfirmedList();
+        this.getPropertyList();
         break;
       case 2:
-        this.getUnevaluateList();
+        this.getNousList();
         break;
       case 3:
-        this.getCompletedList();
+        this.getRecruitList();
         break;
     }
   },
 
-  // 加载待付款列表
-  getUnpaidList () {
+  // 加载久房通列表
+  getHouseList() {
     var that = this,
-        ifNoMore = that.data.tabsList[0].ifNoMore,
-        oldList = that.data.unpaidList,
-        oldList_len = oldList.length,
-        newItem = { ...oldList[oldList_len - 1] };
+      ifNoMore = that.data.tabsList[0].ifNoMore,
+      oldList = that.data.houseList,
+      oldList_len = oldList.length,
+      newItem = { ...oldList[oldList_len - 1] };
     newItem.id++;
     if (!ifNoMore) {
       if (oldList_len < 10) {
@@ -101,7 +106,7 @@ Page({
         setTimeout(function () {
           that.setData({
             ifLoading: false,
-            unpaidList: oldList.concat([newItem])
+            houseList: oldList.concat([newItem])
           });
         }, 800);
       } else {
@@ -113,10 +118,10 @@ Page({
     }
   },
 
-  // 加载待确认列表
-  getUnconfirmedList () {
+  // 加载物业通知列表
+  getPropertyList() {
     var that = this,
-        ifNoMore = that.data.tabsList[1].ifNoMore;
+      ifNoMore = that.data.tabsList[1].ifNoMore;
     if (!ifNoMore) {
       that.setData({
         ifLoading: true
@@ -130,10 +135,10 @@ Page({
     }
   },
 
-  // 加载待评价列表
-  getUnevaluateList () {
+  // 加载生活常识列表
+  getNousList() {
     var that = this,
-        ifNoMore = that.data.tabsList[2].ifNoMore;
+      ifNoMore = that.data.tabsList[2].ifNoMore;
     if (!ifNoMore) {
       that.setData({
         ifLoading: true
@@ -147,10 +152,10 @@ Page({
     }
   },
 
-  // 加载已完成列表
-  getCompletedList () {
+  // 加载失物招领列表
+  getRecruitList() {
     var that = this,
-        ifNoMore = that.data.tabsList[3].ifNoMore;
+      ifNoMore = that.data.tabsList[3].ifNoMore;
     if (!ifNoMore) {
       that.setData({
         ifLoading: true
@@ -162,15 +167,5 @@ Page({
         });
       }, 800);
     }
-  },
-
-  // 删除订单
-  deleteOrder ({ target }) {
-    console.log(`删除id=${target.dataset.id}`);
-  },
-
-  // 付款
-  payOrder ({ target }) {
-    console.log(`付款id=${target.dataset.id}`);
   }
 });
