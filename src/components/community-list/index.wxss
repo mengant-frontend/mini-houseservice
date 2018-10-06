@@ -5,7 +5,7 @@
   align-items: center; 
 }
 .img {
-  width: 130rpx;
+  width: 130rpx; /* 大小暂定为130rpx */
   height: 130rpx;
   margin-right: 30rpx;
 }

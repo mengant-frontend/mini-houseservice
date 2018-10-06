@@ -2,6 +2,7 @@
   "navigationBarTitleText": "圈子",
   "usingComponents": {
     "tabs-swiper-page": "/components/tabs-swiper-page/index",
+    "scroll-loading": "/components/scroll-loading/index",
     "community-list": "/components/community-list/index"
   }
 }

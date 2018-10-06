@@ -1,0 +1,9 @@
+<view class='content'>
+  <scroll-loading bg-color='bg-color' if-no-more='{{ifNoMore}}' if-loading='{{ifLoading}}' bind:scrolltolower='getServiceList'>
+    <view>
+      <banner-img list='{{bannerImg}}'></banner-img>
+      <service-hall></service-hall>
+      <service-list list='{{serviceList}}' service-type='{{serviceType}}'></service-list>
+    </view>
+  </scroll-loading>
+</view>

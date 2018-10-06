@@ -1,0 +1,16 @@
+/**
+  * 组件使用者需要在包裹组件的父层定义具体高度，
+  * 让组件继承其 100% 高度
+  */
+
+.container {
+  height: 100%;
+}
+
+/* 因为内容区域高度需要超过 scroll-view，
+所以最小高度应为 scroll-view 100% 的高度，
+剩下的 padding-bottom 在节点 style 中动态设置 */
+.content {
+  min-height: 100%;
+  transition: padding-bottom 0.5s;
+}

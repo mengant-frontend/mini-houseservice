@@ -5,51 +5,43 @@
       <i-icon type='unfold' size='12'></i-icon>
     </view>
   </picker>
-  <navigator class='search' url='{{searchPage}}'>
+  <navigator class='search' url='/pages/search/index'>
     <icon type='search' size='10' color='#d8d8d8' />
     搜索
   </navigator>
   <i-icon type='scan' size='24' bindtap='scan'></i-icon>
 </view>
 
-<swiper indicator-dots indicator-active-color='#2d8cf0' autoplay>
-  <swiper-item wx:for='{{bannerImg}}'>
-    <image mode='aspectFit' src='{{item}}' />
-  </swiper-item>
-</swiper>
+<banner-img list='{{bannerImg}}'></banner-img>
 
 <i-notice-bar icon="systemprompt" loop>
   【红包攻略】
-  <text wx:for='{{noticeContent}}'>{{item}}</text>
+  <text wx:for='{{noticeContent}}' wx:key='*this'>{{item}}</text>
 </i-notice-bar>
 
 <view class='menu'>
-  <navigator class='item' url='{{houseServiceUrl}}'>
+  <navigator class='item' url='/pages/service/index?type=1'>
     <image mode='aspectFit' src='/images/house.png' />
     <text>家政服务</text>
   </navigator>
-  <navigator class='item' url='{{maintainServiceUrl}}'>
+  <navigator class='item' url='/pages/service/index?type=2'>
     <image mode='aspectFit' src='/images/maintain.png' />
     <text>维修服务</text>
   </navigator>
-  <navigator class='item' url='{{rankUrl}}'>
+  <navigator class='item' url='/pages/service-rank/index'>
     <image mode='aspectFit' src='/images/rank.png' />
     <text>服务排行</text>
   </navigator>
 </view>
 
-<navigator class='hall' url='{{hallUrl}}'>
-  <image mode='aspectFit' src='/images/hall.png' />
-  <text class='title'>服务大厅</text>
-  <text class='arrow'></text>
-</navigator>
+<service-hall></service-hall>
 
 <block wx:if='{{houseServiceList.length > 0}}'>
-  <service-title-bar title='家政服务' url='{{houseServiceUrl}}'></service-title-bar>
-  <service-list url='{{houseServiceUrl}}' list='{{houseServiceList}}'></service-list>
+  <service-title-bar service-type='1'></service-title-bar>
+  <service-list list='{{houseServiceList}}' service-type='1'></service-list>
 </block>
 
 <block wx:if='{{maintainServiceList.length > 0}}'>
-  <service-title-bar title='维修服务' url='{{maintainServiceUrl}}'></service-title-bar>
-  <service-list url='{{maintainServiceUrl}}' list='{{maintainServiceList}}'></service-list>
+  <service-title-bar service-type='2'></service-title-bar>
+  <service-list list='{{maintainServiceList}}' service-type='2'></service-list>
 </block>

@@ -2,15 +2,8 @@
   <i-tab wx:for='{{tabsList}}' wx:key='name' key='{{index}}' title='{{item.title}}' count='{{item.count}}'></i-tab>
 </i-tabs>
 
-<swiper class='swiper bg-color' current='{{tabsCurrent}}' bindchange='tabsChange'>
+<swiper class='swiper bg-color' current='{{tabsCurrent}}' bindchange='swiperChange'>
   <swiper-item wx:for='{{tabsList}}' wx:key='name'>
-    <scroll-view class='scroll-view' scroll-y lower-threshold='{{15}}' enable-back-to-top bindscrolltolower='scrolltolower'>
-      <view class='container' style='padding-bottom: {{item.ifNoMore?"0":paddingBottom}}'>
-        <slot name='{{item.name}}'></slot>
-
-        <!-- 内容区域上拉提示 -->
-        <i-load-more tip='{{item.ifNoMore?noMore:loadMore}}' loading='{{ifLoading}}' />
-      </view>
-    </scroll-view>
+    <slot name='{{item.name}}'></slot>
   </swiper-item>
 </swiper>

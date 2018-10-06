@@ -1,17 +1,30 @@
-<tabs-swiper-page bg-color='bg-color' tabs-current='{{tabsCurrent}}' tabs-list='{{tabsList}}' if-loading='{{ifLoading}}' bind:tabsChange='intOrderList' bind:scrolltolower='getOrderList'>
+<tabs-swiper-page tabs-current='{{tabsCurrent}}' tabs-list='{{tabsList}}' bind:swiperChange='intOrderList'>
   <!-- 待付款列表 -->
-  <view slot='unpaid' class='unpaid' wx:for='{{unpaidList}}' wx:key='id'>
-    <view class='header'>
-      <text>订单号：{{item.orderNum}}</text>
-      <i-icon type='trash' size='20' color='#2b85e4' data-id='{{item.id}}' bindtap='deleteOrder'></i-icon>
-    </view>
-    <view class='content'>
-      <image mode='aspectFit' src='{{item.imgUrl}}' />
-      <text class='money'>{{item.money}} 元</text>
-      <view class='state'>
-        <text>{{item.state}}</text>
-        <i-button i-class='i-button' type='primary' data-id='{{item.id}}' bindtap='payOrder'>付款</i-button>
+  <scroll-loading slot='{{tabsList[0].name}}' bg-color='bg-color' if-no-more='{{tabsList[0].ifNoMore}}' if-loading='{{ifLoading}}' bind:scrolltolower='getUnpaidList'>
+    <view>
+      <view class='unpaid' wx:for='{{unpaidList}}' wx:key='id'>
+        <view class='header'>
+          <text>订单号：{{item.orderNum}}</text>
+          <i-icon type='trash' size='20' color='#2b85e4' data-id='{{item.id}}' bindtap='deleteOrder'></i-icon>
+        </view>
+        <view class='content'>
+          <image mode='aspectFit' src='{{item.imgUrl}}' />
+          <text class='money'>{{item.money}} 元</text>
+          <view class='state'>
+            <text>{{item.state}}</text>
+            <i-button i-class='i-button' type='primary' data-id='{{item.id}}' bindtap='payOrder'>付款</i-button>
+          </view>
+        </view>
       </view>
     </view>
-  </view>
+  </scroll-loading>
+  <scroll-loading slot='{{tabsList[1].name}}' bg-color='bg-color' if-no-more='{{tabsList[1].ifNoMore}}' if-loading='{{ifLoading}}' bind:scrolltolower='getUnconfirmedList'>
+    <view></view>
+  </scroll-loading>
+  <scroll-loading slot='{{tabsList[2].name}}' bg-color='bg-color' if-no-more='{{tabsList[2].ifNoMore}}' if-loading='{{ifLoading}}' bind:scrolltolower='getUnevaluateList'>
+    <view></view>
+  </scroll-loading>
+  <scroll-loading slot='{{tabsList[3].name}}' bg-color='bg-color' if-no-more='{{tabsList[3].ifNoMore}}' if-loading='{{ifLoading}}' bind:scrolltolower='getCompletedList'>
+    <view></view>
+  </scroll-loading>
 </tabs-swiper-page>

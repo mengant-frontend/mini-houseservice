@@ -1,7 +1,7 @@
 Page({
   data: {
+    // 默认位置
     location: ['北京市', '北京市', '朝阳区'],
-    searchPage: '',
     bannerImg: [
       '/images/404.png',
       '/images/404.png',
@@ -13,10 +13,6 @@ Page({
       '首次下单将获得随机现金红包！',
       '首次登录注册，将获得随机现金红包！'
     ],
-    houseServiceUrl: '',
-    maintainServiceUrl: '',
-    rankUrl: '',
-    hallUrl: '',
     houseServiceList: [
       {
         id: 0,

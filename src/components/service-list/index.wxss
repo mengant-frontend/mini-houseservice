@@ -14,9 +14,9 @@
   align-items: center; 
 }
 .img {
-  width: 320rpx;
+  width: 320rpx; /* 大小暂定为320rpx 180rpx */
   height: 180rpx;
-  border: 1rpx solid #e1e1e1;
+  border: 1rpx solid #e1e1e1; /* 应该需要边框吧 */
   border-radius: 10rpx;
 }
 .title {
