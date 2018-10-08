@@ -1,0 +1,2 @@
+<tabs-swiper-page tabs-current='{{tabsCurrent}}' tabs-list='{{tabsList}}' bind:swiperChange=''>
+</tabs-swiper-page>

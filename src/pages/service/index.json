@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "服务",
+  "usingComponents": {
+    "scroll-loading": "/components/scroll-loading/index",
+    "banner-img": "/components/banner-img/index",
+    "service-hall": "/components/service-hall/index",
+    "service-list": "/components/service-list/index"
+  }
+}

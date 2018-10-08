@@ -1,0 +1,12 @@
+<view>
+  <i-cell-group>
+    <i-cell
+      wx:for='{{record_list}}'
+      wx:key='item.id'
+      title='{{item.title}}'
+      label='{{item.label}}'
+      value='{{item.value}}'
+    ></i-cell>
+  </i-cell-group>
+  <i-load-more tip='{{ tip }}' loading='{{bottom_loading}}'></i-load-more>
+</view>

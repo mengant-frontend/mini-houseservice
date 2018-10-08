@@ -1,37 +1,39 @@
 Page({
   data: {
-    tabsCurrent: 0, // 打开页面时默认显示第一项列表
-    ifLoading: true, // 打开页面时是否显示正在加载数据
-    tabsList: [ // tabs 列表数据
+    // 打开页面时默认显示第一项列表
+    tabsCurrent: 0,
+    ifLoading: true,
+    // tabs 列表数据
+    tabsList: [
       {
         name: 'house',
         title: '久房通',
         count: 10,
-        ifNoMore: false
+        ifNoMore: false,
+        list: []
       },
       {
         name: 'property',
         title: '物业通知',
         count: 0,
-        ifNoMore: false
+        ifNoMore: false,
+        list: []
       },
       {
         name: 'nous',
         title: '生活常识',
         count: 0,
-        ifNoMore: false
+        ifNoMore: false,
+        list: []
       },
       {
         name: 'recruit',
         title: '失物招领',
         count: 0,
-        ifNoMore: false
+        ifNoMore: false,
+        list: []
       }
-    ],
-    houseUrl: '',
-    propertyUrl: '',
-    nousUrl: '',
-    recruitUrl: '',
+    ]
   },
 
   // 模拟数据加载过程
@@ -39,7 +41,7 @@ Page({
     var that = this;
     setTimeout(function () {
       that.setData({
-        houseList: [
+        'tabsList[0].list': [
           {
             id: 0,
             title: '短租房的特点',
@@ -56,25 +58,17 @@ Page({
 
   // 初次切换 tabs 交互（加载对应类型的圈子数据列表）
   intCommunityList({ detail }) {
-    switch (detail.tabsCurrent) {
-      case 0:
-        this.data.houseList ? '' : this.getHouseList();
-        break;
-      case 1:
-        this.data.propertyList ? '' : this.getPropertyList();
-        break;
-      case 2:
-        this.data.nousList ? '' : this.getNousList();
-        break;
-      case 3:
-        this.data.recruitList ? '' : this.getRecruitList();
-        break;
-    }
+    var that = this,
+      tabsCurrent = detail.tabsCurrent;
+    that.setData({ tabsCurrent }, function () {
+      that.data.tabsList[tabsCurrent].list.length === 0? that.getCommunityList(): '';
+    });
   },
 
   // 内容区域上拉触底交互（加载对应类型的圈子数据列表）
-  getCommunityList({ detail }) {
-    switch (detail.tabsCurrent) {
+  getCommunityList () {
+    var tabsCurrent = this.data.tabsCurrent;
+    switch (tabsCurrent) {
       case 0:
         this.getHouseList();
         break;
@@ -94,7 +88,7 @@ Page({
   getHouseList() {
     var that = this,
       ifNoMore = that.data.tabsList[0].ifNoMore,
-      oldList = that.data.houseList,
+      oldList = that.data.tabsList[0].list,
       oldList_len = oldList.length,
       newItem = { ...oldList[oldList_len - 1] };
     newItem.id++;
@@ -106,7 +100,7 @@ Page({
         setTimeout(function () {
           that.setData({
             ifLoading: false,
-            houseList: oldList.concat([newItem])
+            'tabsList[0].list': oldList.concat([newItem])
           });
         }, 800);
       } else {

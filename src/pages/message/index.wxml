@@ -1,0 +1,29 @@
+<view class='page'>
+  <view class='list'>
+    <view wx:for='{{message_list}}' wx:key='item.id'  class='list-item'>
+      <view class='title'>
+        <view class='title-left'>
+          <image class='title-icon' src='/images/setting.png'></image>
+          <text class='title-text'>订单提示</text>
+        </view>
+        <view class='title-right'>
+          <text>{{item.create_time}}</text>
+        </view>
+      </view>
+      <view class='main'>
+        <view class='message-desc'>
+          <text>{{item.message}}</text>
+        </view>
+        <view class='order'>
+          <view class='order-desc'>
+            <image mode='scaleToFill' class='order-img' src='{{item.img_src}}'></image>
+            <text class='order-text'>￥{{item.money}}</text>
+          </view>
+          <view class='order-operate'>
+            <button class='f-btn f-btn-error'>删除</button>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

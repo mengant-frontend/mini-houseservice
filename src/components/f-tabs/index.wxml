@@ -1,0 +1,26 @@
+<view class='page'>
+  <i-tabs
+    current='{{current}}'
+    fixed
+    bindchange='setCurrentTab'
+    color='#19be6b'
+  >
+    <i-tab
+      wx:for='{{titles}}'
+      wx:key='*this'
+      key='{{index}}'
+      wx:for-item='title'
+      title='{{title}}'
+    ></i-tab>
+  </i-tabs>
+  
+  <view class='container' bindtouchstart='touchStart' bindtouchmove='touchMove' bindtouchend='touchEnd'>
+    current {{ current }} - slide_width {{ slide_width }}
+    <block wx:for='{{titles}}' wx:key='*this'> 
+      <view class='swiper-list' style='transform: translate({{index - current + slide_width === 0 ? 0 : (index - current - slide_width) * 100 + "%"}}, 0) translateZ(0px)'>
+        <slot name='{{item}}'></slot>
+      </view>
+    </block>
+    
+  </view>
+</view>

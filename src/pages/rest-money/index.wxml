@@ -1,0 +1,16 @@
+<view class='page'>
+  <view class='container'>
+    <text class='money-detail'>{{rest_money}}</text>
+    <text class='money-desc'>余额</text>
+    <button class='f-btn f-btn-primary'>提现</button>
+  </view>
+  <i-cell-group>
+    <i-cell
+      wx:for='{{cell_list}}'
+      wx:key='index'
+      title='{{item.title}}'
+      url='{{item.url}}'
+      is-link
+    ></i-cell>
+  </i-cell-group>
+</view>

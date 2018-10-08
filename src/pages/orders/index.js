@@ -1,8 +1,10 @@
 Page({
   data: {
-    tabsCurrent: 0, // 打开页面时默认显示第一项列表
-    ifLoading: true, // 打开页面时是否显示正在加载数据
-    tabsList: [ // tabs 列表数据
+    // 打开页面时默认显示第一项列表
+    tabsCurrent: 0,
+    ifLoading: true,
+    // tabs 列表数据
+    tabsList: [
       {
         name: 'unpaid',
         title: '待付款',
@@ -53,34 +55,16 @@ Page({
   intOrderList ({ detail }) {
     switch (detail.tabsCurrent) {
       case 0:
-        this.data.unpaidList? '':this.getUnpaidList();
+        this.data.unpaidList? '': this.getUnpaidList();
         break;
       case 1:
-        this.data.unconfirmedList ? '' :this.getUnconfirmedList();
+        this.data.unconfirmedList ? '': this.getUnconfirmedList();
         break;
       case 2:
-        this.data.unevaluateList ? '' :this.getUnevaluateList();
+        this.data.unevaluateList ? '': this.getUnevaluateList();
         break;
       case 3:
-        this.data.completedList ? '' :this.getCompletedList();
-        break;
-    }
-  },
-
-  // 内容区域上拉触底交互（加载对应类型的订单数据列表）
-  getOrderList ({ detail }) {
-    switch (detail.tabsCurrent) {
-      case 0:
-        this.getUnpaidList();
-        break;
-      case 1:
-        this.getUnconfirmedList();
-        break;
-      case 2:
-        this.getUnevaluateList();
-        break;
-      case 3:
-        this.getCompletedList();
+        this.data.completedList ? '': this.getCompletedList();
         break;
     }
   },

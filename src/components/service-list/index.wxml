@@ -1,5 +1,5 @@
 <view class='container'>
-  <navigator class='item' wx:for='{{list}}' wx:key='id' url='{{url + "?id=" + item.id}}'>
+  <navigator class='item' wx:for='{{list}}' wx:key='id' url='/pages/service-detail/index?type={{serviceType}}&id={{item.id}}'>
     <image class='img' mode='aspectFit' src='{{item.imgUrl}}' />
     <text class='title'>{{item.title}}</text>
     <view class='amount'>

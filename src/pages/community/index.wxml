@@ -1,6 +1,5 @@
-<tabs-swiper-page bg-color='bg-color' tabs-current='{{tabsCurrent}}' tabs-list='{{tabsList}}' if-loading='{{ifLoading}}' bind:tabsChange='intCommunityList' bind:scrolltolower='getCommunityList'>
-  <community-list slot='house' url='{{houseUrl}}' list='{{houseList}}'></community-list>
-  <community-list slot='property' url='{{propertyUrl}}' list='{{propertyList}}'></community-list>
-  <community-list slot='nous' url='{{nousUrl}}' list='{{nousList}}'></community-list>
-  <community-list slot='recruit' url='{{recruitUrl}}' list='{{recruitList}}'></community-list>
+<tabs-swiper-page tabs-current='{{tabsCurrent}}' tabs-list='{{tabsList}}' bind:swiperChange='intCommunityList'>
+  <scroll-loading wx:for='{{tabsList}}' wx:key='name' slot='{{item.name}}' bg-color='bg-color' if-no-more='{{item.ifNoMore}}' if-loading='{{ifLoading}}' bind:scrolltolower='getCommunityList'>
+    <community-list community-type='{{item.name}}' list='{{item.list}}'></community-list>
+  </scroll-loading>
 </tabs-swiper-page>

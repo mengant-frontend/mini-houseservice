@@ -1,0 +1,28 @@
+.container {
+  background: #fff;
+  margin: 30rpx 0;
+  padding: 30rpx;
+  display: flex;
+  align-items: center;
+}
+.img {
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 20rpx;
+}
+.title {
+  flex-grow: 1;
+  font-size: 32rpx; /* iview 推荐主标题样式 */
+  color: #464c5b;
+  font-weight: bold;
+}
+.arrow:after {
+  content: '';
+  display: inline-block;
+  width: 18rpx;
+  height: 18rpx;
+  border: 4rpx solid #d8d8d8;
+  border-bottom: none;
+  border-left: none;
+  transform: rotate(45deg);
+}

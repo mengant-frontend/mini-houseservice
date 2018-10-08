@@ -1,10 +1,20 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/search/index",
+    "pages/service/index",
+    "pages/service-detail/index",
+    "pages/service-hall/index",
+    "pages/service-rank/index",
+
     "pages/community/index",
+    "pages/community-detail/index",
+    
     "pages/orders/index",
     "pages/account/index",
-    "pages/seller/index"
+    "pages/seller/index",
+
+    "pages/account/index"
   ],
   "window": {
     "navigationBarTitleText": "久房通"
