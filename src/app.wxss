@@ -1,0 +1,15 @@
+.f-btn{
+  line-height: 1;
+  font-size: 13px;
+  padding: 6px 12px;
+  color: #fff;
+}
+.f-btn-primary{
+  background-color: #19be6b;
+}
+.f-btn-error{
+  background-color: #ed3f14;
+}
+.btn-hover{
+  opacity: 0.9;
+}

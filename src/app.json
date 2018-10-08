@@ -14,10 +14,16 @@
     "pages/account/index",
     "pages/seller/index",
 
-    "pages/account/index"
+    "pages/account/index",
+    "pages/message/index",
+    "pages/rest-money/index",
+    "pages/withdraw-record/index",
+    "pages/expense-record/index",
+    "pages/command/index"
   ],
   "window": {
-    "navigationBarTitleText": "久房通"
+    "navigationBarTitleText": "久房通",
+    "enablePullDownRefresh": true
   },
   "tabBar": {
     "color": "#80848f",
@@ -30,8 +36,8 @@
     }, {
       "pagePath": "pages/community/index",
       "text": "圈子",
-      "iconPath": "images/orders.png",
-      "selectedIconPath": "images/selected-orders.png"
+      "iconPath": "images/community.png",
+      "selectedIconPath": "images/selected-community.png"
     }, {
       "pagePath": "pages/orders/index",
       "text": "订单",

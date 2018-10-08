@@ -38,5 +38,5 @@
       title="{{url_item.title}}" 
       url="{{url_item.url}}"
       is-link ></i-cell>
-</i-cell-group>
+  </i-cell-group>
 </view>

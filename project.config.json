@@ -4,7 +4,7 @@
 	},
 	"appid": "wxd11ca80b97562519",
 	"projectname": "housekeeping-service",
-	"miniprogramRoot": "./dist",
+	"miniprogramRoot": "dist/",
 	"condition": {
 		"search": {
 			"current": -1,
@@ -22,12 +22,37 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": 4,
 			"list": [
 				{
 					"id": -1,
 					"name": "我的",
-					"pathName": "pages/account/index"
+					"pathName": "pages/account/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "消息",
+					"pathName": "pages/message/index",
+					"query": ""
+				},
+				{
+					"id": 2,
+					"name": "余额",
+					"pathName": "pages/rest-money/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "提现记录",
+					"pathName": "pages/withdraw-record/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "需求",
+					"pathName": "pages/command/index",
+					"query": ""
 				}
 			]
 		}
