@@ -1,1 +1,1 @@
-export const domain = 'http://mengant.cn'
+export const domain = 'https://mengant.cn'
