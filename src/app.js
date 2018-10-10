@@ -112,7 +112,10 @@ App({
         params.data.token = this.global_data.token
       }
       return this.asyncApi(wx.request, params).then(res => {
-        let { data = {}, statusCode, header, errMsg, success } = res
+        let { data, statusCode, header, errMsg, success } = res
+        if(!(data instanceof Object)){
+          data = {}
+        }
         //接口调用成功都是200
         if(statusCode === 200){
           data.success = true
