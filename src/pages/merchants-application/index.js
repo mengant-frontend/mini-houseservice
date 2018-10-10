@@ -27,7 +27,7 @@ Page({
     //商家图片
     photo_list: []
   },
-  onReady(){
+  onReady() {
     app.get({
       url: '/test'
     })
@@ -45,18 +45,31 @@ Page({
     })
   },
   //选择图片
-  async chooseImg(){
-    let res = new Promise(resolve => {
-      wx.chooseImage({
-        count: 4,
-        sizeType: ['original', 'compressed'],
-        sourceType: ['album', 'camera'],
-        
-      })
+  async chooseImg() {
+    //最多选四个
+    let rest = 4 - this.data.photo_list.length
+    let wx_res = await app.asyncApi(wx.chooseImage, {
+      count: rest,
+      sizeType: ['original', 'compressed'],
+      sourceType: ['album', 'camera'],
+    })
+    if(!wx_res.success){
+      //失败原因包括用户取消了操作
+      console.error('wx: chooseImage api 调用失败')
+      return
+    }
+    let photo_list = app._deepClone(this.data.photo_list)
+    this.setData({
+      photo_list: photo_list.concat(wx_res.tempFiles)
     })
   },
-  //获取用户信息
-  bindGetUserInfo(){
-    console.log(arguments)
+  //删除图片
+  deleteImg(e){
+    let { currentTarget: { dataset: { index } } } = e
+    let photo_list = app._deepClone(this.data.photo_list)
+    photo_list.splice(index, 1)
+    this.setData({
+      photo_list: photo_list
+    })
   }
 })

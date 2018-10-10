@@ -1,5 +1,4 @@
 <view class='page'>
-    <button open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权登录</button>
   <i-steps i-class='steps' current='{{step_current}}' status='{{step_status}}' direction='horizontal'>
     <i-step i-class='step' wx:for='{{steps_list}}' wx:key='title'>
       <view slot='title' class='step-title'>
@@ -48,8 +47,8 @@
   <i-panel title='商家资料图片'>
     <view class="pictures">
       <view wx:for='{{photo_list}}' wx:key='tempFilePath' class="picture {{index % 4 === 0? 'picture_0' : ''}}">
-        <image class="photo" src='{{item.tempFilePath}}'></image>
-        <view class="container__close">
+        <image class="photo" mode='aspectFit' src='{{item.path}}'></image>
+        <view class="container__close" bindtap='deleteImg' data-index='{{index}}'>
           <i-icon type='close' size='14' i-class='icon__close'></i-icon>
         </view>
       </view>
@@ -67,6 +66,6 @@
   </i-panel>
 
   <view class="container_btn">
-    <i-button i-class='btn' type='primary'>确认</i-button>
+    <i-button i-class='btn' long type='primary'>确认</i-button>
   </view>
 </view>

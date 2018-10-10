@@ -107,8 +107,10 @@ App({
       }
     }
     let request = () => {
-      params.data = params.data || {}
-      params.data.token = this.global_data.token
+      if(token_required){
+        params.data = params.data || {}
+        params.data.token = this.global_data.token
+      }
       return this.asyncApi(wx.request, params).then(res => {
         let { data = {}, statusCode, header, errMsg, success } = res
         //接口调用成功都是200
@@ -175,6 +177,10 @@ App({
       type: 'error',
       content
     })
+  },
+  //深度克隆，只克隆简单值，对象，数组，对函数过滤
+  _deepClone(data){
+    return JSON.parse(JSON.stringify(data))
   },
   global_data: {
     system_info: {},
