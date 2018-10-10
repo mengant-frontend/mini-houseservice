@@ -51,6 +51,7 @@
   "dependencies": {
     "@babel/runtime": "^7.0.0",
     "babel-polyfill": "^6.26.0",
-    "regenerator": "^0.13.2"
+    "regenerator": "^0.13.2",
+    "weui-wxss": "^1.1.1"
   }
 }

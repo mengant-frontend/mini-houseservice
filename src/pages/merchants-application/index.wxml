@@ -1,0 +1,72 @@
+<view class='page'>
+    <button open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权登录</button>
+  <i-steps i-class='steps' current='{{step_current}}' status='{{step_status}}' direction='horizontal'>
+    <i-step i-class='step' wx:for='{{steps_list}}' wx:key='title'>
+      <view slot='title' class='step-title'>
+        <text>{{item.title}}</text>
+      </view>
+    </i-step>
+  </i-steps>
+
+  <i-panel>
+    <i-cell-group>
+      <i-cell title='经营类型'>
+        <picker slot='footer' mode='selector' bindchange='updateBusinessActivities' value='{{business_activities_index}}'
+          range='{{business_activities}}' range-key='title'>
+          <view>
+            <text>{{business_activities[business_activities_index].title}}</text>
+            <i-icon type='enter'></i-icon>
+          </view>
+        </picker>
+      </i-cell>
+      <i-cell title='店铺名称'>
+        <input slot='footer' placeholder='请输入店铺名称'></input>
+      </i-cell>
+      <i-cell title='服务区域' i-class='i-cell'>
+        <picker slot='footer' mode='region' bindchange='updateServicesRegion' value='{{services_region}}'>
+          <view>
+            <text>{{services_region[0]}}{{services_region[1]}}{{services_region[2]}}</text>
+            <i-icon type='enter'></i-icon>
+          </view>
+        </picker>
+      </i-cell>
+      <i-cell title='商家地址'>
+        <input slot='footer' placeholder='请输入店铺详细地址'></input>
+      </i-cell>
+      <i-cell title='商家手机号'>
+        <input slot='footer' placeholder='请输入商家手机号码'></input>
+      </i-cell>
+      <i-cell title='备用手机号'>
+        <input slot='footer' placeholder='请输入商家备用手机号码'></input>
+      </i-cell>
+      <i-cell title='身份证号'>
+        <input slot='footer' placeholder='请输入身份证号码'></input>
+      </i-cell>
+    </i-cell-group>
+  </i-panel>
+
+  <i-panel title='商家资料图片'>
+    <view class="pictures">
+      <view wx:for='{{photo_list}}' wx:key='tempFilePath' class="picture {{index % 4 === 0? 'picture_0' : ''}}">
+        <image class="photo" src='{{item.tempFilePath}}'></image>
+        <view class="container__close">
+          <i-icon type='close' size='14' i-class='icon__close'></i-icon>
+        </view>
+      </view>
+      <view wx:if='{{photo_list.length < 4}}' class="picture {{photo_list.length % 4 === 0 ? 'picture_0' : ''}}">
+        <view class="container__add" bindtap='chooseImg'>
+          <i-icon type='add' size='40'></i-icon>
+        </view>
+      </view>
+    </view>
+    <view class="tips">
+      <view class='tips-title'>温馨提示:</view>
+      <view class="tip">1. 请上传店铺封面照、营业执照、证件照等图片</view>
+      <view class="tip">2. 总共可上传4张图片，第一张默认为店铺展示页，请谨慎上传</view>
+    </view>
+  </i-panel>
+
+  <view class="container_btn">
+    <i-button i-class='btn' type='primary'>确认</i-button>
+  </view>
+</view>

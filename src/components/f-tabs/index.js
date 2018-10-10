@@ -44,8 +44,10 @@ Component({
         //取多点触控的最大值
         let max_width = Math.max.call(null, widths)
         let slide_width = parseInt(max_width / system_info.screenWidth * 100) / 100
-        if(slide_width < 0.5){
+        if(Math.abs(slide_width) < 0.5){
           slide_width = slide_width * 2
+        }else{
+          slide_width = Math.round(slide_width)
         }
         this.setData({
           slide_width: slide_width,

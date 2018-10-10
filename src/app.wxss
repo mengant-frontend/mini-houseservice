@@ -1,3 +1,4 @@
+@import './weui/weui.wxss';
 .f-btn{
   line-height: 1;
   font-size: 13px;
@@ -12,4 +13,11 @@
 }
 .btn-hover{
   opacity: 0.9;
+}
+
+/*
+cover iview
+*/
+.cell-index--i-cell{
+  padding: 20rpx 25rpx !important;
 }
