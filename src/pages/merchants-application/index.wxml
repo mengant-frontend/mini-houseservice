@@ -10,47 +10,50 @@
   <i-panel>
     <i-cell-group>
       <i-cell title='经营类型'>
-        <picker slot='footer' mode='selector' bindchange='updateBusinessActivities' value='{{business_activities_index}}'
+        <picker slot='footer' mode='selector' bindchange='updateFormData' data-form_key='type' value='{{form_data.type}}'
           range='{{business_activities}}' range-key='title'>
           <view>
-            <text>{{business_activities[business_activities_index].title}}</text>
+            <text>{{type_text}}</text>
             <i-icon type='enter'></i-icon>
           </view>
         </picker>
       </i-cell>
       <i-cell title='店铺名称'>
-        <input slot='footer' placeholder='请输入店铺名称'></input>
+        <input slot='footer' bindinput='updateFormData' data-form_key='name' placeholder='请输入店铺名称'></input>
       </i-cell>
       <i-cell title='服务区域' i-class='i-cell'>
-        <picker slot='footer' mode='region' bindchange='updateServicesRegion' value='{{services_region}}'>
+        <picker slot='footer' mode='region' bindchange='updateFormData' data-form_key="services_region" value='{{[form_data.province, form_data.city, form_data.area]}}'>
           <view>
-            <text>{{services_region[0]}}{{services_region[1]}}{{services_region[2]}}</text>
+            <text>{{form_data.province}}{{form_data.city}}{{form_data.area}}</text>
             <i-icon type='enter'></i-icon>
           </view>
         </picker>
       </i-cell>
       <i-cell title='商家地址'>
-        <input slot='footer' placeholder='请输入店铺详细地址'></input>
+        <input slot='footer' type='text' placeholder='请输入店铺详细地址'></input>
       </i-cell>
       <i-cell title='商家手机号'>
-        <input slot='footer' placeholder='请输入商家手机号码'></input>
+        <input slot='footer' type='number' placeholder='请输入商家手机号码'></input>
       </i-cell>
       <i-cell title='备用手机号'>
-        <input slot='footer' placeholder='请输入商家备用手机号码'></input>
+        <input slot='footer' type='number' placeholder='请输入商家备用手机号码'></input>
       </i-cell>
       <i-cell title='身份证号'>
-        <input slot='footer' placeholder='请输入身份证号码'></input>
+        <input slot='footer' type='idcard' placeholder='请输入身份证号码'></input>
       </i-cell>
     </i-cell-group>
   </i-panel>
 
   <i-panel title='商家资料图片'>
     <view class="pictures">
-      <view wx:for='{{photo_list}}' wx:key='tempFilePath' class="picture {{index % 4 === 0? 'picture_0' : ''}}">
-        <image class="photo" mode='aspectFit' src='{{item.path}}'></image>
+      <view wx:for='{{photo_list}}' wx:key='path' class="picture {{index % 4 === 0? 'picture_0' : ''}}">
+        <image class="photo {{item.error ? 'error' : ''}}" mode='aspectFit' src='{{item.path}}'>
+            <i-spin fix wx:if='{{!item.loaded}}'></i-spin>
+        </image>
         <view class="container__close" bindtap='deleteImg' data-index='{{index}}'>
-          <i-icon type='close' size='14' i-class='icon__close'></i-icon>
+          <i-icon wx:if='{{item.loaded}}' type='close' size='14' i-class='icon__close'></i-icon>
         </view>
+        
       </view>
       <view wx:if='{{photo_list.length < 4}}' class="picture {{photo_list.length % 4 === 0 ? 'picture_0' : ''}}">
         <view class="container__add" bindtap='chooseImg'>

@@ -1,5 +1,6 @@
-const regeneratorRuntime = require('./lib/runtime')
-const { $Message } = require('./iview/base/index')
+import regeneratorRuntime from  './lib/runtime'
+import { $Message } from './iview/base/index'
+import { domain } from './common/constant'
 App({
   async onLaunch(){
     await this.login()
@@ -33,7 +34,6 @@ App({
     if(!server_res.success){
       return 
     }
-    console.log(token)
     this.global_data.token = server_res.token
     //type: 2 未缓存用户的userInfo, 需要调用userInfo
     //每个页面的根元素bindtap, 调用userInfo
@@ -100,7 +100,7 @@ App({
     if(!url){
       throw new Error('缺少url参数')
     }
-    params.url = 'http://mengant.cn' + url
+    params.url = domain + url
     if(token_required){
       if(!this.global_data.token){
         await this.login()
@@ -149,6 +149,13 @@ App({
     return this.request({
       method: 'get',
       ...options
+    })
+  },
+  uploadFile(options){
+    let { url, ...other } = options
+    return this.asyncApi(wx.uploadFile, {
+      url: domain + url,
+      ...other
     })
   },
   _msg(content, options){

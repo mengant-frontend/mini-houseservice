@@ -8,6 +8,7 @@
     "i-icon": "../../iview/icon/index",
     "i-row": "../../iview/row/index",
     "i-col": "../../iview/col/index",
-    "i-button": "../../iview/button/index"
+    "i-button": "../../iview/button/index",
+    "i-spin": "../../iview/spin/index"
   }
 }
