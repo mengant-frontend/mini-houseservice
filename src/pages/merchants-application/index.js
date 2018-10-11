@@ -36,7 +36,19 @@ Page({
 
   },
   onReady() {
-
+    this.checkStatus()
+  },
+  //检查当前状态
+  async checkStatus(){
+    // Todo 对接检查当前状态接口
+    let server_res = await app.get({
+      url: '/check/status'
+    })
+    let { success, data } = server_res
+    if(!success){
+      app._error(data.msg)
+      return 
+    }
   },
   //处理表单数据
   updateFormData(e) {

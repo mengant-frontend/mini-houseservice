@@ -30,3 +30,19 @@ cover iview
 .cell-index--i-cell{
   padding: 20rpx 25rpx !important;
 }
+
+/* 
+  模拟table
+*/
+.table{
+  display: table;
+}
+.table-body{
+  display: table-row-group;
+}
+.table-row{
+  display: table-row;
+}
+.table-cell{
+  display: table-cell;
+}

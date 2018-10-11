@@ -34,10 +34,11 @@ App({
     if(!server_res.success){
       return 
     }
-    this.global_data.token = server_res.token
+    let { data } = server_res
+    this.global_data.token = data.token
     //type: 2 未缓存用户的userInfo, 需要调用userInfo
     //每个页面的根元素bindtap, 调用userInfo
-    if(Number(server_res.type) === 2){
+    if(Number(data.type) === 2){
       this.global_data.type = 2
     }
     return server_res
@@ -112,18 +113,24 @@ App({
         params.data.token = this.global_data.token
       }
       return this.asyncApi(wx.request, params).then(res => {
+        // errMsg是微信wx.request fail回调函数中的参数 res:{ errMsg }
         let { data = {}, statusCode, header, errMsg, success } = res
-        res = { data }
+        let response = { data }
+        if(!(data instanceof Object)){
+          response.data = {}
+        }
         //接口调用成功都是200
         if(statusCode === 200){
-          res.success = true
+          response.success = true
+          //接口调用失败都是401
         }else if(statusCode === 401){
-          res.success = false
+          response.success = false
         }else{
-          res.data.msg = errMsg
-          res.success = false
+          //其他错误可能是网络问题或者服务器问题或者微信接口出错
+          response.data.msg = errMsg
+          response.success = false
         }
-        return res
+        return response
       })
     }
     let res = await request()

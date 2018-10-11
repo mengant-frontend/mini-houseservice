@@ -94,3 +94,14 @@ page{
   box-sizing: border-box;
   width: 100%;
 }
+// 审核中
+.checking{
+  padding: 0 @blank;
+}
+.tip__wait{
+  padding: @gutter 0;
+  font-size: @content_size;
+}
+.tip-text__wait::before, .tip-text__wait::after{
+  content: '~'
+}
