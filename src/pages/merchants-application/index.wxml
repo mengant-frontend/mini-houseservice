@@ -98,4 +98,6 @@
   <view class="container_btn">
     <i-button i-class='btn' long type='primary'>确认</i-button>
   </view>
+
+  <i-message id='message'></i-message>
 </view>

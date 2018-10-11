@@ -125,9 +125,10 @@ App({
           //接口调用失败都是401
         }else if(statusCode === 401){
           response.success = false
+          response.msg = response.data.msg || ''
         }else{
           //其他错误可能是网络问题或者服务器问题或者微信接口出错
-          response.data.msg = errMsg
+          response.msg = errMsg
           response.success = false
         }
         return response

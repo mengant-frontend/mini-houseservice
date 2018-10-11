@@ -12,7 +12,7 @@ Page({
       title: '审核结果'
     }],
     step_status: '',
-    step_current: 1,
+    step_current: 0,
 
     //经营类型
     business_activities: [{
@@ -116,7 +116,7 @@ Page({
       // Todo 上传接口
       promises.push(
         app.uploadFile({
-          url: '/test',
+          url: '/api/v1/image/save/upload',
           filePath: file.path,
           name: 'file'
         })
