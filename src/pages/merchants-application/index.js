@@ -36,7 +36,7 @@ Page({
 
   },
   onReady() {
-    this.checkStatus()
+    // this.checkStatus()
   },
   //检查当前状态
   async checkStatus(){
@@ -46,7 +46,7 @@ Page({
     })
     let { success, data } = server_res
     if(!success){
-      app._error(data.msg)
+      // app._error(data.msg)
       return 
     }
   },
@@ -116,7 +116,7 @@ Page({
       // Todo 上传接口
       promises.push(
         app.uploadFile({
-          url: '/api/v1/image/save/upload',
+          url: '/api/v1/image/upload',
           filePath: file.path,
           name: 'file'
         })
