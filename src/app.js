@@ -112,25 +112,23 @@ App({
         params.data.token = this.global_data.token
       }
       return this.asyncApi(wx.request, params).then(res => {
-        let { data, statusCode, header, errMsg, success } = res
-        if(!(data instanceof Object)){
-          data = {}
-        }
+        let { data = {}, statusCode, header, errMsg, success } = res
+        res = { data }
         //接口调用成功都是200
         if(statusCode === 200){
-          data.success = true
+          res.success = true
         }else if(statusCode === 401){
-          data.success = false
+          res.success = false
         }else{
-          data.msg = errMsg
-          data.success = false
+          res.data.msg = errMsg
+          res.success = false
         }
-        return data
+        return res
       })
     }
     let res = await request()
     //此处只做登录失效下自动调用登录接口
-    if(Number(res.code) === 10001){
+    if(Number(res.data.code) === 10001){
       if(auto){
         let login = await this.login()
         if(login.success){

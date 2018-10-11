@@ -1,30 +1,26 @@
 page {
-  /* iview 推荐字体 */
-  font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
-  font-size: 24rpx; /* iview 推荐正文样式 */
-  color: #657180;
-  background: #f2f2f2;
+  background: #EFEFF4;
 }
 
 /* 顶部区域、搜索、扫描 start */
 .header {
-  padding: 15rpx 20rpx;
+  padding: 16rpx 20rpx;
   display: flex;
   align-items: center;
 }
 .header .search {
   flex-grow: 1;
-  margin: 0 20rpx;
-  padding: 10rpx 0;
+  margin: 0 25rpx;
+  padding: 13rpx 0;
   background: #fff;
   border-radius: 6rpx;
-  color: #d8d8d8;
+  color: #bbbbbb;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .header icon {
-  margin-right: 15rpx;
+  margin-right: 11rpx;
 }
 /* 顶部区域、搜索、扫描 start */
 

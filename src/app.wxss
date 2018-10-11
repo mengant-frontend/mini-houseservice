@@ -1,4 +1,13 @@
 @import './weui/weui.wxss';
+
+page {
+  /* iview 推荐字体 */
+  font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+  /* iview 推荐正文样式 */
+  font-size: 24rpx;
+  color: #657180;
+}
+
 .f-btn{
   line-height: 1;
   font-size: 13px;

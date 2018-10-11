@@ -17,7 +17,7 @@ gulp.task('babel', cb => {
           .src('src/**/*.js')
           .pipe(plumber())
           .pipe(babel())
-          .pipe(uglify())
+          // .pipe(uglify())
           .pipe(gulp.dest('dist/'))
 })
 gulp.task('less', cb => {

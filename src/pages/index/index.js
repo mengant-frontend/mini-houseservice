@@ -1,12 +1,11 @@
+import regeneratorRuntime from  '../../lib/runtime'
+
+const app = getApp()
+
 Page({
   data: {
     // 默认位置
     location: ['北京市', '北京市', '朝阳区'],
-    bannerImg: [
-      '/images/404.png',
-      '/images/404.png',
-      '/images/404.png'
-    ],
     noticeContent: [
       '分享功能开启，每一次您的分享都会得到系统赠送的随机现金红包！',
       '店铺首次好评将获得随机现金红包！',
@@ -68,19 +67,38 @@ Page({
     ]
   },
 
+  onLoad() {
+    app.get({
+      url: '/api/v1/banner/mini/list',
+      data: {
+        type: 1
+      }
+    }).then(res => {
+      if(res.success) {
+        let banner_img = []
+        let data = res.data
+        for(let i in data) {
+          banner_img.push(data[i].url)
+        }
+        this.setData({ banner_img })
+      }
+    })
+  },
+
   // 地区选择
-  locationChoose ({ detail }) {
+  locationChoose({ detail }) {
     this.setData({
       location: detail.value
-    });
+    })
   },
 
   // 扫描
-  scan () {
-    wx.scanCode({
-      success (res) {
-        console.log(res);
-      }
-    });
+  async scan() {
+    let res = await app.asyncApi(wx.scanCode)
+    if(res.success) {
+      console.log(res)
+    }else {
+      console.log(res.errMsg)
+    }
   }
 })
