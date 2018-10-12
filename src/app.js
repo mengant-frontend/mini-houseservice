@@ -125,7 +125,7 @@ App({
           //接口调用失败都是401
         }else if(statusCode === 401){
           response.success = false
-          response.msg = response.data && response.data.msg
+          response.msg = response.data && response.data.msg || `server: ${url} api 调用失败`
         }else{
           //其他错误可能是网络问题或者服务器问题或者微信接口出错
           response.msg = errMsg
@@ -161,13 +161,20 @@ App({
     })
   },
   uploadFile(options){
-    let { url, ...other } = options
+    let { url, name, ...other } = options
     return this.asyncApi(wx.uploadFile, {
-      url: domain + url,
+      //上传图片接口统一用这个地址
+      url: domain + '/api/v1/image/upload',
+      name: 'file',
       ...other
+    }).then(res => {
+      try{
+        res.data = JSON.parse(res.data)
+      }catch(e){}
+      return res
     })
   },
-  _msg(content, options){
+  _msg(content, options = {}){
     $Message({
       ...options,
       content

@@ -7,11 +7,21 @@
     </i-step>
   </i-steps>
   <!-- 填写资料 -->
-  <view wx:if='step_current === 0'>
+  <view wx:if='{{step_current === 0}}'>
     <i-panel>
       <i-cell-group>
+        <i-cell title='商家头像' only-tap-footer='{{true}}'>
+          <view slot='footer' class='container__avatar' bindtap='chooseAvatar'>
+            <text wx:if='{{!avatar.path}}'>设置图片</text>
+            <image wx:else class="avatar" mode='aspectFit' src='{{avatar.path}}'>
+              <f-error wx:if='{{avatar.error}}' size='20'></f-error>
+              <i-spin fix wx:if='{{!avatar.loaded}}'></i-spin>
+            </image>
+            <i-icon type='enter'></i-icon>
+          </view>
+        </i-cell>
         <i-cell title='经营类型'>
-          <picker slot='footer' mode='selector' bindchange='updateFormData' data-form_key='type' value='{{form_data.type}}'
+          <picker slot='footer' mode='selector' bindchange='bindFormChange' data-form_key='type' value='{{form_data.type}}'
             range='{{business_activities}}' range-key='title'>
             <view>
               <text>{{type_text}}</text>
@@ -20,10 +30,10 @@
           </picker>
         </i-cell>
         <i-cell title='店铺名称'>
-          <input slot='footer' bindinput='updateFormData' data-form_key='name' placeholder='请输入店铺名称'></input>
+          <input slot='footer' bindinput='bindFormChange' data-form_key='name' placeholder='请输入店铺名称'></input>
         </i-cell>
         <i-cell title='服务区域' i-class='i-cell'>
-          <picker slot='footer' mode='region' bindchange='updateFormData' data-form_key="services_region" value='{{[form_data.province, form_data.city, form_data.area]}}'>
+          <picker slot='footer' mode='region' bindchange='bindFormChange' data-form_key="services_region" value='{{[form_data.province, form_data.city, form_data.area]}}'>
             <view>
               <text>{{form_data.province}}{{form_data.city}}{{form_data.area}}</text>
               <i-icon type='enter'></i-icon>
@@ -31,30 +41,31 @@
           </picker>
         </i-cell>
         <i-cell title='商家地址'>
-          <input slot='footer' type='text' placeholder='请输入店铺详细地址'></input>
+          <input slot='footer' type='text' data-form_key="address" bindchange='bindFormChange' placeholder='请输入店铺详细地址'></input>
         </i-cell>
         <i-cell title='商家手机号'>
-          <input slot='footer' type='number' placeholder='请输入商家手机号码'></input>
+          <input slot='footer' type='number' data-form_key="phone" bindchange='bindFormChange' placeholder='请输入商家手机号码'></input>
         </i-cell>
         <i-cell title='备用手机号'>
-          <input slot='footer' type='number' placeholder='请输入商家备用手机号码'></input>
+          <input slot='footer' type='number' data-form_key="phone_sub" bindchange='bindFormChange' placeholder='请输入商家备用手机号码'></input>
         </i-cell>
         <i-cell title='身份证号'>
-          <input slot='footer' type='idcard' placeholder='请输入身份证号码'></input>
+          <input slot='footer' type='idcard' data-form_key="id_number" bindchange='bindFormChange' placeholder='请输入身份证号码'></input>
         </i-cell>
       </i-cell-group>
     </i-panel>
-  
+
     <i-panel title='商家资料图片'>
       <view class="pictures">
         <view wx:for='{{photo_list}}' wx:key='path' class="picture {{index % 4 === 0? 'picture_0' : ''}}">
-          <image class="photo {{item.error ? 'error' : ''}}" mode='aspectFit' src='{{item.path}}'>
-              <i-spin fix wx:if='{{!item.loaded}}'></i-spin>
+          <image class="photo" mode='aspectFit' src='{{item.path}}'>
+            <i-spin fix wx:if='{{!item.loaded}}'></i-spin>
+            <f-error wx:if='{{item.error}}'></f-error>
           </image>
           <view class="container__close" bindtap='deleteImg' data-index='{{index}}'>
-            <i-icon wx:if='{{item.loaded}}' type='delete' size='14' i-class='icon__close'></i-icon>
+            <i-icon wx:if='{{item.loaded}}' type='delete' size='20' i-class='icon__close'></i-icon>
           </view>
-          
+
         </view>
         <view wx:if='{{photo_list.length < 4}}' class="picture {{photo_list.length % 4 === 0 ? 'picture_0' : ''}}">
           <view class="container__add" bindtap='chooseImg'>
@@ -71,32 +82,95 @@
   </view>
 
   <!-- 审核中 -->
-  <view wx:if='step_current === 1' class="checking">
+  <view wx:elif='{{step_current === 1}}' class="checking">
     <view class="tip__wait">
       <text class="tip-text__wait">商家入驻需要经过后台审核处理，请耐心等待哦</text>
     </view>
     <view class="table">
       <view class="table-body">
         <view class="table-row">
-          <view class="table-cell"></view>
-          <view class="table-cell"></view>
+          <view class="table-cell checking-title">商家头像</view>
+          <view class="table-cell checking-value">
+            <view class="checking-pictures">
+              <image src='/images/avatar.jpg' class="checking-photo" mode='aspectFit'></image>
+            </view>
+          </view>
         </view>
         <view class="table-row">
-          <view class="table-cell"></view>
-          <view class="table-cell"></view>
+          <view class="table-cell checking-title">经营类型</view>
+          <view class="table-cell checking-value">{{type_text}}</view>
+        </view>
+        <view class="table-row">
+          <view class="table-cell checking-title">店铺名称</view>
+          <view class="table-cell checking-value">
+            <text>{{form_data.name}}</text>
+          </view>
+        </view>
+        <view class="table-row">
+          <view class="table-cell checking-title">店铺地址</view>
+          <view class="table-cell checking-value">
+            <text>{{form_data.province}}{{form_data.city}}{{form_data.area}}{{form_data.address}}</text>
+          </view>
+        </view>
+        <view class="table-row">
+          <view class="table-cell checking-title">商家手机号</view>
+          <view class="table-cell checking-value">
+            <text>{{form_data.phone}}</text>
+          </view>
+        </view>
+        <view class="table-row">
+          <view class="table-cell checking-title">备用手机号</view>
+          <view class="table-cell checking-value">
+            <text>{{form_data.phone_sub}}</text>
+          </view>
+        </view>
+        <view class="table-row">
+          <view class="table-cell checking-title">身份证号</view>
+          <view class="table-cell checking-value">
+            <text>{{form_data.idcard}}</text>
+          </view>
+        </view>
+        <view class="table-row">
+          <view class="table-cell checking-title checking-pictures-title">商家资料图片</view>
+          <view class="table-cell checking-value">
+            <view class="checking-pictures">
+              <image wx:for='{{4}}' src='/images/avatar.jpg' class="checking-photo" mode='aspectFit'></image>
+            </view>
+          </view>
         </view>
       </view>
-
     </view>
   </view>
 
   <!-- 审核结果 -->
-  <view wx:if='step_current === 2'>
-
+  <view wx:else='{{ step_current === 2 }}'>
+    <view class="weui-msg">
+      <view class="weui-msg__icon-area">
+        <icon type="{{result ? 'success' : 'warn'}}" size="93"></icon>
+      </view>
+      <view class="weui-msg__text-area">
+        <view class="weui-msg__desc">
+          <block wx:if='{{result}}'>
+            <view>您提交的资料已经成功通过审核</view>
+            <view>现在马上去上线产品吧~</view>
+          </block>
+          <block wx:else>
+            <view>很遗憾，您提交的资料未能通过审核</view>
+            <view>请重新查证后再上传吧~</view>
+          </block>
+        </view>
+      </view>
+      <view class="weui-msg__opr-area">
+        <view class="weui-btn-area">
+          <button wx:if='{{result}}' class="weui-btn" type="primary">去上线</button>
+          <button wx:else class="weui-btn" type="default" bindtap='redo'>重新申请</button>
+        </view>
+      </view>
+    </view>
   </view>
 
-  <view class="container_btn">
-    <i-button i-class='btn' long type='primary'>确认</i-button>
+  <view class="container_btn" wx:if='{{step_current === 0}}'>
+    <i-button i-class='btn' long type='primary' bindtap='confirm'>确认</i-button>
   </view>
 
   <i-message id='message'></i-message>

@@ -19,10 +19,14 @@
     "pages/withdraw-record/index",
     "pages/expense-record/index",
     "pages/command/index",
-    "pages/merchants-application/index"
+    "pages/merchants-application/index",
+    "pages/profile-edit/index",
+    "pages/order-evaluate/index",
+    "pages/order-detail/index",
+    "pages/command-release/index"
   ],
   "window": {
-    "navigationBarTitleText": "久房通",
+    "navigationBarTitleText": "demo",
     "enablePullDownRefresh": true
   },
   "tabBar": {

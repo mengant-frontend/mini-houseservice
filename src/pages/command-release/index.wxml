@@ -1,0 +1,59 @@
+<view class="page">
+  <i-panel title='发布人信息' i-class='panel'>
+    <i-cell-group>
+      <i-cell title='发布人名称'>
+        <input slot='footer' placeholder="请输入发布人名称"></input>
+      </i-cell>
+      <i-cell title='手机号码'>
+        <input slot='footer' placeholder="请输入手机号码"></input>
+      </i-cell>
+    </i-cell-group>
+  </i-panel>
+  <i-panel title='需求信息'>
+    <i-cell-group>
+      <i-cell title='需求类型'>
+        <picker slot='footer' range='{{command_types}}' data-form_data='updateFormChange' range-key='label'>
+          <view>
+            <text>{{command_type}}</text>
+            <i-icon type='enter'></i-icon>
+          </view>
+        </picker>
+      </i-cell>
+      <i-cell title='需求描述'>
+        <input slot='footer' placeholder="请输入需求描述"></input>
+      </i-cell>
+      <i-cell title='服务地址'>
+        <view slot='footer'>
+          <text>{{}}</text>
+          <i-icon type='enter'></i-icon>
+        </view>
+      </i-cell>
+      <i-cell title='开始时间'>
+        <f-date-time slot='footer' bind:update='updateDateTime'>
+          <view>
+            <text>选择时间</text>
+            <i-icon type='enter'></i-icon>
+          </view>
+        </f-date-time>
+      </i-cell>
+      <i-cell title='结束时间'>
+        <picker slot='footer' mode='time'>
+          <view>
+            <text></text>
+            <i-icon type='enter'></i-icon>
+          </view>
+        </picker>
+      </i-cell>
+      <i-cell title='酬金'>
+        <input slot='footer' placeholder="请输入"></input>
+      </i-cell>
+    </i-cell-group>
+  </i-panel>
+  <i-panel title='添加照片'>
+    <view class="container__pictures">
+      <f-photo count='4'></f-photo>
+    </view>
+  </i-panel>
+
+  <i-message id='message'></i-message>
+</view>

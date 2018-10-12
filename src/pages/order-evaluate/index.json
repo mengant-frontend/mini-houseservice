@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "i-rate": "../../iview/rate/index",
+    "i-button": "../../iview/button/index",
+    "i-message": "../../iview/message/index"
+  }
+}

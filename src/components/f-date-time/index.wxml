@@ -1,0 +1,3 @@
+<picker mode='multiSelector' range='{{range}}' value='{{indexs}}' bindcolumnchange='bindColumnChange' bindchange='bindChange'>
+  <slot bindtap='tapPicker'></slot>
+</picker>

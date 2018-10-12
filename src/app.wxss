@@ -1,5 +1,5 @@
 @import './weui/weui.wxss';
-
+@import './variable.less';
 page {
   /* iview 推荐字体 */
   font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
@@ -36,9 +36,11 @@ cover iview
 */
 .table{
   display: table;
+  /* width: 100%; */
 }
 .table-body{
   display: table-row-group;
+  /* width: 100%; */
 }
 .table-row{
   display: table-row;
