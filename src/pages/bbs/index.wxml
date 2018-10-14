@@ -1,0 +1,17 @@
+<view class="page">
+  <i-panel title='您的留言'>
+    <f-textarea></f-textarea>
+  </i-panel>
+
+  <i-panel title='联系方式'>
+    <i-cell-group>
+      <i-cell>
+        <input placeholder='手机号码'></input>
+      </i-cell>
+      <i-cell>
+        <input placeholder="邮箱(选填)"></input>
+      </i-cell>
+    </i-cell-group>
+    <view>请留下您的联系方式，以便我们能够方便地了解问题以及向您反馈结果。</view>
+  </i-panel>
+</view>

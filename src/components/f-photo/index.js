@@ -6,16 +6,55 @@ Component({
     count: {
       type: Number,
       value: 4
+    },
+    type: {
+      type: String,
+      value: 'picture'
+    },
+    remote: {
+      type: Array,
+      value: []
     }
   },
   data: {
-    photo_list: []
+    photo_list: [],
+    default_photo_list: [{}]
+  },
+  ready(){
+    let remote = app._deepClone(this.data.remote)
+    if(remote instanceof Array){
+      
+    }else if(remote instanceof Object){
+      remote = [remote]
+    }
+    this.setData({
+      photo_list: remote
+    })
   },
   methods: {
+    //更新数据
+    update(photo_list){
+      return new Promise(resolve => {
+        this.triggerEvent('update', {
+          value: photo_list
+        })
+        this.setData({
+          photo_list: photo_list
+        }, resolve)
+      })
+    },
+    //选择头像
+    async chooseAvatar() {
+      let avatar = app._deepClone(this.data.photo_list)[0]
+      if (avatar) {
+        await this.update([])
+      }
+      await this.chooseImage(1)
+    },
     //选择图片
-    async chooseImage() {
-      let count = this.data.count,
-        photo_list = app._deepClone(this.data.photo_list)
+    async chooseImage(count) {
+      let photo_list = app._deepClone(this.data.photo_list)
+      count = count || this.data.count
       let rest = count - photo_list.length
       if (rest < 1) {
         return
@@ -31,44 +70,20 @@ Component({
         console.error('wx: chooseImage api 调用失败')
         return
       }
-      await new Promise(resolve => {
-        this.setData({
-          photo_list: photo_list.concat(tempFiles)
-        }, resolve)
-      })
+      await this.update(photo_list.concat(tempFiles))
       let promises = []
       tempFiles.forEach(file => {
-        let promise = new Promise(resolve => {
-          let upload_task = wx.uploadFile({
-            url: domain + '/api/v1/image/upload',
+        
+        promises.push(
+          app._uploadFile({
             filePath: file.path,
-            name: 'file',
-            success(res) {
-              resolve({
-                success: true,
-                ...res
-              })
-            },
-            fail(res) {
-              resolve({
-                success: false,
-                ...res
-              })
+            onProgressUpdate: res => {
+              console.log(123)
+              file.progress = res.progress
+              this.update(photo_list.concat(tempFiles))
             }
           })
-          upload_task.onProgressUpdate(res => {
-            file.progress = res.progress
-            this.setData({
-              photo_list: photo_list.concat(tempFiles)
-            })
-          })
-        }).then(res => {
-          try {
-            res.data = JSON.parse(res.data)
-          } catch (e) { }
-          return res
-        })
-        promises.push(promise)
+        )
       })
       let server_promises = await Promise.all(promises)
       server_promises.forEach((promise, index) => {
@@ -79,9 +94,7 @@ Component({
           tempFiles[index].error = true
         }
       })
-      this.setData({
-        photo_list: photo_list.concat(tempFiles)
-      })
+      this.update(photo_list.concat(tempFiles))
     },
     //删除图片
     async deleteImage(e) {
@@ -90,19 +103,13 @@ Component({
       //如果上传过程中失败，则直接删除
       if (photo_list[index].error) {
         photo_list.splice(index, 1)
-        this.setData({
-          photo_list: photo_list
-        })
+        this.update(photo_list)
         return
       } else {
         photo_list[index].deleting = true
       }
       //展示spining
-      await new Promise(resolve => {
-        this.setData({
-          photo_list: photo_list
-        }, resolve)
-      })
+      await this.update(photo_list)
       //Todo 删除接口
       let server_res = await app.post({
         url: '/test',
@@ -113,13 +120,10 @@ Component({
       let { msg, success } = server_res
       if (!success) {
         photo_list[index].deleting = false
-        app._error(msg)
       } else {
         photo_list.splice(index, 1)
       }
-      this.setData({
-        photo_list: photo_list
-      })
+      this.update(photo_list)
     }
   }
 

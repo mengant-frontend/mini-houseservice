@@ -26,7 +26,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 9,
+			"current": 11,
 			"list": [
 				{
 					"id": -1,
@@ -85,7 +85,20 @@
 				{
 					"id": -1,
 					"name": "xuqiu fabu",
-					"pathName": "pages/command-release/index"
+					"pathName": "pages/command-release/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "发布服务",
+					"pathName": "pages/service-release/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "我的信息",
+					"pathName": "pages/account-personal/index",
+					"query": ""
 				}
 			]
 		}

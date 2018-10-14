@@ -55,5 +55,16 @@
     </view>
   </i-panel>
 
+  <view class="fixed">
+    <view class="group__btn">
+      <view class="container__btn"> 
+        <i-button long>自动派单</i-button>
+      </view>
+      <view class="container__btn">
+        <i-button type='primary' long>手动选择</i-button>
+      </view>
+    </view>
+  </view>
+
   <i-message id='message'></i-message>
 </view>

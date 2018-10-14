@@ -23,7 +23,11 @@
     "pages/profile-edit/index",
     "pages/order-evaluate/index",
     "pages/order-detail/index",
-    "pages/command-release/index"
+    "pages/command-release/index",
+    "pages/service-release/index",
+    "pages/withdraw-checking/index",
+    "pages/account-personal/index",
+    "pages/service-booking/index"
   ],
   "window": {
     "navigationBarTitleText": "demo",

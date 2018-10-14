@@ -1,0 +1,22 @@
+<view class="page">
+  <view class="container">
+    <i-cell-group>
+      <i-cell title='提现账号'>
+        <picker slot='footer'>
+          <view>
+            <text></text>
+            <i-icon type='enter'></i-icon>
+          </view>
+        </picker>
+      </i-cell>
+      <i-cell title='提现金额'>
+        <view>
+          <input></input>
+        </view>
+      </i-cell>
+      <i-cell>
+        <i-button long type='primary'>提现</i-button>
+      </i-cell>
+    </i-cell-group>
+  </view>
+</view>
