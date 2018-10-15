@@ -8,6 +8,16 @@ page {
   color: #657180;
 }
 
+/* 覆盖基础组件原样式 start */
+button {
+  padding: 0;
+  margin: 0;
+}
+button::after {
+  border: none;
+}
+/* 覆盖基础组件原样式 end */
+
 .f-btn{
   line-height: 1;
   font-size: 13px;

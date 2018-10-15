@@ -1,6 +1,7 @@
 .container {
   background: #fff;
-  height: 366rpx; /* 高度遵从设计稿为366rpx */
+  /* 高度遵从设计稿为366rpx */
+  height: 366rpx;
 }
 .img {
   width: 100%;

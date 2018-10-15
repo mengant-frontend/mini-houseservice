@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "店铺",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "scroll-loading": "/components/scroll-loading/index",
+    "banner-img": "/components/banner-img/index",
+    "i-icon": "/iview/icon/index",
+    "i-message": "/iview/message/index"
+  }
+}

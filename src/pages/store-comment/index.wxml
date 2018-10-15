@@ -1,0 +1,7 @@
+<view class='comment-total'>网友评论({{comment_total}})</view>
+
+<view class='comment-bar'>
+  <scroll-loading if-no-more='{{if_no_more}}' if-loading='{{if_loading}}' bind:scrolltolower='getCommentList'>
+    <comment-list can-reply='{{true}}' list='{{comment_list}}' bind:reply='reply' bind:like='like'></comment-list>
+  </scroll-loading>
+</view>

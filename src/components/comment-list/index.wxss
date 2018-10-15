@@ -1,0 +1,56 @@
+.container {
+  padding: 0 25rpx 30rpx;
+  display: flex;
+}
+/* 为 fit-img 组件设置更多样式 */
+.img-style {
+  border-radius: 50%;
+}
+.content-bar {
+  margin-left: 20rpx;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+.info {
+  /* 和头像同高 */
+  height: 60rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+/* 昵称、时间、回复按钮、点赞数应该继承正文样式 */
+.name-date {
+  line-height: 1.4;
+  flex-grow: 1;
+  display: flex;
+  justify-content: space-between;
+}
+.date {
+  /* 比昵称小一点 */
+  font-size: 20rpx;
+}
+.reply-likes {
+  display: flex;
+  align-items: center;
+}
+.reply {
+  margin-right: 30rpx;
+  /* iview 推荐 warning 辅助色 */
+  color: #ff9900;
+}
+.content,
+.comment-someone {
+  /* iview 推荐次级标题样式 */
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #464c5b;
+}
+.comment-someone {
+  background: #fff;
+  margin-top: 20rpx;
+  padding: 20rpx;
+}
+.someone-content {
+  opacity: 0.5;
+}

@@ -16,7 +16,7 @@
 
 <i-notice-bar icon="systemprompt" loop>
   【红包攻略】
-  <text wx:for='{{noticeContent}}' wx:key='*this'>{{item}}</text>
+  <text wx:for='{{notice_content}}' wx:key='*this'>{{item}}</text>
 </i-notice-bar>
 
 <view class='menu'>
@@ -28,7 +28,7 @@
     <image mode='aspectFit' src='/images/maintain.png' />
     <text>维修服务</text>
   </navigator>
-  <navigator class='item' url='/pages/service-rank/index'>
+  <navigator class='item' url='/pages/service-rank/index?area={{location[2]}}'>
     <image mode='aspectFit' src='/images/rank.png' />
     <text>服务排行</text>
   </navigator>
@@ -36,12 +36,12 @@
 
 <service-hall></service-hall>
 
-<block wx:if='{{houseServiceList.length > 0}}'>
+<block wx:if='{{house_service_list.length > 0}}'>
   <service-title-bar service-type='1'></service-title-bar>
-  <service-list list='{{houseServiceList}}' service-type='1'></service-list>
+  <service-list list='{{house_service_list}}' service-type='1'></service-list>
 </block>
 
-<block wx:if='{{maintainServiceList.length > 0}}'>
+<block wx:if='{{maintain_service_list.length > 0}}'>
   <service-title-bar service-type='2'></service-title-bar>
-  <service-list list='{{maintainServiceList}}' service-type='2'></service-list>
+  <service-list list='{{maintain_service_list}}' service-type='2'></service-list>
 </block>

@@ -1,4 +1,4 @@
-const app = getApp()
+let app = getApp()
 
 Component({
   properties: {

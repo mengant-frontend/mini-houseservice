@@ -1,9 +1,9 @@
-<scroll-view class='container bg-color' scroll-y lower-threshold='15' enable-back-to-top bindscrolltolower='scrolltolower'>
-  <view class='content' style='padding-bottom: {{ifNoMore?"0":paddingBottom}}'>
-    <!-- 组件使用者在组件内包裹的单节点在此展示 -->
+<scroll-view class='container' style='background:{{bgColor}};' scroll-y lower-threshold='15' enable-back-to-top bindscrolltolower='scrolltolower'>
+  <view class='content' style='padding-bottom:{{ifNoMore?"0":padding_bottom}};'>
+    <!-- 组件使用者在组件内包裹的节点在此展示 -->
     <slot></slot>
 
-    <!-- 内容区域上拉触底交互的提示语 -->
-    <i-load-more tip='{{ifNoMore?noMore:loadMore}}' loading='{{ifLoading}}' />
+    <!-- 触底加载提示语 -->
+    <i-load-more tip='{{ifNoMore?no_more:load_more}}' loading='{{ifLoading}}' />
   </view>
 </scroll-view>

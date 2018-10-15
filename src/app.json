@@ -6,6 +6,8 @@
     "pages/service-detail/index",
     "pages/service-hall/index",
     "pages/service-rank/index",
+    "pages/store/index",
+    "pages/store-comment/index",
 
     "pages/community/index",
     "pages/community-detail/index",

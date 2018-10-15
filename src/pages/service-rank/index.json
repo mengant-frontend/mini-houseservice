@@ -1,1 +1,8 @@
-{}
+{
+  "navigationBarTitleText": "服务排行",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "tabs-swiper-page": "/components/tabs-swiper-page/index",
+    "i-load-more": "/iview/load-more/index"
+  }
+}

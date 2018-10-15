@@ -1,2 +1,22 @@
-<!--pages/community-detail/index.wxml-->
-<text>pages/community-detail/index.wxml</text>
+<!-- 计算 .input-bar 的高度，动态设置 padding-bottom -->
+<view class='container' style='padding-bottom:{{padding_bottom}}rpx;'>
+  <scroll-loading bg-color='#EFEFF4' if-no-more='{{if_no_more}}' if-loading='{{if_loading}}' bind:scrolltolower='getCommentList'>
+    <view>
+      <view class='content-bar'>
+        <text class='title'>{{title}}</text>
+        <text decode>{{date}}&nbsp;&nbsp;|&nbsp;&nbsp;阅读&nbsp;&nbsp;{{view_num===0?1:view_num}}</text>
+        <fit-img width='700' src='{{img_url}}'></fit-img>
+        <text class='content' decode>{{content}}</text>
+      </view>
+      <view class='total'>网友评论({{total}})</view>
+      <comment-list bg-color='#EFEFF4' can-reply='{{true}}' list='{{comment_list}}' bind:reply='reply' bind:like='like'></comment-list>
+    </view>
+  </scroll-loading>
+
+  <view class='input-bar'>
+    <textarea class='input' placeholder='发表评论····' maxlength='-1' auto-height fixed value='{{parent_nick_name}}{{enter_comment}}' focus='{{input_focus}}' bindinput='enterComment' bindlinechange='inputHeightChange'></textarea>
+    <button class='btn' bindtap='send'>
+      发送
+    </button>
+  </view>
+</view>

@@ -1,2 +1,21 @@
-<!--pages/service-rank/index.wxml-->
-<text>pages/service-rank/index.wxml</text>
+<tabs-swiper-page tabs-current='{{tabs_current}}' tabs-list='{{tabs_list}}'>
+  <view wx:for='{{tabs_list}}' wx:key='name' slot='{{item.name}}'>
+    <navigator class='item' wx:for='{{item.list}}' wx:key='id' wx:for-item='t' wx:for-index='i' url='/pages/service-detail/index?type={{index+1}}&id={{t.id}}'>
+      <image class='img' mode='aspectFit' src='{{t.img_url}}' />
+      <view class='info'>
+        <text class='title'>{{t.title}}</text>
+        <view class='sales'>
+          <image class='icon-fire' mode='aspectFit' src='/images/fire.png' />
+          <text class='sales-text'>月销量 {{t.sales}}</text>
+        </view>
+      </view>
+      <image class='icon-medal' mode='aspectFit' src='/images/gold-medal.png' wx:if='{{i === 0}}' />
+      <image class='icon-medal' mode='aspectFit' src='/images/sliver-medal.png' wx:elif='{{i === 1}}' />
+      <image class='icon-medal' mode='aspectFit' src='/images/bronze-medal.png' wx:elif='{{i === 2}}' />
+      <text class='rank' wx:else>{{i+1}}</text>
+    </navigator>
+
+    <!-- 提示语 -->
+    <i-load-more tip='暂无排行' loading='{{false}}'  wx:if='{{item.list.length===0}}' />
+  </view>
+</tabs-swiper-page>

@@ -1,0 +1,109 @@
+page {
+  height: 100%;
+  box-sizing: border-box;
+  /* .store-info 总高度，剩下空间给 .service-bar */
+  padding-top: 601rpx;
+}
+
+/* 店铺信息 start */
+.store-info {
+  /* 店铺信息固定在屏幕顶部，每个子节点都必须设置具体高度 */
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+.name-bar,
+.score-bar,
+.else-bar {
+  padding: 0 30rpx;
+  height: 60rpx;
+  /* iview 推荐次级标题样式，不加粗，颜色遵循设计稿 */
+  font-size: 28rpx;
+  color: #A0A0A0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.left-text {
+  margin-right: 25rpx;
+  /* iview 推荐主标题样式 */
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #464c5b;
+}
+.score-bar .comment:after {
+  content: '';
+  display: inline-block;
+  width: 14rpx;
+  height: 14rpx;
+  border: 1rpx solid #A0A0A0; /* 跟随 .comment 颜色 */
+  border-bottom: none;
+  border-left: none;
+  transform: rotate(45deg);
+  margin-bottom: 1rpx; /* 看起来与文字垂直对齐 */
+}
+.else-bar {
+  border-top: 1rpx solid #dddee1;
+  border-bottom: 1rpx solid #dddee1;
+  height: 90rpx;
+  box-sizing: border-box;
+}
+.else-bar .location {
+  flex-grow: 1;
+  height: 100%;
+  border-right: 1rpx solid #dddee1;
+  display: flex;
+  align-items: center;
+}
+.else-bar .icon-phone {
+  width: 40rpx;
+  height: 40rpx;
+  margin-left: 30rpx; /* 左右等宽留白 */
+}
+.space-out {
+  /* 底部留间隔 */
+  height: 25rpx;
+  background: #EFEFF4;
+}
+/* 店铺信息 end */
+
+/* 服务列表 start */
+.service-bar {
+  /* 为 scroll-loading 继承高度 */
+  height: 100%;
+}
+.item {
+  padding: 30rpx;
+  border-bottom: 1rpx solid #dddee1;
+  display: flex;
+  align-items: center;
+}
+.item .img {
+  width: 270rpx;
+  height: 165rpx;
+  border-radius: 8rpx;
+  margin-right: 40rpx;
+}
+.item .info {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  /* 750-30*2-310-40 给定宽度为了让文本单行溢出省略 */
+  width: 380rpx;
+}
+.item .title {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  /* iview 推荐主标题样式 */
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #464c5b;
+}
+.item .money,
+.item .sales {
+  margin-top: 14rpx;
+  /* iview 推荐 warning 辅助色 */
+  color: #ff9900;
+}
+/* 服务列表 end */

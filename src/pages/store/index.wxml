@@ -1,0 +1,34 @@
+<view class='store-info'>
+  <banner-img list='{{banner_img}}'></banner-img>
+  <view class='name-bar'>
+    <text class='left-text'>{{name}}</text>
+    <i-icon type='{{if_collected?"collection_fill":"collection"}}' size='30' color='{{if_collected?"#ff9900":"#8A8A8A"}}' bindtap='collect'></i-icon>
+  </view>
+  <view class='score-bar'>
+    <text class='left-text'>{{score}}分</text>
+    <navigator class='comment' url='/pages/store-comment/index?id={{store_id}}'>{{comment}}条评论</navigator>
+  </view>
+  <view class='else-bar'>
+    <view class='location'>
+      <text class='left-text'>位置</text>
+      <text>{{location}}</text>
+    </view>
+    <image class='icon-phone' mode='aspectFit' src='/images/phone.png' bindtap='callPhone' />
+  </view>
+  <view class='space-out'></view>
+</view>
+
+<view class='service-bar'>
+  <scroll-loading if-no-more='{{if_no_more}}' if-loading='{{if_loading}}' bind:scrolltolower='getServiceList'>
+    <navigator class='item' wx:for='{{service_list}}' wx:key='id' url='/pages/service-detail/index?type={{item.type}}&id={{item.id}}'>
+      <image class='img' mode='aspectFit' src='{{item.img_url}}' />
+      <view class='info'>
+        <text class='title'>{{item.title}}</text>
+        <text class='money'>￥{{item.money}}/次</text>
+        <text class='sales'>已售 {{item.sales}}</text>
+      </view>
+    </navigator>
+  </scroll-loading>
+</view>
+
+<i-message id="message" />
