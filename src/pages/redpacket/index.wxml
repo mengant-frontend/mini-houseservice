@@ -1,0 +1,15 @@
+<view class="page">
+  <view class="list">
+    <view class="item" wx:for='{{list}}' wx:key='id'>
+      <view class="money">
+        <text>￥{{item.money}}</text>
+      </view>
+      <view class="message">
+        <view class="title">{{item.detail.name}}</view>
+        <view class="desc">{{item.create_time}} ~ {{item.end_time}}</view>
+      </view>
+    </view>
+  </view>
+
+  <i-message id='message'></i-message>
+</view>

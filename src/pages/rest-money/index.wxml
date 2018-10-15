@@ -1,16 +1,14 @@
-<view class='page'>
-  <view class='container'>
-    <text class='money-detail'>{{rest_money}}</text>
-    <text class='money-desc'>余额</text>
-    <button class='f-btn f-btn-primary'>提现</button>
+<view class="page">
+  <view>
+    <view class="title">余额</view>
+    <view class="desc">￥2018.10</view>
+    <view>
+      <i-button type='primary'>提现</i-button>
+    </view>
   </view>
+
   <i-cell-group>
-    <i-cell
-      wx:for='{{cell_list}}'
-      wx:key='index'
-      title='{{item.title}}'
-      url='{{item.url}}'
-      is-link
-    ></i-cell>
+    <i-cell title='提现记录' is-link></i-cell>
+    <i-cell title='收支明细' is-link></i-cell>
   </i-cell-group>
 </view>

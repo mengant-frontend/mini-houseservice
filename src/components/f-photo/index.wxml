@@ -1,0 +1,45 @@
+<view wx:if='{{type === "avatar"}}' class="container">
+  <view class="item" wx:for='{{photo_list.length > 0 ? photo_list : default_photo_list}}' wx:key='path' bindtap='chooseAvatar'>
+    <view class="container__photo">
+      <view class="photo">
+        <image src='{{item.path}}' mode="aspectFill"></image>
+      </view>
+      <view class="photo" wx:if='{{!item.loaded || item.error || item.deleting}}'>
+        <view class="flex status">
+          <text wx:if='{{item.deleting}}'>删除中...</text>
+          <text wx:elif='{{!item.error}}'>{{item.progress ? item.progress + '%' : ''}}</text>
+          <i-icon wx:else type='prompt' color='#ff9900' size='36'></i-icon>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<view wx:else class="container">
+  <view class="item" style='width: {{ 100 / count }}%;' wx:for='{{photo_list}}' wx:key='path'>
+    <view class="container__photo">
+      <view class="photo">
+        <image src='{{item.path}}' mode="aspectFill"></image>
+      </view>
+      <view class="photo" wx:if='{{!item.loaded || item.error || item.deleting}}'>
+        <view class="flex status">
+          <text wx:if='{{item.deleting}}'>删除中...</text>
+          <text wx:elif='{{!item.error}}'>{{item.progress}}%</text>
+          <i-icon wx:else type='prompt' color='#ff9900' size='36'></i-icon>
+        </view>
+      </view>
+      <view class="container__close" wx:if='{{item.loaded}}' bindtap='deleteImage' data-index='{{index}}'>
+        <i-icon type='delete_fill' color='#ff9900' size='22'></i-icon>
+      </view>
+    </view>
+  </view>
+  <view class="item " style='width: {{ 100 / count }}%;' wx:if='{{photo_list.length < count}}' bindtap='chooseImage'>
+    <view class="container__photo">
+      <view class="photo">
+        <view class="flex group-add">
+          <i-icon type='add' size='36'></i-icon>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<i-message id='message'></i-message>

@@ -1,0 +1,54 @@
+@import '../../variable.less';
+// 必须是@wave_width的整数倍
+@height: 180rpx;
+@wave_width: 60rpx;
+page{
+  background-color: @background_color;
+}
+.list{
+  padding: 0 @blank @gutter;
+  width: 100%;
+  box-sizing: border-box;
+}
+.item{
+  display: flex;
+  flex-direction: row;
+  border: none;
+  margin-top: @gutter;
+  box-shadow: @shadow;
+}
+.money{
+  width: @height;
+  height: @height;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+	border: none;
+	background: radial-gradient(circle at 50% 50%, @background_color 0, @background_color 50%, transparent 0), radial-gradient(circle at 50% 50%, @background_color 0, @background_color 50%, transparent 0);
+	background-repeat: repeat-y;
+	background-size: @wave_width @wave_width;
+  background-position: -30rpx @height, -30rpx 0;
+  background-color: @warning;
+  font-size: 16px;
+  color: #fff;
+  font-weight: bold;
+}
+.message{
+  background-color: #fff;
+  flex-grow: 1;
+  flex-shrink: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 @gutter_small;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+.title{
+  font-size: @title_size;
+  color: @title_color;
+}
+.desc{
+  font-size: @sub_content_size;
+  color: @sub_content_color;
+}

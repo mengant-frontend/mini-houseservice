@@ -1,0 +1,58 @@
+<view class="page">
+  <i-cell-group>
+    <i-cell title='服务类型'>
+      <picker slot='footer'>
+        <view>
+          <text></text>
+          <i-icon type='enter'></i-icon>
+        </view>
+      </picker>
+    </i-cell>
+  </i-cell-group>
+
+  <i-panel title='服务地点及时间'>
+    <i-cell-group>
+      <i-cell title='服务地点'>
+        <view>
+          <text></text>
+          <i-icon type='enter'></i-icon>
+        </view>
+      </i-cell>
+      <i-cell title='服务周期'>
+        <picker slot='footer'>
+          <view>
+            <text></text>
+            <i-icon type='enter'></i-icon>
+          </view>
+        </picker>
+      </i-cell>
+      <i-cell title='开始时间'>
+        <f-date-time slot='footer'>
+          <view>
+            <text></text>
+            <i-icon type='enter'></i-icon>
+          </view>
+        </f-date-time>
+      </i-cell>
+      <i-cell title='结束时间'>
+        <f-date-time slot='footer'>
+          <view>
+            <text></text>
+            <i-icon type='enter'></i-icon>
+          </view>
+        </f-date-time>
+      </i-cell>
+    </i-cell-group>
+  </i-panel>
+
+  <i-panel title='其他信息'>
+    <i-cell-group>
+      <i-cell title='手机号码'>
+        <input slot='footer'></input>
+      </i-cell>
+      <i-cell title='备注'>
+        <textarea class="textarea"></textarea>
+      </i-cell>
+    </i-cell-group>
+  </i-panel>
+</view>

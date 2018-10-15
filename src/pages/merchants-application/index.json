@@ -10,6 +10,7 @@
     "i-col": "../../iview/col/index",
     "i-button": "../../iview/button/index",
     "i-spin": "../../iview/spin/index",
-    "i-message": "../../iview/message/index"
+    "i-message": "../../iview/message/index",
+    "f-error": "../../components/f-error/index"
   }
 }

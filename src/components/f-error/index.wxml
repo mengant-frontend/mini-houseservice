@@ -1,0 +1,5 @@
+<view class="container">
+  <view class="center">
+    <i-icon type='prompt' size='{{size}}' color='{{color}}'></i-icon>
+  </view>
+</view>

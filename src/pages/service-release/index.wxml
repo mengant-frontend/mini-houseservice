@@ -1,0 +1,58 @@
+<view class="page">
+  <i-panel title='服务信息' i-class='panel'>
+    <i-cell-group>
+      <i-cell title='服务类型'>
+        <picker slot='footer' range='{{command_types}}' data-form_data='updateFormChange' range-key='label'>
+          <view>
+            <text>{{command_type}}</text>
+            <i-icon type='enter'></i-icon>
+          </view>
+        </picker>
+      </i-cell>
+      <i-cell title='服务名称'>
+        <input slot='footer' placeholder="请输入服务名称" placeholder='限10个汉字'></input>
+      </i-cell>
+      <i-cell title='服务区域'>
+        <picker slot='footer' mode='region'>
+          <view>
+            <text></text>
+            <i-icon type='enter'></i-icon>
+          </view>
+        </picker>
+      </i-cell>
+      <i-cell title='服务价格'>
+        <input slot='footer' type='number' placeholder="单位：元"></input>
+      </i-cell>
+      <i-cell title='服务区域'>
+        <picker mode='region'>
+          <view>
+            <text></text>
+          </view>
+        </picker>
+      </i-cell>
+      <i-cell title='服务简介'>
+        <textarea placeholder="请输入服务内容介绍"></textarea>
+      </i-cell>
+    </i-cell-group>
+  </i-panel>
+  <i-panel title='添加图片(限5张，第一张默认为店铺封面图，请谨慎上传)'>
+    <view class="container__pictures">
+      <f-photo count='5'></f-photo>
+    </view>
+  </i-panel>
+  <i-panel>
+    <i-cell-group>
+      <i-cell title="是否推广">
+        <i-switch slot='footer' value='{{is_spread}}'>
+          <i-icon type="right" slot="open"></i-icon>
+          <i-icon type="close" slot="close"></i-icon>
+        </i-switch>
+      </i-cell>
+    </i-cell-group>
+  </i-panel>
+  <view class="fixed">
+    <i-button type='primary' long>确定发布</i-button>
+  </view>
+
+  <i-message id='message'></i-message>
+</view>

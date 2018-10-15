@@ -26,7 +26,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 6,
+			"current": 14,
 			"list": [
 				{
 					"id": -1,
@@ -65,16 +65,58 @@
 					"query": ""
 				},
 				{
-					"id": 6,
-					"name": "圈子详情",
-					"pathName": "pages/community-detail/index",
-					"query": "id=7"
+					"id": -1,
+					"name": "编辑资料",
+					"pathName": "pages/profile-edit/index",
+					"query": ""
 				},
 				{
 					"id": -1,
-					"name": "圈子",
-					"pathName": "pages/community/index",
+					"name": "订单评价",
+					"pathName": "pages/order-evaluate/index",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "订单详情",
+					"pathName": "pages/order-detail/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "xuqiu fabu",
+					"pathName": "pages/command-release/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "发布服务",
+					"pathName": "pages/service-release/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "我的信息",
+					"pathName": "pages/account-personal/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "我的红包",
+					"pathName": "pages/redpacket/index",
+					"query": ""
+				},
+				{
+					"id": 13,
+					"name": "需求详情",
+					"pathName": "pages/command-detail/index",
+					"query": "id=1"
+				},
+				{
+					"id": -1,
+					"name": "留言",
+					"pathName": "pages/bbs/index",
+					"query": "id=1"
 				}
 			]
 		}

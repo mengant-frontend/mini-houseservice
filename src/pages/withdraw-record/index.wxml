@@ -1,12 +1,15 @@
-<view>
-  <i-cell-group>
-    <i-cell
-      wx:for='{{record_list}}'
-      wx:key='item.id'
-      title='{{item.title}}'
-      label='{{item.label}}'
-      value='{{item.value}}'
-    ></i-cell>
-  </i-cell-group>
-  <i-load-more tip='{{ tip }}' loading='{{bottom_loading}}'></i-load-more>
+<view class="page">
+  <view class="card" wx:for='{{record_list}}' wx:key='id'>
+    <i-cell-group>
+      <i-cell title='提现金额'>
+        <text slot='footer'>￥10.00</text>
+      </i-cell>
+      <i-cell title='到账账户'>
+          <text slot='footer'>微信零钱</text>
+        </i-cell>
+        <i-cell title='提现时间'>
+            <text slot='footer' class="content">2018-10-10 18:24</text>
+          </i-cell>
+    </i-cell-group>
+  </view>
 </view>

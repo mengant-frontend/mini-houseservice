@@ -2,30 +2,58 @@
 /*
   底部空白
 */
-page{
+
+page {
+  width: 100%;
+  height: 100%;
+  background-color: @background_color;
+}
+image{
+  border-radius: 4px;
+  border: 1px solid @border_color;
+  box-sizing: border-box;
+}
+.page {
   width: 100%;
   min-height: 100%;
-  background-color: @background_color;
   padding-bottom: 44px;
+  box-sizing: border-box;
 }
-.steps{
+
+.steps {
   padding: @gutter;
   box-sizing: border-box;
 }
-.pictures{
+
+.container__avatar {
+  position: relative;
+  min-width: 44px;
+  height: 24px;
+}
+
+.avatar {
+  width: 34px;
+  height: 34px;
+  position: absolute;
+  top: -10rpx;
+  right: 0;
+}
+
+.pictures {
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
   padding: @blank @blank 0;
   flex-wrap: wrap;
 }
+
 /*
   把flex分成4部分
   (全屏 - 两侧空白 - 四部分形成的三个间隔) / 4
 */
 
-@square: (@all - @blank * 2 - @gutter * 3) / 4 ;
-.picture{
+@square: (@all - @blank * 2 - @gutter * 3) / 4;
+.picture {
   box-sizing: content-box;
   width: @square;
   height: @square;
@@ -36,20 +64,16 @@ page{
   border-radius: 4px;
   position: relative;
 }
-.picture_0{
+
+.picture_0 {
   margin-left: -@gutter;
 }
-.photo{
+
+.photo {
   width: 100%;
   height: 100%;
-  border-radius: 4px;
-  border: 1px solid @border_color;
-  position: relative;
 }
-.error{
-  border-color: @error;
-}
-.container__add{
+.container__add {
   box-sizing: border-box;
   width: 100%;
   height: 100%;
@@ -59,49 +83,100 @@ page{
   border: 1px solid @border_color;
   color: @sub_content_color;
 }
-.container__close{
+
+.container__close {
   position: absolute;
-  right: -9px;
-  top: -9px;
-  background-color: @warning;
-  border-radius: 50%;
-  width: 18px;
-  height: 18px;
-  line-height: 18px;
+  right: -10px;
+  top: -10px;
   text-align: center;
+  background-color: #fff;
 }
-.icon__close{
+
+.icon__close {
   color: #fff;
-  position: relative;
-  top: -2px;
+  color: @warning;
 }
-.tips{
+
+.tips {
   padding: 10px @blank;
   background-color: @background_color;
 }
-.tips-title{
+
+.tips-title {
   font-size: @content_size;
   color: @sub_content_color;
 }
-.tip{
+
+.tip {
   font-size: @sub_content_size;
   color: @sub_content_color;
 }
-.container_btn{
+
+.container_btn {
   position: fixed;
   bottom: 0;
   left: 0;
   box-sizing: border-box;
   width: 100%;
 }
+
 // 审核中
-.checking{
+.checking {
   padding: 0 @blank;
 }
-.tip__wait{
+
+.tip__wait {
+  text-align: center;
   padding: @gutter 0;
   font-size: @content_size;
+  border-bottom: 1px dashed @border_color;
 }
-.tip-text__wait::before, .tip-text__wait::after{
+
+.tip-text__wait::before,
+.tip-text__wait::after {
   content: '~'
+}
+
+.checking-title {
+  text-align: right;
+  font-size: @content_size;
+  color: @content_color;
+}
+
+.checking-title::after {
+  content: '：';
+  font-size: 14px;
+  padding-right: @gutter_small;
+}
+
+.checking-value {
+  text-align: left;
+  color: @title_color;
+  font-size: @title_size;
+  position: relative;
+}
+.checking-pictures{
+  vertical-align: text-bottom;
+  width: @square * 3;
+}
+.checking-photo{
+  width: @square;
+  height: @square;
+  margin-right: @gutter_small;
+}
+.checking-pictures-title{
+  vertical-align: top;
+}
+
+.table {
+  padding: @gutter_large 0;
+}
+
+.table-cell {
+  padding-bottom: @gutter_small;
+}
+
+.container__msg{
+  padding-top: 36px;
+  
 }
