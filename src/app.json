@@ -27,7 +27,10 @@
     "pages/service-release/index",
     "pages/withdraw-checking/index",
     "pages/account-personal/index",
-    "pages/service-booking/index"
+    "pages/service-booking/index",
+    "pages/redpacket/index",
+    "pages/command-detail/index",
+    "pages/bbs/index"
   ],
   "window": {
     "navigationBarTitleText": "demo",

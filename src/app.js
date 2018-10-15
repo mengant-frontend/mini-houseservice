@@ -1,6 +1,6 @@
 import regeneratorRuntime from './lib/runtime'
 import QQMapSdk from './lib/qqmap-wx-jssdk'
-import { $Message } from './iview/base/index'
+import { $Message, $Toast } from './iview/base/index'
 import { domain } from './common/constant'
 
 const qq_map = new QQMapSdk({
@@ -8,12 +8,6 @@ const qq_map = new QQMapSdk({
 })
 App({
   async onLaunch() {
-    let res = await this._getAdInfo({
-      lat: '39.916527',
-      lng: '116.397128'
-    })
-    console.log(res)
-    await this.login()
     let system_info = await this.asyncApi(wx.getSystemInfo)
     if (system_info.success) {
       this.global_data.system_info = system_info
@@ -120,7 +114,8 @@ App({
     let request = () => {
       if (token_required) {
         params.data = params.data || {}
-        params.data.token = this.global_data.token
+        params.header = params.header || {}
+        params.header.token = this.global_data.token
       }
       return this.asyncApi(wx.request, params).then(res => {
         // errMsg是微信wx.request fail回调函数中的参数 res:{ errMsg }
@@ -241,6 +236,43 @@ App({
       content
     })
   },
+  infoToast(options){
+    let { type, ...other } = options
+    $Toast({
+      type: 'default',
+      ...other
+    })
+  },
+  successToast(options){
+    let { type, ...other } = options
+    $Toast({
+      type: 'success',
+      content: '成功',
+      ...other
+    })
+  },
+  warnToast(options = {}){
+    let { type, ...other } = options
+    $Toast({
+      type: 'warning',
+      ...other
+    })
+  },
+  errorToast(options = {}){
+    let { type, ...other } = options
+    $Toast({
+      type: 'error',
+      content: '失败',
+      ...other
+    })
+  },
+  loadingToast(options = {}){
+    let { type, ...other } = options
+    $Toast({
+      type: 'loading',
+      ...other
+    })
+  },
   //深度克隆，只克隆简单值，对象，数组，对函数过滤
   _deepClone(data) {
     return JSON.parse(JSON.stringify(data))
@@ -249,6 +281,9 @@ App({
   _bindFormChange(e) {
     let { currentTarget, detail } = e
     let { dataset } = currentTarget
+    if(detail.detail){
+      detail = detail.detail
+    }
     let form_key = dataset.form_key
     let value = detail.value
     return {

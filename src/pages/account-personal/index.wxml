@@ -6,19 +6,18 @@
       </view>
     </i-cell>
     <i-cell title='昵称'>
-      <input slot='footer' data-form_key='nickname' bindchange='bindFormChange' placeholder="请输入"></input>
+      <input slot='footer' data-form_key='nickname' bindinput='bindFormChange' placeholder="请输入"></input>
     </i-cell>
     <i-cell title='电话'>
-        <input slot='footer' type='number' data-form_key='phone' bindchange='bindFormChange' placeholder="请输入"></input>
+        <input slot='footer' type='number' data-form_key='phone' bindinput='bindFormChange' placeholder="请输入"></input>
       </i-cell>
       <i-cell title='所在地'>
-        <picker slot='footer' mode='region' data-form_key='region' bindchange='bindFormChange'>
+        <picker slot='footer' mode='region' data-form_key='region' value='{{[form_data.province, form_data.city, form_data.area]}}' bindchange='bindFormChange'>
           <view>
-            <text>{{region[0]}}{{region[1]}}{{region[2]}}</text>
+            <text>{{form_data.province}}{{form_data.city}}{{form_data.area}}</text>
             <i-icon type='enter'></i-icon>
           </view>
         </picker>   
       </i-cell>
   </i-cell-group>
-  {{text}}
 </view>

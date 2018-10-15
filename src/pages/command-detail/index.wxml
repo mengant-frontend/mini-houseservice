@@ -1,0 +1,65 @@
+<view class="page">
+  <view class="container">
+    <view class="container-title ellipsis">
+      <text>{{detail.des}}</text>
+    </view>
+    <view class="table">
+      <view class="tbody">
+        <view class="table-row">
+          <view class="table-cell title">
+            <text>酬金</text>
+          </view>
+          <view class="table-cell content">
+            <text>￥{{detail.origin_money}}</text>
+          </view>
+        </view>
+        <view class="table-row">
+          <view class="table-cell title">
+            <text>发布人</text>
+          </view>
+          <view class="table-cell content">
+            <text>{{detail.name}}</text>
+          </view>
+        </view>
+        <view class="table-row">
+          <view class="table-cell title">
+            <text>联系电话</text>
+          </view>
+          <view class="table-cell content">
+            <text>{{detail.phone}}</text>
+          </view>
+        </view>
+        <view class="table-row">
+          <view class="table-cell title">
+            <text>服务时间</text>
+          </view>
+          <view class="table-cell content">
+            <text>{{detail.time_begin}} ~ {{detail.time_end}}</text>
+          </view>
+        </view>
+        <view class="table-row">
+          <view class="table-cell title">
+            <text>服务地址</text>
+          </view>
+          <view class="table-cell content">
+            <text>{{detail.province}}{{detail.city}}{{detail.area}}{{detail.address}}</text>
+          </view>
+        </view>
+        <view class="table-row">
+          <view class="table-cell title">
+            <text>相关照片</text>
+          </view>
+          <view class="table-cell content">
+            <view class="container__img">
+              <view class="square" wx:for='{{detail.imgs}}' wx:for-item='img' wx:key='img_id'>
+                <image src='{{img.url}}'></image>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <i-message id='message'></i-message>
+</view>

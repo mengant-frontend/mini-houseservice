@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "需求详情",
+  "usingComponents": {
+    "i-message": "../../iview/message/index"
+  }
+}

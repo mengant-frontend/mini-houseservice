@@ -1,23 +1,49 @@
 import regeneratorRuntime from '../../lib/runtime' 
+import { default_region } from '../../common/constant'
 const app = getApp()
 Page({
   data: {
-    form_data: {},
-    region: ['广东省', '广州市', '天河区'],
-    text: ''
+    form_data: {}
+  },
+  onLoad(){
+    let form_data = app._deepClone(this.data.form_data)
+    form_data.province = default_region[0]
+    form_data.city = default_region[1]
+    form_data.area = default_region[2]
+    this.setData({
+      form_data: form_data
+    })
+  },
+  //获取个人信息
+  async getInfo(){
+    let server_res = await app.get({
+      url: '/test'
+    })
+    let { success, msg, data } = server_res
+    if(!success){
+      app._error(msg)
+      return
+    }
+    this.setData({
+      form_data: data
+    })
+  },
+  // 更新个人信息
+  async updateInfo(){
+    let form_data = app._deepClone(this.data.form_data)
+    let server_res = await app.post({
+      url: '/test',
+      data: form_data
+    })
+    let { success, msg } = server_res
+    
   },
   //绑定表单变化
   bindFormChange(e){
     let { form_key, value } = app._bindFormChange(e)
     let form_data = this.updateFormData(form_key, value)
-    let region
-    if(form_key === 'region'){
-      region = value      
-    }
     this.setData({
-      form_data,
-      region,
-      text: JSON.stringify(form_data)
+      form_data
     })
   },
   updateFormData(form_key, value){
@@ -34,7 +60,7 @@ Page({
         break
       case 'head_url':
         let avatar = value[0] 
-        form_data[form_key] = avatar && avatar.id
+        form_data[form_key] = avatar && avatar.id || ''
         break
       default:
 

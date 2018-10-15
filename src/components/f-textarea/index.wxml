@@ -1,0 +1,4 @@
+<view class="component">  
+  <textarea class="textarea f-class" bindinput='bindInput' maxlength='{{maxLength}}' placeholder="{{placeholder}}"></textarea>
+  <view wx:if='{{show_total && maxLength !== -1}}' class="count">{{len}}/{{maxLength}}</view>
+</view>

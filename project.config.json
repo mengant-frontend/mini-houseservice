@@ -26,7 +26,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 11,
+			"current": 14,
 			"list": [
 				{
 					"id": -1,
@@ -99,6 +99,24 @@
 					"name": "我的信息",
 					"pathName": "pages/account-personal/index",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "我的红包",
+					"pathName": "pages/redpacket/index",
+					"query": ""
+				},
+				{
+					"id": 13,
+					"name": "需求详情",
+					"pathName": "pages/command-detail/index",
+					"query": "id=1"
+				},
+				{
+					"id": -1,
+					"name": "留言",
+					"pathName": "pages/bbs/index",
+					"query": "id=1"
 				}
 			]
 		}

@@ -1,0 +1,57 @@
+@import '../../variable.less';
+page{
+  padding: @gutter @blank;
+  box-sizing: border-box;
+}
+.container{
+  width: 100%;
+  min-height: 100%;
+}
+.ellipsis{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.container-title{
+  text-align: left;
+  font-size: 16px;
+  color: @title_color;
+  font-weight: 600;
+  margin-bottom: @gutter;
+}
+.title{
+  font-size: @content_size;
+  color: @content_color;
+  text-align: right;
+  vertical-align: top;
+  //强制不换行
+  white-space: nowrap;
+  padding-bottom: @gutter;
+}
+.title::after{
+  content: ':';
+  padding-right: @gutter_small;
+}
+.content{
+  font-size: @title_size;
+  color: @title_color;
+  padding-bottom: @gutter;
+}
+.container__img{
+  width: @square * 3;
+  vertical-align: text-bottom;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.square{
+  width: @square;
+  height: @square;
+  box-sizing: content-box;
+  padding: 0 @gutter @gutter 0;
+}
+image{
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+}
