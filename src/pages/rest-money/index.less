@@ -1,17 +1,57 @@
+@import '../../variable.less';
+page{
+  background-color: @background_color;
+}
 .container{
+  padding: 30px @blank;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: @light_primary;
+}
+.shoper{
   display: flex;
-  flex-direction: column;
-  text-align: center;
-  padding: 12px;
+  flex-direction: row;
 }
-.money-detail{
-  padding: 12px 0; 
-  color: #1c2438;
+.left, .right{
+  width: 50%;
+  box-sizing: border-box;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+}
+.left{
+  text-align: right;
+}
+.right{
+  text-align: left;
+}
+.divider{
+  position: relative;
+}
+.divider::after{
+  content: ' ';
+  position: absolute;
+  right: 0;
+  top: 0;
+  box-sizing: border-box;
+  transform: scaleX(0.5);
+  width: 1px;
+  height: 100%;
+  background-color: #fff;
+}
+.title{
   font-size: 16px;
-  font-weight: 600;
 }
-.money-desc{
-  padding-bottom: 12px;
-  color: #495060;
-  font-size: 13px;
+.content{
+  font-size: 20px;
+}
+.gutter{
+  margin-bottom: @gutter;
+}
+.user{
+  display: flex;
+  flex-direction: row;
+}
+.text-left{
+  text-align: left;
 }

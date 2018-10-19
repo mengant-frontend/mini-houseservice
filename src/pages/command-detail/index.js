@@ -41,8 +41,7 @@ Page({
       data.imgs = []
     }
     data.imgs.forEach(img => {
-      // img.url = img.img_url.url
-      img.url = 'https://gss1.bdstatic.com/9vo3dSag_xI4khGkpoWK1HF6hhy/baike/crop%3D0%2C2%2C600%2C395%3Bc0%3Dbaike80%2C5%2C5%2C80%2C26/sign=be8449909516fdfacc239cae89bfa066/d009b3de9c82d158d5d4eb0a880a19d8bc3e4232.jpg'
+      img.url = img.img_url.url
     })    
     this.setData({
       detail: data

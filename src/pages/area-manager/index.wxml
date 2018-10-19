@@ -1,0 +1,17 @@
+<view class="page">
+  <view class="container">
+    <view class="form">
+      <view class="item">
+        <i-icon type='mine' size='30'  color='#5cadff'></i-icon>
+        <i-input class='outer-input' placeholder='请输入账号' maxlength='-1'></i-input>
+      </view>
+      <view class="item">
+        <i-icon type='lock' size='30'  color='#5cadff'></i-icon>
+        <i-input class='outer-input' type='password' maxlength='-1'  i-class='input' placeholder='请输入账号'></i-input>
+      </view>
+    </view>
+    <view class="container__btn">
+      <i-button type='primary'>登录</i-button>
+    </view>
+  </view>
+</view>

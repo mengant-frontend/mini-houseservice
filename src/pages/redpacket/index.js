@@ -12,9 +12,13 @@ Page({
   },
   //获取红包列表
   async loadList(){
+    await app.asyncApi(wx.showLoading, {
+      title: 'loading...'
+    })
     let server_res = await app.get({
       url: '/api/v1/red/list'
     })
+    await app.asyncApi(wx.hideLoading)
     let { success, msg, data } = server_res
     if(!success){
       app._error(msg)

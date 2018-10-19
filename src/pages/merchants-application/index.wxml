@@ -1,8 +1,8 @@
-<view class='page'>
-  <i-steps i-class='steps' current='{{step_current}}' status='{{step_status}}' direction='horizontal'>
-    <i-step i-class='step' wx:for='{{steps_list}}' wx:key='title'>
+<view class='page' style='padding-bottom: {{padding_bottom}}px;'>
+  <i-steps i-class='steps' current='{{step_current}}' direction='horizontal'>
+    <i-step i-class='step' wx:for='{{steps_list}}' status='{{item.status}}' wx:key='label'>
       <view slot='title' class='step-title'>
-        <text>{{item.title}}</text>
+        <text>{{item.label}}</text>
       </view>
     </i-step>
   </i-steps>
@@ -11,18 +11,13 @@
     <i-panel>
       <i-cell-group>
         <i-cell title='商家头像' only-tap-footer='{{true}}'>
-          <view slot='footer' class='container__avatar' bindtap='chooseAvatar'>
-            <text wx:if='{{!avatar.path}}'>设置图片</text>
-            <image wx:else class="avatar" mode='aspectFit' src='{{avatar.path}}'>
-              <f-error wx:if='{{avatar.error}}' size='20'></f-error>
-              <i-spin fix wx:if='{{!avatar.loaded}}'></i-spin>
-            </image>
-            <i-icon type='enter'></i-icon>
+          <view slot='footer' class='container__avatar'>
+            <f-photo type='avatar' bind:update='bindFormChange' data-form_key='head_url'></f-photo>
           </view>
         </i-cell>
         <i-cell title='经营类型'>
-          <picker slot='footer' mode='selector' bindchange='bindFormChange' data-form_key='type' value='{{form_data.type}}'
-            range='{{business_activities}}' range-key='title'>
+          <picker slot='footer' mode='selector' bindchange='bindFormChange' data-form_key='type' value='{{type_text}}'
+            range='{{command_types}}' range-key='label'>
             <view>
               <text>{{type_text}}</text>
               <i-icon type='enter'></i-icon>
@@ -30,7 +25,7 @@
           </picker>
         </i-cell>
         <i-cell title='店铺名称'>
-          <input slot='footer' bindinput='bindFormChange' data-form_key='name' placeholder='请输入店铺名称'></input>
+          <input slot='footer' bindinput='bindFormChange' value='{{form_data.name}}' data-form_key='name' placeholder='请输入店铺名称'></input>
         </i-cell>
         <i-cell title='服务区域' i-class='i-cell'>
           <picker slot='footer' mode='region' bindchange='bindFormChange' data-form_key="services_region" value='{{[form_data.province, form_data.city, form_data.area]}}'>
@@ -41,42 +36,32 @@
           </picker>
         </i-cell>
         <i-cell title='商家地址'>
-          <input slot='footer' type='text' data-form_key="address" bindchange='bindFormChange' placeholder='请输入店铺详细地址'></input>
+          <input slot='footer' type='number' value='{{form_data.address}}' data-form_key="address" bindchange='bindFormChange'
+            placeholder='请输入店铺详细地址'></input>
         </i-cell>
         <i-cell title='商家手机号'>
-          <input slot='footer' type='number' data-form_key="phone" bindchange='bindFormChange' placeholder='请输入商家手机号码'></input>
+          <input slot='footer' type='number' value='{{form_data.phone}}' data-form_key="phone" bindchange='bindFormChange'
+            placeholder='请输入商家手机号码'></input>
         </i-cell>
         <i-cell title='备用手机号'>
-          <input slot='footer' type='number' data-form_key="phone_sub" bindchange='bindFormChange' placeholder='请输入商家备用手机号码'></input>
+          <input slot='footer' type='number' value='{{form_data.phone_sub}}' data-form_key="phone_sub" bindchange='bindFormChange'
+            placeholder='请输入商家备用手机号码'></input>
         </i-cell>
         <i-cell title='身份证号'>
-          <input slot='footer' type='idcard' data-form_key="id_number" bindchange='bindFormChange' placeholder='请输入身份证号码'></input>
+          <input slot='footer' type='idcard' value='{{form_data.id_number}}' data-form_key="id_number" bindchange='bindFormChange'
+            placeholder='请输入身份证号码'></input>
         </i-cell>
       </i-cell-group>
     </i-panel>
 
     <i-panel title='商家资料图片'>
-      <view class="pictures">
-        <view wx:for='{{photo_list}}' wx:key='path' class="picture {{index % 4 === 0? 'picture_0' : ''}}">
-          <image class="photo" mode='aspectFit' src='{{item.path}}'>
-            <i-spin fix wx:if='{{!item.loaded}}'></i-spin>
-            <f-error wx:if='{{item.error}}'></f-error>
-          </image>
-          <view class="container__close" bindtap='deleteImg' data-index='{{index}}'>
-            <i-icon wx:if='{{item.loaded}}' type='delete' size='20' i-class='icon__close'></i-icon>
-          </view>
-
-        </view>
-        <view wx:if='{{photo_list.length < 4}}' class="picture {{photo_list.length % 4 === 0 ? 'picture_0' : ''}}">
-          <view class="container__add" bindtap='chooseImg'>
-            <i-icon type='add' size='40'></i-icon>
-          </view>
-        </view>
+      <view class="container__photo">
+        <f-photo count='{{count}}' data-form_key="imgs" bind:update='bindFormChange'></f-photo>
       </view>
       <view class="tips">
         <view class='tips-title'>温馨提示:</view>
         <view class="tip">1. 请上传店铺封面照、营业执照、证件照等图片</view>
-        <view class="tip">2. 总共可上传4张图片，第一张默认为店铺展示页，请谨慎上传</view>
+        <view class="tip">2. 总共可上传{{count}}张图片，第一张默认为店铺展示页，请谨慎上传</view>
       </view>
     </i-panel>
   </view>
@@ -92,7 +77,7 @@
           <view class="table-cell checking-title">商家头像</view>
           <view class="table-cell checking-value">
             <view class="checking-pictures">
-              <image src='/images/avatar.jpg' class="checking-photo" mode='aspectFit'></image>
+              <image src='{{form_data.head_url}}' class="checking-photo avatar"></image>
             </view>
           </view>
         </view>
@@ -109,6 +94,7 @@
         <view class="table-row">
           <view class="table-cell checking-title">店铺地址</view>
           <view class="table-cell checking-value">
+            <text>{{form_data.province}}{{form_data.city}}{{form_data.area}}{{form_data.address}}</text>
             <text>{{form_data.province}}{{form_data.city}}{{form_data.area}}{{form_data.address}}</text>
           </view>
         </view>
@@ -127,7 +113,7 @@
         <view class="table-row">
           <view class="table-cell checking-title">身份证号</view>
           <view class="table-cell checking-value">
-            <text>{{form_data.idcard}}</text>
+            <text>{{form_data.id_number}}</text>
           </view>
         </view>
         <view class="table-row">
@@ -144,33 +130,27 @@
 
   <!-- 审核结果 -->
   <view wx:else='{{ step_current === 2 }}'>
-    <view class="weui-msg">
-      <view class="weui-msg__icon-area">
-        <icon type="{{result ? 'success' : 'warn'}}" size="93"></icon>
+    <view class="container__result">
+      <view class="container__icon">
+        <icon type="{{success ? 'success' : 'warn'}}" size="93"></icon>
       </view>
-      <view class="weui-msg__text-area">
-        <view class="weui-msg__desc">
-          <block wx:if='{{result}}'>
-            <view>您提交的资料已经成功通过审核</view>
-            <view>现在马上去上线产品吧~</view>
-          </block>
-          <block wx:else>
-            <view>很遗憾，您提交的资料未能通过审核</view>
-            <view>请重新查证后再上传吧~</view>
-          </block>
-        </view>
-      </view>
-      <view class="weui-msg__opr-area">
-        <view class="weui-btn-area">
-          <button wx:if='{{result}}' class="weui-btn" type="primary">去上线</button>
-          <button wx:else class="weui-btn" type="default" bindtap='redo'>重新申请</button>
-        </view>
+      <view class="container__desc">
+        <block wx:if='{{success}}'>
+          <view>您提交的资料已经成功通过审核</view>
+          <view>现在马上去上线产品吧~</view>
+        </block>
+        <block wx:else>
+          <view>很遗憾，您提交的资料未能通过审核</view>
+          <view>请重新查证后再上传吧~</view>
+        </block>
       </view>
     </view>
   </view>
 
-  <view class="container_btn" wx:if='{{step_current === 0}}'>
-    <i-button i-class='btn' long type='primary' bindtap='confirm'>确认</i-button>
+  <view class="fixed">
+    <i-button wx:if='{{step_current === 0}}' i-class='btn' long type='primary' bind:click='confirm'>确认</i-button>
+    <i-button wx:if='{{step_current === 2 && success}}' long type="primary" bind:click='ensure'>去上线</i-button>
+    <i-button wx:if='{{step_current === 2 && !success}}' long type="ghost" bind:click='redo'>重新申请</i-button>
   </view>
 
   <i-message id='message'></i-message>

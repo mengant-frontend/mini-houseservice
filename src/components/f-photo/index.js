@@ -1,5 +1,4 @@
 import regeneratorRuntime from '../../lib/runtime'
-import { domain } from '../../common/constant'
 const app = getApp()
 Component({
   properties: {
@@ -49,7 +48,12 @@ Component({
       if (avatar) {
         await this.update([])
       }
-      await this.chooseImage(1)
+      let res = await this.chooseImage(1)
+      if(!!res){
+        if(res.cancel && avatar){
+          this.update([avatar])
+        }
+      }
     },
     //选择图片
     async chooseImage(count) {
@@ -68,38 +72,53 @@ Component({
       if (!success) {
         //失败原因包括用户取消了操作
         console.error('wx: chooseImage api 调用失败')
-        return
+        return Promise.resolve({
+          cancel: true
+        })
       }
       await this.update(photo_list.concat(tempFiles))
       let promises = []
       tempFiles.forEach(file => {
-        
         promises.push(
           app._uploadFile({
             filePath: file.path,
             onProgressUpdate: res => {
-              console.log(123)
-              file.progress = res.progress
-              this.update(photo_list.concat(tempFiles))
+              let photo_list = app._deepClone(this.data.photo_list)
+              photo_list.forEach(photo => {
+                if(photo.path === file.path){
+                  photo.progress = res.progress
+                }
+              })
+              this.update(photo_list)
             }
           })
         )
       })
       let server_promises = await Promise.all(promises)
-      server_promises.forEach((promise, index) => {
-        tempFiles[index].loaded = true
-        if (promise.success) {
-          tempFiles[index].id = promise.data.id
-        } else {
-          tempFiles[index].error = true
-        }
+      photo_list = app._deepClone(this.data.photo_list)
+      tempFiles.forEach((file, index) => {
+        photo_list.forEach(photo => {
+          if(photo.path === file.path){
+            photo.loaded = true
+            let promise = server_promises[index]
+            if(promise.success){
+              photo.id = promise.data.id
+            }else{
+              photo.error = true
+            }
+          }
+        })
       })
-      this.update(photo_list.concat(tempFiles))
+      this.update(photo_list)
     },
     //删除图片
     async deleteImage(e) {
       let { currentTarget: { dataset: { index } } } = e
       let photo_list = app._deepClone(this.data.photo_list)
+      // 没有删除接口
+      photo_list.splice(index, 1)
+      this.update(photo_list)
+      /*
       //如果上传过程中失败，则直接删除
       if (photo_list[index].error) {
         photo_list.splice(index, 1)
@@ -108,6 +127,8 @@ Component({
       } else {
         photo_list[index].deleting = true
       }
+
+
       //展示spining
       await this.update(photo_list)
       //Todo 删除接口
@@ -124,6 +145,7 @@ Component({
         photo_list.splice(index, 1)
       }
       this.update(photo_list)
+      */
     }
   }
 

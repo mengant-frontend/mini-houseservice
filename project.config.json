@@ -26,7 +26,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 14,
+			"current": 6,
 			"list": [
 				{
 					"id": -1,
@@ -54,18 +54,6 @@
 				},
 				{
 					"id": -1,
-					"name": "需求",
-					"pathName": "pages/command/index",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "商家入驻",
-					"pathName": "pages/merchants-application/index",
-					"query": ""
-				},
-				{
-					"id": -1,
 					"name": "编辑资料",
 					"pathName": "pages/profile-edit/index",
 					"query": ""
@@ -77,10 +65,10 @@
 					"query": ""
 				},
 				{
-					"id": -1,
+					"id": 6,
 					"name": "订单详情",
 					"pathName": "pages/order-detail/index",
-					"query": ""
+					"query": "id=1&type=1"
 				},
 				{
 					"id": -1,
@@ -117,6 +105,36 @@
 					"name": "留言",
 					"pathName": "pages/bbs/index",
 					"query": "id=1"
+				},
+				{
+					"id": -1,
+					"name": "商家主页",
+					"pathName": "pages/merchants-index/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "余额",
+					"pathName": "pages/rest-money/index",
+					"query": "id=1"
+				},
+				{
+					"id": -1,
+					"name": "小区管理员登录",
+					"pathName": "pages/area-manager/index",
+					"query": "id=1"
+				},
+				{
+					"id": -1,
+					"name": "人脸识别",
+					"pathName": "pages/face-recognition/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "我的服务",
+					"pathName": "pages/service-my/index",
+					"query": ""
 				}
 			]
 		}

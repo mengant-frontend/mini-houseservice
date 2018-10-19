@@ -11,6 +11,7 @@
     "i-button": "../../iview/button/index",
     "i-spin": "../../iview/spin/index",
     "i-message": "../../iview/message/index",
-    "f-error": "../../components/f-error/index"
+    "f-error": "../../components/f-error/index",
+    "f-photo": "../../components/f-photo/index"
   }
 }

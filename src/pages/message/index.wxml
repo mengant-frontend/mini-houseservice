@@ -1,13 +1,13 @@
 <view class='page'>
   <view class='list'>
-    <view wx:for='{{message_list}}' wx:key='item.id'  class='list-item'>
+    <view wx:for='{{list}}' wx:key='id' class='list-item {{index === 0 ? "list-item_0" : ""}}'>
       <view class='title'>
         <view class='title-left'>
           <image class='title-icon' src='/images/setting.png'></image>
           <text class='title-text'>订单提示</text>
         </view>
         <view class='title-right'>
-          <text>{{item.create_time}}</text>
+          <text>2018-10-10 08:00</text>
         </view>
       </view>
       <view class='main'>
@@ -16,14 +16,19 @@
         </view>
         <view class='order'>
           <view class='order-desc'>
-            <image mode='scaleToFill' class='order-img' src='{{item.img_src}}'></image>
-            <text class='order-text'>￥{{item.money}}</text>
+            <image class='order-img' src='/images/avatar.jpg'></image>
+            <view class="center">
+              <text class="order-name">测试</text>
+              <text class='order-price'>￥100</text>
+            </view>
           </view>
           <view class='order-operate'>
-            <button class='f-btn f-btn-error'>删除</button>
+            <i-button size='small' inline type='info' bind:click='readMessage' data-id='{{item.id}}'>查看</i-button>
           </view>
         </view>
       </view>
     </view>
   </view>
+
+  <i-message id='message'></i-message>
 </view>

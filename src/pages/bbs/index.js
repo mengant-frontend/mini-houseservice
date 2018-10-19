@@ -27,7 +27,7 @@ Page({
     await app.asyncApi(wx.showLoading, {
       title: 'loading...'
     })
-    let server_res = app.post({
+    let server_res = await app.post({
       url: '/api/v1/message/save',
       data: form_data
     })

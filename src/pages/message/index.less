@@ -1,5 +1,12 @@
+@import '../../variable.less';
+page{
+  background-color: @background_color;
+  width: 100%;
+  min-height: 100%;
+}
 .page{
-  padding: 0 25rpx;
+  padding: @gutter_small @blank;
+  
 }
 .list{
   
@@ -7,7 +14,14 @@
 .list-item{
   border-bottom: 1px solid #dddee1;
   overflow: hidden;
-  padding-bottom: 12px;
+  box-shadow: @shadow;
+  padding: 0 @gutter_small @gutter_small;
+  margin-top: @gutter;
+  background-color: #fff;
+  border-radius: 6px;
+}
+.list-item_0{
+  margin-top: 0;
 }
 .title{
   display: flex;
@@ -58,6 +72,7 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  display: flex;
 }
 .order-img{
   width: 260rpx;
@@ -69,7 +84,6 @@
   margin-left: 8px;
   font-size: 16px;
   color: #2d8cf0;
-  vertical-align: text-bottom;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -79,4 +93,26 @@
   // flex-basis: 60px;
   flex-grow: 0;
   flex-shrink: 0;
+  align-self: flex-end;
+}
+
+.button-index--i-btn{
+  height: 26px !important;
+  line-height: 26px !important;
+  margin: 0 !important;
+}
+.center{
+  display: flex;
+  flex-direction: column;
+  // align-items: center;
+  justify-content: center;
+  margin-left: @gutter;
+}
+.order-price{
+  color: @warning;
+  font-size: 14px;
+}
+.order-name{
+  color: @title_color;
+  font-size: @title_size;
 }

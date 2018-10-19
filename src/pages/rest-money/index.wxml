@@ -1,14 +1,55 @@
 <view class="page">
-  <view>
-    <view class="title">余额</view>
-    <view class="desc">￥2018.10</view>
-    <view>
-      <i-button type='primary'>提现</i-button>
+  <view class="container">
+    <view wx:if='{{has_shop}}' class="shoper">
+      <view class="left divider">
+        <view class="main">
+          <view class="title">
+            <text>余额</text>
+          </view>
+          <view class="content">
+            <text>￥201800.10</text>
+          </view>
+        </view>
+      </view>
+      <view class="right">
+        <view class="main">
+          <view class="title">
+            <text>保证金</text>
+          </view>
+          <view class="content">
+            <text>￥2018.10</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view wx:else class="user">
+      <view class="left text-left">
+        <view class="main">
+          <view class="title">
+            <text>余额</text>
+          </view>
+          <view class="content">
+            <text>￥201800.10</text>
+          </view>
+        </view>
+      </view>
     </view>
   </view>
 
-  <i-cell-group>
-    <i-cell title='提现记录' is-link></i-cell>
-    <i-cell title='收支明细' is-link></i-cell>
-  </i-cell-group>
+  <i-panel i-class='gutter'>
+    <i-cell-group>
+      <i-cell title='提取余额' url='/pages/rest-money-withdraw/index' is-link>
+      </i-cell>
+      <i-cell title='提取保证金' is-link></i-cell>
+    </i-cell-group>
+  </i-panel>
+
+  <i-panel>
+    <i-cell-group>
+      <i-cell title='提现记录' is-link></i-cell>
+      <i-cell title='收支明细' is-link></i-cell>
+    </i-cell-group>
+  </i-panel>
+
+  <view id='message'></view>
 </view>

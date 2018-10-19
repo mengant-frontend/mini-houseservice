@@ -30,7 +30,12 @@
     "pages/service-booking/index",
     "pages/redpacket/index",
     "pages/command-detail/index",
-    "pages/bbs/index"
+    "pages/bbs/index",
+    "pages/merchants-index/index",
+    "pages/collection/index",
+    "pages/area-manager/index",
+    "pages/face-recognition/index",
+    "pages/service-my/index"
   ],
   "window": {
     "navigationBarTitleText": "demo",

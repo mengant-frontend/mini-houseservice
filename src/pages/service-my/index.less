@@ -1,0 +1,91 @@
+@import '../../variable.less';
+page{
+  width: 100%;
+  min-height: 100%;
+  background-color: @background_color;
+}
+.page{
+  padding: @gutter @blank;
+}
+.item{
+  margin-bottom: @gutter;
+  box-shadow: @shadow;
+  padding: @gutter_small;
+  display: flex;
+  flex-direction: row;
+}
+.photo{
+  width: 268rpx;
+  height: 160rpx;
+  background-color: #fff;
+  flex-grow: 0;
+  flex-shrink: 0;
+  margin-right: @gutter;
+}
+image{
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+}
+.content{
+  flex-grow: 1;
+  flex-shrink: 1;
+  display: flex;
+  flex-direction: column;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.title{
+  flex-grow: 1;
+  flex-shrink: 1;
+  color: @title_color;
+  font-size: @title_size;
+  font-weight: 600;
+  padding-top: @gutter;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.desc{
+  flex-grow: 0;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.price{
+  flex-grow: 1;
+  flex-shrink: 1;
+  color: @warning;
+  font-size: 16px;
+  font-weight: 600;
+}
+.operate{
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+button{
+  height: 26px !important;
+  line-height: 26px !important;
+  margin: 0 !important;
+}
+.container__add{
+  position: fixed;
+  bottom: 150rpx;
+  right: 50rpx;
+  z-index: 9999;
+  width: 50px;
+  height: 50px;
+  background-color: @primary;
+  border-radius: 60px;
+  overflow: hidden;
+}
+.add{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

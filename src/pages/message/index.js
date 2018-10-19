@@ -1,47 +1,29 @@
+import regeneratorRuntime from '../../lib/runtime'
+const app = getApp()
 Page({
   data: {
-    message_list: [{
-      create_time: '2018-10-03 10:25',
-      message: '您的订单客户已确认',
-      money: '200',
-      id: '1',
-      img_src: '/images/bg_account.jpg'
-    }, {
-      create_time: '2018-10-03 10:25',
-      message: '您的订单客户已确认',
-      money: '200',
-      id: '2',
-      img_src: '/images/bg_account.jpg'
-    }, {
-      create_time: '2018-10-03 10:25',
-      message: '您的订单客户已确认',
-      money: '200',
-      id: '3',
-      img_src: '/images/bg_account.jpg'
-    },{
-      create_time: '2018-10-03 10:25',
-      message: '您的订单客户已确认',
-      money: '200',
-      id: '4',
-      img_src: '/images/bg_account.jpg'
-    }, {
-      create_time: '2018-10-03 10:25',
-      message: '您的订单客户已确认',
-      money: '200',
-      id: '5',
-      img_src: '/images/bg_account.jpg'
-    },{
-      create_time: '2018-10-03 10:25',
-      message: '您的订单客户已确认',
-      money: '200',
-      id: '6',
-      img_src: '/images/bg_account.jpg'
-    },{
-      create_time: '2018-10-03 10:25',
-      message: '您的订单客户已确认',
-      money: '200',
-      id: '7',
-      img_src: '/images/bg_account.jpg'
-    }]
+    list: [{id: 1}]
+  },
+  onLoad(){
+    this.loadData()
+  },
+  async loadData(){
+    let server_res = await app.get({
+      url: '/test'
+    })
+    let { success, msg, data } = server_res
+    if(!success){
+      app._error(msg)
+      return
+    }
+    this.setData({
+      list: data
+    })
+  },
+  async readMessage(e){
+    let { currentTarget: { dataset: { id }}} = e
+    wx.navigateTo({
+      url: '/pages/order-detail/index?id=' + id
+    })
   }
 })

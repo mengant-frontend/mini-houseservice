@@ -1,90 +1,42 @@
-.container__account{
-  width: 100%;
-  height: 100%; 
-}
-.header__account{
-  padding-top: 80px;
-  margin: 0 15px;
-  position: relative;
-  left: 0;
-  top: 0;
-  box-sizing: border-box;
-  background: url('https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1537987388524&di=dc800de295a17a01b7dbededa6776eb6&imgtype=0&src=http%3A%2F%2Fpic.90sjimg.com%2Fback_pic%2F00%2F00%2F40%2F82%2F7d98daf82bc2bedc55114f232aab92f2.jpg') no-repeat ;
-  background-size: contain; 
-}
-.main__account{
-  width: 550rpx;
-  margin: 0 auto;
-  border: 1px solid #19be6b;
-  position: relative;
-  z-index: 10;
-  left: 0;
-  top: 0;
-  padding: 5px 10px;
-  background-color: #fff;
+@import '../../variable.less';
+page{
+  background-color: @background_color;
 }
 .container__avatar{
-  position: absolute;
-  left: 50%;
-  top: -25px;
+  padding: 40px @blank;
+  text-align: center;
+  box-sizing: border-box;
 }
 .avatar{
-  margin-left: -50%;
-  width: 50px !important;
-  height: 50px !important;
-  line-height: 50px !important;
-  border-radius: 25px !important;
+  width: 150rpx;
+  height: 150rpx;
+  border-radius: 150rpx;
 }
-.box__message{
-  // padding: 10px;
-  box-sizing: border-box;
-  margin-top: 15px;
-  margin-bottom: 15px;
+.nickname{
+  font-size: @title_size;
+  color: @title_color;
+  padding-top: @gutter;
 }
-.area__edit{
-  width: 100%;
-  text-align: right;
-  font-size: 12px;
-  color: #19be6b;
-}
-.panels__account{
-  width: 100%;
+.list{
+  padding: 0 @blank @gutter_small;
   display: flex;
   flex-direction: row;
-  padding: 10px 0;
+  box-sizing: border-box;
 }
-.panel__account{
+.item{
   flex-grow: 1;
   flex-shrink: 1;
-}
-.key__panel{
   text-align: center;
-  color: #19be6b;
-  font-size: 13px;
 }
-.title__panel{
-  text-align: center;
-  font-size: 14px;
+.title{
+  font-size: @title_size;
+  color: @title_color;
 }
-.row__message{
-  margin-bottom: 6px;
+.desc{
+  font-size: @content_size;
+  color: @success;
+  font-weight: 600;
 }
-.title__message{
-  text-align: right;
-  padding-right: 8px;
-  color: #80848f;
-  font-size: 13px;
-}
-.desc__message{
-  text-align: left;
-  padding-left: 8px;
-  font-size: 14px;
-  color: #495060;
-}
-.bg__account{
-  position: absolute;
-  z-index: 9;
-  left: 0;
-  top: 0;
-  width: 100%;
+.gutter{
+  margin-bottom: @gutter;
 }

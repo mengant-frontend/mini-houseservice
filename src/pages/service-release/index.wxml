@@ -2,48 +2,48 @@
   <i-panel title='服务信息' i-class='panel'>
     <i-cell-group>
       <i-cell title='服务类型'>
-        <picker slot='footer' range='{{command_types}}' data-form_data='updateFormChange' range-key='label'>
+        <picker slot='footer' range='{{service_types}}' bindchange='bindFormChange' data-form_key='c_id' range-key='name'>
           <view>
-            <text>{{command_type}}</text>
+            <text>{{type_text || '请选择服务类型'}}</text>
             <i-icon type='enter'></i-icon>
           </view>
         </picker>
       </i-cell>
       <i-cell title='服务名称'>
-        <input slot='footer' placeholder="请输入服务名称" placeholder='限10个汉字'></input>
+        <input slot='footer' maxlength="10" placeholder="请输入服务名称" bindchange='bindFormChange' data-form_key='name'
+          placeholder='限10个汉字'></input>
       </i-cell>
       <i-cell title='服务区域'>
-        <picker slot='footer' mode='region'>
-          <view>
-            <text></text>
-            <i-icon type='enter'></i-icon>
-          </view>
+        <picker slot='footer' mode='region' bindchange='bindFormChange' value='{{local_location}}' data-form_key='area'>
+          <text>{{local_location[0] ? local_location[0] + local_location[1] + local_location[2] : '请选择服务区域'}}</text>
+          <i-icon type='enter'></i-icon>
         </picker>
       </i-cell>
-      <i-cell title='服务价格'>
-        <input slot='footer' type='number' placeholder="单位：元"></input>
-      </i-cell>
-      <i-cell title='服务区域'>
-        <picker mode='region'>
-          <view>
-            <text></text>
-          </view>
+      <i-cell title='价格单位'>
+        <picker slot='footer' range='{{price_keys}}' range-key='label' bindchange='bindFormChange' data-form_key='unit'>
+          <text>{{form_data.unit || '请选择价格单位'}}</text>
+          <i-icon type='enter'></i-icon>
         </picker>
+      </i-cell>
+      <i-cell title='服务价格'> 
+        <input slot='footer' type='number' bindchange='bindFormChange' data-form_key='price' placeholder="单位：元"></input>
       </i-cell>
       <i-cell title='服务简介'>
-        <textarea placeholder="请输入服务内容介绍"></textarea>
+        <view class="textarea">
+          <f-textarea maxLength='100' bind:update='bindFormChange' data-form_key='des'></f-textarea>
+        </view>
       </i-cell>
     </i-cell-group>
   </i-panel>
   <i-panel title='添加图片(限5张，第一张默认为店铺封面图，请谨慎上传)'>
     <view class="container__pictures">
-      <f-photo count='5'></f-photo>
+      <f-photo count='5' bind:update='bindFormChange' data-form_key="picture"></f-photo>
     </view>
   </i-panel>
   <i-panel>
     <i-cell-group>
       <i-cell title="是否推广">
-        <i-switch slot='footer' value='{{is_spread}}'>
+        <i-switch slot='footer' bind:change='bindFormChange' data-form_key='extend' value='{{extend}}'>
           <i-icon type="right" slot="open"></i-icon>
           <i-icon type="close" slot="close"></i-icon>
         </i-switch>
@@ -51,7 +51,7 @@
     </i-cell-group>
   </i-panel>
   <view class="fixed">
-    <i-button type='primary' long>确定发布</i-button>
+    <i-button type='primary' bindtap='releaseService' long>确定发布</i-button>
   </view>
 
   <i-message id='message'></i-message>

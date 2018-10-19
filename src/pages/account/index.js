@@ -1,60 +1,59 @@
+import regeneratorRuntime from '../../lib/runtime'
+const app = getApp()
 Page({
   data: {
-    panels: [{
-      title: '消息',
-      key: 'message'
-    }, {
-      title: '余额',
-      key: 'balance'
-    }, {
-      title: '需求',
-      key: 'demand'
-    }],
-    panel_data: {
-      message: '37',
-      balance: '0.00',
-      demand: '1'
-    },
-    urls: [{
-      title: '进入商家',
-      url: '/pages/seller/index'
-    }, {
-      title: '短租订单',
-      url: ''
-    }, {
-      title: '我的收藏',
-      url: ''
-    }, {
-      title: '我的红包',
-      url: ''
-    }, {
-      title: '留言',
-      url: ''
-    }, {
-      title: '设置',
-      url: ''
-    }, {
-      title: '实名验证'
-    }],
-    messages: [{
-      title: '昵称',
-      key: 'nickname'
-    }, {
-      title: '电话',
-      key: 'phone'
-    }, {
-      title: '所在地',
-      key: 'area'
-    }],
-    message_data: {
-      nickname: '李福招',
-      phone: '18219112831',
-      area: '广州市'
-    }
-
+    detail: {},
+    has_shop: true
   },
-  //点击编辑
-  edit(){
-    console.log(123)
+  onLoad(){
+    this.observerShopId()
+    this.loadData()
+  },
+  onPullDownRefresh(){
+    wx.stopPullDownRefresh()
+  },
+  async loadData(){
+    await app.asyncApi(wx.showLoading, {
+      title: 'loading...'
+    })
+    let server_res = await app.get({
+      url: '/test'
+    })
+    await app.asyncApi(wx.hideLoading)
+    let { success, msg, data } = server_res
+    if(!success){
+      app._error(msg)
+      return
+    }
+    this.setData({
+      detail: data
+    })
+  },
+  //监听shop_id的变化
+  observerShopId(){
+    let that = this
+    this.checkHasShop(app.global_data.shop_id)
+    Object.defineProperty(app.global_data, 'shop_id', {
+      set(val){
+        that.checkHasShop(val)
+        return val
+      }
+    })
+  },
+  //判断当前账号是否商家
+  checkHasShop(shop_id){
+    let has_shop = false
+    if(shop_id && Number(shop_id) > 0){
+      has_shop = true
+    }
+    this.setData({
+      has_shop: has_shop
+    })
+  },
+  goTo(e){
+    let { currentTarget: { dataset: { url }} } = e
+    wx.navigateTo({
+      url: url
+    })
   }
 })
