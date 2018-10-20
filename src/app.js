@@ -319,5 +319,8 @@ App({
   token: '',
   type: 1,
   shop_id: 0,
+  order_detail_state: {
+   price_change: true
+  }
  }
 })

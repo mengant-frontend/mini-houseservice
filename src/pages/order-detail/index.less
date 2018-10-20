@@ -12,6 +12,10 @@ page {
   background-color: #fff;
 }
 
+.cell-index--i-cell-text::after {
+  content: ' ';
+}
+
 .flex {
   display: flex;
   flex-direction: row;
@@ -43,4 +47,29 @@ button {
 .footer {
   height: 100%;
   overflow: hidden;
+}
+
+.keep {
+  white-space: nowrap;
+}
+
+.flex-content {
+  padding-left: @gutter_small;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.order-title {
+  padding-bottom: @gutter / 2;
+}
+
+.origin-price {
+  text-decoration: line-through;
+  font-size: 13px;
+}
+
+.update-price {
+  font-size: 16px;
+  color: @warning;
 }

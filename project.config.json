@@ -26,7 +26,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 6,
+			"current": -1,
 			"list": [
 				{
 					"id": -1,
@@ -68,7 +68,7 @@
 					"id": 6,
 					"name": "订单详情",
 					"pathName": "pages/order-detail/index",
-					"query": "id=1&type=1"
+					"query": "id=1&type=1&state=1"
 				},
 				{
 					"id": -1,
@@ -135,6 +135,12 @@
 					"name": "我的服务",
 					"pathName": "pages/service-my/index",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "修改价格",
+					"pathName": "pages/price-change/index",
+					"query": "id=1&type=1&state=1&origin=100"
 				}
 			]
 		}

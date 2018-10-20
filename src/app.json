@@ -9,7 +9,7 @@
 
     "pages/community/index",
     "pages/community-detail/index",
-    
+
     "pages/orders/index",
     "pages/account/index",
     "pages/seller/index",
@@ -35,7 +35,9 @@
     "pages/collection/index",
     "pages/area-manager/index",
     "pages/face-recognition/index",
-    "pages/service-my/index"
+    "pages/service-my/index",
+    "pages/test/index",
+    "pages/price-change/index"
   ],
   "window": {
     "navigationBarTitleText": "demo",

@@ -25,8 +25,7 @@
 
   <i-panel i-class='gutter'>
     <i-cell-group>
-      <i-cell title='{{has_shop ? "进入商家" : "成为商家"}}' url='{{has_shop ? "/pages/merchants-index/index" : "/pages/merchants-application/index"}}'
-        is-link link-type='navigateTo'>
+      <i-cell title='{{has_shop ? "进入商家" : "成为商家"}}' url='{{has_shop ? "/pages/merchants-index/index" : "/pages/merchants-application/index"}}' is-link link-type='navigateTo'>
         <i-icon type='shop_fill' slot='icon' size='20' color='#5cadff'></i-icon>
       </i-cell>
       <i-cell title='我的收藏' is-link link-type='navigateTo' url='/pages/collection/index'>
@@ -43,8 +42,7 @@
 
   <i-panel>
     <i-cell-group>
-      <i-cell title='小区管理员登录' url='/pages/area-manager/index'
-        is-link link-type='navigateTo'>
+      <i-cell title='小区管理员登录' url='/pages/area-manager/index' is-link link-type='navigateTo'>
         <i-icon type='mine_fill' slot='icon' size='20' color='#5cadff'></i-icon>
       </i-cell>
     </i-cell-group>

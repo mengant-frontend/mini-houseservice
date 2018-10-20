@@ -1,20 +1,51 @@
 import regeneratorRuntime from '../../lib/runtime'
+import { order_states } from '../../common/constant'
 const app = getApp()
 Page({
  data: {
-  is_merchants: false,
+  /**
+   is_merchant: true 为商家 , false 为 普通用户
+  */
+  is_merchant: false,
   order_detail: {},
-  id: '', //订单id
-  type: '' //订单类型，是需求订单还是服务订单
+  //订单id
+  id: '',
+  //订单类型 服务订单为 type = 1 需求订单 type = 2
+  type: '',
+  // 订单状态
+  state: '',
+  // 状态的中文描述
+  state_text: '',
+  connection_change: false,
+  price_change: false
  },
- onLoad(query) {
-  let { id = '', type = '' } = query
+ async onLoad(query) {
+  let { id = '', type = '', state = '' } = query
   this.setData({
    id: id,
-   type: type
+   type: type,
+   state: state
   })
-  this.getInfo()
   this.loadOrderDetail()
+  await this.getInfo()
+  let { is_merchant } = this.setData
+  let order_state = order_states[type]
+  if (is_merchant) {
+   order_state = order_state.merchant
+  } else {
+   order_state = order_state.common
+  }
+  this.setData({
+   state_text: order_state[state]
+  })
+ },
+ onShow() {
+  let order_detail = app._deepClone(app.global_data.order_detail_state)
+  if (!order_detail.price_change) {
+   this.setData({
+    price_change: false
+   })
+  }
  },
  //获取用户信息，判断是不是商家
  async getInfo() {
@@ -26,14 +57,14 @@ Page({
    app._error(msg)
    return
   }
-  let is_merchants = true
+  let is_merchant = true
   if (!data) {
-   is_merchants = false
+   is_merchant = false
   } else if (Number(data.state) !== 4) {
-   is_merchants = false
+   is_merchant = false
   }
   this.setData({
-   is_merchants: is_merchants
+   is_merchant: is_merchant
   })
  },
  // 加载订单详情
@@ -47,7 +78,6 @@ Page({
    app._error('缺少订单类型')
    return
   }
-  // 服务订单为 type = 1 需求订单 type = 2
   let server_res = await app.get({
    url: '/api/v1/order',
    data: {
@@ -64,11 +94,20 @@ Page({
    order_detail: data
   })
  },
- //商家是否已联系
- bindPicker(e) {
-  let value = e.detail.value
-  this.setData({
-   picker_selected: value
+ updateFormData(e) {
+  let { currentTarget: { dataset: { form_key } }, detail: { value } } = e
+  let form_data = {}
+  form_data[form_key] = value
+  this.setData(form_data)
+ },
+ goToChangePricePage() {
+  let { id, type, state, order_detail } = this.data
+  let origin = order_detail.origin_money
+  wx.navigateTo({
+   url: `/pages/price-change/index?id=${id}&type=${type}&state=${state}&origin=${origin}`
   })
+ },
+ confirm() {
+  let { id, type, state } = this.data
  }
 })
