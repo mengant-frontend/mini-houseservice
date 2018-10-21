@@ -1,16 +1,23 @@
-/**
-  * 组件使用者需要在包裹组件的父层定义具体高度，
-  * 让组件继承其 100% 高度
-  */
-
+/* 组件使用者需要给组件包裹一个父节点，
+父节点需要定义具体高度让 scroll-view 继承其 100% 高度 */
 .container {
   height: 100%;
 }
-
-/* 因为内容区域高度需要超过 scroll-view，
-所以最小高度应为 scroll-view 100% 的高度，
-剩下的 padding-bottom 在节点 style 中动态设置 */
+/* 因为内容区域高度需要超过 scroll-view 才能触发触底加载，
+可能存在初始内容高度小于 scroll-view，
+所以内容区域最小高度应为 scroll-view 100% 的高度，
+还需要设置 padding-bottom 为 20px 略大于设置 15px 的 lower-threshold；
+还可能存在触底加载后内容高度还小于 scroll-view，
+此时内容区域稍微下滑 15px 就会再次触底加载，
+这样的交互体验就不好，
+应该是触底加载时动态设置 padding-bottom 为 0，
+加载完成后再动态设置 padding-bottom 为 20px，
+这样就能保持一样的交互体验；
+考虑到可能存在加载全部内容后内容区域还撑不开 scroll-view，
+此时 padding-bottom 应设置为 0 就不会再触底加载了；
+综上所述，padding-bottom 在 style 中动态设置 */
 .content {
   min-height: 100%;
+  /* padding-bottom 改变时实现动画效果 */
   transition: padding-bottom 0.5s;
 }

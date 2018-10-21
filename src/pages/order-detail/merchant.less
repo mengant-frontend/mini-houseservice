@@ -1,0 +1,79 @@
+@import '../../variable.less';
+
+page {
+  background-color: @background_color;
+}
+
+.page {
+  padding: @gutter @blank 0;
+}
+
+.card-title {
+  background-color: #fff;
+}
+
+.shop-name {
+  font-family: iconfont;
+}
+
+.shop-name .cell-index--i-cell-text::after {
+  content: "\e707";
+}
+
+.flex {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-img {
+  height: 160rpx;
+  width: 240rpx;
+}
+
+.img {
+  width: 100%;
+  height: 100%;
+}
+
+.fixed {
+  position: fixed;
+  left: 0;
+  bottom: @bottom;
+  width: 100%;
+  padding: 0 @blank;
+  box-sizing: border-box;
+}
+
+button {
+  margin-top: @bottom !important;
+}
+
+.footer {
+  height: 100%;
+  overflow: hidden;
+}
+
+.keep {
+  white-space: nowrap;
+}
+
+.flex-content {
+  padding-left: @gutter_small;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.order-title {
+  padding-bottom: @gutter / 2;
+}
+
+.origin-price {
+  text-decoration: line-through;
+  font-size: 13px;
+}
+
+.update-price {
+  font-size: 16px;
+  color: @warning;
+}

@@ -1,30 +1,37 @@
-<tabs-swiper-page tabs-current='{{tabsCurrent}}' tabs-list='{{tabsList}}' bind:swiperChange='intOrderList'>
-  <!-- 待付款列表 -->
-  <scroll-loading slot='{{tabsList[0].name}}' bg-color='bg-color' if-no-more='{{tabsList[0].ifNoMore}}' if-loading='{{ifLoading}}' bind:scrolltolower='getUnpaidList'>
+<tabs-swiper-page tabs-list='{{tabs_list}}' bind:swiperChange='swiperChange'>
+  <scroll-loading bg-color='#EFEFF4' wx:for='{{tabs_list}}' wx:key='id' slot='{{item.id}}' if-no-more='{{item.if_no_more}}' if-loading='{{if_loading}}' bind:scrolltolower='getOrderList'>
     <view>
-      <view class='unpaid' wx:for='{{unpaidList}}' wx:key='id'>
-        <view class='header'>
-          <text>订单号：{{item.orderNum}}</text>
-          <i-icon type='trash' size='20' color='#2b85e4' data-id='{{item.id}}' bindtap='deleteOrder'></i-icon>
-        </view>
-        <view class='content'>
-          <image mode='aspectFit' src='{{item.imgUrl}}' />
-          <text class='money'>{{item.money}} 元</text>
-          <view class='state'>
-            <text>{{item.state}}</text>
-            <i-button i-class='i-button' type='primary' data-id='{{item.id}}' bindtap='payOrder'>付款</i-button>
+      <navigator class='item' wx:for='{{item.order_list}}' wx:key='order_id' wx:for-item='t' url='/pages/order-detail/index?id={{t.order_id}}'>
+        <view class='title'>{{t.title}}</view>
+        <view class='info'>
+          <view class='money-date'>
+            <view class='money'>
+              价格：
+              <text class='origin-money'>{{t.origin_money}} 元 </text>
+              <text class='update-money'> {{t.update_money}} 元</text>
+            </view>
+            <text>服务时间：{{t.date}}</text>
+          </view>
+          <view class='btn-bar'>
+            <view class='cancel' wx:if='{{item.id === "ordered"}}'>取消订单</view>
+            <view class='pay' wx:if='{{item.id === "unpaid"}}'>去付款</view>
+            <view class='consult' wx:if='{{item.id === "unconfirmed"}}'>协商</view>
+            <view class='confirm' wx:if='{{item.id === "unconfirmed"}}'>完工</view>
+            <view class='evaluate' wx:if='{{item.id === "unevaluated"}}'>去评价</view>
           </view>
         </view>
-      </view>
+      </navigator>
     </view>
   </scroll-loading>
-  <scroll-loading slot='{{tabsList[1].name}}' bg-color='bg-color' if-no-more='{{tabsList[1].ifNoMore}}' if-loading='{{ifLoading}}' bind:scrolltolower='getUnconfirmedList'>
-    <view></view>
-  </scroll-loading>
-  <scroll-loading slot='{{tabsList[2].name}}' bg-color='bg-color' if-no-more='{{tabsList[2].ifNoMore}}' if-loading='{{ifLoading}}' bind:scrolltolower='getUnevaluateList'>
-    <view></view>
-  </scroll-loading>
-  <scroll-loading slot='{{tabsList[3].name}}' bg-color='bg-color' if-no-more='{{tabsList[3].ifNoMore}}' if-loading='{{ifLoading}}' bind:scrolltolower='getCompletedList'>
-    <view></view>
-  </scroll-loading>
 </tabs-swiper-page>
+
+<view class='release-bar'>
+  <navigator class='release-demand' url='/pages/command-release/index'>
+    <text>+ 发布需求</text>
+  </navigator>
+  <navigator class='release-service' url='/pages/service-release/index' wx:if='{{shop_id>0}}'>
+    <text>+ 发布服务</text>
+  </navigator>
+</view>
+
+<i-toast id='toast' />

@@ -1,1 +1,9 @@
-{}
+{
+  "navigationBarTitleText": "服务排行",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "tabs-swiper-page": "/components/tabs-swiper-page/index",
+    "fit-img": "/components/fit-img/index",
+    "i-toast": "/iview/toast/index"
+  }
+}

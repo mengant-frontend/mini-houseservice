@@ -1,8 +1,11 @@
 {
   "navigationBarTitleText": "圈子",
+  "enablePullDownRefresh": false,
   "usingComponents": {
     "tabs-swiper-page": "/components/tabs-swiper-page/index",
     "scroll-loading": "/components/scroll-loading/index",
-    "community-list": "/components/community-list/index"
+    "fit-img": "/components/fit-img/index",
+    "i-icon": "/iview/icon/index",
+    "i-toast": "/iview/toast/index"
   }
 }

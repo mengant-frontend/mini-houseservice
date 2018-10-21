@@ -1,0 +1,22 @@
+<view class='container'>
+  <view class='menu-toggle' bindtap='toggleLeft'>
+    <text>{{category_name}}</text>
+    <i-icon type='unfold' size='14' color='#2d8cf0'></i-icon>
+  </view>
+  <view class='menu-scroll'>
+    <i-tabs current='{{category_id}}' scroll bindchange='tabsChange'>
+      <i-tab wx:for='{{categoryList}}' wx:key='id' key='{{item.id}}' title='{{item.name}}'></i-tab>
+    </i-tabs>
+  </view>
+</view>
+
+<i-drawer mode='left' visible='{{if_show}}' bind:close='toggleLeft'>
+  <scroll-view class='scroll-view' style='height:{{height}}px;' scroll-y>
+    <view class='item' data-id='{{0}}' data-name='全部' bindtap='choose'>
+      全部
+    </view>
+    <view class='item' wx:for='{{categoryList}}' wx:key='id' data-id='{{item.id}}' data-name='{{item.name}}' bindtap='choose'>
+      {{item.name}}
+    </view>
+  </scroll-view>
+</i-drawer>

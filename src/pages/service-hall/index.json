@@ -1,6 +1,0 @@
-{
-  "navigationBarTitleText": "我的需求",
-  "usingComponents": {
-    "tabs-swiper-page": "/components/tabs-swiper-page/index"
-  }
-}

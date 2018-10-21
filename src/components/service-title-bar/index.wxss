@@ -6,14 +6,17 @@
   justify-content: space-between;
 }
 .title {
-  font-size: 32rpx; /* iview 推荐主标题样式 */
+  /* iview 推荐主标题样式 */
+  font-size: 32rpx;
   color: #464c5b;
   font-weight: bold;
-  border-left: 14rpx solid #2d8cf0; /* iview 推荐 primary 主色 */
+  /* iview 推荐 primary 主色 */
+  border-left: 14rpx solid #2d8cf0;
   padding-left: 20rpx;
 }
 .else {
-  font-size: 28rpx; /* iview 推荐次级标题样式，这里不加粗 */
+  /* iview 推荐次级标题样式，这里不加粗 */
+  font-size: 28rpx;
   color: #464c5b;
   margin-right: 5rpx;
 }
@@ -22,9 +25,11 @@
   display: inline-block;
   width: 14rpx;
   height: 14rpx;
-  border: 1rpx solid #464c5b; /* 跟随 iview 次级标题颜色 */
+  /* 跟随 iview 次级标题颜色 */
+  border: 1rpx solid #464c5b;
   border-bottom: none;
   border-left: none;
   transform: rotate(45deg);
-  margin-bottom: 2rpx; /* 看起来与文字垂直对齐 */
+  /* 看起来与文字垂直对齐 */
+  margin-bottom: 2rpx;
 }

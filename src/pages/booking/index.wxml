@@ -1,0 +1,53 @@
+<view class="page">
+  <i-panel title='服务地点及时间'>
+    <i-cell-group>
+      <i-cell title='服务地点'>
+        <view slot='footer'>
+          <view bindtap='chooseLocation'>
+            <text>{{form_data.area ? form_data.area + form_data.address : '请选择服务地点'}}</text>
+            <i-icon type='enter'></i-icon>
+          </view>
+        </view>
+      </i-cell>
+      <i-cell title='开始时间'>
+        <view slot='footer'>
+          <f-date-time data-form_key='time_begin' bind:update='bindFormChange'>
+            <view>
+              <text>{{form_data.time_begin || '请选择开始服务时间'}}</text>
+              <i-icon type='enter'></i-icon>
+            </view>
+          </f-date-time>
+        </view>
+      </i-cell>
+      <i-cell title='结束时间'>
+        <view slot='footer'>
+          <f-date-time data-form_key='time_end' start='{{time_begin}}' bind:update='bindFormChange'>
+            <view>
+              <text>{{form_data.time_end || '请选择结束服务时间'}}</text>
+              <i-icon type='enter'></i-icon>
+            </view>
+          </f-date-time>
+        </view>
+      </i-cell>
+    </i-cell-group>
+  </i-panel>
+
+  <i-panel title='其他信息'>
+    <i-cell-group>
+      <i-cell title='手机号码'>
+        <i-input slot='footer' maxlength='11' placeholder='请填写手机号码' data-form_key='phone' bind:change='bindFormChange'></i-input>
+      </i-cell>
+      <i-cell title='备注'>
+        <view class="container__textarea">
+          <f-textarea placeholder='请填写备注信息' maxLength='100' data-form_key='remark' bind:update='bindFormChange'></f-textarea>
+        </view>
+      </i-cell>
+    </i-cell-group>
+  </i-panel>
+
+  <view class="fixed">
+    <i-button type='primary' bind:click='confirm' long>确定预约</i-button>
+  </view>
+
+  <i-message id='message'></i-message>
+</view>

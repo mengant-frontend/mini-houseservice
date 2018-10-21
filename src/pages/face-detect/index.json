@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "人脸识别",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "i-icon": "/iview/icon/index",
+    "i-toast": "/iview/toast/index",
+    "scroll-loading": "/components/scroll-loading/index",
+    "fit-img": "/components/fit-img/index"
+  }
+}

@@ -1,6 +1,6 @@
 <view class='container'>
   <text class='title'>{{serviceType=='1'?'家政服务':'维修服务'}}</text>
-  <navigator url='/pages/service/index?type={{serviceType}}'>
+  <navigator url='/pages/service/index?service_type={{serviceType}}'>
     <text class='else'>查看更多</text>
     <text class='arrow'></text>
     <text class='arrow'></text>

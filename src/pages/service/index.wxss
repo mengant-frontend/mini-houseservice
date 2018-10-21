@@ -1,19 +1,4 @@
 page {
-  /* iview 推荐字体 */
-  font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
-  font-size: 24rpx; /* iview 推荐正文样式 */
-  color: #657180;
-  background: #f2f2f2;
+  /* 给 scroll-loading 组件继承高度 */
   height: 100%;
-  padding-top: 100rpx; /* 为固定顶部的菜单预留的高度 */
-  box-sizing: border-box;
-}
-
-.content {
-  height: 100%;
-}
-
-/* 为 scroll-loading 组件设置背景色 */
-.bg-color {
-  background: #f2f2f2;
 }

@@ -1,9 +1,9 @@
 <i-tabs fixed current='{{tabsCurrent}}' bindchange='tabsChange'>
-  <i-tab wx:for='{{tabsList}}' wx:key='name' key='{{index}}' title='{{item.title}}' count='{{item.count}}'></i-tab>
+  <i-tab wx:for='{{tabsList}}' wx:key='id' key='{{index}}' title='{{item.title}}' dot='{{item.dot}}' count='{{item.count}}'></i-tab>
 </i-tabs>
 
-<swiper class='swiper bg-color' current='{{tabsCurrent}}' bindchange='swiperChange'>
-  <swiper-item wx:for='{{tabsList}}' wx:key='name'>
-    <slot name='{{item.name}}'></slot>
+<swiper class='swiper' style='background:{{bgColor}};' current='{{tabsCurrent}}' bindchange='swiperChange'>
+  <swiper-item class='swiper-item' wx:for='{{tabsList}}' wx:key='id'>
+    <slot name='{{item.id}}'></slot>
   </swiper-item>
 </swiper>

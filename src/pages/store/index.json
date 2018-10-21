@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "店铺",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "scroll-loading": "/components/scroll-loading/index",
+    "banner-img": "/components/banner-img/index",
+    "fit-img": "/components/fit-img/index",
+    "i-icon": "/iview/icon/index",
+    "i-toast": "/iview/toast/index"
+  }
+}

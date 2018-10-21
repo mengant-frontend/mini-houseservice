@@ -1,2 +1,38 @@
-<!--pages/search/index.wxml-->
-<text>pages/search/index.wxml</text>
+<view class='header'>
+  <view class='search-bar'>
+    <view class='search'>
+      <view class='service-store' bindtap='changeType'>
+        {{choose_type}}
+        <text class='arrow'></text>
+      </view>
+      <icon type='search' size='12' color='#bbbbbb' />
+      <input class='input' placeholder='搜索' placeholder-style='color:#bbbbbb;' maxlength='-1' confirm-type='search' bindinput='enter' bindconfirm='search' />
+    </view>
+    <text class='confirm-text' bindtap='search'>确认</text>
+  </view>
+  <view class='tabs'>
+    <view class='tabs-item border-right' style='color:{{type<4?"#2d8cf0":"#464c5b"}};' bindtap='changeColligate'>
+      {{choose_colligate}}
+      <i-icon type='unfold' size='16' color='{{type<4?"#2d8cf0":"#464c5b"}}'></i-icon>
+    </view>
+    <view class='tabs-item' style='color:{{type<4?"#464c5b":"#2d8cf0"}};' bindtap='changeSales'>
+      {{choose_sales}}
+      <i-icon type='unfold' size='16' color='{{type<4?"#464c5b":"#2d8cf0"}}'></i-icon>
+    </view>
+  </view>
+</view>
+
+<scroll-loading if-no-more='{{if_no_more}}' if-loading='{{if_loading}}' bind:scrolltolower='getList'>
+  <navigator class='item' wx:for='{{list}}' wx:key='id' url='/pages/{{search_type===1?"store":"service-detail"}}/index?{{search_type===1?"store_id":"service_id"}}={{item.id}}'>
+    <fit-img more-style='img-style' width='270' can-preview='{{false}}' src='{{item.img_url}}'></fit-img>
+    <view class='info'>
+      <text class='title'>{{item.title}}</text>
+      <view class='else'>
+        <image class='icon-fire' mode='aspectFit' src='/images/fire.png' wx:if='{{search_type===1}}' />
+        <text class='else-text'>{{search_type===1?'月销量'+item.price:'￥'+item.price+'/次'}}</text>
+      </view>
+    </view>
+  </navigator>
+</scroll-loading>
+
+<i-toast id='toast' />

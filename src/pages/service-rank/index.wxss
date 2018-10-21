@@ -1,1 +1,62 @@
-/* pages/service-rank/index.wxss */
+page {
+  /* 以下是使用 tabs-swiper-page 组件需要的样式 */
+  height: 100%;
+  padding-top: 42px;
+  box-sizing: border-box;
+}
+
+.item {
+  padding: 30rpx;
+  border-bottom: 1rpx solid #dddee1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+/* 为 fit-img 组件设置更多样式 */
+.img-style {
+  border-radius: 8rpx;
+}
+.item .info {
+  margin-left: 40rpx;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  /* 750-30*2-270-40-80 给定宽度为了让文本单行溢出省略 */
+  width: 300rpx;
+}
+.item .title {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  /* iview 推荐主标题样式 */
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #464c5b;
+}
+.item .sales {
+  margin-top: 40rpx;
+  display: flex;
+  align-items: center;
+}
+.item .icon-fire {
+  width: 34rpx;
+  height: 34rpx;
+  margin-right: 10rpx;
+}
+.item .sales-text {
+  /* iview 推荐 warning 辅助色 */
+  color: #ff9900;
+  /* 让文字与 icon 图片看起来垂直居中对齐 */
+  padding-top: 10rpx;
+}
+.item .icon-medal {
+  width: 80rpx;
+  height: 80rpx;
+}
+.item .rank {
+  width: 80rpx;
+  text-align: center;
+  font-size: 52rpx;
+  /* iview 推荐 warning 辅助色 */
+  color: #ff9900;
+}

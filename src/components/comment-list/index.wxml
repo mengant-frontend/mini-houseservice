@@ -1,0 +1,22 @@
+<view class='container' style='background:{{bgColor}};' wx:for='{{list}}' wx:key='id'>
+  <fit-img more-style='img-style' width='60' src='{{item.avatar_url}}'></fit-img>
+  <view class='content-bar'>
+    <view class='info'>
+      <view class='name-date' style='{{canReply?"flex-direction:column;":"align-items:center;"}}'>
+        <text>{{item.nick_name}}</text>
+        <text class='date'>{{item.date}}</text>
+      </view>
+      <view class='reply-likes' wx:if='{{canReply}}'>
+        <text class='reply' data-id='{{item.id}}' bindtap='reply'>回复</text>
+        <!-- #657180 为 iview 推荐正文颜色 -->
+        <i-icon type='praise' size='20' color='{{item.if_liked?"#66BD07":"#657180"}}' data-id='{{item.id}}' bindtap='{{item.if_liked?"":"like"}}'></i-icon>
+        <text style='color:{{item.if_liked?"#66BD07":"#657180"}};'>{{item.likes===0?'':item.likes}}</text>
+      </view>
+    </view>
+    <text class='content'>{{item.content}}</text>
+    <view class='comment-someone' wx:if='{{canReply&&item.comment_someone.nick_name}}'>
+      <text>@{{item.comment_someone.nick_name}}：</text>
+      <text class='someone-content'>{{item.comment_someone.content}}</text>
+    </view>
+  </view>
+</view>

@@ -1,45 +1,51 @@
 Component({
-  // 允许设置背景色
-  externalClasses: ['bg-color'],
-
   properties: {
-    // 是否没有更多内容了
+    // 允许设置背景色，默认为白色
+    bgColor: {
+      type: String,
+      value: '#fff'
+    },
+    // 是否加载全部，默认不是
     ifNoMore: {
       type: Boolean,
-      value: false // 默认为 false
+      value: false
     },
-    // 是否正在加载内容
+    // 是否正在加载，默认不是
     ifLoading: {
       type: Boolean,
-      value: false, // 默认为 false
-      observer (newVal) {
-        if (newVal) {
+      value: false,
+      observer (new_val) {
+        if (new_val) {
           this.setData({
-            loadMore: '正在加载',
-            paddingBottom: '0'
-          });
+            load_more: '正在加载',
+            padding_bottom: '0'
+          })
         } else {
           this.setData({
-            loadMore: '上拉显示更多',
-            paddingBottom: '20px'
-          });
+            load_more: '上拉显示更多',
+            padding_bottom: '20px'
+          })
         }
       }
     }
   },
 
   data: {
-    loadMore: '上拉显示更多',
-    noMore: '没有更多数据了',
-    // 让内容区域超过 scroll-view 的高度才能滚动
-    paddingBottom: '20px'
+    load_more: '上拉显示更多',
+    no_more: '没有更多数据了',
+    padding_bottom: '20px'
   },
 
   methods: {
-    // 内容区域上拉触底交互
+    // 触发触底加载
     scrolltolower () {
       // 执行组件使用者绑定的 scrolltolower 监听事件
-      this.triggerEvent('scrolltolower');
+      this.triggerEvent('scrolltolower')
+    },
+    // 滚动
+    scroll({ detail }) {
+      // 将 detail 传递给执行组件使用者绑定的 scroll 监听事件
+      this.triggerEvent('scroll', detail)
     }
   }
-});
+})

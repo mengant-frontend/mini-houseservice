@@ -1,5 +1,18 @@
-<tabs-swiper-page tabs-current='{{tabsCurrent}}' tabs-list='{{tabsList}}' bind:swiperChange='intCommunityList'>
-  <scroll-loading wx:for='{{tabsList}}' wx:key='name' slot='{{item.name}}' bg-color='bg-color' if-no-more='{{item.ifNoMore}}' if-loading='{{ifLoading}}' bind:scrolltolower='getCommunityList'>
-    <community-list community-type='{{item.name}}' list='{{item.list}}'></community-list>
+<tabs-swiper-page tabs-list='{{tabs_list}}' bind:swiperChange='intCommunityList'>
+  <scroll-loading wx:for='{{tabs_list}}' wx:key='id' slot='{{item.id}}' bg-color='#EFEFF4' if-no-more='{{item.if_no_more}}' if-loading='{{if_loading}}' bind:scrolltolower='getCommunityList'>
+    <navigator class='item' wx:for='{{item.list}}' wx:key='id' wx:for-item='t' url='/pages/community-detail/index?id={{t.id}}'>
+      <fit-img width='130' can-preview='{{false}}' src='{{t.img_url}}'></fit-img>
+      <view class='info'>
+        <text class='title'>{{t.title}}</text>
+        <view class='date-num'>
+          <text class='date'>{{t.date}}</text>
+          <!-- 为 iview 推荐 primary 主色  -->
+          <i-icon type='browse_fill' size='16' color='#2b85e4'></i-icon>
+          <text>{{t.view_num}}</text>
+        </view>
+      </view>
+    </navigator>
   </scroll-loading>
 </tabs-swiper-page>
+
+<i-toast id="toast" />

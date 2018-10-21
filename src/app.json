@@ -1,11 +1,17 @@
 {
   "pages": [
+    "pages/welcome/index",
+    "pages/authorize/index",
+
     "pages/index/index",
+    "pages/face-detect/index",
     "pages/search/index",
     "pages/service/index",
     "pages/service-detail/index",
-    "pages/service-hall/index",
+    "pages/demand-hall/index",
     "pages/service-rank/index",
+    "pages/store/index",
+    "pages/store-comment/index",
 
     "pages/community/index",
     "pages/community-detail/index",

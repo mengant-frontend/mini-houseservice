@@ -1,5 +1,0 @@
-<navigator class='container' url='/pages/service-hall/index'>
-  <image class='img' mode='aspectFit' src='/images/hall.png' />
-  <text class='title'>服务大厅</text>
-  <text class='arrow'></text>
-</navigator>

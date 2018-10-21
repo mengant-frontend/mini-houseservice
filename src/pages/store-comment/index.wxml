@@ -1,0 +1,9 @@
+<view class='comment-total'>网友评论({{comment_total}})</view>
+
+<view class='comment-bar'>
+  <scroll-loading if-no-more='{{if_no_more}}' if-loading='{{if_loading}}' bind:scrolltolower='getCommentList'>
+    <comment-list list='{{comment_list}}'></comment-list>
+  </scroll-loading>
+</view>
+
+<i-toast id="toast" />

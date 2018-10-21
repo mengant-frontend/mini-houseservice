@@ -1,0 +1,13 @@
+{
+  "usingComponents": {
+    "i-panel": "../../iview/panel/index",
+    "i-cell-group": "../../iview/cell-group/index",
+    "i-cell": "../../iview/cell/index",
+    "i-input": "../../iview/input/index",
+    "i-icon": "../../iview/icon/index",
+    "i-button": "../../iview/button/index",
+    "i-message": "../../iview/message/index",
+    "f-textarea": "../../components/f-textarea/index",
+    "f-date-time": "../../components/f-date-time/index"
+  }
+}

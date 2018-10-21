@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "fit-img": "/components/fit-img/index",
+    "i-icon": "/iview/icon/index"
+  }
+}

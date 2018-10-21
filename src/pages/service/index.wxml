@@ -1,9 +1,10 @@
-<view class='content'>
-  <scroll-loading bg-color='bg-color' if-no-more='{{ifNoMore}}' if-loading='{{ifLoading}}' bind:scrolltolower='getServiceList'>
-    <view>
-      <banner-img list='{{bannerImg}}'></banner-img>
-      <service-hall></service-hall>
-      <service-list list='{{serviceList}}' service-type='{{serviceType}}'></service-list>
-    </view>
-  </scroll-loading>
-</view>
+<scroll-loading bg-color='#EFEFF4' if-no-more='{{if_no_more}}' if-loading='{{if_loading}}' bind:scrolltolower='getServiceList'>
+  <view>
+    <banner-img list='{{banner_img}}'></banner-img>
+    <demand-hall></demand-hall>
+    <service-category-tabs category-list='{{category_list}}' bind:tabsChange='tabsChange'></service-category-tabs>
+    <service-list list='{{service_list}}'></service-list>
+  </view>
+</scroll-loading>
+
+<i-toast id="toast" />
