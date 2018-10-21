@@ -26,9 +26,13 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 0,
 			"list": [
-				
+				{
+					"id": -1,
+					"name": "商家页",
+					"pathName": "pages/shop/index"
+				}
 			]
 		}
 	}

@@ -43,7 +43,8 @@
     "pages/face-recognition/index",
     "pages/service-my/index",
     "pages/test/index",
-    "pages/price-change/index"
+    "pages/price-change/index",
+    "pages/shop/index"
   ],
   "window": {
     "navigationBarTitleText": "demo",

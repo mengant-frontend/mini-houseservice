@@ -1,42 +1,51 @@
 @import '../../variable.less';
-page{
+
+page {
   background-color: @background_color;
 }
-.container__avatar{
+
+.container__avatar {
   padding: 40px @blank;
   text-align: center;
   box-sizing: border-box;
 }
-.avatar{
+
+.avatar {
   width: 150rpx;
   height: 150rpx;
   border-radius: 150rpx;
 }
-.nickname{
+
+.nickname {
   font-size: @title_size;
   color: @title_color;
   padding-top: @gutter;
 }
-.list{
+
+.list {
   padding: 0 @blank @gutter_small;
   display: flex;
   flex-direction: row;
   box-sizing: border-box;
 }
-.item{
+
+.item {
   flex-grow: 1;
   flex-shrink: 1;
   text-align: center;
 }
-.title{
+
+.title {
   font-size: @title_size;
   color: @title_color;
 }
-.desc{
+
+.desc {
   font-size: @content_size;
   color: @success;
   font-weight: 600;
 }
-.gutter{
+
+.gutter {
   margin-bottom: @gutter;
 }

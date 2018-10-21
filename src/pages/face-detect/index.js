@@ -47,7 +47,8 @@ Page({
         if (task_res.success) {
           app.hideToast()
           let data = task_res.data
-          if (String(data.error_code).indexOf('99') === 0 || !data.shop_info) {
+          if (String(data.error_code)
+            .indexOf('99') === 0 || !data.shop_info) {
             this.setData({
               if_warn: true,
               if_detect: false,

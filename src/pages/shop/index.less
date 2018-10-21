@@ -1,0 +1,79 @@
+@import "../../variable.less";
+
+.wrapper {
+  background-image: linear-gradient(to bottom, #D7FFFE 0%, #FFFEFF 40%, #fff 100%);
+}
+
+.container {
+  width: 600rpx;
+  margin: 0 auto;
+  padding-top: 100rpx;
+  padding-bottom: 20rpx;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: @shadow;
+  border: 1px solid @border_color;
+}
+
+.container__avatar {
+  position: relative;
+  left: 0;
+  top: 0;
+}
+
+.avatar {
+  position: absolute;
+  top: -80rpx;
+  left: 50%;
+}
+
+.container__image {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 160rpx;
+  margin-left: -80rpx;
+  overflow: hidden;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+}
+
+.editor {
+  box-sizing: border-box;
+  width: 100%;
+  height: 80rpx;
+  line-height: 80rpx;
+  padding: 0 20rpx;
+  text-align: right;
+}
+
+.icon__editor {
+  font-size: 48rpx !important;
+}
+
+.info {
+  padding: @gutter;
+}
+
+.label {
+  text-align: right;
+  font-size: 32rpx;
+  color: @sub_content_color;
+  padding-right: @gutter_small;
+}
+
+.content {
+  font-size: 36rpx;
+  color: @title_color;
+}
+
+.content,
+.label {
+  padding-bottom: @gutter_small;
+}
