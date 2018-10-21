@@ -1,103 +1,84 @@
+import regeneratorRuntime from '../../lib/runtime'
+
 let app = getApp()
 
 Page({
   data: {
-    if_loading: true,
-    if_no_more: false
+    // 接口地址
+    api_url: {
+      // 获取评论列表
+      get_comment_list: '/api/v1/order/comments'
+    },
+    // 请求锁
+    request_lock: {
+      get_comment_list: true
+    },
+    comment_page: 0,
+    comment_total: 0,
+    if_no_more: false,
+    comment_list: []
   },
 
-  onLoad(options) {
-    setTimeout(() => {
-      this.setData({
-        store_id: options.store_id,
-        comment_total: 3,
-        comment_list: [
-          {
-            id: 0,
-            avatar_url: '/images/avatar.jpg',
-            nick_name: '红红火火',
-            date: '2018-10-01',
-            if_liked: false,
-            likes: 2,
-            content: '比酒店更自由，随意安排自己行程',
-            comment_someone: {
-              nick_name: '绿肥红瘦',
-              content: '家庭房比酒店更舒适，跟自己家里一样温馨。加上平时工作繁忙，和家人沟通少，正好利用假日旅游机会，一家人住到一间房子里，更融洽感情。'
-            }
-          }, {
-            id: 1,
-            avatar_url: '/images/avatar.jpg',
-            nick_name: '绿肥红瘦',
-            date: '2018-10-01',
-            if_liked: true,
-            likes: 2,
-            content: '家庭房比酒店更舒适，跟自己家里一样温馨。加上平时工作繁忙，和家人沟通少，正好利用假日旅游机会，一家人住到一间房子里，更融洽感情。',
-            comment_someone: {
-              nick_name: null,
-              content: null
-            }
-          }
-        ],
-        if_loading: false
-      });
-    }, 800);
-  },
-
-  // 回复
-  reply({ detail }) {
-    console.log(detail.index, detail.id)
-  },
-
-  // 点赞
-  like({ detail }) {
-    console.log(detail.index, detail.id)
-    let index = detail.index
-    let comment_list = this.data.comment_list
-    let if_liked = !comment_list[index].if_liked
-    comment_list[index].if_liked = if_liked
-    if_liked ? comment_list[index].likes++ : comment_list[index].likes--
-    this.setData({ comment_list })
+  async onLoad(options) {
+    await this.setData({
+      store_id: options.store_id
+    })
+    this.getCommentList()
   },
 
   // 获取评论列表
-  getCommentList() {
+  async getCommentList() {
+    let comment_list = this.data.comment_list
     let if_no_more = this.data.if_no_more
-    let oldList = this.data.comment_list
-    let oldList_len = oldList.length
-    let newItem = { ...oldList[oldList_len - 1] }
-    newItem.id++;
-    if (!if_no_more) {
-      if (oldList_len < 10) {
+    if (!if_no_more && this.data.request_lock.get_comment_list) {
+      this.setData({
+        if_loading: true,
+        'request_lock.get_comment_list': false
+      })
+      let res = await app.get({
+        url: this.data.api_url.get_comment_list,
+        data: {
+          page: this.data.comment_page + 1,
+          size: 6,
+          id: this.data.store_id
+        }
+      })
+      if (res.success) {
+        let data = res.data
+        let data_list = data.data
+        let comment_total = data.total
+        let len = comment_list.length
+        if (comment_total > 0) {
+          data_list.forEach((item, index) => {
+            comment_list.push({
+              id: len + index,
+              avatar_url: item.avatarUrl,
+              nick_name: item.nickName,
+              date: item.create_time,
+              content: item.content
+            })
+          })
+          if_no_more = comment_list.length < comment_total ? false : true
+        } else {
+          if_no_more = true
+        }
         this.setData({
-          if_loading: true
-        });
-        setTimeout(() => {
-          this.setData({
-            if_loading: false,
-            comment_list: oldList.concat([newItem])
-          });
-        }, 800);
-      } else {
-        this.setData({
-          if_loading: false,
-          if_no_more: true
-        });
+          comment_list,
+          comment_total,
+          comment_page: data.current_page,
+          if_no_more
+        })
+      } else { // 出错处理debug
+        console.log(res.msg)
+        app.errorToast({
+          content: '加载失败~~',
+          duration: 0
+        })
       }
+      this.setData({
+        if_loading: false,
+        'request_lock.get_comment_list': true
+      })
     }
   }
 })
-
-// app.get({
-//   url: '/api/v1/circle/comment/list',
-//   data: {
-//     page: 1,
-//     size: 6,
-//     id: 7
-//   }
-// }).then(res => {
-//   if (res.success) {
-//     console.log(res)
-//   } else { // 出错处理debug
-//     console.log(res.msg)
-//   }
-// })

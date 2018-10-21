@@ -1,10 +1,13 @@
 {
+  "navigationBarTitleText": "首页",
+  "enablePullDownRefresh": false,
   "usingComponents": {
     "i-icon": "/iview/icon/index",
     "i-notice-bar": "/iview/notice-bar/index",
     "banner-img": "/components/banner-img/index",
-    "service-hall": "/components/service-hall/index",
+    "demand-hall": "/components/demand-hall/index",
     "service-title-bar": "/components/service-title-bar/index",
-    "service-list": "/components/service-list/index"
+    "service-list": "/components/service-list/index",
+    "i-toast": "/iview/toast/index"
   }
 }

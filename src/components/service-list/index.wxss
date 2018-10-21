@@ -8,20 +8,20 @@
 }
 .item {
   margin-top: 40rpx;
-  width: 320rpx; /* 以 .img 宽度为准 */
+  /* 以图片宽度为准 */
+  width: 320rpx;
   display: flex;
   flex-direction: column;
   align-items: center; 
 }
-.img {
-  width: 320rpx; /* 大小暂定为320rpx 180rpx */
-  height: 180rpx;
-  border: 1rpx solid #e1e1e1; /* 应该需要边框吧 */
+/* 给 fit-img 组件设置更多样式 */
+.img-style {
   border-radius: 10rpx;
 }
 .title {
   margin: 14rpx 0;
-  font-size: 28rpx; /* iview 推荐次级标题样式 */
+  /* iview 推荐次级标题样式 */
+  font-size: 28rpx;
   font-weight: bold;
   color: #464c5b;
 }

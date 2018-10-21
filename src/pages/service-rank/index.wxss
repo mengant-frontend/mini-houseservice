@@ -1,8 +1,8 @@
 page {
   /* 以下是使用 tabs-swiper-page 组件需要的样式 */
+  height: 100%;
   padding-top: 42px;
   box-sizing: border-box;
-  height: 100%;
 }
 
 .item {
@@ -12,13 +12,12 @@ page {
   justify-content: space-between;
   align-items: center;
 }
-.item .img {
-  width: 270rpx;
-  height: 165rpx;
+/* 为 fit-img 组件设置更多样式 */
+.img-style {
   border-radius: 8rpx;
-  margin-right: 40rpx;
 }
 .item .info {
+  margin-left: 40rpx;
   flex-grow: 1;
   display: flex;
   flex-direction: column;

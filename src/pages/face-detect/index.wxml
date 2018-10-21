@@ -1,0 +1,55 @@
+<view class='detect-bar' hidden='{{!if_detect}}'>
+  <view class='camera-bar'>
+    <camera class='camera' device-position='back' flash='auto' bindstop='' binderror='error' hidden='{{src}}'></camera>
+    <fit-img width='375' src='{{src}}' can-preview='{{false}}' hidden='{{!src}}'></fit-img>
+  </view>
+  <text class='btn-detect' bindtap='takePhoto'>开始识别</text>
+</view>
+
+<view class='warn-bar' hidden='{{!if_warn}}'>
+  <image class='img' src='/images/face-cry.png' />
+  <text class='warn-text'>很抱歉，未查证到该人脸～</text>
+  <view class='btn-turn-back' bindtap='turnBack'>返回</view>
+</view>
+
+<view class='success-bar' hidden='{{!if_success}}'>
+  <scroll-loading bg-color='EFEFF4' if-no-more='{{true}}'>
+    <view class='tip'>店铺信息</view>
+    <view class='store-info'>
+      <view class='icon-bar'>
+        <i-icon type='shop_fill' size='30' color='#2d8cf0'></i-icon>
+      </view>
+      <text class='title'>{{name}}</text>
+    </view>
+    <view class='store-info'>
+      <view class='icon-bar'>
+        <i-icon type='coordinates' size='30' color='#2d8cf0'></i-icon>
+      </view>
+      <text>{{area}}{{address}}</text>
+    </view>
+    <view class='store-info' bindtap='callPhone'>
+      <view class='icon-bar'>
+        <image class='icon-phone' mode='aspectFit' src='/images/phone-blue.png' />
+      </view>
+      <text>{{phone}}</text>
+    </view>
+
+    <view class='tip'>店铺订单</view>
+    <view class='store-order' wx:for='{{order_list}}' wx:key='order_id'>
+      <view class='icon-bar'>
+        <view class='icon-success' style='border-width:{{choose_index===index?0:5}}rpx;' data-index='{{index}}' bindtap='chooseOrder'>
+          <icon type='success' size='20' color='#2d8cf0' hidden='{{choose_index!==index}}' />
+        </view>
+      </view>
+      <view class='order-bar'>
+        <text class='title'>{{item.order_name}}</text>
+        <text>客户名称：{{item.username}}</text>
+        <text>服务地址：{{item.area}}{{item.address}}</text>
+        <text>服务时间：{{item.time_begin}}</text>
+      </view>
+    </view>
+  </scroll-loading>
+  <view class='btn-confirm' bindtap='confirmOrder'>{{order_list.length===0?'返回':'确定订单'}}</view>
+</view>
+
+<i-toast id='toast' />

@@ -13,68 +13,79 @@ App({
       this.global_data.system_info = system_info
     }
   },
-  //登录
+  // 登录
   async login() {
     await this.asyncApi(wx.showLoading, {
-      title: '登录中...'
+      title: '登录中',
+      // 显示透明蒙层，防止触摸穿透
+      mask: true
     })
     let wx_res = await this.asyncApi(wx.login)
+    // wx.login 调用失败
     if (!wx_res.success) {
-      await this.asyncApi(wx.hideLoading)
-      return
+      await this.reLaunchApp('wx_api')
     }
-    console.log('wx: login', wx_res)
     let server_res = await this.get({
-      // auto: false接口调用失败不会自动重新调用
+      // 不用处理 token 失效的问题
       auto: false,
-      // token_required: false 接口不校验token是否存在
+      // 不用校验 token
       token_required: false,
       url: '/api/v1/token/user',
       data: {
         code: wx_res.code
       }
     })
-    await this.asyncApi(wx.hideLoading)
+    // server token 请求失败
     if (!server_res.success) {
-      return
+      await this.reLaunchApp('server_api')
     }
     let { data } = server_res
     this.global_data.token = data.token
-    //type: 2 未缓存用户的userInfo, 需要调用userInfo
-    //每个页面的根元素bindtap, 调用userInfo
-    if (Number(data.type) === 2) {
-      this.global_data.type = 2
+    this.global_data.shop_id = data.shop_id
+    // 获取用户信息
+    if (!this.global_data.user_info) {
+      await this.getUserInfo(Number(data.type))
     }
+    await this.asyncApi(wx.hideLoading)
     return server_res
   },
-  //获取用户信息
-  async getUserInfo() {
-    let wx_res = await this.asyncApi(wx.getSetting)
-    if (!wx_res.success) {
-      return
-    }
-    if (!wx_res.authSetting['scope.userInfo']) {
-      this._error('wx: 用户拒绝授权')
-      return
-    }
-    wx_res = await this.asyncApi(wx.getUserInfo)
-    if (!wx_res.success) {
-      this._error('wx: getUserInfo api 调用失败')
-      return
-    }
-    let { encryptedData, iv } = wx_res
-    let server_res = await this.post({
-      url: '/api/v1/user/info',
-      data: {
-        encryptedData: encryptedData,
-        iv: iv
+  // 获取用户信息
+  async getUserInfo(user_type) {
+    if (wx.canIUse('button.open-type.getUserInfo')) {
+      let wx_res = await this.asyncApi(wx.getSetting)
+      // wx.getSetting 调用失败
+      if (!wx_res.success) {
+        await this.reLaunchApp('wx_api')
       }
-    })
-    if (!server_res.success) {
-      this._error('server: /user/info api 调用失败')
-      return
+      if (!wx_res.authSetting['scope.userInfo']) {
+        // 用户没有授权获取用户信息时跳转到授权页
+        await this.asyncApi(wx.redirectTo, {
+          url: '/pages/authorize/index?auth_type=userinfo&user_type=' + user_type
+        })
+        return
+      }
     }
-    this.global_data.type = 1
+    // 用户已授权以及在没有 open-type=getUserInfo 版本直接调用
+    let wx_userinfo_res = await this.asyncApi(wx.getUserInfo, {
+      withCredentials: true
+    })
+    // wx.getUserInfo 调用失败
+    if (!wx_userinfo_res.success) {
+      await this.reLaunchApp('wx_api')
+    }
+    let { userInfo, encryptedData, iv } = wx_userinfo_res
+    // 数据库未缓存用户信息
+    if (user_type === 2) {
+      let server_res = await this.post({
+        url: '/api/v1/user/info',
+        data: { encryptedData, iv }
+      })
+      // server userinfo 请求失败
+      if (!server_res.success) {
+        await this.reLaunchApp('server_api')
+      }
+    }
+    this.global_data.user_info = userInfo
   },
   //使用promise包装了一下，跟async搭配
   asyncApi(api, options = {}) {
@@ -167,10 +178,10 @@ App({
   },
   // 推荐使用该方法上传图片
   _uploadFile(options = {}) {
-    let { success, fail, onProgressUpdate = () => { }, ...other } = options
+    let { url = '/api/v1/image/upload', success, fail, onProgressUpdate = () => { }, ...other } = options
     return new Promise(resolve => {
       let task = wx.uploadFile({
-        url: domain + '/api/v1/image/upload',
+        url: domain + url,
         name: 'file',
         success(res) {
           resolve({
@@ -268,10 +279,17 @@ App({
   },
   loadingToast(options = {}){
     let { type, ...other } = options
-    $Toast({
-      type: 'loading',
-      ...other
-    })
+    if (this.global_data.token) {
+      $Toast({
+        type: 'loading',
+        ...other
+      })
+    }
+  },
+  hideToast(){
+    if (this.global_data.token) {
+      $Toast.hide()
+    }
   },
   //深度克隆，只克隆简单值，对象，数组，对函数过滤
   _deepClone(data) {
@@ -318,9 +336,64 @@ App({
       return res
     })
   },
+  // 获取地理位置
+  async getLocation() {
+    let location = this.global_data.location
+    let success = true
+    if (!location) {
+      let wx_res = await this.asyncApi(wx.getLocation)
+      if (wx_res.success) {
+        this.global_data.latitude = wx_res.latitude
+        this.global_data.longitude = wx_res.longitude
+        let res_location = await this._getAdInfo({
+          lat: wx_res.latitude,
+          lng: wx_res.longitude
+        })
+        if (res_location.success) {
+          this.global_data.location = res_location.data
+          location = res_location.data
+        } else { // 出错处理debug
+          console.log(res_location.msg)
+          success = false
+        }
+      } else { // 出错处理debug
+        console.log(wx_res.msg)
+        success = false
+      }
+    }
+    return { success, location }
+  },
+  // 当调用 wx.api 或者请求服务器出错无法进行业务时，提示重启小程序
+  async reLaunchApp(type_str) {
+    let title = ''
+    let content = ''
+    switch (type_str) {
+      case 'wx_api':
+        title = '小程序出错'
+        content = '糟糕，小程序发生了意外情况，您可以点击确定重启小程序'
+        break;
+      case 'server_api':
+        title = '服务器出错'
+        content = '服务器发生了意外情况，您可以点击确定重启小程序'
+        break;
+    }
+    await this.asyncApi(wx.hideLoading)
+    let wx_showModal_res = await this.asyncApi(wx.showModal, {
+      title,
+      content,
+      showCancel: false
+    })
+    if (wx_showModal_res.success) {
+      if (wx_showModal_res.confirm) {
+        await this.asyncApi(wx.reLaunch, {
+          url: '/pages/welcome/index'
+        })
+      }
+    }
+  },
   global_data: {
     system_info: {},
     token: '',
-    type: 1
+    village: 0 // 1 代表用户是小区管理员
   }
 })

@@ -1,9 +1,0 @@
-.container {
-  background: #fff;
-  /* 高度遵从设计稿为366rpx */
-  height: 366rpx;
-}
-.img {
-  width: 100%;
-  height: 100%;
-}

@@ -1,2 +1,37 @@
-<!--pages/service-detail/index.wxml-->
-<text>pages/service-detail/index.wxml</text>
+<scroll-loading bg-color='#EFEFF4' if-no-more='{{if_no_more}}' if-loading='{{if_loading}}' bind:scrolltolower='getCommentList'>
+  <view>
+    <banner-img list='{{banner_img}}'></banner-img>
+    <view class='name-fees'>
+      <text class='name'>{{name}}</text>
+      <text class='fees'>￥{{money}}/{{unit}}</text>
+    </view>
+    <view class='location-phone'>
+      <view class='location-bar'>
+        <text class='location-tip'>位置</text>
+        <text class='location'>{{location}}</text>
+      </view>
+      <image class='icon-phone' mode='aspectFit' src='/images/phone.png' bindtap='callPhone' />
+    </view>
+    <view class='des-tip'>服务范围</view>
+    <view class='des'>{{des}}</view>
+    <view class='score-total'>
+      <text class='score'>{{score}}分</text>
+      <text class='total'>({{comment_total}}条评论)</text>
+    </view>
+    <comment-list list='{{comment_list}}'></comment-list>
+  </view>
+</scroll-loading>
+
+<view class='menu-bar'>
+  <navigator class='store' url='/pages/store/index?store_id={{store_id}}'>
+    <i-icon type='shop_fill' size='30' color='#898989'></i-icon>
+    <text>进入店铺</text>
+  </navigator>
+  <view class='collect'>
+    <i-icon type='{{if_collected?"collection_fill":"collection"}}' size='30' color='{{if_collected?"#ff9900":"#898989"}}' bindtap='collect'></i-icon>
+    <text>收藏</text>
+  </view>
+  <navigator class='order' url='/pages/service-booking/index?s_id={{service_id}}'>预约</navigator>
+</view>
+
+<i-toast id="toast" />

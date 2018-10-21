@@ -12,7 +12,8 @@
 }
 .title {
   flex-grow: 1;
-  font-size: 32rpx; /* iview 推荐主标题样式 */
+  /* iview 推荐主标题样式 */
+  font-size: 32rpx;
   color: #464c5b;
   font-weight: bold;
 }

@@ -1,0 +1,37 @@
+.container {
+  width: 100%;
+  height: 42px;
+  border-top: 1rpx solid #dddee1;
+  border-bottom: 1rpx solid #dddee1;
+  background: #fff;
+  display: flex;
+}
+.menu-toggle {
+  height: 100%;
+  padding: 0 20rpx;
+  /* iview 推荐 primary 主色 */
+  color: #2d8cf0;
+  white-space: nowrap;
+  font-size: 28rpx;
+  border-right: 1rpx solid #dddee1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.menu-scroll {
+  flex-grow: 1;
+}
+.scroll-view {
+  width: 375rpx;
+  background: #fff;
+}
+.item {
+  margin: 15rpx 15rpx 0;
+  line-height: 2.5;
+  text-align: center;
+  border: 1rpx solid #2d8cf0;
+  color: #2d8cf0;
+  font-size: 28rpx;
+  white-space: nowrap;
+  border-radius: 8rpx;
+}

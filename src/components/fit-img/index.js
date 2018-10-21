@@ -46,9 +46,13 @@ Component({
         view_width = height * ratio
         view_height = height
       }
-      this.setData({ view_width, view_height })
-      // 将 view_width、view_height 传递给组件使用者绑定的 imgLoad 监听事件
-      this.triggerEvent('imgLoad', { view_width, view_height })
+      this.setData({
+        view_width,
+        view_height
+      }, () => {
+        // 将 view_width、view_height 传递给组件使用者绑定的 imgLoad 监听事件
+        this.triggerEvent('imgLoad', { view_width, view_height })
+      })
     }
   }
 })

@@ -1,113 +1,168 @@
+import regeneratorRuntime from '../../lib/runtime'
+
 let app = getApp()
 
 Page({
   data: {
-    // 默认地区
-    location: ['北京市', '北京市', '朝阳区']
+    // 接口地址
+    api_url: {
+      // 获取轮播图
+      get_banner_img: '/api/v1/banner/mini/list',
+      // 获取红包攻略
+      get_strategy: '/api/v1/red/strategy',
+      // 获取推广的服务列表
+      get_service_list: '/api/v1/service/index'
+    },
+    // 小区管理员标识
+    village: 0
   },
 
-  onLoad() {
-    // 轮播图
+  async onLoad() {
+    app.loadingToast({
+      content: '加载中',
+      duration: 0,
+      mask: false
+    })
+    // 获取地理位置
+    let res = await app.getLocation()
+    if (res.success) {
+      await this.setData({
+        location: res.location
+      })
+    } else {
+      // 用户没有授权获取地理位置时跳转到授权页
+      await app.asyncApi(wx.redirectTo, {
+        url: '/pages/authorize/index?auth_type=location'
+      })
+      return
+    }
+    // 获取轮播图
     app.get({
-      url: '/api/v1/banner/mini/list',
+      url: this.data.api_url.get_banner_img,
       data: {
         type: 1
       }
     }).then(res => {
       if (res.success) {
+        let data = res.data
         let banner_img = []
-        for (let v of res.data) {
-          banner_img.push(v.url)
+        if (data.length > 0) {
+          data.forEach(item => {
+            banner_img.push(item.url)
+          })
+        } else {
+          app.warnToast({
+            content: '暂时没有轮播图数据哦~~',
+            duration: 0
+          })
         }
-        this.setData({
-          banner_img
-        })
+        this.setData({ banner_img })
       } else { // 出错处理debug
         console.log(res.msg)
+        app.errorToast({
+          content: '轮播图数据加载失败~~',
+          duration: 0
+        })
       }
     })
-    // 红包攻略
+    // 获取红包攻略
     app.get({
-      url: '/api/v1/red/strategy'
+      url: this.data.api_url.get_strategy
     }).then(res => {
       if (res.success) {
+        let data = res.data
         let notice_content = []
-        for (let v of res.data) {
-          notice_content.push(v.des)
+        if (data.length > 0) {
+          data.forEach(item => {
+            notice_content.push(item.des)
+          })
+        } else {
+          app.warnToast({
+            content: '暂时没有红包攻略哦~~',
+            duration: 0
+          })
         }
-        this.setData({
-          notice_content
-        })
+        this.setData({ notice_content })
       } else { // 出错处理debug
         console.log(res.msg)
+        app.errorToast({
+          content: '红包攻略加载失败~~',
+          duration: 0
+        })
       }
     })
-    // 获取在首页推广的家政、维修服务列表
-    this.getServiceList(1, this.data.location[2])
-    this.getServiceList(2, this.data.location[2])
+    // 获取推广的服务列表
+    await this.getServiceList()
   },
 
-  /**
-   * 获取在首页推广的家政、维修服务列表，统一展示6条
-   * @param  {Number} service_type 服务类型，1为家政，2为维修
-   * @param  {String} area         用户选择的地区--区//this.data.location[2]
-   */
-  getServiceList(service_type, area) {
+  onShow() {
+    this.setData({
+      village: app.global_data.village
+    })
+  },
+
+  // 获取推广的服务列表
+  async getServiceList() {
     app.get({
-      url: service_type === 1 ? '/api/v1/extend/house' : '/api/v1/extend/repair',
+      url: this.data.api_url.get_service_list,
       data: {
-        page: 1,
-        size: 6,
-        area: area,
-        c_id: 0
+        area: this.data.location[2]
       }
     }).then(res => {
+      app.hideToast()
       if (res.success) {
-        console.log(res.data) // debug
-        let list = []
-        res.data.data.forEach(item => {
-          list.push({
-            id: item.s_id,
-            imgUrl: item.cover,
-            title: item.name,
-            totalSales: item.sell_num,
-            money: item.sell_money
+        let data = res.data
+        let house_service_list = []
+        let maintain_service_list = []
+        if (data.length > 0) {
+          data.forEach(item => {
+            let list_item = {
+              id: item.s_id,
+              img_url: item.cover,
+              title: item.name,
+              sales: item.sell_num,
+              money: item.sell_money
+            }
+            switch (item.type) {
+              case 1:
+                house_service_list.push(list_item)
+                break;
+              case 2:
+                maintain_service_list.push(list_item)
+                break;
+            }
           })
-        })
-        switch (service_type) {
-          case 1:
-            this.setData({
-              house_service_list: list
-            })
-            break;
-          case 2:
-            this.setData({
-              maintain_service_list: list
-            })
-            break;
+        } else {
+          app.warnToast({
+            content: '当前地区暂时没有服务推广哦~~',
+            duration: 0
+          })
         }
+        this.setData({
+          house_service_list,
+          maintain_service_list
+        })
       } else { // 出错处理debug
         console.log(res.msg)
+        app.errorToast({
+          content: '服务推广加载失败~~',
+          duration: 0
+        })
       }
     })
   },
 
   // 地区选择，对应更新在首页推广的家政、维修服务列表
-  locationChoose({ detail }) {
+  async locationChoose({ detail }) {
     let location =  detail.value
-    this.setData({ location })
-    this.getServiceList(1, location[2])
-    this.getServiceList(2, location[2])
-  },
-
-  // 扫描
-  scan() {
-    app.asyncApi(wx.scanCode).then(res => {
-      if (res.success) {
-        console.log(res) // debug
-      } else { // 出错处理debug
-        console.log(res)
-      }
+    app.global_data.location = location
+    app.loadingToast({
+      content: '加载中',
+      duration: 0,
+      mask: false
     })
+    await this.setData({ location })
+    // 重新获取推广的服务列表
+    await this.getServiceList()
   }
 })

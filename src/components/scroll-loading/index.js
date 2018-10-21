@@ -41,6 +41,11 @@ Component({
     scrolltolower () {
       // 执行组件使用者绑定的 scrolltolower 监听事件
       this.triggerEvent('scrolltolower')
+    },
+    // 滚动
+    scroll({ detail }) {
+      // 将 detail 传递给执行组件使用者绑定的 scroll 监听事件
+      this.triggerEvent('scroll', detail)
     }
   }
 })

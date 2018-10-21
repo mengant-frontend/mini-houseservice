@@ -2,6 +2,8 @@
 
 <view class='comment-bar'>
   <scroll-loading if-no-more='{{if_no_more}}' if-loading='{{if_loading}}' bind:scrolltolower='getCommentList'>
-    <comment-list can-reply='{{true}}' list='{{comment_list}}' bind:reply='reply' bind:like='like'></comment-list>
+    <comment-list list='{{comment_list}}'></comment-list>
   </scroll-loading>
 </view>
+
+<i-toast id="toast" />

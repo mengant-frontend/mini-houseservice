@@ -18,19 +18,11 @@ page {
   display: flex;
   flex-direction: column;
 }
-.content-bar .title,
-.content-bar .content {
-  /* iview 推荐标题样式 */
+.content-bar .title {
+  /* iview 推荐主标题样式 */
+  font-size: 32rpx;
   font-weight: bold;
   color: #464c5b;
-}
-.content-bar .title {
-  /* iview 推荐主标题大小 */
-  font-size: 32rpx;
-}
-.content-bar .content {
-  /* iview 推荐次级标题大小 */
-  font-size: 28rpx;
 }
 .total {
   height: 90rpx;

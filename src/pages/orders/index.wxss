@@ -1,56 +1,108 @@
 page {
-  /* iview 推荐字体 */
-  font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
-  font-size: 24rpx; /* iview 推荐正文样式 */
-  color: #657180;
-  padding-top: 42px; /* 以下是使用 tabs-swiper-page 组件需要的样式 */
+  /* 以下是使用 tabs-swiper-page 组件需要的样式 */
+  padding-top: 42px;
   box-sizing: border-box;
   height: 100%;
 }
 
-/* 为 scroll-loading 组件设置背景色 */
-.bg-color {
-  background: #f2f2f2;
-}
-
-/* 待付款列表 start */
-.unpaid {
-  margin-top: 20rpx;
+/* 订单列表 start */
+.item {
   background: #fff;
-}
-.unpaid .header {
-  padding: 0 30rpx;
-  display: flex;
-  justify-content: space-between;
-  line-height: 2.8;
-  font-size: 32rpx; /* iview 推荐主标题样式，这里不加粗 */
-  color: #464c5b;
+  padding: 40rpx;
+  line-height: 1.8;
   border-bottom: 1rpx solid #dddee1;
-}
-.unpaid .content {
-  padding: 30rpx;
-  display: flex;
-}
-.unpaid image {
-  width: 280rpx;
-  height: 200rpx;
-}
-.unpaid .money {
-  flex-grow: 1;
-  font-size: 40rpx;
-  color: #2d8cf0; /* iview 推荐 primary 主色 */
-}
-.unpaid .state {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  text-align: right;
-  font-size: 32rpx; /* 同 .hearder 字体样式 */
+}
+.item .title {
+  /* 让文本单行溢出省略 */
+  width: 670rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  /* iview 推荐主标题样式 */
+  font-size: 32rpx;
+  font-weight: bold;
   color: #464c5b;
 }
-.unpaid .i-button { /* 修改 i-button 组件默认样式 */
-  margin: 0;
-  height: 70rpx;
-  line-height: 70rpx;
+.item .info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
-/* 待付款列表 end */
+.item .money-date {
+  display: flex;
+  flex-direction: column;
+}
+.item .money {
+  display: flex;
+}
+.item .origin-money {
+  text-decoration: line-through;
+  margin-right: 10rpx;
+}
+.item .update-money {
+  color: #ff9900;
+}
+.item .btn-bar {
+  display: flex;
+  line-height: 1;
+}
+.item .cancel,
+.item .pay,
+.item .consult,
+.item .confirm,
+.item .evaluate {
+  border-radius: 6rpx;
+  text-align: center;
+}
+.item .cancel,
+.item .consult,
+.item .confirm {
+  padding: 10rpx;
+}
+.item .pay,
+.item .evaluate {
+  padding: 15rpx 20rpx;
+}
+.item .cancel,
+.item .consult {
+  /* iview 推荐 warning 辅助色 */
+  border: 1rpx solid #ff9900;
+  color: #ff9900;
+}
+.item .pay,
+.item .confirm,
+.item .evaluate {
+  /* iview 推荐 primary 主色 */
+  border: 1rpx solid #2d8cf0;
+  color: #2d8cf0;
+  margin-left: 20rpx;
+}
+/* 订单列表 end */
+
+/* 发布按钮 start */
+.release-bar {
+  position: fixed;
+  right: 25rpx;
+  bottom: 170rpx;
+}
+.release-demand,
+.release-service {
+  box-shadow: 0 1rpx 2rpx 0;
+  border-radius: 8rpx;
+  padding: 15rpx;
+  background: #fff;
+}
+.release-demand {
+  margin-bottom: 20rpx;
+}
+.release-demand text {
+  /* iview 推荐 primary 主色 */
+  color: #2d8cf0;
+}
+.release-service text {
+  /* iview 推荐 warning 辅助色 */
+  color: #ff9900;
+}
+/* 发布按钮 end */

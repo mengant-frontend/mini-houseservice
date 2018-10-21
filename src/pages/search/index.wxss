@@ -1,1 +1,118 @@
-/* pages/search/index.wxss */
+page {
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  padding-top: 180rpx;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+.search-bar {
+  height: 90rpx;
+  padding: 0 25rpx;
+  background: #EFEFF4;
+  display: flex;
+  align-items: center;
+}
+.search {
+  flex-grow: 1;
+  height: 56rpx;
+  margin-right: 15rpx;
+  background: #fff;
+  border-radius: 8rpx;
+  display: flex;
+  align-items: center;
+}
+.service-store {
+  padding: 0 20rpx;
+  margin-right: 20rpx;
+  /* 跟随搜索图标颜色 */
+  border-right: 1rpx solid #bbbbbb;
+  /* iview 推荐次级标题样式，不加粗 */
+  font-size: 28rpx;
+  color: #464c5b;
+}
+.arrow::after {
+  content: '';
+  display: inline-block;
+  width: 14rpx;
+  height: 14rpx;
+  /* 跟随搜索图标颜色 */
+  border: 1rpx solid #bbbbbb;
+  border-bottom: none;
+  border-left: none;
+  transform: rotate(45deg);
+  /* 看起来与文字垂直对齐 */
+  margin-bottom: 2rpx;
+}
+.input {
+  flex-grow: 1;
+  margin: 0 10rpx;
+}
+.confirm-text {
+  color: #2d8cf0;
+  font-size: 28rpx;
+}
+.tabs {
+  height: 88rpx;
+  border: 1rpx solid #dddee1;
+  display: flex;
+}
+.tabs-item {
+  width: 374rpx;
+  text-align: center;
+  line-height: 90rpx;
+  /* iview 推荐主标题样式，不加粗 */
+  font-size: 32rpx;
+  color: #464c5b;
+}
+.border-right {
+  border-right: 1rpx solid #dddee1;
+}
+
+.item {
+  padding: 30rpx;
+  border-bottom: 1rpx solid #dddee1;
+  display: flex;
+  align-items: center;
+}
+/* 为 fit-img 组件设置更多样式 */
+.img-style {
+  border-radius: 8rpx;
+}
+.item .info {
+  margin-left: 40rpx;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  /* 750-30*2-270-40 给定宽度为了让文本单行溢出省略 */
+  width: 380rpx;
+}
+.item .title {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  /* iview 推荐主标题样式 */
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #464c5b;
+}
+.item .else {
+  margin-top: 40rpx;
+  display: flex;
+  align-items: center;
+}
+.item .icon-fire {
+  width: 34rpx;
+  height: 34rpx;
+  margin-right: 10rpx;
+}
+.item .else-text {
+  /* iview 推荐 warning 辅助色 */
+  color: #ff9900;
+  /* 让文字与 icon 图片看起来垂直居中对齐 */
+  padding-top: 10rpx;
+}

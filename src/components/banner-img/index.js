@@ -6,12 +6,22 @@ Component({
     list: Array
   },
 
+  data: {
+    height: 0
+  },
+
   methods: {
     // 点击图片预览图片列表
     previewImg({ target }) {
       app.asyncApi(wx.previewImage, {
         current: target.dataset.src,
         urls: this.data.list
+      })
+    },
+    // 图片加载成功
+    imgLoad({ detail }) {
+      this.setData({
+        height: detail.view_height
       })
     }
   }

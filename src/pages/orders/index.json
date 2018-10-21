@@ -1,9 +1,10 @@
 {
   "navigationBarTitleText": "订单",
+  "backgroundColor": "#EFEFF4",
+  "backgroundTextStyle": "light",
   "usingComponents": {
-    "i-icon": "/iview/icon/index",
-    "i-button": "/iview/button/index",
     "tabs-swiper-page": "/components/tabs-swiper-page/index",
-    "scroll-loading": "/components/scroll-loading/index"
+    "scroll-loading": "/components/scroll-loading/index",
+    "i-toast": "/iview/toast/index"
   }
 }

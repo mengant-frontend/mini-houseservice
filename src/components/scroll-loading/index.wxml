@@ -1,4 +1,4 @@
-<scroll-view class='container' style='background:{{bgColor}};' scroll-y lower-threshold='15' enable-back-to-top bindscrolltolower='scrolltolower'>
+<scroll-view class='container' style='background:{{bgColor}};' scroll-y lower-threshold='15' enable-back-to-top bindscrolltolower='scrolltolower' bindscroll='scroll'>
   <view class='content' style='padding-bottom:{{ifNoMore?"0":padding_bottom}};'>
     <!-- 组件使用者在组件内包裹的节点在此展示 -->
     <slot></slot>

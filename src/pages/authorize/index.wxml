@@ -1,0 +1,6 @@
+<view class='container' hidden='{{!auth_type}}'>
+  <image class='img' src='/images/{{auth_type==="userinfo"?"face-smile":"earth"}}.png' />
+  <text class='title'>亲爱的用户，为了让您能顺畅的使用小程序，我们需要您授权信息</text>
+  <button class='btn' open-type='getUserInfo' bindgetuserinfo='getUserInfo' wx:if='{{auth_type==="userinfo"}}'>获取头像昵称</button>
+  <view class='btn' wx:if='{{auth_type==="location"}}' bindtap='openSetting'>去设置</view>
+</view>
