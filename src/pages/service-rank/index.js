@@ -24,8 +24,7 @@ Page({
         dot: false,
         list: []
       }
-    ],
-    location: app.global_data.location
+    ]
   },
 
   onLoad() {
@@ -57,7 +56,7 @@ Page({
       data: {
         page: 1,
         size: 10,
-        area: this.data.location[2],
+        area: app.global_data.location[2],
         c_id: 0,
         type: service_type
       }

@@ -4,6 +4,10 @@ let app = getApp()
 
 Page({
   data: {
+    // 接口地址
+    api_url: {
+      get_guid_img: '/api/v1/guid/list'
+    },
     list: [],
     view_w: 0,
     view_h: 0,
@@ -13,7 +17,7 @@ Page({
 
   async onLoad() {
     let res = await app.get({
-      url: '/api/v1/guid/list'
+      url: this.data.api_url.get_guid_img
     })
     if (res.success) {
       let list = []

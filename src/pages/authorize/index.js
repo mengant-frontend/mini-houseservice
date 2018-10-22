@@ -12,7 +12,7 @@ Page({
     })
   },
 
-  // 获取用户微信头像昵称
+  // 获取用户微信头像昵称，跳转欢迎页
   async getUserInfo({ detail }) {
     let { userInfo = false, encryptedData, iv } = detail
     if (userInfo) {
@@ -34,7 +34,7 @@ Page({
     }
   },
 
-  // 打开设置
+  // 打开设置，授权地理位置后跳转首页
   async openSetting() {
     let res = await app.asyncApi(wx.openSetting)
     if (res.success) {

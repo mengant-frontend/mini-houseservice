@@ -361,7 +361,7 @@ App({
     }
     return { success, location }
   },
-  // 当调用 wx.api 或者请求服务器出错无法进行业务时，提示重启小程序
+  // 当调用 wx.api 或者请求服务器出错无法进行业务时，提示重启小程序并跳转欢迎页
   async reLaunchApp(type_str) {
     let title = ''
     let content = ''
@@ -372,7 +372,7 @@ App({
         break;
       case 'server_api':
         title = '服务器出错'
-        content = '服务器发生了意外情况，您可以点击确定重启小程序'
+        content = '糟糕，服务器发生了意外情况，您可以点击确定重启小程序'
         break;
     }
     await this.asyncApi(wx.hideLoading)
