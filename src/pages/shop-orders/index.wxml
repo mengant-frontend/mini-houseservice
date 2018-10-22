@@ -1,7 +1,7 @@
 <tabs-swiper-page tabs-list='{{tabs_list}}' bind:swiperChange='swiperChange'>
   <scroll-loading bg-color='#EFEFF4' wx:for='{{tabs_list}}' wx:key='id' slot='{{item.id}}' if-no-more='{{item.if_no_more}}' if-loading='{{if_loading}}' bind:scrolltolower='getOrderList'>
     <view>
-      <navigator class='item' wx:for='{{item.order_list}}' wx:key='order_id' wx:for-item='t' url='/pages/order-detail/index?type=2&state={{tabs_current+1}}&id={{t.order_id}}'>
+      <navigator class='item' wx:for='{{item.order_list}}' wx:key='order_id' wx:for-item='t' url='/pages/order-detail/index?type=1&state={{tabs_current+1}}&id={{t.order_id}}'>
         <view class='title'>{{t.title}}</view>
         <view class='info'>
           <view class='money-date'>
@@ -13,22 +13,13 @@
             <text>服务时间：{{t.date}}</text>
           </view>
           <view class='btn-bar'>
-            <view class='cancel' wx:if='{{item.id === "ordered"}}'>取消订单</view>
-            <view class='pay' wx:if='{{item.id === "unpaid"}}'>去付款</view>
-            <view class='consult' wx:if='{{item.id === "unconfirmed"}}'>协商</view>
-            <view class='confirm' wx:if='{{item.id === "unconfirmed"}}'>完工</view>
-            <view class='evaluate' wx:if='{{item.id === "unevaluated"}}'>去评价</view>
+            <view class='unconfirmed' wx:if='{{item.id === "unconfirmed"}}'>联系客户</view>
+            <view class='unserviced' wx:if='{{item.id === "unserviced"}}'>去服务</view>
           </view>
         </view>
       </navigator>
     </view>
   </scroll-loading>
 </tabs-swiper-page>
-
-<view class='release-bar'>
-  <navigator class='release-demand' url='/pages/command-release/index'>
-    <text>+ 发布需求</text>
-  </navigator>
-</view>
 
 <i-toast id='toast' />

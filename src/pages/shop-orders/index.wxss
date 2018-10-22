@@ -48,56 +48,21 @@ page {
   display: flex;
   line-height: 1;
 }
-.item .cancel,
-.item .pay,
-.item .consult,
-.item .confirm,
-.item .evaluate {
+.item .unconfirmed,
+.item .unserviced {
   border-radius: 6rpx;
   text-align: center;
-}
-.item .cancel,
-.item .consult,
-.item .confirm {
-  padding: 10rpx;
-}
-.item .pay,
-.item .evaluate {
   padding: 15rpx 20rpx;
 }
-.item .cancel,
-.item .consult {
+.item .unconfirmed {
   /* iview 推荐 warning 辅助色 */
   border: 1rpx solid #ff9900;
   color: #ff9900;
 }
-.item .pay,
-.item .confirm,
-.item .evaluate {
+.item .unserviced {
   /* iview 推荐 primary 主色 */
   border: 1rpx solid #2d8cf0;
   color: #2d8cf0;
   margin-left: 20rpx;
 }
 /* 订单列表 end */
-
-/* 发布按钮 start */
-.release-bar {
-  position: fixed;
-  right: 25rpx;
-  bottom: 170rpx;
-}
-.release-demand {
-  box-shadow: 0 1rpx 2rpx 0;
-  border-radius: 8rpx;
-  padding: 15rpx;
-  background: #fff;
-}
-.release-demand {
-  margin-bottom: 20rpx;
-}
-.release-demand text {
-  /* iview 推荐 primary 主色 */
-  color: #2d8cf0;
-}
-/* 发布按钮 end */

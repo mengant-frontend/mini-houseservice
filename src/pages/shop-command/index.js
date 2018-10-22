@@ -18,18 +18,8 @@ Page({
     // tabs 列表数据
     tabs_list: [
       {
-        id: 'ordered',
-        title: '待接单',
-        dot: false,
-        count: 0,
-        current_page: 0,
-        total: 0,
-        if_no_more: false,
-        order_list: []
-      },
-      {
-        id: 'unpaid',
-        title: '待付款',
+        id: 'unserviced',
+        title: '待服务',
         dot: false,
         count: 0,
         current_page: 0,
@@ -40,16 +30,6 @@ Page({
       {
         id: 'unconfirmed',
         title: '待确认',
-        dot: false,
-        count: 0,
-        current_page: 0,
-        total: 0,
-        if_no_more: false,
-        order_list: []
-      },
-      {
-        id: 'unevaluated',
-        title: '待评价',
         dot: false,
         count: 0,
         current_page: 0,

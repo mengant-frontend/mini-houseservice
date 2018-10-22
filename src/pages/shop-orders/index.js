@@ -7,7 +7,7 @@ Page({
     // 接口地址
     api_url: {
       // 获取订单列表
-      get_order_list: '/api/v1/order/demand/list'
+      get_order_list: '/api/v1/order/service/list'
     },
     // 请求锁
     request_lock: {
@@ -17,26 +17,6 @@ Page({
     tabs_current: 0,
     // tabs 列表数据
     tabs_list: [
-      {
-        id: 'ordered',
-        title: '待接单',
-        dot: false,
-        count: 0,
-        current_page: 0,
-        total: 0,
-        if_no_more: false,
-        order_list: []
-      },
-      {
-        id: 'unpaid',
-        title: '待付款',
-        dot: false,
-        count: 0,
-        current_page: 0,
-        total: 0,
-        if_no_more: false,
-        order_list: []
-      },
       {
         id: 'unconfirmed',
         title: '待确认',
@@ -48,8 +28,18 @@ Page({
         order_list: []
       },
       {
-        id: 'unevaluated',
-        title: '待评价',
+        id: 'unserviced',
+        title: '待服务',
+        dot: false,
+        count: 0,
+        current_page: 0,
+        total: 0,
+        if_no_more: false,
+        order_list: []
+      },
+      {
+        id: 'servicing',
+        title: '服务中',
         dot: false,
         count: 0,
         current_page: 0,
