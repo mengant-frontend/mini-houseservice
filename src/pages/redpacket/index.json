@@ -1,6 +1,8 @@
 {
   "navigationBarTitleText": "我的红包",
   "usingComponents": {
-    "i-message": "../../iview/message/index"
+    "i-message": "../../iview/message/index",
+    "i-icon": "../../iview/icon/index",
+    "i-button": "../../iview/button/index"
   }
 }

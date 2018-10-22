@@ -134,13 +134,17 @@ App({
           let { data = {}, statusCode, header, errMsg, success } = res
           let response = { data }
           if (!(data instanceof Object)) {
-            response.data = {}
+            try {
+              response.data = JSON.parse(data)
+            } catch (e) {
+              response.data = {}
+            }
           }
           //接口调用成功都是200
           if (statusCode === 200) {
             response.success = true
             //接口调用失败都是401
-          } else if (statusCode === 401) {
+          } else if (statusCode > 200) {
             response.success = false
             response.msg = response.data && response.data.msg || `server: ${url} api 调用失败`
           } else {
@@ -199,22 +203,6 @@ App({
           ...other
         })
         task.onProgressUpdate(onProgressUpdate)
-      })
-      .then(res => {
-        try {
-          res.data = JSON.parse(res.data)
-        } catch (e) {}
-        return res
-      })
-  },
-  //即将废弃
-  uploadFile(options) {
-    let { url, name, ...other } = options
-    return this.asyncApi(wx.uploadFile, {
-        //上传图片接口统一用这个地址
-        url: domain + '/api/v1/image/upload',
-        name: 'file',
-        ...other
       })
       .then(res => {
         try {
@@ -293,6 +281,11 @@ App({
     if (this.global_data.token) {
       $Toast.hide()
     }
+  },
+  sleep(time = 1500) {
+    return new Promise(resolve => {
+      resolve()
+    }, 1500)
   },
   //深度克隆，只克隆简单值，对象，数组，对函数过滤
   _deepClone(data) {
@@ -399,6 +392,7 @@ App({
   global_data: {
     system_info: {},
     token: '',
-    village: 0 // 1 代表用户是小区管理员
+    village: 0, // 1 代表用户是小区管理员
+    red_packet: null
   }
 })

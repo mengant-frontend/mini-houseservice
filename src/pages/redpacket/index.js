@@ -2,16 +2,21 @@ import regeneratorRuntime from '../../lib/runtime'
 const app = getApp()
 Page({
   data: {
-    list: []
+    list: [],
+    type: '',
+    active_index: -1
   },
-  onLoad(){
+  onLoad(query) {
+    this.setData({
+      type: query.type || ''
+    })
     this.loadList()
   },
-  onPullDownRefresh(){
+  onPullDownRefresh() {
     wx.stopPullDownRefresh()
   },
   //获取红包列表
-  async loadList(){
+  async loadList() {
     await app.asyncApi(wx.showLoading, {
       title: 'loading...'
     })
@@ -20,7 +25,7 @@ Page({
     })
     await app.asyncApi(wx.hideLoading)
     let { success, msg, data } = server_res
-    if(!success){
+    if (!success) {
       app._error(msg)
       return
     }
@@ -31,5 +36,25 @@ Page({
     this.setData({
       list: data
     })
+  },
+  select(e) {
+    let { type } = this.data
+    if (type !== 'select') {
+      return
+    }
+    let { currentTarget: { dataset: { index } } } = e
+    this.setData({
+      active_index: index
+    })
+  },
+  ensure() {
+    let list = app._deepClone(this.data.list)
+    let active_index = this.data.active_index
+    app.global_data.red_packet = list[active_index]
+    wx.navigateBack()
+  },
+  cancel() {
+    app.global_data.red_packet = null
+    wx.navigateBack()
   }
 })

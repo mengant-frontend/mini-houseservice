@@ -1,24 +1,24 @@
 <view>
   <view class="container__avatar">
     <view>
-      <image class="avatar" src='/images/avatar.jpg'></image>
+      <image class="avatar" src='{{detail.userInfo.avatarUrl || "/images/avatar.jpg"}}'></image>
     </view>
     <view class="nickname">
-      <text>李福招</text>
+      <text>{{detail.userInfo.nickName || '当没有名字的时候我就会出现'}}</text>
     </view>
   </view>
 
   <view class='list'>
     <view class="item" data-url='/pages/message/index' bindtap='goTo'>
-      <view class="desc">123</view>
+      <view class="desc">{{detail.msg_count || 0}}</view>
       <view class="title">消息</view>
     </view>
     <view class="item" data-url='/pages/rest-money/index' bindtap='goTo'>
-      <view class="desc">123</view>
+      <view class="desc">{{detail.balance || 0}}</view>
       <view class="title">余额</view>
     </view>
     <view class="item" data-url='' bindtap='goTo'>
-      <view class="desc">123</view>
+      <view class="desc">{{detail.demand_count || 0}}</view>
       <view class="title">需求</view>
     </view>
   </view>

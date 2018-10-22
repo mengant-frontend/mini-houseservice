@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "提现",
+  "usingComponents":{
+    "i-cell-group": "../../iview/cell-group/index",
+    "i-cell": "../../iview/cell/index",
+    "i-message": "../../iview/message/index",
+    "i-input": "../../iview/input/index",
+    "i-button": "../../iview/button/index"
+  }
+}

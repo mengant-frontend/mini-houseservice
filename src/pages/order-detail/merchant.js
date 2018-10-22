@@ -1,4 +1,5 @@
 import regeneratorRuntime from '../../lib/runtime'
+import { order_states } from '../../common/constant'
 const app = getApp()
 Page({
   data: {
@@ -10,6 +11,8 @@ Page({
     state: '',
     // 订单详情
     order_detail: {},
+    // 状态的中文描述
+    state_text: '',
     // 商家和客户是否已经联系
     connection_change: false,
     // 是否需要修改价格
@@ -18,12 +21,34 @@ Page({
   },
   onLoad(query) {
     let { id = '', type = '', state = '' } = query
+    let order_state = order_states[type].merchant
+    let padding_bottom = 0
+    switch (Number(state)) {
+      case 1:
+        padding_bottom = 0
+        break;
+      case 2:
+      case 3:
+        padding_bottom = 64
+        break
+      default:
+        padding_bottom = 0
+    }
     this.setData({
       id,
       type,
-      state
+      state,
+      padding_bottom: padding_bottom,
+      state_text: order_state[state]
     })
     this.getOrderDetail()
+  },
+  // 打电话
+  makePhoneCall(e) {
+    let phone = this.data.order_detail.user_phone
+    wx.makePhoneCall({
+      phoneNumber: phone
+    })
   },
   async getOrderDetail() {
     let { id, type } = this.data
@@ -51,12 +76,14 @@ Page({
       order_detail: data
     })
   },
+  // 确认电话联系
   async confirmConnection() {
-    let { id } = this.data
+    let { id, type } = this.data
     let server_res = await app.post({
       url: '/api/v1/order/phone/confirm',
       data: {
-        id: id
+        id: id,
+        type: type
       }
     })
     let { success, msg } = server_res
@@ -67,19 +94,45 @@ Page({
     return true
   },
   async confirmOrder() {
-    let { id } = this.data
+    let { id, type } = this.data
     let server_res = await app.post({
       url: '/api/v1/order/shop/confirm',
       data: {
-
+        id: id,
+        type: type
       }
     })
     let { success, msg } = server_res
     if (!success) {
       app._error(msg)
+      return false
+    }
+    return true
+  },
+  // 确认订单
+  async confirm() {
+    let { type, id, state } = this.data
+    await app.asyncApi(wx.showLoading, {
+      title: 'loading...'
+    })
+    let connect = await this.confirmConnection()
+    if (!connect) {
+      await app.asyncApi(wx.hideLoading)
       return
     }
-
+    let confirm = await this.confirmOrder()
+    await app.asyncApi(wx.hideLoading)
+    if (!confirm) {
+      return
+    }
+    await app.asyncApi(wx.showToast, {
+      title: '成功'
+    })
+    await app.sleep()
+    state = state + 1
+    wx.redirectTo({
+      url: `/pages/order-detail/merchant?id=${id}&type=${type}&state=${state}`
+    })
   },
   async goToChangePricePage() {
     let { id, type, state, order_detail } = this.data
@@ -101,6 +154,54 @@ Page({
       this.setData({
         padding_bottom: padding_bottom
       })
+    })
+  },
+  // 判断用户是否已经付款
+  async checkPay() {
+    let { type, id } = this.data
+    let server_res = await app.post({
+      url: '/api/v1/order/pay/check',
+      data: {
+        type,
+        id
+      }
+    })
+    let { success, msg, data } = server_res
+    if (!success) {
+      app._error(msg)
+      return false
+    }
+    if (Number(data.state) === 2) {
+      app._error('用户尚未支付，当前状态不能去服务')
+      return false
+    }
+    return true
+  },
+  // 去服务
+  async goToServe() {
+    if (!this.checkPay()) {
+      return
+    }
+    await app.asyncApi(wx.showLoading, {
+      title: 'loading'
+    })
+    let { type, id, state } = this.data
+    let server_res = await app.post({
+      url: '/api/v1/order/service/begin',
+      data: {
+        type,
+        id
+      }
+    })
+    await app.asyncApi(wx.hideLoading)
+    let { success, msg, data } = server_res
+    if (!success) {
+      app._error(msg)
+      return
+    }
+    state = state + 1
+    wx.redirectTo({
+      url: `/pages/order-detail/merchant?id=${id}&type=${type}&state=${state}`
     })
   }
 })

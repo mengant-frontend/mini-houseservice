@@ -32,11 +32,17 @@
     </view>
   </view>
   <i-cell-group>
-    <i-cell title='进入店铺' is-link url=''>
+    <i-cell title='进入店铺' is-link url='/pages/store/index?store_id={{store_id}}'>
       <i-icon slot='icon' type='shop_fill' size='20' color='#5cadff'></i-icon>
     </i-cell>
-    <i-cell title='商家订单' is-link url=''></i-cell>
-    <i-cell title='需求服务' is-link url=''></i-cell>
-    <i-cell title='我的服务' is-link url='/pages/service-my/index'></i-cell>
+    <i-cell title='商家订单' is-link url=''>
+      <i-icon slot='icon' type='flag_fill' size='20' color='#ed3f14'></i-icon>
+    </i-cell>
+    <i-cell title='需求服务' is-link url=''>
+      <i-icon slot='icon' type='service' size='20' color='#2b85e4'></i-icon>
+    </i-cell>
+    <i-cell title='我的服务' is-link url='/pages/service-my/index'>
+      <i-icon slot='icon' type='createtask_fill' size='20' color='#ff9900'></i-icon>
+    </i-cell>
   </i-cell-group>
 </view>

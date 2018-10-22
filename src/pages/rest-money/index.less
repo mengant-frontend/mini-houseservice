@@ -1,34 +1,43 @@
 @import '../../variable.less';
-page{
+
+page {
   background-color: @background_color;
 }
-.container{
+
+.container {
   padding: 30px @blank;
   width: 100%;
   box-sizing: border-box;
   background-color: @light_primary;
 }
-.shoper{
+
+.shoper {
   display: flex;
   flex-direction: row;
 }
-.left, .right{
+
+.left,
+.right {
   width: 50%;
   box-sizing: border-box;
   color: #fff;
-  display: flex;
-  justify-content: center;
 }
-.left{
+
+.left {
   text-align: right;
+  padding-right: 60rpx;
 }
-.right{
+
+.right {
   text-align: left;
+  padding-left: 60rpx;
 }
-.divider{
+
+.divider {
   position: relative;
 }
-.divider::after{
+
+.divider::after {
   content: ' ';
   position: absolute;
   right: 0;
@@ -39,19 +48,26 @@ page{
   height: 100%;
   background-color: #fff;
 }
-.title{
+
+.title {
   font-size: 16px;
 }
-.content{
+
+.content {
   font-size: 20px;
 }
-.gutter{
+
+.gutter {
   margin-bottom: @gutter;
 }
-.user{
+
+.user {
   display: flex;
   flex-direction: row;
 }
-.text-left{
+
+.text-left {
   text-align: left;
+  padding-left: 60rpx;
+  padding-right: 0 !important;
 }

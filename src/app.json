@@ -18,7 +18,6 @@
 
     "pages/orders/index",
     "pages/account/index",
-    "pages/seller/index",
 
     "pages/message/index",
     "pages/rest-money/index",
@@ -28,7 +27,6 @@
     "pages/merchants-application/index",
     "pages/profile-edit/index",
     "pages/order-evaluate/index",
-    "pages/order-detail/index",
     "pages/command-release/index",
     "pages/service-release/index",
     "pages/withdraw-checking/index",
@@ -40,14 +38,17 @@
     "pages/merchants-index/index",
     "pages/collection/index",
     "pages/area-manager/index",
-    "pages/face-recognition/index",
     "pages/service-my/index",
     "pages/test/index",
     "pages/price-change/index",
-    "pages/shop/index"
+    "pages/shop/index",
+    "pages/rest-money/withdraw",
+    "pages/rest-money/recharge",
+    "pages/order-detail/merchant",
+    "pages/order-detail/common"
   ],
   "window": {
-    "navigationBarTitleText": "demo",
+    "navigationBarTitleText": "久房通",
     "enablePullDownRefresh": true
   },
   "tabBar": {

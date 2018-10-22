@@ -5,23 +5,23 @@ Page({
     detail: {},
     has_shop: true
   },
-  onLoad(){
+  onLoad() {
     this.observerShopId()
     this.loadData()
   },
-  onPullDownRefresh(){
+  onPullDownRefresh() {
     wx.stopPullDownRefresh()
   },
-  async loadData(){
+  async loadData() {
     await app.asyncApi(wx.showLoading, {
       title: 'loading...'
     })
     let server_res = await app.get({
-      url: '/test'
+      url: '/api/v1/center/info'
     })
     await app.asyncApi(wx.hideLoading)
     let { success, msg, data } = server_res
-    if(!success){
+    if (!success) {
       app._error(msg)
       return
     }
@@ -30,28 +30,28 @@ Page({
     })
   },
   //监听shop_id的变化
-  observerShopId(){
+  observerShopId() {
     let that = this
     this.checkHasShop(app.global_data.shop_id)
     Object.defineProperty(app.global_data, 'shop_id', {
-      set(val){
+      set(val) {
         that.checkHasShop(val)
         return val
       }
     })
   },
   //判断当前账号是否商家
-  checkHasShop(shop_id){
+  checkHasShop(shop_id) {
     let has_shop = false
-    if(shop_id && Number(shop_id) > 0){
+    if (shop_id && Number(shop_id) > 0) {
       has_shop = true
     }
     this.setData({
       has_shop: has_shop
     })
   },
-  goTo(e){
-    let { currentTarget: { dataset: { url }} } = e
+  goTo(e) {
+    let { currentTarget: { dataset: { url } } } = e
     wx.navigateTo({
       url: url
     })

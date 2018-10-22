@@ -2,35 +2,29 @@
   <view class="container">
     <view wx:if='{{has_shop}}' class="shoper">
       <view class="left divider">
-        <view class="main">
-          <view class="title">
-            <text>余额</text>
-          </view>
-          <view class="content">
-            <text>￥201800.10</text>
-          </view>
+        <view class="title">
+          <text>余额</text>
+        </view>
+        <view class="content">
+          <text>￥{{detail.business_balance || 0}}</text>
         </view>
       </view>
       <view class="right">
-        <view class="main">
-          <view class="title">
-            <text>保证金</text>
-          </view>
-          <view class="content">
-            <text>￥2018.10</text>
-          </view>
+        <view class="title">
+          <text>保证金</text>
+        </view>
+        <view class="content">
+          <text>￥{{detail.bond_balance || 0}}</text>
         </view>
       </view>
     </view>
     <view wx:else class="user">
       <view class="left text-left">
-        <view class="main">
-          <view class="title">
-            <text>余额</text>
-          </view>
-          <view class="content">
-            <text>￥201800.10</text>
-          </view>
+        <view class="title">
+          <text>余额</text>
+        </view>
+        <view class="content">
+          <text>￥{{detail.balance || 0}}</text>
         </view>
       </view>
     </view>
@@ -40,7 +34,7 @@
     <i-cell-group>
       <i-cell title='提取余额' url='/pages/rest-money-withdraw/index' is-link>
       </i-cell>
-      <i-cell title='提取保证金' is-link></i-cell>
+      <i-cell wx:if='{{has_shop}}' title='提取保证金' is-link></i-cell>
     </i-cell-group>
   </i-panel>
 

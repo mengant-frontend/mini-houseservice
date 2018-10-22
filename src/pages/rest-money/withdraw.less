@@ -1,0 +1,42 @@
+@import "../../variable.less";
+
+page {
+  padding: @gutter_small @blank;
+  box-sizing: border-box;
+  background: @background_color;
+}
+
+.cell-index--i-cell {
+  background-color: rgba(255, 255, 255, 0.4) !important;
+}
+
+.container {
+  background-color: #fff;
+  padding-bottom: @gutter_large;
+}
+
+.input::before {
+  content: '￥';
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.link {
+  color: @primary;
+}
+
+.title {
+  color: @title_color;
+  font-size: @title_size;
+  padding: 12px 15px;
+}
+
+.tips {
+  padding: 12px 15px;
+  font-size: @sub_content_size;
+  color: @sub_content_color;
+}
+
+.container__btn {
+  margin-top: @gutter;
+}
