@@ -12,18 +12,25 @@ Component({
     },
     remote: {
       type: Array,
-      value: []
+      value: [],
+      observer(newVal) {
+        if (!this.data.photo_list.length) {
+          this.setData({
+            photo_list: newVal
+          })
+        }
+      }
     }
   },
   data: {
     photo_list: [],
     default_photo_list: [{}]
   },
-  ready(){
+  ready() {
     let remote = app._deepClone(this.data.remote)
-    if(remote instanceof Array){
-      
-    }else if(remote instanceof Object){
+    if (remote instanceof Array) {
+
+    } else if (remote instanceof Object) {
       remote = [remote]
     }
     this.setData({
@@ -32,7 +39,7 @@ Component({
   },
   methods: {
     //更新数据
-    update(photo_list){
+    update(photo_list) {
       return new Promise(resolve => {
         this.triggerEvent('update', {
           value: photo_list
@@ -49,8 +56,8 @@ Component({
         await this.update([])
       }
       let res = await this.chooseImage(1)
-      if(!!res){
-        if(res.cancel && avatar){
+      if (!!res) {
+        if (res.cancel && avatar) {
           this.update([avatar])
         }
       }
@@ -85,7 +92,7 @@ Component({
             onProgressUpdate: res => {
               let photo_list = app._deepClone(this.data.photo_list)
               photo_list.forEach(photo => {
-                if(photo.path === file.path){
+                if (photo.path === file.path) {
                   photo.progress = res.progress
                 }
               })
@@ -98,12 +105,12 @@ Component({
       photo_list = app._deepClone(this.data.photo_list)
       tempFiles.forEach((file, index) => {
         photo_list.forEach(photo => {
-          if(photo.path === file.path){
+          if (photo.path === file.path) {
             photo.loaded = true
             let promise = server_promises[index]
-            if(promise.success){
+            if (promise.success) {
               photo.id = promise.data.id
-            }else{
+            } else {
               photo.error = true
             }
           }

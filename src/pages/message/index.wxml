@@ -7,28 +7,29 @@
           <text class='title-text'>订单提示</text>
         </view>
         <view class='title-right'>
-          <text>2018-10-10 08:00</text>
+          <text>{{item.create_time}}</text>
         </view>
       </view>
       <view class='main'>
         <view class='message-desc'>
-          <text>{{item.message}}</text>
+          <text></text>
         </view>
         <view class='order'>
           <view class='order-desc'>
             <image class='order-img' src='/images/avatar.jpg'></image>
             <view class="center">
-              <text class="order-name">测试</text>
-              <text class='order-price'>￥100</text>
+              <text class="order-name">{{item.name}}</text>
+              <text class='order-price'>￥{{item.money || 0}}</text>
             </view>
           </view>
           <view class='order-operate'>
-            <i-button size='small' inline type='info' bind:click='readMessage' data-id='{{item.id}}'>查看</i-button>
+            <i-button type='info' bind:click='readMessage' data-index='{{index}}'>查看</i-button>
           </view>
         </view>
       </view>
     </view>
   </view>
 
+  <i-load-more loading='{{loading}}' tip='{{loading || is_end ? "" : "下拉获取更多" }}'></i-load-more>
   <i-message id='message'></i-message>
 </view>

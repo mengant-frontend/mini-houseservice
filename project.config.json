@@ -1,6 +1,6 @@
 {
 	"setting": {
-		"urlCheck": false,
+		"urlCheck": true,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
@@ -26,7 +26,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 9,
+			"current": 16,
 			"list": [
 				{
 					"id": -1,
@@ -87,6 +87,47 @@
 					"name": "红包",
 					"pathName": "pages/redpacket/index",
 					"query": "type=select"
+				},
+				{
+					"id": -1,
+					"name": "消息页",
+					"pathName": "pages/message/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "入驻",
+					"pathName": "pages/merchants-application/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "余额",
+					"pathName": "pages/rest-money/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "提现记录",
+					"pathName": "pages/rest-money/withdraw-record",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "收支",
+					"pathName": "pages/rest-money/common-record",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "个人信息更新",
+					"pathName": "pages/account/edit",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "发布需求",
+					"pathName": "pages/command-release/index"
 				}
 			]
 		}

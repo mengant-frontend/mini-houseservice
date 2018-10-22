@@ -1,7 +1,0 @@
-{
-  "navigationBarTitleText": "提现记录",
-  "usingComponents": {
-    "i-cell-group": "../../iview/cell-group/index",
-    "i-cell": "../../iview/cell/index"
-  }
-}

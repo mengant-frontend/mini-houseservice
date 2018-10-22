@@ -1,6 +1,0 @@
-{
-  "navigationBarTitleText": "我的需求",
-  "usingComponents": {
-    "f-tabs": "../../components/f-tabs/index"
-  }
-}

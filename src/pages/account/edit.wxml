@@ -1,0 +1,31 @@
+<view class="page">
+  <i-cell-group>
+    <i-cell title='头像'>
+      <view slot='footer' class="avatar">
+        <view class="avatar-right">
+          <f-photo type='avatar' remote='{{default_photos}}' data-form_key='head_url' bind:update='bindFormChange'></f-photo>
+        </view>
+      </view>
+    </i-cell>
+    <i-cell title='昵称'>
+      <input slot='footer' value='{{form_data.nickName}}' data-form_key='nickName' bindinput='bindFormChange' placeholder="请输入"></input>
+    </i-cell>
+    <i-cell title='电话'>
+      <input slot='footer' type='number' value='{{form_data.phone}}' data-form_key='phone' bindinput='bindFormChange' placeholder="请输入"></input>
+    </i-cell>
+    <i-cell title='所在地'>
+      <picker slot='footer' mode='region' data-form_key='region' value='{{[form_data.province, form_data.city, form_data.area]}}' bindchange='bindFormChange'>
+        <view>
+          <text>{{form_data.address || '请选择地区'}}</text>
+          <i-icon type='enter'></i-icon>
+        </view>
+      </picker>
+    </i-cell>
+  </i-cell-group>
+
+  <view class="fixed">
+    <i-button type='primary' long bind:click='updateInfo'>保存</i-button>
+  </view>
+
+  <i-message id='message'></i-message>
+</view>

@@ -55,5 +55,11 @@ Page({
     wx.navigateTo({
       url: url
     })
+  },
+  // 编辑个人信息
+  editProfile() {
+    wx.navigateTo({
+      url: '/pages/account/index'
+    })
   }
 })

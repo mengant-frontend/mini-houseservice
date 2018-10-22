@@ -12,12 +12,13 @@
       <i-cell-group>
         <i-cell title='商家头像' only-tap-footer='{{true}}'>
           <view slot='footer' class='container__avatar'>
-            <f-photo type='avatar' bind:update='bindFormChange' data-form_key='head_url'></f-photo>
+            <view class="f-photo">
+              <f-photo type='avatar' bind:update='bindFormChange' data-form_key='head_url'></f-photo>
+            </view>
           </view>
         </i-cell>
         <i-cell title='经营类型'>
-          <picker slot='footer' mode='selector' bindchange='bindFormChange' data-form_key='type' value='{{type_text}}'
-            range='{{command_types}}' range-key='label'>
+          <picker slot='footer' mode='selector' bindchange='bindFormChange' data-form_key='type' value='{{type_text}}' range='{{command_types}}' range-key='label'>
             <view>
               <text>{{type_text}}</text>
               <i-icon type='enter'></i-icon>
@@ -36,20 +37,16 @@
           </picker>
         </i-cell>
         <i-cell title='商家地址'>
-          <input slot='footer' type='number' value='{{form_data.address}}' data-form_key="address" bindchange='bindFormChange'
-            placeholder='请输入店铺详细地址'></input>
+          <input slot='footer' type='number' value='{{form_data.address}}' data-form_key="address" bindchange='bindFormChange' placeholder='请输入店铺详细地址'></input>
         </i-cell>
         <i-cell title='商家手机号'>
-          <input slot='footer' type='number' value='{{form_data.phone}}' data-form_key="phone" bindchange='bindFormChange'
-            placeholder='请输入商家手机号码'></input>
+          <input slot='footer' type='number' value='{{form_data.phone}}' data-form_key="phone" bindchange='bindFormChange' placeholder='请输入商家手机号码'></input>
         </i-cell>
         <i-cell title='备用手机号'>
-          <input slot='footer' type='number' value='{{form_data.phone_sub}}' data-form_key="phone_sub" bindchange='bindFormChange'
-            placeholder='请输入商家备用手机号码'></input>
+          <input slot='footer' type='number' value='{{form_data.phone_sub}}' data-form_key="phone_sub" bindchange='bindFormChange' placeholder='请输入商家备用手机号码'></input>
         </i-cell>
         <i-cell title='身份证号'>
-          <input slot='footer' type='idcard' value='{{form_data.id_number}}' data-form_key="id_number" bindchange='bindFormChange'
-            placeholder='请输入身份证号码'></input>
+          <input slot='footer' type='idcard' value='{{form_data.id_number}}' data-form_key="id_number" bindchange='bindFormChange' placeholder='请输入身份证号码'></input>
         </i-cell>
       </i-cell-group>
     </i-panel>
@@ -120,7 +117,7 @@
           <view class="table-cell checking-title checking-pictures-title">商家资料图片</view>
           <view class="table-cell checking-value">
             <view class="checking-pictures">
-              <image wx:for='{{4}}' src='/images/avatar.jpg' class="checking-photo" mode='aspectFit'></image>
+              <image wx:for='{{form_data.imgs}}' wx:for-item='img' wx:key='path' src='{{img.path}}' class="checking-photo" mode='aspectFit'></image>
             </view>
           </view>
         </view>

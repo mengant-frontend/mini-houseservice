@@ -4,24 +4,23 @@ Page({
   data: {
     form_data: {}
   },
-  onPullDownRefresh(){
+  onPullDownRefresh() {
     wx.stopPullDownRefresh()
   },
-  bindFormChange(e){
+  bindFormChange(e) {
     let { form_key, value } = app._bindFormChange(e)
-    console.log(form_key, value)
     this.updateFormData(form_key, value)
   },
-  updateFormData(form_key, value){
+  updateFormData(form_key, value) {
     let form_data = app._deepClone(this.data.form_data)
     form_data[form_key] = value
     this.setData({
       form_data: form_data
     })
   },
-  async saveMessage(){
+  async saveMessage() {
     let form_data = app._deepClone(this.data.form_data)
-    if(!form_data.msg || !form_data.phone){
+    if (!form_data.msg || !form_data.phone) {
       return
     }
     await app.asyncApi(wx.showLoading, {
@@ -33,11 +32,14 @@ Page({
     })
     await app.asyncApi(wx.hideLoading)
     let { success, msg, data } = server_res
-    if(!success){
+    if (!success) {
       app._error(msg)
       return
     }
     app._success('已提交')
     // Todo 跳转
+    wx.redirectTo({
+      url: '/pages/account/index'
+    })
   }
 })

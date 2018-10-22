@@ -1,0 +1,9 @@
+<view class="page">
+  <i-panel title='店铺信息'>
+    <i-cell-group>
+      <i-cell title='店铺名称'>
+
+      </i-cell>
+    </i-cell-group>
+  </i-panel>
+</view>
