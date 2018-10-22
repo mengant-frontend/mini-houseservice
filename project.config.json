@@ -26,7 +26,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 9,
+			"current": 10,
 			"list": [
 				{
 					"id": -1,
@@ -87,6 +87,11 @@
 					"name": "红包",
 					"pathName": "pages/redpacket/index",
 					"query": "type=select"
+				},
+				{
+					"id": -1,
+					"name": "我的收藏",
+					"pathName": "pages/collection/index"
 				}
 			]
 		}

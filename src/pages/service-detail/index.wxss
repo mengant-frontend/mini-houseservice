@@ -101,7 +101,7 @@ page {
 }
 .menu-bar .order {
   width: 375rpx;
-  background: #108EE9;
+  background: #2d8cf0;
   /* iview 推荐主标题样式，白色 */
   font-size: 32rpx;
   font-weight: bold;

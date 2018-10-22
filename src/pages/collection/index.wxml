@@ -1,0 +1,17 @@
+<tabs-swiper-page tabs-list='{{tabs_list}}' bind:swiperChange='swiperChange'>
+  <scroll-loading wx:for='{{tabs_list}}' wx:key='id' slot='{{item.id}}' if-no-more='{{item.if_no_more}}' if-loading='{{if_loading}}' bind:scrolltolower='getList'>
+    <view>
+      <navigator class='item' wx:for='{{item.list}}' wx:key='id' wx:for-item='t' wx:for-index='i' url='/pages/{{index===0?"service-detail":"store"}}/index?id={{t.p_id}}'>
+        <fit-img more-style='img-style' width='270' can-preview='{{false}}' src='{{t.img_url}}'></fit-img>
+        <view class='info'>
+          <text class='title'>{{t.title}}</text>
+          <text wx:if='{{t.address}}'>{{t.address}}</text>
+          <text wx:if='{{t.phone}}'>{{t.phone}}</text>
+          <text class='money' wx:if='{{t.money}}'>￥ {{t.money}}/次</text>
+        </view>
+      </navigator>
+    </view>
+  </scroll-loading>
+</tabs-swiper-page>
+
+<i-toast id='toast' />

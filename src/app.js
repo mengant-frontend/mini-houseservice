@@ -389,6 +389,31 @@ App({
       }
     }
   },
+  //debug:上传测试图片
+  async uploadTestImg() {
+    let img = [
+      '/images/avatar.jpg',
+      '/images/bg_account.jpg'
+    ]
+    let FileSystemManager = wx.getFileSystemManager()
+    for (let i = 0; i < img.length; i++) {
+      let file = await this.asyncApi(FileSystemManager.readFile, {
+        filePath: img[i],
+        encoding: 'base64'
+      })
+      if (file.success) {
+        let res = await this.post({
+          url: '/api/v1/image/save',
+          data: {
+            img: file.data
+          }
+        })
+        if (res.success) {
+          console.log(res.data.id)
+        }
+      }
+    }
+  },
   global_data: {
     system_info: {},
     token: '',

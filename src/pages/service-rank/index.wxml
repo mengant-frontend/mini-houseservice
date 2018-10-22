@@ -1,6 +1,6 @@
 <tabs-swiper-page tabs-list='{{tabs_list}}' bind:swiperChange='intServiceList'>
   <view wx:for='{{tabs_list}}' wx:key='id' slot='{{item.id}}'>
-    <navigator class='item' wx:for='{{item.list}}' wx:key='id' wx:for-item='t' wx:for-index='i' url='/pages/service-detail/index?service_id={{t.id}}'>
+    <navigator class='item' wx:for='{{item.list}}' wx:key='id' wx:for-item='t' wx:for-index='i' url='/pages/service-detail/index?id={{t.id}}'>
       <fit-img more-style='img-style' width='270' can-preview='{{false}}' src='{{t.img_url}}'></fit-img>
       <view class='info'>
         <text class='title'>{{t.title}}</text>

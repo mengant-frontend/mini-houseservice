@@ -27,7 +27,7 @@ Page({
   },
 
   async onLoad(options) {
-    let store_id = options.store_id
+    let store_id = options.id
     app.loadingToast({
       content: '加载中',
       duration: 0,
