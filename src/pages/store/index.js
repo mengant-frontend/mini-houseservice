@@ -58,7 +58,7 @@ Page({
         phone: data.info.phone,
         comment_count: data.comment_count,
         score: data.score ? data.score : 5,
-        if_collected: data.collection === 1 ? true : false
+        if_collected: data.collection > 0 ? true : false
       }, () => {
         // 获取服务列表
         this.getServiceList()

@@ -132,6 +132,7 @@ App({
         .then(res => {
           // errMsg是微信wx.request fail回调函数中的参数 res:{ errMsg }
           let { data = {}, statusCode, header, errMsg, success } = res
+          data = data || {} // 有些接口data为null
           let response = { data }
           if (!(data instanceof Object)) {
             try {
@@ -417,6 +418,7 @@ App({
   global_data: {
     system_info: {},
     token: '',
+    shop_id: 0, // 0 代表是普通用户，大于 0 的都是商家
     village: 0, // 1 代表用户是小区管理员
     red_packet: null
   }

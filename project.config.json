@@ -1,14 +1,30 @@
 {
+	"description": "项目配置文件",
+	"packOptions": {
+		"ignore": []
+	},
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
 		"newFeature": true
 	},
+	"compileType": "miniprogram",
+	"libVersion": "2.3.0",
 	"appid": "wxd11ca80b97562519",
 	"projectname": "housekeeping-service",
+	"svr": "/",
+	"client": "/",
+	"qcloudRoot": "/",
 	"miniprogramRoot": "dist/",
+	"cloudfunctionRoot": "/",
+	"jsserverRoot": "/",
+	"pluginRoot": "/",
+	"debugOptions": {
+		"hidedInDevtools": []
+	},
+	"scripts": {},
 	"condition": {
 		"search": {
 			"current": -1,
@@ -26,9 +42,8 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 16,
-			"list": [
-
-			]
+			"current": -1,
+			"list": []
+		}
 	}
 }

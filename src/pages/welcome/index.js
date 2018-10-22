@@ -6,6 +6,7 @@ Page({
   data: {
     // 接口地址
     api_url: {
+      // 获取引导图
       get_guid_img: '/api/v1/guid/list'
     },
     list: [],
@@ -24,10 +25,6 @@ Page({
       res.data.forEach(item => {
         list.push(item.url)
       })
-      // 没有测试数据debug
-      if (list.length === 0) {
-        list.push('/images/avatar.jpg')
-      }
       this.setData({ list })
     } else {
       // server guid 请求失败
@@ -44,12 +41,16 @@ Page({
 
   // 让图片按原比例铺满窗口
   imgLoad({ detail }) {
+    // 原图比例
     let ratio = detail.width / detail.height
     let system_info = app.global_data.system_info
+    // 屏幕宽高，转为 rpx 单位
     let window_w = system_info.windowWidth * 2
     let window_h = system_info.windowHeight * 2
+    // 最终图片的显示宽高
     let view_w = window_w
     let view_h = view_w / ratio
+    // 当图片显示宽高溢出屏幕时通过定位居中
     let margin_left = 0
     let margin_top = 0
     if (view_h < window_h) {

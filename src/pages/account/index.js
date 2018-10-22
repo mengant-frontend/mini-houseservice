@@ -59,7 +59,7 @@ Page({
   // 编辑个人信息
   editProfile() {
     wx.navigateTo({
-      url: '/pages/account/index'
+      url: '/pages/account/edit'
     })
   }
 })

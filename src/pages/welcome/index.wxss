@@ -22,6 +22,7 @@ page {
   margin-left: -75rpx;
   text-align: center;
   line-height: 50rpx;
+  /* 边框和字体 为 iview 推荐 warning 色 */
   border: 1rpx solid #ff9900;
   border-radius: 25rpx;
   color: #ff9900;

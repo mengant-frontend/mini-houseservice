@@ -29,7 +29,7 @@ button::after {
   color: #464c5b;
 }
 .btn {
-  background: #108EE9;
+  background: #2d8cf0;
   padding: 25rpx 50rpx;
   color: #fff;
   font-size: 28rpx;
