@@ -2,6 +2,7 @@
   "navigationBarTitleText": "消息",
   "usingComponents": {
     "i-button": "../../iview/button/index",
-    "i-message": "../../iview/message/index"
+    "i-message": "../../iview/message/index",
+    "i-load-more": "../../iview/load-more/index"
   }
 }

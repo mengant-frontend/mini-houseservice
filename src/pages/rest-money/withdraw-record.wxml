@@ -1,0 +1,26 @@
+<view class="page">
+  <view class="card" wx:for='{{list}}'>
+    <i-panel i-class='card-title'>
+      <view class="panel-title">
+        <text>提现金额</text>
+        <text class='money'>￥{{item.money || 0}}</text>
+        <view class="state {{item.state === 2 ? 'fail' : item.pay_id === 99999 ? 'process' : 'success'}}">
+          {{item.state_text}}
+        </view>
+      </view>
+      <i-cell-group>
+        <i-cell title='提现类型'>
+          <view slot='footer'>{{item.type_text}}提现</view>
+        </i-cell>
+        <i-cell title='到账账户'>
+          <view slot='footer'>{{item.account}}</view>
+        </i-cell>
+        <i-cell title='提现时间'>
+          <view slot='footer'>{{item.create_time}}</view>
+        </i-cell>
+      </i-cell-group>
+    </i-panel>
+  </view>
+
+  <i-load-more loading='{{loading}}' tip='{{is_end || loading ? "" : "下拉获取更多"}}'></i-load-more>
+</view>

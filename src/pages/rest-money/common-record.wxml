@@ -1,0 +1,16 @@
+<view class="page">
+  <view class="list">
+    <view class="item" wx:for='{{list}}'>
+      <view class='content'>
+        <view class='title'>{{item.order_name}}</view>
+        <view class="desc">{{item.order_time}}</view>
+      </view>
+      <view class="money">
+        <text class="{{item.money > 0 ? 'success' : 'fail'}}">{{item.money}}</text>
+      </view>
+    </view>
+  </view>
+
+  <i-load-more loading='{{loading}}' tip='{{is_end || loading ? "" : "下拉获取更多"}}'></i-load-more>
+  <i-message id='message'></i-message>
+</view>

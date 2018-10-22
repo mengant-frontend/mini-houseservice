@@ -20,10 +20,14 @@ Component({
   methods: {
     bindChange(e) {
       let { range, indexs } = this.data
-      let date_index = indexs[0] || 0, hour_index = indexs[1] || 0, minute_index = indexs[2] || 0
-      let date = range[0][date_index], hour = range[1][hour_index], minute = range[2][minute_index]
+      let date_index = indexs[0] || 0,
+        hour_index = indexs[1] || 0,
+        minute_index = indexs[2] || 0
+      let date = range[0][date_index],
+        hour = range[1][hour_index],
+        minute = range[2][minute_index]
       this.triggerEvent('update', {
-        result: [date, hour, minute]
+        value: [date, hour, minute]
       })
     },
     bindColumnChange(e) {
@@ -41,7 +45,7 @@ Component({
         indexs[1] = 0
         values[1] = range[1][0]
       }
-      if(!values[2]){
+      if (!values[2]) {
         indexs[2] = 0
         values[2] = range[2][0]
       }
@@ -109,18 +113,25 @@ Component({
       let [start_date, start_hour, start_minute] = this.data.local_start
 
       //可选到下个月今天
-      let end_date = moment().add(1, 'months')
-      let dates = [moment(start_date).format('YYYY-MM-DD')], stop = false
+      let end_date = moment()
+        .add(1, 'months')
+      let dates = [moment(start_date)
+          .format('YYYY-MM-DD')],
+        stop = false
       for (let i = 1; stop !== true; i++) {
-        let date = moment(start_date).add(i, 'd').format('YYYY-MM-DD')
+        let date = moment(start_date)
+          .add(i, 'd')
+          .format('YYYY-MM-DD')
         if (end_date.isAfter(date)) {
           dates.push(date)
         } else {
           stop = true
         }
       }
-      let hours = [], minutes = []
-      let hour = 0, minute = 0;
+      let hours = [],
+        minutes = []
+      let hour = 0,
+        minute = 0;
       if (!column_date || !column_hour) {
         hour = start_hour
         minute = start_minute

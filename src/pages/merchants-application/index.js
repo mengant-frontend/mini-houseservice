@@ -45,7 +45,7 @@ Page({
   onPullDownRefresh() {
     wx.stopPullDownRefresh()
   },
-  initFormData(){
+  initFormData() {
     let form_data = {
       head_url: '',
       type: '',
@@ -57,7 +57,7 @@ Page({
       phone: '',
       phone_sub: '',
       id_number: '',
-      imgs: ''   
+      imgs: ''
     }
     form_data.province = default_region[0]
     form_data.city = default_region[1]
@@ -84,7 +84,8 @@ Page({
       return
     }
     //没有申请
-    if (Object.keys(data).length === 0) {
+    if (Object.keys(data)
+      .length === 0) {
       this.setData({
         step_current: 0,
         padding_bottom: padding_bottom_0
@@ -101,21 +102,21 @@ Page({
           new_data.step_current = 1
           new_data.padding_bottom = padding_bottom_1
           break
-        // 已审核
+          // 已审核
         case 2:
           new_data.step_current = 2
           new_data.success = true
           new_data.padding_bottom = padding_bottom_2;
           steps_list[1].status = 'finish'
           break
-        // 已被拒绝
+          // 已被拒绝
         case 3:
           new_data.step_current = 2
           new_data.success = false
           new_data.padding_bottom = padding_bottom_2
           steps_list[1].status = 'error'
           break
-        // 审核通过且用户已确认
+          // 审核通过且用户已确认
         case 4:
           app._success('审核通过，正在前往店铺...')
           this.redirectTo()
@@ -135,9 +136,11 @@ Page({
           imgs.push(img)
         })
       }
-      Object.keys(form_data).keys(key => {
-        form_data[key] = remote_data[key]
-      })
+      Object.keys(form_data)
+        .forEach(key => {
+          console.log(key)
+          form_data[key] = remote_data[key]
+        })
       form_data.imgs = imgs
       this.setData({
         form_data: form_data,
@@ -154,9 +157,9 @@ Page({
     if (form_key === 'imgs') {
       other_data.photo_list = value
     }
-    if(form_key === 'type'){
+    if (form_key === 'type') {
       command_types.forEach(command => {
-        if(command.label === value){
+        if (command.label === value) {
           other_data.type_text = command.value
         }
       })
@@ -184,10 +187,14 @@ Page({
         form_data.area = value[2]
         break
       case 'head_url':
-        form_data.head_url = value.filter(img => !!img.id).map(img => img.id).join(',')
+        form_data.head_url = value.filter(img => !!img.id)
+          .map(img => img.id)
+          .join(',')
         break
       case 'imgs':
-        form_data.imgs = value.filter(img => !!img.id).map(img => img.id).join(',')
+        form_data.imgs = value.filter(img => !!img.id)
+          .map(img => img.id)
+          .join(',')
         break;
       default:
         throw new Error('form_key 无效')
@@ -224,11 +231,12 @@ Page({
   sumbit() {
     let { form_data, photo_list } = this.data
     let is_valid = true
-    Object.keys(form_data).forEach(key => {
-      if (!form_data[key]) {
-        is_valid = false
-      }
-    })
+    Object.keys(form_data)
+      .forEach(key => {
+        if (!form_data[key]) {
+          is_valid = false
+        }
+      })
     if (!is_valid) {
       app._warn('请完善您的店铺信息')
       return
@@ -261,7 +269,7 @@ Page({
   //确认开店
   async ensure() {
     let { shop_id } = this.data
-    if(!shop_id){
+    if (!shop_id) {
       app._warn('缺少shop_id')
       return
     }
@@ -270,7 +278,7 @@ Page({
     })
     let server_res = await app.get({
       url: '/api/v1/shop/handel',
-      data:{ 
+      data: {
         state: 4,
         id: shop_id
       }
@@ -285,8 +293,8 @@ Page({
     this.redirectTo()
   },
   //跳转
-  async redirectTo(){
-    await app.asyncApi(wx.showLoading,{
+  async redirectTo() {
+    await app.asyncApi(wx.showLoading, {
       title: '跳转中...'
     })
     setTimeout(async () => {

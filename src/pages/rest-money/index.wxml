@@ -32,16 +32,16 @@
 
   <i-panel i-class='gutter'>
     <i-cell-group>
-      <i-cell title='提取余额' url='/pages/rest-money-withdraw/index' is-link>
+      <i-cell title='提取余额' url='/pages/rest-money/withdraw?type=2' is-link>
       </i-cell>
-      <i-cell wx:if='{{has_shop}}' title='提取保证金' is-link></i-cell>
+      <i-cell wx:if='{{has_shop}}' title='提取保证金' url='/pages/rest-money/withdraw?type=1&shop_id={{shop_id}}' is-link></i-cell>
     </i-cell-group>
   </i-panel>
 
   <i-panel>
     <i-cell-group>
-      <i-cell title='提现记录' is-link></i-cell>
-      <i-cell title='收支明细' is-link></i-cell>
+      <i-cell title='提现记录' is-link url='/pages/rest-money/withdraw-record'></i-cell>
+      <i-cell title='收支明细' is-link url='/pages/rest-money/common-record'></i-cell>
     </i-cell-group>
   </i-panel>
 

@@ -1,0 +1,50 @@
+@import '../../variable.less';
+
+page {
+  background: @background_color;
+}
+
+.page {
+  padding: @gutter @blank;
+}
+
+.panel-title {
+  position: relative;
+  top: 0;
+  left: 0;
+  font-size: 14px;
+  line-height: 1;
+  color: #1c2438;
+  padding: 20px 16px 10px;
+  background: rgba(255, 255,255,0.5);
+}
+
+.money {
+  font-weight: 600;
+  padding-left: @gutter_large;
+}
+
+.state {
+  position: absolute;
+  top: 20px;
+  right: 16px;
+  transform: rotate(10deg);
+  font-size: 12px;
+  padding: 3px 6px;
+  font-weight: normal;
+}
+
+.success {
+  border: 1px solid @success;
+  color: @success;
+}
+
+.process {
+  border: 1px solid @light_primary;
+  color: @light_primary;
+}
+
+.fail {
+  border: 1px solid @error;
+  color: @error;
+}

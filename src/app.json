@@ -18,19 +18,15 @@
 
     "pages/orders/index",
     "pages/account/index",
+    "pages/account/edit",
 
     "pages/message/index",
     "pages/rest-money/index",
-    "pages/withdraw-record/index",
-    "pages/expense-record/index",
-    "pages/command/index",
     "pages/merchants-application/index",
     "pages/profile-edit/index",
     "pages/order-evaluate/index",
     "pages/command-release/index",
     "pages/service-release/index",
-    "pages/withdraw-checking/index",
-    "pages/account-personal/index",
     "pages/service-booking/index",
     "pages/redpacket/index",
     "pages/command-detail/index",
@@ -39,7 +35,6 @@
     "pages/collection/index",
     "pages/area-manager/index",
     "pages/service-my/index",
-    "pages/test/index",
     "pages/price-change/index",
     "pages/shop/index",
     "pages/shop-orders/index",
@@ -47,7 +42,10 @@
     "pages/rest-money/withdraw",
     "pages/rest-money/recharge",
     "pages/order-detail/merchant",
-    "pages/order-detail/common"
+    "pages/order-detail/common",
+    "pages/rest-money/withdraw-record",
+    "pages/rest-money/common-record",
+    "pages/shop/edit"
   ],
   "window": {
     "navigationBarTitleText": "久房通",

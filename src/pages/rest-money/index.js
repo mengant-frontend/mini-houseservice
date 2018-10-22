@@ -3,6 +3,7 @@ const app = getApp()
 Page({
   data: {
     has_shop: '',
+    shop_id: 0,
     detail: {}
   },
   onLoad() {
@@ -29,7 +30,8 @@ Page({
       shop_id = data.id
     }
     this.setData({
-      has_shop: has_shop
+      has_shop: has_shop,
+      shop_id: shop_id
     })
   },
   async getBalance() {

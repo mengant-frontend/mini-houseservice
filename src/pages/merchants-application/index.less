@@ -1,5 +1,4 @@
-@import '../../variable.less';
-/*
+@import '../../variable.less'; /*
   底部空白
 */
 
@@ -8,11 +7,13 @@ page {
   height: 100%;
   background-color: @background_color;
 }
-image{
+
+image {
   border-radius: 4px;
   border: 1px solid @border_color;
   box-sizing: border-box;
 }
+
 .page {
   width: 100%;
   min-height: 100%;
@@ -25,8 +26,18 @@ image{
   box-sizing: border-box;
 }
 
+.cell-index--i-cell-ft {
+  justify-content: flex-end;
+}
+
 .container__avatar {
-  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.f-photo {
   width: 60px;
 }
 
@@ -34,9 +45,10 @@ image{
   margin: 0 !important;
 }
 
-.container__photo{
-  padding: 10px @blank; 
+.container__photo {
+  padding: 10px @blank;
 }
+
 .tips {
   padding: 10px @blank;
   background-color: @background_color;
@@ -59,8 +71,8 @@ image{
   box-sizing: border-box;
   width: 100%;
 }
-
 // 审核中
+
 .checking {
   padding: 0 @blank;
 }
@@ -72,9 +84,9 @@ image{
   border-bottom: 1px dashed @border_color;
 }
 
-.tip-text__wait::before,
-.tip-text__wait::after {
-  content: '~'
+.tip-text__wait::after,
+.tip-text__wait::before {
+  content: '~';
 }
 
 .checking-title {
@@ -98,17 +110,20 @@ image{
   font-size: @title_size;
   position: relative;
 }
-.checking-pictures{
+
+.checking-pictures {
   vertical-align: text-bottom;
   width: @square * 3;
   margin-bottom: -@gutter;
 }
-.checking-photo{
+
+.checking-photo {
   width: @square;
   height: @square;
   margin: 0 @gutter @gutter 0;
 }
-.checking-pictures-title{
+
+.checking-pictures-title {
   vertical-align: top;
 }
 
@@ -120,18 +135,20 @@ image{
   padding-bottom: @gutter_small;
 }
 
-.container__msg{
-  padding-top: 36px; 
+.container__msg {
+  padding-top: 36px;
 }
 
-.container__result{
+.container__result {
   padding: 36px @blank;
   text-align: center;
 }
-.container__icon{
+
+.container__icon {
   margin-bottom: 30px;
 }
-.container__desc{
+
+.container__desc {
   font-size: 14px;
   color: @sub_content_color;
 }
