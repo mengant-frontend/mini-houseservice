@@ -42,8 +42,14 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
-			"list": []
+			"current": 0,
+			"list": [
+				{
+					"id": -1,
+					"name": "服务预约",
+					"pathName": "pages/service-booking/index"
+				}
+			]
 		}
 	}
 }

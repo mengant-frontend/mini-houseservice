@@ -20,6 +20,7 @@ Page({
     this.getList(page + 1)
   },
   async getList(page) {
+    await app.asyncApi(wx.showNavigationBarLoading)
     this.setData({
       loading: true
     })
@@ -30,6 +31,7 @@ Page({
         size: size
       }
     })
+    await app.asyncApi(wx.hideNavigationBarLoading)
     let { success, msg, data } = server_res
     if (!success) {
       app._error(msg)
@@ -53,8 +55,5 @@ Page({
       list: new_list,
       page: page
     })
-  },
-
-
-
+  }
 })

@@ -46,7 +46,7 @@ Page({
       balance = data.balance
     }
     this.setData({
-      balance: balance
+      balance: Number(balance)
     })
   },
   // 获取是否正在进行的提现操作
@@ -91,7 +91,7 @@ Page({
   },
   // 提交提取余额申请
   async submit() {
-    let { type, money, can_withdraw } = this.data
+    let { type, money, can_withdraw, balance } = this.data
     if (!can_withdraw) {
       app._error('当前状态不可提现')
       return
@@ -113,6 +113,10 @@ Page({
       app._error('提现金额最低为1元')
       return
     }
+    if (balance < money) {
+      app._error('不可超过可提现金额')
+      return
+    }
     let server_res = await app.post({
       url: '/api/v1/withdraw/apply',
       data: {
@@ -125,5 +129,13 @@ Page({
       app._error(msg)
       return
     }
+    await app.asyncApi(wx.showToast, {
+      title: '发起提现成功'
+    })
+    await app.sleep()
+    await app.asyncApi(wx.hideToast)
+    wx.redirectTo({
+      url: '/pages/rest-money/withdraw-record'
+    })
   }
 })
