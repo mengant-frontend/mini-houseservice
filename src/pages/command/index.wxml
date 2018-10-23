@@ -8,7 +8,7 @@
             <view class='money'>
               价格：
               <text class='origin-money'>{{t.origin_money}} 元 </text>
-              <text class='update-money'> {{t.update_money}} 元</text>
+              <text class='update-money' wx:if='{{t.update_money}}'> {{t.update_money}} 元</text>
             </view>
             <text>服务时间：{{t.date}}</text>
           </view>

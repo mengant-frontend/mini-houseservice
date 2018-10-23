@@ -1,7 +1,7 @@
 <!-- indicator-active-color 为 iview 推荐 primary 主色 -->
 <swiper class='swiper' indicator-dots='{{list.length===1?false:true}}' indicator-active-color='#2d8cf0'>
   <swiper-item class='swiper-item' wx:for='{{list}}' wx:key='*this'>
-   <image class='img' style='width:{{view_w}}rpx;height:{{view_h}}rpx;margin-left:-{{margin_left}}rpx;margin-top:-{{margin_top}}rpx;' src='{{item}}' bindload='imgLoad' />
+   <image class='img' src='{{item}}' />
    <view class='btn' wx:if='{{index === list.length - 1}}' bindtap='comeInto'>立即进入</view>
   </swiper-item>
 </swiper>

@@ -117,7 +117,7 @@ Page({
             item.order_list.push({
               order_id: t.order_id,
               title: t.source_name,
-              origin_money: t.origin_money,
+              origin_money: item.id === 'ordered' ? t.money : t.origin_money,
               update_money: t.update_money,
               date: t.time_begin
             })
