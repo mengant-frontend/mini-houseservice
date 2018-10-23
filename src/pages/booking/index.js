@@ -155,12 +155,11 @@ Page({
       app._error(msg)
       return
     }
-    await new Promise(resolve => {
-      setTimeout(() => {
-        resolve()
-      }, 1500)
+    await app.asyncApi(wx.showToast, {
+      title: '提交成功'
     })
-    // Todo 跳转回某个页面
-    // wx.
+    await app.sleep()
+    await app.asyncApi(wx.hideToast)
+    wx.navigateBack()
   }
 })
