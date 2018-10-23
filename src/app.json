@@ -27,7 +27,6 @@
     "pages/order-evaluate/index",
     "pages/command-release/index",
     "pages/service-release/index",
-    "pages/service-booking/index",
     "pages/redpacket/index",
     "pages/command-detail/index",
     "pages/bbs/index",
