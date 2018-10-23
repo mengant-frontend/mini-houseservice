@@ -7,11 +7,11 @@
           <view class='money-location'>
             <text>酬金：<text class='money'>{{t.money}} 元</text></text>
             <view class='location'>
-              <i-icon type='coordinates' size='16' color='#657180'></i-icon>
+              <i-icon class='location-icon' type='coordinates' size='16' color='#657180'></i-icon>
               <text>{{t.area}} {{t.distance}}km</text>
             </view>
           </view>
-          <view class='btn' wx:if='{{item.grade===2}}'>接单</view>
+          <view class='btn' wx:if='{{item.shop_id>0}}'>接单</view>
         </view>
       </navigator>
     </view>
