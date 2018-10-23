@@ -24,7 +24,7 @@ Page({
       return
     }
     await app.asyncApi(wx.showLoading, {
-      title: 'loading...'
+      title: '提交中...'
     })
     let server_res = await app.post({
       url: '/api/v1/message/save',
@@ -37,8 +37,7 @@ Page({
       return
     }
     app._success('已提交')
-    // Todo 跳转
-    wx.redirectTo({
+    wx.switchTab({
       url: '/pages/account/index'
     })
   }

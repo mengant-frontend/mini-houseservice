@@ -53,8 +53,5 @@ Page({
       list: new_list,
       page: page
     })
-  },
-
-
-
+  }
 })
