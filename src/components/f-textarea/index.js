@@ -11,13 +11,14 @@ Component({
     value: {
       type: String,
       value: '',
-      observer(newVal){
+      observer(newVal) {
         this.setData({
+          local_value: newVal,
           len: newVal.length
         })
       }
     },
-    show_total:{ 
+    show_total: {
       type: Boolean,
       value: true
     }
@@ -26,10 +27,11 @@ Component({
     'f-class'
   ],
   data: {
-    len: 0
+    len: 0,
+    local_value: ''
   },
   methods: {
-    bindInput(e){
+    bindInput(e) {
       let value = e.detail.value
       this.setData({
         len: value.length

@@ -22,7 +22,8 @@ Page({
     }
     let has_shop = true
     let shop_id = 0
-    if (!data) {
+    if (Object.keys(data)
+      .length === 0) {
       has_shop = false
     } else if (Number(data.state) < 4) {
       has_shop = false

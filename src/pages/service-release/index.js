@@ -11,7 +11,8 @@ Page({
     shop_location: [],
     local_location: [],
     // 店铺类型，家政还是维修
-    type: ''
+    type: '',
+    shop_id: 0
   },
   async onLoad() {
     this.initData()
@@ -56,7 +57,7 @@ Page({
 
     if (!Object.keys(data)
       .length) {
-      app._error('暂未申请店铺')
+      app._warn('暂未申请店铺')
       return
     }
     let shop_location = [
@@ -71,7 +72,8 @@ Page({
     this.setData({
       shop_location: shop_location,
       local_location: local_location,
-      type: data.type
+      type: data.type,
+      shop_id: data.shop_id
     })
   },
   // 获取服务列表
@@ -131,11 +133,8 @@ Page({
       case 'name':
       case 'des':
       case 'price':
-        form_data[form_key] = value
-        break
       case 'unit':
-        if (!price_keys.length) return
-        form_data[form_key] = price_keys[value].label
+        form_data[form_key] = value
         break
       case 'area':
         form_data.area = value[2]
@@ -175,14 +174,15 @@ Page({
     return true
   },
   // 获取价格单位
-  async getPriceKeys() {
-    await app.asyncApi(wx.showLoading, {
-      title: 'loading...'
-    })
+  async getPriceKeys(shop_id) {
+    await app.asyncApi(wx.showNavigationBarLoading)
     let server_res = await app.get({
-      url: '/test'
+      url: '/api/v1/units/mini',
+      data: {
+        id: shop_id
+      }
     })
-    await app.asyncApi(wx.hideLoading)
+    await app.asyncApi(wx.hideNavigationBarLoading)
     let { success, msg, data } = server_res
     if (!success) {
       app._error(msg)
@@ -244,9 +244,8 @@ Page({
       })
       let { success, res } = wx_res
       if (res.confirm) {
-        // Todo 充值页面路径
         wx.navigateTo({
-          url: '/pages/'
+          url: '/pages/rest-money/recharge?type=1'
         })
       }
       return
