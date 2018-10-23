@@ -10,8 +10,7 @@
         </picker>
       </i-cell>
       <i-cell title='服务名称'>
-        <input slot='footer' maxlength="10" placeholder="请输入服务名称" bindchange='bindFormChange' data-form_key='name'
-          placeholder='限10个汉字'></input>
+        <input slot='footer' maxlength="10" placeholder="请输入服务名称" bindchange='bindFormChange' data-form_key='name' placeholder='限10个汉字'></input>
       </i-cell>
       <i-cell title='服务区域'>
         <picker slot='footer' mode='region' bindchange='bindFormChange' value='{{local_location}}' data-form_key='area'>
@@ -20,12 +19,12 @@
         </picker>
       </i-cell>
       <i-cell title='价格单位'>
-        <picker slot='footer' range='{{price_keys}}' range-key='label' bindchange='bindFormChange' data-form_key='unit'>
+        <picker slot='footer' range='{{price_keys}}' range-key='name' bindchange='bindFormChange' data-form_key='unit'>
           <text>{{form_data.unit || '请选择价格单位'}}</text>
           <i-icon type='enter'></i-icon>
         </picker>
       </i-cell>
-      <i-cell title='服务价格'> 
+      <i-cell title='服务价格'>
         <input slot='footer' type='number' bindchange='bindFormChange' data-form_key='price' placeholder="单位：元"></input>
       </i-cell>
       <i-cell title='服务简介'>

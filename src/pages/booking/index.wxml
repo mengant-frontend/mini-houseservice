@@ -3,7 +3,7 @@
     <i-cell-group>
       <i-cell title='服务地点'>
         <view slot='footer'>
-          <view bindtap='chooseLocation'>
+          <view bindtap='chooseLocation' class='ellipsis'>
             <text>{{form_data.area ? form_data.area + form_data.address : '请选择服务地点'}}</text>
             <i-icon type='enter'></i-icon>
           </view>

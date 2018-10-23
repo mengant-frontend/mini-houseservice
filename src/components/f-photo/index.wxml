@@ -15,7 +15,7 @@
   </view>
 </view>
 <view wx:else class="container">
-  <view class="item" style='width: {{ 100 / count }}%;' wx:for='{{photo_list}}' wx:key='path'>
+  <view class="item four" wx:for='{{photo_list}}' wx:key='path'>
     <view class="container__photo">
       <view class="photo">
         <image src='{{item.path}}' mode="aspectFill"></image>
@@ -32,7 +32,7 @@
       </view>
     </view>
   </view>
-  <view class="item " style='width: {{ 100 / count }}%;' wx:if='{{photo_list.length < count}}' bindtap='chooseImage'>
+  <view class="item four" wx:if='{{photo_list.length < count}}' bindtap='chooseImage'>
     <view class="container__photo">
       <view class="photo">
         <view class="flex group-add">
