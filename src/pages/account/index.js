@@ -6,20 +6,22 @@ Page({
     has_shop: true
   },
   onLoad() {
-    this.observerShopId()
     this.loadData()
   },
   onPullDownRefresh() {
     wx.stopPullDownRefresh()
   },
+  onShow() {
+    this.loadData()
+  },
   async loadData() {
-    await app.asyncApi(wx.showLoading, {
-      title: 'loading...'
-    })
+    let shop_id = app.global_data.shop_id
+    this.checkHasShop(shop_id)
+    await app.asyncApi(wx.showNavigationBarLoading)
     let server_res = await app.get({
       url: '/api/v1/center/info'
     })
-    await app.asyncApi(wx.hideLoading)
+    await app.asyncApi(wx.hideNavigationBarLoading)
     let { success, msg, data } = server_res
     if (!success) {
       app._error(msg)
@@ -27,17 +29,6 @@ Page({
     }
     this.setData({
       detail: data
-    })
-  },
-  //监听shop_id的变化
-  observerShopId() {
-    let that = this
-    this.checkHasShop(app.global_data.shop_id)
-    Object.defineProperty(app.global_data, 'shop_id', {
-      set(val) {
-        that.checkHasShop(val)
-        return val
-      }
     })
   },
   //判断当前账号是否商家

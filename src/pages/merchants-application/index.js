@@ -71,13 +71,11 @@ Page({
   },
   //检查当前状态
   async checkStatus() {
-    await app.asyncApi(wx.showLoading, {
-      title: 'loading...'
-    })
+    await app.asyncApi(wx.showNavigationBarLoading)
     let server_res = await app.get({
       url: '/api/v1/shop/info'
     })
-    await app.asyncApi(wx.hideLoading)
+    await app.asyncApi(wx.hideNavigationBarLoading)
     let { success, data, msg } = server_res
     if (!success) {
       app._error(msg)
@@ -138,7 +136,6 @@ Page({
       }
       Object.keys(form_data)
         .forEach(key => {
-          console.log(key)
           form_data[key] = remote_data[key]
         })
       form_data.imgs = imgs
@@ -290,18 +287,20 @@ Page({
       return
     }
     app.global_data.shop_id = data.shop_id
+    let { form_data } = this.data
+    app.global_data.province = form_data.province
+    app.global_data.city = form_data.city
+    app.global_data.area = form_data.area
     this.redirectTo()
   },
-  //跳转
   async redirectTo() {
     await app.asyncApi(wx.showLoading, {
       title: '跳转中...'
     })
-    setTimeout(async () => {
-      await app.asyncApi(wx.hideLoading)
-      await app.asyncApi(wx.redirectTo, {
-        url: '/pages/merchants-index/index'
-      })
-    }, 1500)
+    await app.sleep()
+    await app.asyncApi(wx.hideLoading)
+    wx.redirectTo({
+      url: '/pages/shop/index'
+    })
   }
 })

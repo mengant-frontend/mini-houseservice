@@ -283,10 +283,10 @@ App({
       $Toast.hide()
     }
   },
-  sleep(time = 1500) {
+  sleep(time = 3000) {
     return new Promise(resolve => {
       resolve()
-    }, 1500)
+    }, time)
   },
   //深度克隆，只克隆简单值，对象，数组，对函数过滤
   _deepClone(data) {

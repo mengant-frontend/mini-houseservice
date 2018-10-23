@@ -31,7 +31,7 @@
     <i-icon type='{{if_collected?"collection_fill":"collection"}}' size='30' color='{{if_collected?"#ff9900":"#898989"}}' bindtap='collect'></i-icon>
     <text>收藏</text>
   </view>
-  <navigator class='order' url='/pages/service-booking/index?s_id={{service_id}}'>预约</navigator>
+  <navigator class='order' url='/pages/booking/index?s_id={{service_id}}'>预约</navigator>
 </view>
 
 <i-toast id="toast" />

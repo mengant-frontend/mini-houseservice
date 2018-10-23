@@ -53,7 +53,9 @@ Page({
       app._error(msg)
       return
     }
-    if (!data) {
+
+    if (!Object.keys(data)
+      .length) {
       app._error('暂未申请店铺')
       return
     }
@@ -75,16 +77,14 @@ Page({
   // 获取服务列表
   async getServiceTypes() {
     let type = this.data.type
-    await app.asyncApi(wx.showLoading, {
-      title: 'loading...'
-    })
+    await app.asyncApi(wx.showNavigationBarLoading)
     let server_res = await app.get({
       url: '/api/v1/category/mini/list',
       data: {
         type: type
       }
     })
-    await app.asyncApi(wx.hideLoading)
+    await app.asyncApi(wx.hideNavigationBarLoading)
     let { success, msg, data } = server_res
     if (!success) {
       app._error(msg)
@@ -98,7 +98,6 @@ Page({
   bindFormChange(e) {
     let { service_types } = this.data
     let { form_key, value } = app._bindFormChange(e)
-    console.log(form_key, value)
     let form_data = this.updateFormData(form_key, value)
     let other_data = {}
     if (form_key === 'c_id') {
@@ -142,13 +141,15 @@ Page({
         form_data.area = value[2]
         break
       case 'picture':
-        let cover = '', imgs = ''
+        let cover = '',
+          imgs = ''
         if (value.length >= 1) {
           cover = value[0].id
           let img_list = value.slice(1)
           imgs = img_list.map(img => {
-            return img.id || ''
-          }).join(',')
+              return img.id || ''
+            })
+            .join(',')
         }
         form_data.cover = cover
         form_data.imgs = imgs
@@ -242,7 +243,7 @@ Page({
         cancelText: "取消",
       })
       let { success, res } = wx_res
-      if(res.confirm){
+      if (res.confirm) {
         // Todo 充值页面路径
         wx.navigateTo({
           url: '/pages/'

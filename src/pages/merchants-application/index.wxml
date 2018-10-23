@@ -37,7 +37,7 @@
           </picker>
         </i-cell>
         <i-cell title='商家地址'>
-          <input slot='footer' type='number' value='{{form_data.address}}' data-form_key="address" bindchange='bindFormChange' placeholder='请输入店铺详细地址'></input>
+          <input slot='footer' type='text' value='{{form_data.address}}' data-form_key="address" bindchange='bindFormChange' placeholder='请输入店铺详细地址'></input>
         </i-cell>
         <i-cell title='商家手机号'>
           <input slot='footer' type='number' value='{{form_data.phone}}' data-form_key="phone" bindchange='bindFormChange' placeholder='请输入商家手机号码'></input>
