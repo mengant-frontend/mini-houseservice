@@ -12,9 +12,9 @@ Component({
 
   methods: {
     // 点击图片预览图片列表
-    previewImg({ target }) {
+    previewImg({ currentTarget }) {
       app.asyncApi(wx.previewImage, {
-        current: target.dataset.src,
+        current: currentTarget.dataset.src,
         urls: this.data.list
       })
     },

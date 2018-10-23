@@ -93,6 +93,7 @@ Page({
     })
     // 获取推广的服务列表
     await this.getServiceList()
+    app.hideToast()
   },
 
   onShow() {
@@ -109,7 +110,6 @@ Page({
         area: this.data.location[2]
       }
     }).then(res => {
-      app.hideToast()
       if (res.success) {
         let data = res.data
         let house_service_list = []
@@ -164,5 +164,6 @@ Page({
     await this.setData({ location })
     // 重新获取推广的服务列表
     await this.getServiceList()
+    app.hideToast()
   }
 })

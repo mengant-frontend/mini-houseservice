@@ -36,6 +36,8 @@
     "pages/service-my/index",
     "pages/price-change/index",
     "pages/shop/index",
+    "pages/shop-orders/index",
+    "pages/shop-command/index",
     "pages/rest-money/withdraw",
     "pages/rest-money/recharge",
     "pages/order-detail/merchant",

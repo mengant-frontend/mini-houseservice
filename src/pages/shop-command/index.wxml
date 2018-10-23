@@ -1,0 +1,24 @@
+<tabs-swiper-page tabs-list='{{tabs_list}}' bind:swiperChange='swiperChange'>
+  <scroll-loading bg-color='#EFEFF4' wx:for='{{tabs_list}}' wx:key='id' slot='{{item.id}}' if-no-more='{{item.if_no_more}}' if-loading='{{if_loading}}' bind:scrolltolower='getOrderList'>
+    <view>
+      <navigator class='item' wx:for='{{item.order_list}}' wx:key='order_id' wx:for-item='t' url='/pages/order-detail/index?type=2&state={{tabs_current+1}}&id={{t.order_id}}'>
+        <view class='title'>{{t.title}}</view>
+        <view class='info'>
+          <view class='money-date'>
+            <view class='money'>
+              价格：
+              <text class='origin-money'>{{t.origin_money}} 元 </text>
+              <text class='update-money'> {{t.update_money}} 元</text>
+            </view>
+            <text>服务时间：{{t.date}}</text>
+          </view>
+          <view class='btn-bar'>
+            <view class='unserviced' wx:if='{{item.id === "unserviced"}}'>联系客户</view>
+          </view>
+        </view>
+      </navigator>
+    </view>
+  </scroll-loading>
+</tabs-swiper-page>
+
+<i-toast id='toast' />

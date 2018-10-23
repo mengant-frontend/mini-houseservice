@@ -62,7 +62,7 @@ Page({
         title: data.title,
         date: data.create_time,
         view_num: data.read_num,
-        img_url: '/images/avatar.jpg',//data.head_img,
+        img_url: data.head_img,
         content: data.content,
         container_height
       }, () => {

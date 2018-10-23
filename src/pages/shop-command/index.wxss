@@ -1,0 +1,59 @@
+page {
+  /* 以下是使用 tabs-swiper-page 组件需要的样式 */
+  padding-top: 42px;
+  box-sizing: border-box;
+  height: 100%;
+}
+
+/* 订单列表 start */
+.item {
+  background: #fff;
+  padding: 40rpx;
+  line-height: 1.8;
+  border-bottom: 1rpx solid #dddee1;
+  display: flex;
+  flex-direction: column;
+}
+.item .title {
+  /* 让文本单行溢出省略 */
+  width: 670rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  /* iview 推荐主标题样式 */
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #464c5b;
+}
+.item .info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.item .money-date {
+  display: flex;
+  flex-direction: column;
+}
+.item .money {
+  display: flex;
+}
+.item .origin-money {
+  text-decoration: line-through;
+  margin-right: 10rpx;
+}
+.item .update-money {
+  color: #ff9900;
+}
+.item .btn-bar {
+  display: flex;
+  line-height: 1;
+}
+.item .unserviced {
+  border-radius: 6rpx;
+  text-align: center;
+  padding: 15rpx 20rpx;
+  /* iview 推荐 warning 辅助色 */
+  border: 1rpx solid #ff9900;
+  color: #ff9900;
+}
+/* 订单列表 end */

@@ -6,40 +6,52 @@ Page({
   data: {
     // 接口地址
     api_url: {
-      // 获取列表
-      get_list: '/api/v1/collection/list'
+      // 获取订单列表
+      get_order_list: '/api/v1/order/demand/list'
     },
     // 请求锁
     request_lock: {
-      get_list: true
+      get_order_list: true
     },
     // 记录当前 tabs_current
     tabs_current: 0,
     // tabs 列表数据
     tabs_list: [
       {
-        id: 'service',
-        title: '服务',
+        id: 'unserviced',
+        title: '待服务',
         dot: false,
         count: 0,
         current_page: 0,
+        total: 0,
         if_no_more: false,
-        list: []
+        order_list: []
       },
       {
-        id: 'store',
-        title: '店铺',
+        id: 'unconfirmed',
+        title: '待确认',
         dot: false,
         count: 0,
         current_page: 0,
+        total: 0,
         if_no_more: false,
-        list: []
+        order_list: []
+      },
+      {
+        id: 'completed',
+        title: '已完成',
+        dot: false,
+        count: 0,
+        current_page: 0,
+        total: 0,
+        if_no_more: false,
+        order_list: []
       }
     ]
   },
 
   async onLoad() {
-    this.getList()
+    await this.getOrderList()
   },
 
   // 下拉刷新
@@ -48,40 +60,32 @@ Page({
     let tabs_list = this.data.tabs_list
     let item = tabs_list[tabs_current]
     item.current_page = 0
+    item.total = 0
+    item.count = 0
     item.if_no_more = false
-    item.list = []
+    item.order_list = []
     tabs_list[tabs_current] = item
     await this.setData({ tabs_list })
-    this.getList()
+    this.getOrderList()
     wx.stopPullDownRefresh()
   },
 
-  // swiper 切换，记录 tabs_current，如果当前列表为空则加载数据
-  async swiperChange({ detail }) {
-    let tabs_current = detail.tabs_current
-    await this.setData({ tabs_current })
-    let tabs_list = this.data.tabs_list
-    if (tabs_list[tabs_current].list.length === 0) {
-      await this.getList()
-    }
-  },
-
-  // 获取需求列表
-  async getList() {
+  // 加载订单列表
+  async getOrderList() {
     let tabs_current = this.data.tabs_current
     let tabs_list = this.data.tabs_list
     let item = tabs_list[tabs_current]
-    if (!item.if_no_more && this.data.request_lock.get_list) {
+    if (!item.if_no_more && this.data.request_lock.get_order_list) {
       this.setData({
         if_loading: true,
-        'request_lock.get_list': false
+        'request_lock.get_order_list': false
       })
       let res = await app.get({
-        url: this.data.api_url.get_list,
+        url: this.data.api_url.get_order_list,
         data: {
           page: item.current_page + 1,
           size: 6,
-          type: tabs_current + 1
+          order_type: tabs_current + 1
         }
       })
       if (res.success) {
@@ -90,20 +94,20 @@ Page({
         let total = data.total
         if (total > 0) {
           data_list.forEach(t => {
-            item.list.push({
-              p_id: t.s_id,
-              id: t.id,
-              img_url: tabs_current === 0 ? t.service.cover : t.shop.head_url,
-              title: tabs_current === 0 ? t.service.name : t.shop.name,
-              money: tabs_current === 0 ? t.service.price : '',
-              address: tabs_current === 0 ? '' : '我是地址',//t.shop.address,
-              phone: tabs_current === 0 ? '' : t.shop.phone
+            item.order_list.push({
+              order_id: t.order_id,
+              title: t.source_name,
+              origin_money: t.origin_money,
+              update_money: t.update_money,
+              date: t.time_begin
             })
           })
-          item.if_no_more = item.list.length < total ? false : true
+          item.if_no_more = item.order_list.length < total ? false : true
         } else {
           item.if_no_more = true
         }
+        item.count = item.id !== 'completed' ? total : 0
+        item.total = total
         item.current_page = data.current_page
         tabs_list[tabs_current] = item
         this.setData({ tabs_list })
@@ -116,8 +120,18 @@ Page({
       }
       this.setData({
         if_loading: false,
-        'request_lock.get_list': true
+        'request_lock.get_order_list': true
       })
+    }
+  },
+
+  // swiper 切换，记录 tabs_current，如果当前订单列表为空则加载数据
+  async swiperChange({ detail }) {
+    let tabs_current = detail.tabs_current
+    await this.setData({ tabs_current })
+    let tabs_list = this.data.tabs_list
+    if (tabs_list[tabs_current].order_list.length === 0) {
+      await this.getOrderList()
     }
   }
 })

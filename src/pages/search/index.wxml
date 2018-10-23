@@ -23,7 +23,7 @@
 </view>
 
 <scroll-loading if-no-more='{{if_no_more}}' if-loading='{{if_loading}}' bind:scrolltolower='getList'>
-  <navigator class='item' wx:for='{{list}}' wx:key='id' url='/pages/{{search_type===1?"store":"service-detail"}}/index?{{search_type===1?"store_id":"service_id"}}={{item.id}}'>
+  <navigator class='item' wx:for='{{list}}' wx:key='id' url='/pages/{{search_type===1?"store":"service-detail"}}/index?id={{item.id}}'>
     <fit-img more-style='img-style' width='270' can-preview='{{false}}' src='{{item.img_url}}'></fit-img>
     <view class='info'>
       <text class='title'>{{item.title}}</text>

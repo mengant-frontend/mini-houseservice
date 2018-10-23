@@ -23,7 +23,7 @@
 </scroll-loading>
 
 <view class='menu-bar'>
-  <navigator class='store' url='/pages/store/index?store_id={{store_id}}'>
+  <navigator class='store' url='/pages/store/index?id={{store_id}}'>
     <i-icon type='shop_fill' size='30' color='#898989'></i-icon>
     <text>进入店铺</text>
   </navigator>

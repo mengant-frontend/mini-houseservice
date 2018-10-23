@@ -132,6 +132,7 @@ App({
         .then(res => {
           // errMsg是微信wx.request fail回调函数中的参数 res:{ errMsg }
           let { data = {}, statusCode, header, errMsg, success } = res
+          data = data || {} // 有些接口data为null
           let response = { data }
           if (!(data instanceof Object)) {
             try {
@@ -361,7 +362,7 @@ App({
     }
     return { success, location }
   },
-  // 当调用 wx.api 或者请求服务器出错无法进行业务时，提示重启小程序
+  // 当调用 wx.api 或者请求服务器出错无法进行业务时，提示重启小程序并跳转欢迎页
   async reLaunchApp(type_str) {
     let title = ''
     let content = ''
@@ -372,7 +373,7 @@ App({
         break;
       case 'server_api':
         title = '服务器出错'
-        content = '服务器发生了意外情况，您可以点击确定重启小程序'
+        content = '糟糕，服务器发生了意外情况，您可以点击确定重启小程序'
         break;
     }
     await this.asyncApi(wx.hideLoading)
@@ -389,9 +390,35 @@ App({
       }
     }
   },
+  //debug:上传测试图片
+  async uploadTestImg() {
+    let img = [
+      '/images/avatar.jpg',
+      '/images/bg_account.jpg'
+    ]
+    let FileSystemManager = wx.getFileSystemManager()
+    for (let i = 0; i < img.length; i++) {
+      let file = await this.asyncApi(FileSystemManager.readFile, {
+        filePath: img[i],
+        encoding: 'base64'
+      })
+      if (file.success) {
+        let res = await this.post({
+          url: '/api/v1/image/save',
+          data: {
+            img: file.data
+          }
+        })
+        if (res.success) {
+          console.log(res.data.id)
+        }
+      }
+    }
+  },
   global_data: {
     system_info: {},
     token: '',
+    shop_id: 0, // 0 代表是普通用户，大于 0 的都是商家
     village: 0, // 1 代表用户是小区管理员
     red_packet: null
   }

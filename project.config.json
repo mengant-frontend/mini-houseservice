@@ -1,14 +1,30 @@
 {
+	"description": "项目配置文件",
+	"packOptions": {
+		"ignore": []
+	},
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
 		"newFeature": true
 	},
+	"compileType": "miniprogram",
+	"libVersion": "2.3.0",
 	"appid": "wxd11ca80b97562519",
 	"projectname": "housekeeping-service",
+	"svr": "/",
+	"client": "/",
+	"qcloudRoot": "/",
 	"miniprogramRoot": "dist/",
+	"cloudfunctionRoot": "/",
+	"jsserverRoot": "/",
+	"pluginRoot": "/",
+	"debugOptions": {
+		"hidedInDevtools": []
+	},
+	"scripts": {},
 	"condition": {
 		"search": {
 			"current": -1,
@@ -26,110 +42,8 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 16,
-			"list": [
-				{
-					"id": -1,
-					"name": "商家页",
-					"pathName": "pages/shop/index",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "个人页",
-					"pathName": "pages/account/index",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "余额",
-					"pathName": "pages/rest-money/index",
-					"query": ""
-				},
-				{
-					"id": 3,
-					"name": "提现",
-					"pathName": "pages/rest-money/withdraw",
-					"query": "type=1&shop_id=1"
-				},
-				{
-					"id": -1,
-					"name": "充值",
-					"pathName": "pages/rest-money/recharge",
-					"query": "type=1&shop_id=1"
-				},
-				{
-					"id": -1,
-					"name": "社区管理员登录",
-					"pathName": "pages/area-manager/index",
-					"query": "type=1&shop_id=1"
-				},
-				{
-					"id": -1,
-					"name": "人脸",
-					"pathName": "pages/face-detect/index",
-					"query": ""
-				},
-				{
-					"id": 7,
-					"name": "订单详情商家",
-					"pathName": "pages/order-detail/merchant",
-					"query": "type=1&state=1&id=1"
-				},
-				{
-					"id": 8,
-					"name": "订单详情用户",
-					"pathName": "pages/order-detail/common",
-					"query": "id=1&type=1&state=2"
-				},
-				{
-					"id": -1,
-					"name": "红包",
-					"pathName": "pages/redpacket/index",
-					"query": "type=select"
-				},
-				{
-					"id": -1,
-					"name": "消息页",
-					"pathName": "pages/message/index",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "入驻",
-					"pathName": "pages/merchants-application/index",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "余额",
-					"pathName": "pages/rest-money/index",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "提现记录",
-					"pathName": "pages/rest-money/withdraw-record",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "收支",
-					"pathName": "pages/rest-money/common-record",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "个人信息更新",
-					"pathName": "pages/account/edit",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "发布需求",
-					"pathName": "pages/command-release/index"
-				}
-			]
+			"current": -1,
+			"list": []
 		}
 	}
 }
