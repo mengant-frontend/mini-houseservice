@@ -39,13 +39,13 @@
 
   <demand-hall></demand-hall>
 
+  <service-title-bar service-type='1'></service-title-bar>
   <block wx:if='{{house_service_list.length > 0}}'>
-    <service-title-bar service-type='1'></service-title-bar>
     <service-list list='{{house_service_list}}'></service-list>
   </block>
 
+  <service-title-bar service-type='2'></service-title-bar>
   <block wx:if='{{maintain_service_list.length > 0}}'>
-    <service-title-bar service-type='2'></service-title-bar>
     <service-list list='{{maintain_service_list}}'></service-list>
   </block>
 

@@ -89,7 +89,7 @@ Page({
           longitude: app.global_data.longitude,
           page: item.current_page + 1,
           size: 6,
-          type: tabs_current + 1
+          type: tabs_current === 0 ? 2 : 1
         }
       })
       if (res.success) {
@@ -111,7 +111,7 @@ Page({
           item.if_no_more = true
         }
         item.current_page = data.current_page
-        item.grade = data.grade
+        item.shop_id = app.global_data.shop_id
         tabs_list[tabs_current] = item
         this.setData({ tabs_list })
       } else { // 出错处理debug

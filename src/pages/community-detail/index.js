@@ -21,8 +21,7 @@ Page({
       like: true,
       send: true
     },
-    padding_bottom: 0,
-    input_hidden: true,
+    padding_bottom: 90,
     page: 0,
     total: 0,
     total_add: 0,
@@ -66,10 +65,8 @@ Page({
         content: data.content,
         container_height
       }, () => {
-        if (!this.data.img_url) {
-          // 没有图片时
-          this.imgLoad()
-        }
+        // 获取评论列表
+        this.getCommentList()
       })
       // 记录浏览
       wx.setStorageSync('community_type_id', data.category.id)
@@ -281,41 +278,6 @@ Page({
         })
       }
       this.setData({ 'request_lock.send': true })
-    }
-  },
-
-  // 图片加载成功
-  imgLoad() {
-    let container_height = this.data.container_height
-    // 获取 #total 节点上边界坐标
-    wx.createSelectorQuery().select('#total').boundingClientRect(rect => {
-      let total_top = rect.top
-      if (total_top <= container_height) {
-        this.setData({
-          input_hidden: false,
-          padding_bottom: 90
-        })
-      } else {
-        this.setData({ total_top })
-      }
-    }).exec()
-    // 获取评论列表
-    this.getCommentList()
-  },
-
-  // 滚动
-  scroll({ detail }) {
-    let container_height = this.data.container_height
-    let total_top = this.data.total_top
-    let scroll_height = detail.scrollHeight
-    let input_hidden = this.data.input_hidden
-    if (input_hidden) {
-      if (total_top - scroll_height <= container_height) {
-        this.setData({
-          input_hidden: false,
-          padding_bottom: 90
-        })
-      }
     }
   },
 

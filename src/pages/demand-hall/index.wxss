@@ -42,6 +42,9 @@ page {
   display: flex;
   align-items: center;
 }
+.item .location-icon {
+  margin-bottom: 4rpx;
+}
 .item .btn {
   line-height: 1;
   border-radius: 6rpx;
