@@ -9,6 +9,7 @@ Page({
       // 获取服务列表
       get_service_list: '/api/v1/service/mini/list'
     },
+    tabs_current: 0,
     // tabs 列表数据
     tabs_list: [
       {
@@ -29,23 +30,22 @@ Page({
 
   onLoad() {
     // 获取家政服务列表
-    this.getServiceList(1)
+    this.getServiceList()
   },
 
   // 切换 tabs 时，当对应服务列表为空则获取数据
-  intServiceList({ detail }) {
+  async intServiceList({ detail }) {
     let tabs_current = detail.tabs_current
+    await this.setData({ tabs_current })
     let list = this.data.tabs_list[tabs_current].list
     if (list.length === 0) {
-      this.getServiceList(2)
+      this.getServiceList()
     }
   },
 
-  /**
-   * 获取服务列表，统一展示10条
-   * @param  {Number} service_type 服务类型，1为家政，2为维修
-   */
-  async getServiceList(service_type) {
+  // 获取服务列表，统一展示10条
+  async getServiceList() {
+    let tabs_current = this.data.tabs_current
     app.loadingToast({
       content: '加载中',
       duration: 0,
@@ -58,7 +58,7 @@ Page({
         size: 10,
         area: app.global_data.location[2],
         c_id: 0,
-        type: service_type
+        type: tabs_current + 1
       }
     })
     app.hideToast()
@@ -77,13 +77,13 @@ Page({
             sales: item.sell_num
           })
         })
-        switch (service_type) {
-          case 1:
+        switch (tabs_current) {
+          case 0:
             this.setData({
               'tabs_list[0].list': list
             })
             break;
-          case 2:
+          case 1:
             this.setData({
               'tabs_list[1].list': list
             })

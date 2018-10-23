@@ -61,7 +61,7 @@ Page({
         phone: data.shop.phone,
         des: data.des,
         score: data.score ? data.score : 5,
-        if_collected: data.collection === 1 ? true : false
+        if_collected: data.collection > 0 ? true : false
       }, () => {
         // 获取评论列表
         this.getCommentList()

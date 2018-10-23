@@ -31,7 +31,8 @@ Component({
     },
     // 按原图比例计算图片的显示大小
     imgLoad({ detail }) {
-      let ratio = detail.width / detail.height
+      // 暂时以16：9的比例
+      let ratio = 16/9 //detail.width / detail.height
       let width = Number(this.data.width)
       let height = Number(this.data.height)
       let view_width = 0
