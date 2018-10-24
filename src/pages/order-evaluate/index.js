@@ -52,11 +52,11 @@ Page({
     let index = e.detail.index
     let evaluate_type
     if (index < 3) {
-      evaluate_type = 'bad'
+      evaluate_type = '1'
     } else if (index < 5) {
-      evaluate_type = 'middle'
+      evaluate_type = '2'
     } else {
-      evaluate_type = 'good'
+      evaluate_type = '3'
     }
     this.setData({
       rate: index,
@@ -130,7 +130,7 @@ Page({
       title: '已提交'
     })
     await app.sleep()
-    state = state + 1
+    state = Number(state) + 1
     wx.redirectTo({
       url: `/pages/order-detail/index?id=${id}&type=${type}&state=${state}`
     })
