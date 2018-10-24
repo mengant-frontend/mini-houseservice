@@ -5,5 +5,3 @@
     <comment-list list='{{comment_list}}'></comment-list>
   </scroll-loading>
 </view>
-
-<i-toast id="toast" />

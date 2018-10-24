@@ -33,5 +33,3 @@
   </view>
   <navigator class='order' url='/pages/booking/index?s_id={{service_id}}'>预约</navigator>
 </view>
-
-<i-toast id="toast" />

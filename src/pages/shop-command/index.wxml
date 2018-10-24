@@ -20,5 +20,3 @@
     </view>
   </scroll-loading>
 </tabs-swiper-page>
-
-<i-toast id='toast' />

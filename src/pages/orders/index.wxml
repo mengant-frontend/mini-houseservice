@@ -33,5 +33,3 @@
     <text>+ 发布服务</text>
   </navigator>
 </view>
-
-<i-toast id='toast' />

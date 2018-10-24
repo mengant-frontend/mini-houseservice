@@ -3,7 +3,6 @@
   "enablePullDownRefresh": false,
   "usingComponents": {
     "scroll-loading": "/components/scroll-loading/index",
-    "comment-list": "/components/comment-list/index",
-    "i-toast": "/iview/toast/index"
+    "comment-list": "/components/comment-list/index"
   }
 }

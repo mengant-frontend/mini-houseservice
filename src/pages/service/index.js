@@ -39,11 +39,7 @@ Page({
     }
     let location = app.global_data.location
     await this.setData({ service_type, location })
-    app.loadingToast({
-      content: '加载中',
-      duration: 0,
-      mask: false
-    })
+    wx.showNavigationBarLoading()
     // 获取轮播图
     app.get({
       url: this.data.api_url.get_banner_img,
@@ -58,23 +54,12 @@ Page({
       if (res.success) {
         let data = res.data
         let banner_img = []
-        if (data.length > 0) {
-          data.forEach(item => {
-            banner_img.push(item.url)
-          })
-        } else {
-          app.warnToast({
-            content: '当前地区暂时没有轮播图数据哦~~',
-            duration: 0
-          })
-        }
+        data.forEach(item => {
+          banner_img.push(item.url)
+        })
         this.setData({ banner_img })
       } else { // 出错处理debug
-        console.log(res.msg)
-        app.errorToast({
-          content: '轮播图数据加载失败~~',
-          duration: 0
-        })
+        console.log(res)
       }
     })
     // 获取服务类别
@@ -87,31 +72,20 @@ Page({
       if (res.success) {
         let data = res.data
         let category_list = []
-        if (data.length > 0) {
-          data.forEach(item => {
-            category_list.push({
-              id: item.id,
-              name: item.name
-            })
+        data.forEach(item => {
+          category_list.push({
+            id: item.id,
+            name: item.name
           })
-        } else {
-          app.warnToast({
-            content: '当前地区暂时没有服务数据哦~~',
-            duration: 0
-          })
-        }
+        })
         this.setData({ category_list })
       } else { // 出错处理debug
-        console.log(res.msg)
-        app.errorToast({
-          content: '服务数据加载失败~~',
-          duration: 0
-        })
+        console.log(res)
       }
     })
     // 获取服务列表
     await this.getServiceList()
-    app.hideToast()
+    wx.hideNavigationBarLoading()
   },
 
   tabsChange({ detail }) {
@@ -171,11 +145,7 @@ Page({
           page: data.current_page
          })
       } else { // 出错处理debug
-        console.log(res.msg)
-        app.errorToast({
-          content: '加载失败~~',
-          duration: 0
-        })
+        console.log(res)
       }
       this.setData({
         if_loading: false,

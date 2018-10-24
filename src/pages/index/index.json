@@ -7,7 +7,6 @@
     "banner-img": "/components/banner-img/index",
     "demand-hall": "/components/demand-hall/index",
     "service-title-bar": "/components/service-title-bar/index",
-    "service-list": "/components/service-list/index",
-    "i-toast": "/iview/toast/index"
+    "service-list": "/components/service-list/index"
   }
 }

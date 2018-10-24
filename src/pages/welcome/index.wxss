@@ -8,10 +8,8 @@ page {
 }
 .swiper-item {
   position: relative;
-  overflow: hidden;
 }
 .img {
-  position: absolute;
   height: 100%;
   width: 100%;
 }

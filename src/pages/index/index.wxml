@@ -1,54 +1,45 @@
-<block hidden='{{!location}}'>
-  <view class='header'>
-    <picker mode='region' value='{{location}}' bindchange='locationChoose'>
-      <view>
-        {{location[2]}}
-        <i-icon type='unfold' size='12' color='rgba(0,0,0,0.65)'></i-icon>
-      </view>
-    </picker>
-    <navigator class='search' url='/pages/search/index'>
-      <icon type='search' size='12' color='#bbbbbb' />
-      搜索
-    </navigator>
-    <navigator url='/pages/face-detect/index' wx:if='{{village === 1}}'>
-      <i-icon type='scan' size='30' color='#000000'></i-icon>
-    </navigator>
-  </view>
+<view class='header'>
+  <picker mode='region' value='{{location}}' bindchange='locationChoose'>
+    <view>
+      {{location[2]}}
+      <i-icon type='unfold' size='12' color='rgba(0,0,0,0.65)'></i-icon>
+    </view>
+  </picker>
+  <navigator class='search' url='/pages/search/index'>
+    <icon type='search' size='12' color='#bbbbbb' />
+    搜索
+  </navigator>
+  <navigator url='/pages/face-detect/index' wx:if='{{village === 1}}'>
+    <i-icon type='scan' size='30' color='#000000'></i-icon>
+  </navigator>
+</view>
 
-  <banner-img list='{{banner_img}}'></banner-img>
+<banner-img list='{{banner_img}}'></banner-img>
 
-  <i-notice-bar icon="systemprompt" loop>
-    【红包攻略】
-    <text wx:for='{{notice_content}}' wx:key='*this'>{{item}}</text>
-  </i-notice-bar>
+<i-notice-bar icon="systemprompt" loop>
+  【红包攻略】
+  <text wx:for='{{notice_content}}' wx:key='*this'>{{item}}</text>
+</i-notice-bar>
 
-  <view class='menu'>
-    <navigator class='item' url='/pages/service/index?service_type=1'>
-      <image mode='aspectFit' src='/images/house.png' />
-      <text>家政服务</text>
-    </navigator>
-    <navigator class='item' url='/pages/service/index?service_type=2'>
-      <image mode='aspectFit' src='/images/maintain.png' />
-      <text>维修服务</text>
-    </navigator>
-    <navigator class='item' url='/pages/service-rank/index'>
-      <image mode='aspectFit' src='/images/rank.png' />
-      <text>服务排行</text>
-    </navigator>
-  </view>
+<view class='menu'>
+  <navigator class='item' url='/pages/service/index?service_type=1'>
+    <image mode='aspectFit' src='/images/house.png' />
+    <text>家政服务</text>
+  </navigator>
+  <navigator class='item' url='/pages/service/index?service_type=2'>
+    <image mode='aspectFit' src='/images/maintain.png' />
+    <text>维修服务</text>
+  </navigator>
+  <navigator class='item' url='/pages/service-rank/index'>
+    <image mode='aspectFit' src='/images/rank.png' />
+    <text>服务排行</text>
+  </navigator>
+</view>
 
-  <demand-hall></demand-hall>
+<demand-hall></demand-hall>
 
-  <service-title-bar service-type='1'></service-title-bar>
-  <block wx:if='{{house_service_list.length > 0}}'>
-    <service-list list='{{house_service_list}}'></service-list>
-  </block>
+<service-title-bar service-type='1'></service-title-bar>
+<service-list list='{{house_service_list}}' wx:if='{{house_service_list.length > 0}}'></service-list>
 
-  <service-title-bar service-type='2'></service-title-bar>
-  <block wx:if='{{maintain_service_list.length > 0}}'>
-    <service-list list='{{maintain_service_list}}'></service-list>
-  </block>
-
-</block>
-
-<i-toast id="toast" />
+<service-title-bar service-type='2'></service-title-bar>
+<service-list list='{{maintain_service_list}}' wx:if='{{maintain_service_list.length > 0}}'></service-list>

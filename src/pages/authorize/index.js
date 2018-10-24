@@ -22,9 +22,9 @@ Page({
           url: '/api/v1/user/info',
           data: { encryptedData, iv }
         })
-        // server userinfo 请求失败
-        if (!server_res.success) {
-          await app.reLaunchApp('server_api')
+        if (!server_res.success) { // 出错处理debug
+          console.log(server_res)
+          return
         }
       }
       app.global_data.user_info = userInfo

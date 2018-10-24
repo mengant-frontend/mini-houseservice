@@ -34,5 +34,3 @@
     </view>
   </navigator>
 </scroll-loading>
-
-<i-toast id='toast' />

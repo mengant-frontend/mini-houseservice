@@ -16,5 +16,3 @@
     </navigator>
   </view>
 </tabs-swiper-page>
-
-<i-toast id="toast" />
