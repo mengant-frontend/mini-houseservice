@@ -115,7 +115,7 @@ Page({
 
   // 地区选择，对应更新在首页推广的家政、维修服务列表
   async locationChoose({ detail }) {
-    let location =  detail.value
+    let location = detail.value
     app.global_data.location = location
     wx.showNavigationBarLoading()
     await this.setData({ location })

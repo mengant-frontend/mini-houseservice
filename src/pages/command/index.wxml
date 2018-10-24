@@ -1,7 +1,7 @@
 <tabs-swiper-page tabs-list='{{tabs_list}}' bind:swiperChange='swiperChange'>
   <scroll-loading bg-color='#EFEFF4' wx:for='{{tabs_list}}' wx:key='id' slot='{{item.id}}' if-no-more='{{item.if_no_more}}' if-loading='{{if_loading}}' bind:scrolltolower='getOrderList'>
     <view>
-      <navigator class='item' wx:for='{{item.order_list}}' wx:key='order_id' wx:for-item='t' url='/pages/order-detail/index?type=2&state={{tabs_current+1}}&id={{t.order_id}}'>
+      <navigator class='item' wx:for='{{item.order_list}}' wx:key='order_id' wx:for-item='t' url='/pages/order-detail/index?type=2&state={{t.state}}&id={{t.order_id}}'>
         <view class='title'>{{t.title}}</view>
         <view class='info'>
           <view class='money-date'>

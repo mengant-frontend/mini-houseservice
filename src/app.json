@@ -39,11 +39,10 @@
     "pages/shop-command/index",
     "pages/rest-money/withdraw",
     "pages/rest-money/recharge",
-    "pages/order-detail/merchant",
-    "pages/order-detail/common",
     "pages/rest-money/withdraw-record",
     "pages/rest-money/common-record",
-    "pages/shop/edit"
+    "pages/shop/edit",
+    "pages/order-detail/index"
   ],
   "window": {
     "navigationBarTitleText": "久房通",

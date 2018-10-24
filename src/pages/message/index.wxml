@@ -3,7 +3,7 @@
     <view wx:for='{{list}}' wx:key='id' class='list-item {{index === 0 ? "list-item_0" : ""}}'>
       <view class='title'>
         <view class='title-left'>
-          <image class='title-icon' src='/images/setting.png'></image>
+          <image class='title-icon' src='{{item.cover}}'></image>
           <text class='title-text'>订单提示</text>
         </view>
         <view class='title-right'>
@@ -12,7 +12,7 @@
       </view>
       <view class='main'>
         <view class='message-desc'>
-          <text></text>
+          <text>您有新的{{item.order_type === '1' ? '家政' : '维修'}}信息，点击阅读</text>
         </view>
         <view class='order'>
           <view class='order-desc'>

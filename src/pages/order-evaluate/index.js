@@ -1,31 +1,42 @@
-import regenratorRuntime from '../../lib/runtime'
+import regeneratorRuntime from '../../lib/runtime'
 const app = getApp()
 Page({
   data: {
-    order_id: '',
+    id: '',
+    type: '',
+    state: '',
     rate: 0,
     remark: '',
-    order_data: {}
+    order_data: {},
+    evaluate_type: '',
+    imgs: ''
   },
-  onLoad(query){
-    if(!query.order_id){
-      app._warn('缺少order_id')
-    }else{
-      this.setData({
-        order_id: query.order_id
-      })
-      this.loadOrder(query.order_id)
+  onLoad(query) {
+    this.setData({
+      id: query.id,
+      type: query.type,
+      state: query.state
+    })
+    this.loadOrder()
+  },
+  async loadOrder() {
+    let { id, type, state } = this.data
+    let err_msg = ''
+    if (!id) {
+      err_msg = '缺少订单id'
+    } else if (!type) {
+      err_msg = '缺少订单type'
     }
-  },
-  async loadOrder(id){
+
     let server_res = await app.get({
-      url: '/test',
+      url: '/api/v1/order',
       data: {
-        id: id
+        id: id,
+        type
       }
     })
     let { success, msg, data } = server_res
-    if(!success){
+    if (!success) {
       app._error(msg)
       return
     }
@@ -34,46 +45,94 @@ Page({
     })
 
   },
-  onPullDownRefresh(){
+  onPullDownRefresh() {
     wx.stopPullDownRefresh()
   },
-  updateRate(e){
+  updateRate(e) {
     let index = e.detail.index
+    let evaluate_type
+    if (index < 3) {
+      evaluate_type = '1'
+    } else if (index < 5) {
+      evaluate_type = '2'
+    } else {
+      evaluate_type = '3'
+    }
     this.setData({
-      rate: index
+      rate: index,
+      evaluate_type
     })
   },
-  updateRemark(e){
+  updateRemark(e) {
     const value = e.detail.value
     this.setData({
       remark: value
     })
   },
-  async confirm(){
-    let { rate, remark, order_id } = this.data
-    if(!rate){
+  selectEvaluate(e) {
+    let { currentTarget: { dataset: { type } } } = e
+    let rate
+    switch (type) {
+      case '1':
+        rate = 5
+        break;
+      case '2':
+        rate = 3
+        break
+      case '3':
+        rate = 1
+      default:
+    }
+    this.setData({
+      evaluate_type: type,
+      rate: rate
+    })
+  },
+  updateImgs(e) {
+    let { detail: { value } } = e
+    let imgs = ''
+    value = value || []
+    imgs = value.filter(img => img.id)
+      .map(img => img.id)
+      .join(',')
+    this.setData({
+      imgs: imgs
+    })
+  },
+  async confirm() {
+    let { rate, evaluate_type, remark, id, type, order_data, imgs, state } = this.data
+    if (!rate) {
       app._warn('请对本次服务进行打分')
-      return 
+      return
     }
     await app.asyncApi(wx.showLoading, {
       title: 'loading...'
     })
-    // 对接提交接口
     let server_res = await app.post({
-      url: '/test',
+      url: '/api/v1/order/comment',
       data: {
-        rate: rate, 
-        remark,
-        order_id: order_id
+        score: rate,
+        o_id: id,
+        s_id: order_data.shop_id,
+        content: remark,
+        score_type: evaluate_type,
+        order_type: type,
+        imgs: imgs
       }
     })
     await app.asyncApi(wx.hideLoading)
     let { success, msg, data } = server_res
-    if(!success){
+    if (!success) {
       app._error(msg)
-      return 
+      return
     }
-    app._success('感谢您的支持')
-    // Todo 跳转
+    await app.asyncApi(wx.showToast, {
+      title: '已提交'
+    })
+    await app.sleep()
+    state = Number(state) + 1
+    wx.redirectTo({
+      url: `/pages/order-detail/index?id=${id}&type=${type}&state=${state}`
+    })
   }
 })

@@ -105,7 +105,8 @@ Page({
         data: {
           page: item.current_page + 1,
           size: 6,
-          order_type: tabs_current + 1
+          order_type: tabs_current + 1,
+          list_type: 1
         }
       })
       if (res.success) {
@@ -115,6 +116,7 @@ Page({
         if (total > 0) {
           data_list.forEach(t => {
             item.order_list.push({
+              state: t.state,
               order_id: t.order_id,
               title: t.source_name,
               origin_money: item.id === 'ordered' ? t.money : t.origin_money,

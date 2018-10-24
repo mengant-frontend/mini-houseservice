@@ -20,6 +20,14 @@ Component({
           })
         }
       }
+    },
+    delete_url: {
+      type: String,
+      value: ''
+    },
+    delete_params: {
+      type: Array,
+      value: []
     }
   },
   data: {
@@ -122,10 +130,12 @@ Component({
     async deleteImage(e) {
       let { currentTarget: { dataset: { index } } } = e
       let photo_list = app._deepClone(this.data.photo_list)
-      // 没有删除接口
-      photo_list.splice(index, 1)
-      this.update(photo_list)
-      /*
+      if (!this.data.delete_url) {
+        // 没有删除接口
+        photo_list.splice(index, 1)
+        this.update(photo_list)
+        return
+      }
       //如果上传过程中失败，则直接删除
       if (photo_list[index].error) {
         photo_list.splice(index, 1)
@@ -134,16 +144,16 @@ Component({
       } else {
         photo_list[index].deleting = true
       }
-
-
       //展示spining
       await this.update(photo_list)
-      //Todo 删除接口
+      let delete_params = this.data.delete_params
+      let params = {}
+      delete_params.forEach(p => {
+        params[p] = photo_list[index][p]
+      })
       let server_res = await app.post({
-        url: '/test',
-        data: {
-          id: photo_list[index].id || ' '
-        }
+        url: this.data.delete_url,
+        data: params
       })
       let { msg, success } = server_res
       if (!success) {
@@ -152,7 +162,6 @@ Component({
         photo_list.splice(index, 1)
       }
       this.update(photo_list)
-      */
     }
   }
 

@@ -122,10 +122,12 @@ Page({
   },
   // 确认订单
   async ensureOrder() {
+    let { id, type } = this.data
     let server_res = await app.post({
       url: '/api/v1/order/shop/confirm',
       data: {
-
+        id,
+        type
       }
     })
     let { success, msg } = server_res

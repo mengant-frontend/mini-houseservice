@@ -1,44 +1,54 @@
 <view class="page">
   <view class="container__message">
-    <view class="title">维修</view>
+    <view class="title">{{order_data.source_name}}</view>
     <view class="table">
       <view class="table-body">
         <view class="table-row">
           <view class="table-cell label">价格</view>
           <view class="table-cell content">
-            <view class="content__main"></view>
+            <view class="content__main">￥{{order_data.update_money ? order_data.update_money : order_data.origin_money}}</view>
           </view>
         </view>
         <view class="table-row">
           <view class="table-cell label">服务时间</view>
           <view class="table-cell content">
-            <view class="content__main"></view>
+            <view class="content__main">{{order_data.time_begin}} ~ {{order_data.time_end}}</view>
           </view>
         </view>
         <view class="table-row">
           <view class="table-cell label">服务地址</view>
           <view class="table-cell content">
-            <view class="content__main"></view>
+            <view class="content__main">{{order_data.area}}{{order_data.address}}</view>
           </view>
         </view>
         <view class="table-row">
           <view class="table-cell label">服务商家</view>
           <view class="table-cell content">
-            <view class="content__main"></view>
+            <view class="content__main">{{order_data.shop_name}}</view>
           </view>
         </view>
       </view>
     </view>
   </view>
 
+  <view class="evaluate">
+    <image class="img" bindtap='selectEvaluate' data-type='1' src='{{evaluate_type === "1" ? "/images/good_active.png" : "/images/good.png"}}'></image>
+    <image class="img" bindtap='selectEvaluate' data-type='2' src='{{evaluate_type === "2" ? "/images/middle_active.png" : "/images/middle.png"}}'></image>
+    <image class="img" bindtap='selectEvaluate' data-type='3' src='{{evaluate_type === "3" ? "/images/bad_active.png" : "/images/bad.png"}}'></image>
+  </view>
+
+  <view>
+    <f-textarea maxLength='100' placeholder='对本次服务满意吗?有什么特别值得推荐的地方?' bind:update='updateRemark'></f-textarea>
+  </view>
+
+  <view>
+    <f-photo count='9' bind:update='updateImgs'></f-photo>
+  </view>
   <view class="container__rate">
     <i-rate i-class="rate" size='40' count='5' value='{{rate}}' bindchange='updateRate'></i-rate>
   </view>
-
-  <textarea class="textarea" bindinput='updateRemark' placeholder="亲，您对本次服务满意吗?"></textarea>
-
   <view class="fixed">
-    <i-button type='primary' long>提交</i-button>
+    <i-button type='primary' long bind:click='confirm'>提交</i-button>
   </view>
 
   <i-message id='message'></i-message>

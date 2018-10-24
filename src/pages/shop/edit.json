@@ -3,6 +3,11 @@
       "i-panel": "../../iview/panel/index",
       "i-cell-group": "../../iview/cell-group/index",
       "i-cell": "../../iview/cell/index",
-      "i-input": "../../iview/input/index"
+      "i-input": "../../iview/input/index",
+      "f-photo": "../../components/f-photo/index",
+      "f-textarea": "../../components/f-textarea/index",
+      "i-button": "../../iview/button/index",
+      "i-message": "../../iview/message/index",
+      "i-icon": "../../iview/icon/index"
     }
 }

@@ -32,7 +32,7 @@
     </view>
   </view>
   <i-cell-group>
-    <i-cell title='进入店铺' is-link url='/pages/store/index?store_id={{store_id}}'>
+    <i-cell title='进入店铺' is-link url='/pages/store/index?id={{store_id}}'>
       <i-icon slot='icon' type='shop_fill' size='20' color='#5cadff'></i-icon>
     </i-cell>
     <i-cell title='商家订单' is-link url='/pages/shop-orders/index'>

@@ -95,7 +95,8 @@ Page({
         data: {
           page: item.current_page + 1,
           size: 6,
-          order_type: tabs_current + 1
+          order_type: tabs_current + 1,
+          list_type: 2
         }
       })
       if (res.success) {
@@ -106,6 +107,7 @@ Page({
           data_list.forEach(t => {
             item.order_list.push({
               order_id: t.order_id,
+              id: t.id,
               title: t.source_name,
               origin_money: t.origin_money,
               update_money: t.update_money,

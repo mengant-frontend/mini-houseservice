@@ -73,7 +73,7 @@ Page({
       shop_location: shop_location,
       local_location: local_location,
       type: data.type,
-      shop_id: data.shop_id
+      shop_id: data.id
     })
   },
   // 获取服务列表
@@ -133,8 +133,11 @@ Page({
       case 'name':
       case 'des':
       case 'price':
-      case 'unit':
+
         form_data[form_key] = value
+        break
+      case 'unit':
+        form_data[form_key] = price_keys[value].name
         break
       case 'area':
         form_data.area = value[2]
@@ -242,8 +245,7 @@ Page({
         confirmText: "确认",
         cancelText: "取消",
       })
-      let { success, res } = wx_res
-      if (res.confirm) {
+      if (wx_res.confirm) {
         wx.navigateTo({
           url: '/pages/rest-money/recharge?type=1'
         })
@@ -263,7 +265,13 @@ Page({
       app._error(msg)
       return
     }
-    app._success('发布服务成功')
+    await app.asyncApi(wx.showToast, {
+      title: '成功'
+    })
+    await app.slepp()
+    wx.redirectTo({
+      url: '/pages/service-my/index'
+    })
 
   },
   // 检测商铺保证是否充足
