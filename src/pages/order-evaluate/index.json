@@ -2,6 +2,8 @@
   "usingComponents": {
     "i-rate": "../../iview/rate/index",
     "i-button": "../../iview/button/index",
-    "i-message": "../../iview/message/index"
+    "i-message": "../../iview/message/index",
+    "f-textarea": "../../components/f-textarea/index",
+    "f-photo": "../../components/f-photo/index"
   }
 }

@@ -4,7 +4,7 @@
       <i-cell title='原价格'>
         <view slot='footer' class="footer">
           <view class="ellipsis">
-            ￥{{origin_price}}
+            ￥{{origin}}
           </view>
         </view>
       </i-cell>

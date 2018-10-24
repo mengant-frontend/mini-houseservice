@@ -422,6 +422,9 @@ App({
     token: '',
     shop_id: 0, // 0 代表是普通用户，大于 0 的都是商家
     village: 0, // 1 代表用户是小区管理员
-    red_packet: null
+    red_packet: null,
+    order_detail_state: {
+      price_change: true
+    }
   }
 })

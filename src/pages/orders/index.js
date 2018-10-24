@@ -69,14 +69,18 @@ Page({
       }
     ]
   },
-  
+
   async onLoad() {
     this.setData({
       shop_id: app.global_data.shop_id
     })
     await this.getOrderList()
   },
-
+  async onShow() {
+    app.reLaunch({
+      url: '/pages/orders/index'
+    })
+  },
   // 下拉刷新
   async onPullDownRefresh() {
     let tabs_current = this.data.tabs_current
@@ -108,7 +112,8 @@ Page({
         data: {
           page: item.current_page + 1,
           size: 6,
-          order_type: tabs_current + 1
+          order_type: tabs_current + 1,
+          list_type: 1
         }
       })
       if (res.success) {
@@ -129,7 +134,7 @@ Page({
         } else {
           item.if_no_more = true
         }
-        item.count = item.id !== 'completed' ? total: 0
+        item.count = item.id !== 'completed' ? total : 0
         item.total = total
         item.current_page = data.current_page
         tabs_list[tabs_current] = item

@@ -61,5 +61,8 @@
     </view>
   </view>
 
+  <view class="fixed" wx:if='{{has_shop}}'>
+    <i-button type='primary' bind:click='getIt'>接单</i-button>
+  </view>
   <i-message id='message'></i-message>
 </view>

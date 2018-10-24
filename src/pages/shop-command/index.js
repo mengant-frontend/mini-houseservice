@@ -85,7 +85,8 @@ Page({
         data: {
           page: item.current_page + 1,
           size: 6,
-          order_type: tabs_current + 1
+          order_type: tabs_current + 1,
+          list_type: 2
         }
       })
       if (res.success) {

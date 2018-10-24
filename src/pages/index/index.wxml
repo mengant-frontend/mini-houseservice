@@ -52,3 +52,5 @@
 </block>
 
 <i-toast id="toast" />
+
+<i-message id='message'></i-message>
