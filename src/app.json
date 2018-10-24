@@ -19,7 +19,7 @@
     "pages/orders/index",
     "pages/account/index",
     "pages/account/edit",
-
+    "pages/command/index",
     "pages/message/index",
     "pages/rest-money/index",
     "pages/merchants-application/index",

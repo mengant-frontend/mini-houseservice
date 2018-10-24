@@ -14,60 +14,7 @@ Page({
       get_order_list: true
     },
     // 记录当前 tabs_current
-    tabs_current: 0,
-    // tabs 列表数据
-    tabs_list: [
-      {
-        id: 'ordered',
-        title: '已预约',
-        dot: false,
-        count: 0,
-        current_page: 0,
-        total: 0,
-        if_no_more: false,
-        order_list: []
-      },
-      {
-        id: 'unpaid',
-        title: '待付款',
-        dot: false,
-        count: 0,
-        current_page: 0,
-        total: 0,
-        if_no_more: false,
-        order_list: []
-      },
-      {
-        id: 'unconfirmed',
-        title: '待确认',
-        dot: false,
-        count: 0,
-        current_page: 0,
-        total: 0,
-        if_no_more: false,
-        order_list: []
-      },
-      {
-        id: 'unevaluated',
-        title: '待评价',
-        dot: false,
-        count: 0,
-        current_page: 0,
-        total: 0,
-        if_no_more: false,
-        order_list: []
-      },
-      {
-        id: 'completed',
-        title: '已完成',
-        dot: false,
-        count: 0,
-        current_page: 0,
-        total: 0,
-        if_no_more: false,
-        order_list: []
-      }
-    ]
+    tabs_current: 0
   },
 
   async onLoad() {
@@ -76,11 +23,66 @@ Page({
     })
     await this.getOrderList()
   },
+
   async onShow() {
-    app.reLaunch({
-      url: '/pages/orders/index'
+    await this.setData({
+      // tabs 列表数据
+      tabs_list: [
+        {
+          id: 'ordered',
+          title: '已预约',
+          dot: false,
+          count: 0,
+          current_page: 0,
+          total: 0,
+          if_no_more: false,
+          order_list: []
+        },
+        {
+          id: 'unpaid',
+          title: '待付款',
+          dot: false,
+          count: 0,
+          current_page: 0,
+          total: 0,
+          if_no_more: false,
+          order_list: []
+        },
+        {
+          id: 'unconfirmed',
+          title: '待确认',
+          dot: false,
+          count: 0,
+          current_page: 0,
+          total: 0,
+          if_no_more: false,
+          order_list: []
+        },
+        {
+          id: 'unevaluated',
+          title: '待评价',
+          dot: false,
+          count: 0,
+          current_page: 0,
+          total: 0,
+          if_no_more: false,
+          order_list: []
+        },
+        {
+          id: 'completed',
+          title: '已完成',
+          dot: false,
+          count: 0,
+          current_page: 0,
+          total: 0,
+          if_no_more: false,
+          order_list: []
+        }
+      ]
     })
+    await this.getOrderList()
   },
+
   // 下拉刷新
   async onPullDownRefresh() {
     let tabs_current = this.data.tabs_current

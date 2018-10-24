@@ -1,5 +1,5 @@
 <view class='container' style='background:{{bgColor}};' wx:for='{{list}}' wx:key='id'>
-  <fit-img more-style='img-style' width='60' src='{{item.avatar_url}}'></fit-img>
+  <fit-img more-style='img-style' width='60' ratio='{{1}}' src='{{item.avatar_url}}'></fit-img>
   <view class='content-bar'>
     <view class='info'>
       <view class='name-date' style='{{canReply?"flex-direction:column;":"align-items:center;"}}'>

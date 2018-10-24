@@ -36,7 +36,7 @@ Page({
         id: store_id
       }
     })
-    app.hideToast()
+    wx.hideNavigationBarLoading()
     if (res.success) {
       let data = res.data
       let img_list = []
@@ -59,7 +59,6 @@ Page({
     } else { // 出错处理debug
       console.log(res)
     }
-    wx.hideNavigationBarLoading()
   },
 
   // 收藏
