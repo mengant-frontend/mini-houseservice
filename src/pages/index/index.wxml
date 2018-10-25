@@ -16,7 +16,7 @@
 
 <banner-img list='{{banner_img}}'></banner-img>
 
-<i-notice-bar icon="systemprompt" loop>
+<i-notice-bar icon="systemprompt" loop speed='3000'>
   【红包攻略】
   <text wx:for='{{notice_content}}' wx:key='*this'>{{item}}</text>
 </i-notice-bar>

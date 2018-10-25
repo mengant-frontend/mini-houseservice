@@ -1,8 +1,8 @@
 <tabs-swiper-page tabs-list='{{tabs_list}}' bind:swiperChange='swiperChange'>
   <scroll-loading wx:for='{{tabs_list}}' wx:key='id' slot='{{item.id}}' if-no-more='{{item.if_no_more}}' if-loading='{{if_loading}}' bind:scrolltolower='getDemandList'>
     <view>
-      <navigator class='item' wx:for='{{item.demand_list}}' wx:key='demand_id' wx:for-item='t' url='/pages/command-detail/index?id={{t.demand_id}}&grade={{item.grade}}'>
-        <view class='title'>{{t.title}}</view>
+      <view class='item' wx:for='{{item.demand_list}}' wx:key='demand_id' wx:for-item='t'>
+        <navigator url='/pages/command-detail/index?id={{t.demand_id}}&grade={{item.grade}}' class='title'>{{t.title}}</navigator>
         <view class='info'>
           <view class='money-location'>
             <text>酬金：<text class='money'>{{t.money}} 元</text></text>
@@ -11,9 +11,9 @@
               <text>{{t.area}} {{t.distance}}km</text>
             </view>
           </view>
-          <view class='btn' wx:if='{{shop_id>0}}'>接单</view>
+          <view class='btn' wx:if='{{shop_id>0}}' bindtap='takeOrder' data-demand='{{t}}'>接单</view>
         </view>
-      </navigator>
+      </view>
     </view>
   </scroll-loading>
 </tabs-swiper-page>
@@ -23,3 +23,6 @@
     <text>+ 发布需求</text>
   </navigator>
 </view>
+
+
+<i-message id='message'></i-message>

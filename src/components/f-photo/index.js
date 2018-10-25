@@ -28,6 +28,10 @@ Component({
     delete_params: {
       type: Array,
       value: []
+    },
+    source: {
+      type: Array,
+      value: ['album', 'camera']
     }
   },
   data: {
@@ -80,7 +84,7 @@ Component({
       }
       let wx_res = await app.asyncApi(wx.chooseImage, {
         sizeType: ['original', 'compressed'],
-        sourceType: ['album', 'camera'],
+        sourceType: this.data.source,
         count: rest
       })
       let { success, tempFiles } = wx_res

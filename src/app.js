@@ -281,7 +281,7 @@ App({
       $Toast.hide()
     }
   },
-  sleep(time = 3000) {
+  sleep(time = 1500) {
     return new Promise(resolve => {
       setTimeout(() => {
         resolve()
@@ -371,5 +371,34 @@ App({
     order_detail_state: {
       price_change: true
     }
+  },
+  // 通用方法
+  /**
+   * 检测商铺保证是否充足
+   * 输入参数 money,
+   * 返回data: { success: Boolean, msg: String, need: Number }
+   */
+  async checkBail(money) {
+    let err_msg = 'server api /api/v1/bond/check 调用失败:'
+    let server_res = await this.get({
+      url: '/api/v1/bond/check',
+      data: {
+        money: money
+      }
+    })
+    let { success, msg, data } = server_res
+    let ret = {
+      success: success,
+      msg: msg,
+      nedd: 0
+    }
+    if (!success) {
+      console.error(err_msg, msg)
+      ret.need = -1
+    }
+    if (Number(data.need) > 0) {
+      ret.need = Number(data.need)
+    }
+    return ret
   }
 })

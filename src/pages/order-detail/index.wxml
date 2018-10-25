@@ -2,13 +2,37 @@
   <view class="card">
     <i-panel>
       <i-cell-group>
-        <i-cell i-class='{{!has_shop && order_detail.shop_name ? "shop-name" : ""}}' title='{{has_shop ? "" : order_detail.shop_name}}' bindtap='goToShop'>
-          <view slot='footer'>
-            <view class="keep">
-              <text>{{state_text || ''}}</text>
-            </view>
+        <!-- 非商家可以看到当前订单所服务的商家 -->
+        <view wx:if='{{!has_shop}}' class='header__order'>
+          <view class="shop_name ellipsis">
+            <text></text>
+            <i-icon type='enter'></i-icon>
           </view>
-        </i-cell>
+          <view class="state__order ">
+            <!-- 商家 -->
+            <block wx:if='{{has_shop}}'>
+              <block wx:if='{{is_service_order}}'>
+                <text wx:if='{{state === "1"}}'>待确认</text>
+                <text wx:if='{{state === "2"}}'>待服务</text>
+                <text wx:if='{{state === "3"}}'>待用户确认完工</text>
+                <text wx:if='{{state === "4"}}'>已完成</text>
+              </block>
+              <block wx:else>
+                <text wx:if='{{state === "1"}}'>待服务</text>
+                <text wx:if='{{state === "1"}}'>待用户确认完工</text>
+                <text wx:if='{{state === "1"}}'>已完成</text>
+              </block>
+            </block>
+            <!--  -->
+            <block wx:else>
+              <text wx:if='{{state === "1"}}'>{{is_service_order ? '已预约' : '待接单'}}</text>
+              <text wx:elif='{{state === "2"}}'>待付款</text>
+              <text wx:elif='{{state === "3"}}'>待确认</text>
+              <text wx:elif='{{state === "4"}}'>待评价</text>
+              <text wx:elif='{{state === "5"}}'>已完成</text>
+            </block>
+          </view>
+        </view>
         <i-cell>
           <view class="flex">
             <view class="flex-img">
@@ -90,72 +114,88 @@
       </i-cell-group>
     </i-panel>
   </view>
-
-  <view class="card" wx:if='{{has_shop && state === "1"}}'>
-    <i-panel>
-      <i-cell-group>
-        <i-cell title="是否已联系客户" only-tap-footer>
-          <i-switch slot='footer' value='{{had_connect}}' bind:change='updateHadConnect'>
-            <i-icon type="right" slot="open"></i-icon>
-            <i-icon type="close" slot="close"></i-icon>
-          </i-switch>
-        </i-cell>
-      </i-cell-group>
-    </i-panel>
-  </view>
-
-  <view class="card" wx:if='{{!has_shop && state === "2"}}'>
-    <i-panel>
-      <i-cell-group>
-        <i-cell title='商家是否已联系' only-tap-footer>
-          <i-switch slot='footer' value='{{had_connect}}' bind:change='updateHadConnect'>
-            <i-icon type="right" slot="open"></i-icon>
-            <i-icon type="close" slot="close"></i-icon>
-          </i-switch>
-        </i-cell>
-      </i-cell-group>
-    </i-panel>
-  </view>
-  <block wx:if='{{had_connect}}'>
-    <!-- 商家修改价格 -->
-    <view class="card" wx:if='{{has_shop}}'>
-      <i-panel>
-        <i-cell-group>
-          <i-cell title='是否修改价格' only-tap-footer>
-            <i-switch slot='footer' value='{{change_price}}' bind:change='updateChangePrice'>
-              <i-icon type="right" slot="open"></i-icon>
-              <i-icon type="close" slot="close"></i-icon>
-            </i-switch>
-          </i-cell>
-        </i-cell-group>
-      </i-panel>
-    </view>
-    <!-- 用户使用红包 -->
-    <view class="card" wx:elif='{{!has_shop}}'>
-      <i-panel>
-        <i-cell-group>
-          <i-cell title='红包' only-tap-footer>
-            <view slot='footer' bindtap='selectRedPacket'>
-              <text wx:if='{{red_packet}}'>-￥{{red_packet.money}}</text>
-              <text wx:else>{{red_packet_list.length || 0}}个可用</text>
-              <i-icon type='enter'></i-icon>
-            </view>
-          </i-cell>
-        </i-cell-group>
-      </i-panel>
-    </view>
+  <!-- 确认联系 -->
+  <block>
+    <!-- 商家确认联系 -->
+    <block wx:if='{{has_shop && state === "1" && order_detail.shop_confirm == 1}}'>
+      <view class="card" wx:if='{{!order_detail.shop_confirm}}'>
+        <i-panel>
+          <i-cell-group>
+            <i-cell title="是否已联系客户" only-tap-footer>
+              <i-switch slot='footer' value='{{had_connect}}' bind:change='updateHadConnect'>
+                <i-icon type="right" slot="open"></i-icon>
+                <i-icon type="close" slot="close"></i-icon>
+              </i-switch>
+            </i-cell>
+          </i-cell-group>
+        </i-panel>
+      </view>
+    </block>
+    <!-- 用户确认联系 -->
+    <block wx:elif='{{!has_shop && state === "2" && order_detail.user_confirm == 1}}'>
+      <view class="card" wx:if='{{!order_detail.shop_confirm}}'>
+        <i-panel>
+          <i-cell-group>
+            <i-cell title="商家是否已联系" only-tap-footer>
+              <i-switch slot='footer' value='{{had_connect}}' bind:change='updateHadConnect'>
+                <i-icon type="right" slot="open"></i-icon>
+                <i-icon type="close" slot="close"></i-icon>
+              </i-switch>
+            </i-cell>
+          </i-cell-group>
+        </i-panel>
+      </view>
+    </block>
   </block>
+  <view class="card" wx:if='{{had_connect}}'>
+    <i-panel>
+      <i-cell-group>
+        <!-- 商家修改价格 -->
+        <i-cell wx:if='{{has_shop}}' title='是否修改价格' only-tap-footer>
+          <i-switch slot='footer' value='{{change_price}}' bind:change='updateChangePrice'>
+            <i-icon type="right" slot="open"></i-icon>
+            <i-icon type="close" slot="close"></i-icon>
+          </i-switch>
+        </i-cell>
+        <!-- 用户使用红包 -->
+        <i-cell wx:else title='红包' only-tap-footer>
+          <view slot='footer' bindtap='selectRedPacket'>
+            <text wx:if='{{red_packet}}'>-￥{{red_packet.money}}</text>
+            <text wx:else>{{red_packet_list.length || 0}}个可用</text>
+            <i-icon type='enter'></i-icon>
+          </view>
+        </i-cell>
+      </i-cell-group>
+    </i-panel>
+  </view>
   <view class="fixed">
     <!-- 商家的操作 -->
     <block wx:if='{{has_shop}}'>
+      <!-- state: 1 -->
       <block wx:if='{{state === "1"}}'>
-        <!-- 选择已联系且修改价格 -->
-        <i-button type='primary' long wx:if='{{had_connect && change_price}}' bind:click='goToChangePrice'>修改价格</i-button>
-        <i-button type='primary' long wx:elif='had_connect' bind:click='shoperConfirm'>确认订单</i-button>
+        <!-- 服务订单 -->
+        <block wx:if='{{order_detail.shop_confirm == 1&& is_service_order}}'>
+          <i-button type='primary' long wx:if='{{had_connect && change_price}}' bind:click='goToChangePrice'>修改价格</i-button>
+          <i-button type='primary' long wx:elif='had_connect' bind:click='shoperConfirm'>确认订单</i-button>
+        </block>
+        <!-- 需求订单 -->
+        <block wx:else>
+          <!-- 商家已确认 -->
+          <block wx:if='{{order_detail.pay_id != 99999}}'>
+            <i-button type='primary' long bind:click='shoperGotoServe'>去服务</i-button>
+          </block>
+          <block wx:elif='{{order_detail.shop_confirm != 2}}'>
+            <i-button type='primary' long wx:if='{{had_connect && change_price}}' bind:click='goToChangePrice'>修改价格</i-button>
+            <i-button type='primary' long wx:elif='had_connect' bind:click='shoperConfirm'>确认订单</i-button>
+          </block>
+        </block>
       </block>
 
       <block wx:elif='{{state === "2"}}'>
-        <i-button type='primary' long bind:click='shoperGotoServe'>去服务</i-button>
+        <!-- 服务订单，state: 待服务 -->
+        <block wx:if='{{is_service_order}}'>
+          <i-button type='primary' long bind:click='shoperGotoServe'>去服务</i-button>
+        </block>
       </block>
     </block>
     <!-- 用户的操作 -->

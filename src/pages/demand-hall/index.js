@@ -124,5 +124,49 @@ Page({
         'request_lock.get_demand_list': true
       })
     }
+  },
+  // 商家接单
+  async takeOrder(e) {
+    let { currentTarget: { dataset: { demand } } } = e
+    if (!demand.id) {
+      app._error('缺少需求id')
+      return
+    }
+    let check = await app.checkBail(demand.money)
+    if (!check.success) {
+      if (check.need === -1) {
+        app._error(check.msg)
+      } else {
+        let wx_res = await app.asyncApi(wx.showModal, {
+          title: '保证金充值',
+          content: '保证金不足，是否前往充值?'
+        })
+        if (wx_res.confirm) {
+          wx.navigateTo({
+            url: `/pages/rest-money/recharge?type=2`
+          })
+        }
+      }
+      return
+    }
+    await app.asyncApi(wx.showLoading, {
+      title: '接单中...',
+      mask: true
+    })
+    let server_res = await app.post({
+      url: '/api/v1/order/taking',
+      data: {
+        id: demand.id
+      }
+    })
+    await app.asyncApi(wx.hideLoading)
+    let { success, msg, data } = server_res
+    if (!success) {
+      app._error(msg)
+      return
+    }
+    wx.navigateTo({
+      url: `/pages/order-detail/index?id=${data.id}&type=2`
+    })
   }
 })

@@ -1,6 +1,5 @@
 import regeneratorRuntime from '../../lib/runtime'
 import moment from '../../lib/moment'
-import { order_states } from '../../common/constant'
 const app = getApp()
 Page({
   data: {
@@ -12,8 +11,7 @@ Page({
     type: '',
     // 订单状态
     state: '',
-    // 订单状态的中文描述
-    state_text: '',
+    test: '',
     // 订单数据
     order_detail: {},
     is_service_order: false,
@@ -57,12 +55,6 @@ Page({
     if (shop_id > 0) {
       has_shop = true
     }
-    let state_text
-    if (has_shop) {
-      state_text = order_states[type].merchant[state]
-    } else {
-      state_text = order_states[type].common[state]
-    }
     let is_service_order = false
     if (type === '1') {
       is_service_order = true
@@ -76,7 +68,6 @@ Page({
       id,
       type,
       state,
-      state_text,
       is_service_order
     })
   },
@@ -215,11 +206,17 @@ Page({
     await app.asyncApi(wx.showToast, {
       title: '成功'
     })
-    let { state, id, type } = this.data
+    let { state, id, type, order_detail } = this.data
+    if (this.data.is_service_order) {
+      state = state + 1
+    } else {
+      order_detail.shop_confirm = 2
+    }
     this.init({
-      state: state + 1,
+      state: state,
       id: id,
-      type: type
+      type: type,
+      order_detail
     })
   },
   // 检查用户是否已经付款

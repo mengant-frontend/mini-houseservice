@@ -240,7 +240,7 @@ Page({
     }
     if (check_status.success === false) {
       let wx_res = await app.asyncApi(wx.showModal, {
-        title: '温馨提示',
+        title: '保证金充值',
         content: '您的店铺保证金不足,无法发布服务,是否前往充值?',
         confirmText: "确认",
         cancelText: "取消",
@@ -253,7 +253,7 @@ Page({
       return
     }
     await app.asyncApi(wx.showLoading, {
-      title: 'loading'
+      title: 'loading...'
     })
     let server_res = await app.post({
       url: '/api/v1/shop/service/save',
@@ -268,7 +268,7 @@ Page({
     await app.asyncApi(wx.showToast, {
       title: '成功'
     })
-    await app.slepp()
+    await app.sleep()
     wx.redirectTo({
       url: '/pages/service-my/index'
     })

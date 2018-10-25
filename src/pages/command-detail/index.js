@@ -25,16 +25,14 @@ Page({
       app._error('缺少id参数')
       return
     }
-    await app.asyncApi(wx.showLoading, {
-      title: 'loading...'
-    })
+    await app.asyncApi(wx.showNavigationBarLoading)
     let server_res = await app.get({
       url: '/api/v1/demand',
       data: {
         id: id
       }
     })
-    await app.asyncApi(wx.hideLoading)
+    await app.asyncApi(wx.hideNavigationBarLoading)
     let { success, msg, data } = server_res
     if (!success) {
       app._error(msg)
@@ -50,14 +48,20 @@ Page({
       detail: data
     })
   },
+  // 商家接单
   async getIt() {
     let id = this.data.id
+    await app.asyncApi(wx.showLoading, {
+      title: '接单中...',
+      mask: true
+    })
     let res = await app.post({
       url: '/api/v1/order/taking',
       data: {
         id: id
       }
     })
+    await app.asyncApi(wx.hideLoading)
     let { success, msg } = res
     if (!success) {
       app._error(msg)
