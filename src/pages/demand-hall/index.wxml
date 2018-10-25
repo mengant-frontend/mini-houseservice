@@ -11,7 +11,7 @@
               <text>{{t.area}} {{t.distance}}km</text>
             </view>
           </view>
-          <view class='btn' wx:if='{{item.shop_id>0}}'>接单</view>
+          <view class='btn' wx:if='{{shop_id>0}}'>接单</view>
         </view>
       </navigator>
     </view>
@@ -23,5 +23,3 @@
     <text>+ 发布需求</text>
   </navigator>
 </view>
-
-<i-toast id='toast' />

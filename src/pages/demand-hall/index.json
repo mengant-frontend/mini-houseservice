@@ -5,7 +5,6 @@
   "usingComponents": {
     "tabs-swiper-page": "/components/tabs-swiper-page/index",
     "scroll-loading": "/components/scroll-loading/index",
-    "i-icon": "/iview/icon/index",
-    "i-toast": "/iview/toast/index"
+    "i-icon": "/iview/icon/index"
   }
 }

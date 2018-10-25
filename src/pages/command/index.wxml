@@ -30,5 +30,3 @@
     <text>+ 发布需求</text>
   </navigator>
 </view>
-
-<i-toast id='toast' />

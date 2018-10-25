@@ -16,14 +16,12 @@ App({
   // 登录
   async login() {
     await this.asyncApi(wx.showLoading, {
-      title: '登录中',
-      // 显示透明蒙层，防止触摸穿透
-      mask: true
+      title: '登录中'
     })
     let wx_res = await this.asyncApi(wx.login)
-    // wx.login 调用失败
-    if (!wx_res.success) {
-      await this.reLaunchApp('wx_api')
+    if (!wx_res.success) { // 出错处理debug
+      console.log(wx_res)
+      return
     }
     let server_res = await this.get({
       // 不用处理 token 失效的问题
@@ -35,9 +33,9 @@ App({
         code: wx_res.code
       }
     })
-    // server token 请求失败
-    if (!server_res.success) {
-      await this.reLaunchApp('server_api')
+    if (!server_res.success) { // 出错处理debug
+      console.log(server_res)
+      return
     }
     let { data } = server_res
     this.global_data.token = data.token
@@ -53,9 +51,9 @@ App({
   async getUserInfo(user_type) {
     if (wx.canIUse('button.open-type.getUserInfo')) {
       let wx_res = await this.asyncApi(wx.getSetting)
-      // wx.getSetting 调用失败
-      if (!wx_res.success) {
-        await this.reLaunchApp('wx_api')
+      if (!wx_res.success) { // 出错处理debug
+        console.log(wx_res)
+        return
       }
       if (!wx_res.authSetting['scope.userInfo']) {
         // 用户没有授权获取用户信息时跳转到授权页
@@ -69,9 +67,9 @@ App({
     let wx_userinfo_res = await this.asyncApi(wx.getUserInfo, {
       withCredentials: true
     })
-    // wx.getUserInfo 调用失败
-    if (!wx_userinfo_res.success) {
-      await this.reLaunchApp('wx_api')
+    if (!wx_userinfo_res.success) { // 出错处理debug
+      console.log(wx_userinfo_res)
+      return
     }
     let { userInfo, encryptedData, iv } = wx_userinfo_res
     // 数据库未缓存用户信息
@@ -80,9 +78,9 @@ App({
         url: '/api/v1/user/info',
         data: { encryptedData, iv }
       })
-      // server userinfo 请求失败
-      if (!server_res.success) {
-        await this.reLaunchApp('server_api')
+      if (!server_res.success) { // 出错处理debug
+        console.log(server_res)
+        return
       }
     }
     this.global_data.user_info = userInfo
@@ -354,68 +352,15 @@ App({
           this.global_data.location = res_location.data
           location = res_location.data
         } else { // 出错处理debug
-          console.log(res_location.msg)
+          console.log(res_location)
           success = false
         }
       } else { // 出错处理debug
-        console.log(wx_res.msg)
+        console.log(wx_res)
         success = false
       }
     }
     return { success, location }
-  },
-  // 当调用 wx.api 或者请求服务器出错无法进行业务时，提示重启小程序并跳转欢迎页
-  async reLaunchApp(type_str) {
-    let title = ''
-    let content = ''
-    switch (type_str) {
-      case 'wx_api':
-        title = '小程序出错'
-        content = '糟糕，小程序发生了意外情况，您可以点击确定重启小程序'
-        break;
-      case 'server_api':
-        title = '服务器出错'
-        content = '糟糕，服务器发生了意外情况，您可以点击确定重启小程序'
-        break;
-    }
-    await this.asyncApi(wx.hideLoading)
-    let wx_showModal_res = await this.asyncApi(wx.showModal, {
-      title,
-      content,
-      showCancel: false
-    })
-    if (wx_showModal_res.success) {
-      if (wx_showModal_res.confirm) {
-        await this.asyncApi(wx.reLaunch, {
-          url: '/pages/welcome/index'
-        })
-      }
-    }
-  },
-  //debug:上传测试图片
-  async uploadTestImg() {
-    let img = [
-      '/images/avatar.jpg',
-      '/images/bg_account.jpg'
-    ]
-    let FileSystemManager = wx.getFileSystemManager()
-    for (let i = 0; i < img.length; i++) {
-      let file = await this.asyncApi(FileSystemManager.readFile, {
-        filePath: img[i],
-        encoding: 'base64'
-      })
-      if (file.success) {
-        let res = await this.post({
-          url: '/api/v1/image/save',
-          data: {
-            img: file.data
-          }
-        })
-        if (res.success) {
-          console.log(res.data.id)
-        }
-      }
-    }
   },
   global_data: {
     system_info: {},

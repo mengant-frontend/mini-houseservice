@@ -38,11 +38,7 @@ Page({
     wx.createSelectorQuery().select('#container').boundingClientRect(rect => {
       container_height = rect.height - 45
     }).exec()
-    app.loadingToast({
-      content: '加载中',
-      duration: 0,
-      mask: false
-    })
+    wx.showNavigationBarLoading()
     // 获取圈子内容
     let res = await app.get({
       url: this.data.api_url.get_community,
@@ -50,11 +46,8 @@ Page({
         id: id
       }
     })
-    app.hideToast()
+    wx.hideNavigationBarLoading()
     if (res.success) {
-      app.successToast({
-        content: '加载成功'
-      })
       let data = res.data
       this.setData({
         id: Number(id),
@@ -72,11 +65,7 @@ Page({
       wx.setStorageSync('community_type_id', data.category.id)
       wx.setStorageSync('community_id', id)
     } else { // 出错处理debug
-      console.log(res.msg)
-      app.errorToast({
-        content: '加载失败~~',
-        duration: 0
-      })
+      console.log(res)
     }
   },
 
@@ -129,11 +118,7 @@ Page({
           if_no_more
         })
       } else { // 出错处理debug
-        console.log(res.msg)
-        app.errorToast({
-          content: '加载失败~~',
-          duration: 0
-        })
+        console.log(res)
       }
       this.setData({
         if_loading: false,
@@ -162,11 +147,7 @@ Page({
               return t
             })
           } else { // 出错处理debug
-            console.log(res.msg)
-            app.errorToast({
-              content: '点赞失败~~',
-              duration: 0
-            })
+            console.log(res)
           }
           this.setData({
             comment_list,
@@ -217,11 +198,7 @@ Page({
     let comment_list = this.data.comment_list
     let user_info = app.global_data.user_info
     if (enter_comment && this.data.request_lock.send) {
-      app.loadingToast({
-        content: '评论提交中',
-        duration: 0,
-        mask: false
-      })
+      wx.showNavigationBarLoading()
       this.setData({ 'request_lock.send': false })
       let res = await app.post({
         url: this.data.api_url.send,
@@ -231,11 +208,8 @@ Page({
           c_id: this.data.id
         }
       })
-      app.hideToast()
+      wx.hideNavigationBarLoading()
       if (res.success) {
-        app.successToast({
-          content: '评论成功'
-        })
         let item = {
           id: res.data.id,
           avatar_url: user_info.avatarUrl,
@@ -271,11 +245,7 @@ Page({
           parent_content: ''
         })
       } else { // 出错处理debug
-        console.log(res.msg)
-        app.errorToast({
-          content: '评论失败~~',
-          duration: 0
-        })
+        console.log(res)
       }
       this.setData({ 'request_lock.send': true })
     }

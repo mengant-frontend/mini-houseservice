@@ -51,5 +51,3 @@
   </scroll-loading>
   <view class='btn-confirm' bindtap='confirmOrder'>{{order_list.length===0?'返回':'确定订单'}}</view>
 </view>
-
-<i-toast id='toast' />

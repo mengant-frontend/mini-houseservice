@@ -46,11 +46,7 @@ Page({
   // 获取服务列表，统一展示10条
   async getServiceList() {
     let tabs_current = this.data.tabs_current
-    app.loadingToast({
-      content: '加载中',
-      duration: 0,
-      mask: false
-    })
+    wx.showNavigationBarLoading()
     let res = await app.get({
       url: this.data.api_url.get_service_list,
       data: {
@@ -61,46 +57,32 @@ Page({
         type: tabs_current + 1
       }
     })
-    app.hideToast()
+    wx.hideNavigationBarLoading()
     if (res.success) {
       let data = res.data
-      if (data.total > 0) {
-        app.successToast({
-          content: '加载成功'
+      let list = []
+      data.data.forEach(item => {
+        list.push({
+          id: item.id,
+          img_url: item.cover,
+          title: item.name,
+          sales: item.sell_num
         })
-        let list = []
-        data.data.forEach(item => {
-          list.push({
-            id: item.id,
-            img_url: item.cover,
-            title: item.name,
-            sales: item.sell_num
+      })
+      switch (tabs_current) {
+        case 0:
+          this.setData({
+            'tabs_list[0].list': list
           })
-        })
-        switch (tabs_current) {
-          case 0:
-            this.setData({
-              'tabs_list[0].list': list
-            })
-            break;
-          case 1:
-            this.setData({
-              'tabs_list[1].list': list
-            })
-            break;
-        }
-      } else {
-        app.warnToast({
-          content: '暂时没有数据哦~~',
-          duration: 0
-        })
+          break;
+        case 1:
+          this.setData({
+            'tabs_list[1].list': list
+          })
+          break;
       }
     } else { // 出错处理debug
-      console.log(res.msg)
-      app.errorToast({
-        content: '加载失败~~',
-        duration: 0
-      })
+      console.log(res)
     }
   }
 })

@@ -41,6 +41,9 @@ Page({
   },
 
   async onLoad() {
+    this.setData({
+      shop_id: app.global_data.shop_id
+    })
     this.getDemandList()
   },
 
@@ -111,15 +114,10 @@ Page({
           item.if_no_more = true
         }
         item.current_page = data.current_page
-        item.shop_id = app.global_data.shop_id
         tabs_list[tabs_current] = item
         this.setData({ tabs_list })
       } else { // 出错处理debug
-        console.log(res.msg)
-        app.errorToast({
-          content: '加载失败~~',
-          duration: 0
-        })
+        console.log(res)
       }
       this.setData({
         if_loading: false,

@@ -31,11 +31,7 @@ Page({
       success: async res => {
         let src = res.tempImagePath
         this.setData({ src })
-        app.loadingToast({
-          content: '识别中',
-          duration: 0,
-          mask: false
-        })
+        wx.showNavigationBarLoading()
         let task_res = await app._uploadFile({
           url: this.data.api_url.detect,
           filePath: src,
@@ -45,10 +41,9 @@ Page({
           }
         })
         if (task_res.success) {
-          app.hideToast()
+          wx.hideNavigationBarLoading()
           let data = task_res.data
-          if (String(data.error_code)
-            .indexOf('99') === 0 || !data.shop_info) {
+          if (String(data.error_code).indexOf('99') === 0 || !data.shop_info) {
             this.setData({
               if_warn: true,
               if_detect: false,
@@ -81,6 +76,7 @@ Page({
     let index = this.data.choose_index
     if (order_list.length > 0 && this.data.request_lock.confirm_order) {
       // 提交
+      wx.showNavigationBarLoading()
       this.setData({
         'request_lock.confirm_order': false
       })
@@ -91,14 +87,8 @@ Page({
           type: order_list[index].type
         }
       })
-      if (res.success) {
-        app.successToast({
-          content: '提交成功'
-        })
-      } else {
-        app.errorToast({
-          content: '提交失败'
-        })
+      wx.hideNavigationBarLoading()
+      if (!res.success) { // 出错处理debug
         this.setData({
           'request_lock.confirm_order': true
         })

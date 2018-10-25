@@ -69,11 +69,7 @@ Page({
           if_no_more
         })
       } else { // 出错处理debug
-        console.log(res.msg)
-        app.errorToast({
-          content: '加载失败~~',
-          duration: 0
-        })
+        console.log(res)
       }
       this.setData({
         if_loading: false,

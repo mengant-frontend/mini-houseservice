@@ -12,15 +12,11 @@ Page({
       get_strategy: '/api/v1/red/strategy',
       // 获取推广的服务列表
       get_service_list: '/api/v1/service/index'
-    },
-    // 小区管理员标识
-    village: 0
+    }
   },
 
   async onLoad() {
-    await app.asyncApi(wx.showLoading, {
-      title: 'loading...'
-    })
+    wx.showNavigationBarLoading()
     // 获取地理位置
     let res = await app.getLocation()
     if (res.success) {
@@ -36,47 +32,40 @@ Page({
     }
     // 获取轮播图
     app.get({
-        url: this.data.api_url.get_banner_img,
-        data: {
-          type: 1
-        }
-      })
-      .then(res => {
-        if (res.success) {
-          let data = res.data
-          let banner_img = []
-          if (data.length > 0) {
-            data.forEach(item => {
-              banner_img.push(item.url)
-            })
-          }
-          this.setData({ banner_img })
-        } else { // 出错处理debug
-          app._error(res.msg)
-        }
-      })
+      url: this.data.api_url.get_banner_img,
+      data: {
+        type: 1
+      }
+    }).then(res => {
+      if (res.success) {
+        let data = res.data
+        let banner_img = []
+        data.forEach(item => {
+          banner_img.push(item.url)
+        })
+        this.setData({ banner_img })
+      } else { // 出错处理debug
+        console.log(res)
+      }
+    })
     // 获取红包攻略
     app.get({
-        url: this.data.api_url.get_strategy
-      })
-      .then(res => {
-        if (res.success) {
-          let data = res.data
-          let notice_content = []
-          if (data.length > 0) {
-            data.forEach(item => {
-              notice_content.push(item.des)
-            })
-          }
-          this.setData({ notice_content })
-        } else { // 出错处理debug
-          console.log(res.msg)
-          app._error(res.msg)
-        }
-      })
+      url: this.data.api_url.get_strategy
+    }).then(res => {
+      if (res.success) {
+        let data = res.data
+        let notice_content = []
+        data.forEach(item => {
+          notice_content.push(item.des)
+        })
+        this.setData({ notice_content })
+      } else { // 出错处理debug
+        console.log(res)
+      }
+    })
     // 获取推广的服务列表
     await this.getServiceList()
-    wx.hideLoading()
+    wx.hideNavigationBarLoading()
   },
 
   onShow() {
@@ -88,58 +77,50 @@ Page({
   // 获取推广的服务列表
   async getServiceList() {
     app.get({
-        url: this.data.api_url.get_service_list,
-        data: {
-          area: this.data.location[2]
-        }
-      })
-      .then(res => {
-        if (res.success) {
-          let data = res.data
-          let house_service_list = []
-          let maintain_service_list = []
-          if (data.length > 0) {
-            data.forEach(item => {
-              let list_item = {
-                id: item.s_id,
-                img_url: item.cover,
-                title: item.name,
-                sales: item.sell_num,
-                money: item.sell_money
-              }
-              switch (item.type) {
-                case 1:
-                  house_service_list.push(list_item)
-                  break;
-                case 2:
-                  maintain_service_list.push(list_item)
-                  break;
-              }
-            })
-          } else {
-
+      url: this.data.api_url.get_service_list,
+      data: {
+        area: this.data.location[2]
+      }
+    }).then(res => {
+      if (res.success) {
+        let data = res.data
+        let house_service_list = []
+        let maintain_service_list = []
+        data.forEach(item => {
+          let list_item = {
+            id: item.s_id,
+            img_url: item.cover,
+            title: item.name,
+            sales: item.sell_num,
+            money: item.sell_money
           }
-          this.setData({
-            house_service_list,
-            maintain_service_list
-          })
-        } else { // 出错处理debug
-          console.log(res.msg)
-          app._error(res.msg)
-        }
-      })
+          switch (item.type) {
+            case 1:
+              house_service_list.push(list_item)
+              break;
+            case 2:
+              maintain_service_list.push(list_item)
+              break;
+          }
+        })
+        this.setData({
+          house_service_list,
+          maintain_service_list
+        })
+      } else { // 出错处理debug
+        console.log(res)
+      }
+    })
   },
 
   // 地区选择，对应更新在首页推广的家政、维修服务列表
   async locationChoose({ detail }) {
     let location = detail.value
     app.global_data.location = location
-    await app.asyncApi(wx.showLoading, {
-      title: 'loading...'
-    })
+    wx.showNavigationBarLoading()
     await this.setData({ location })
     // 重新获取推广的服务列表
     await this.getServiceList()
-    app.asyncApi(wx.hideLoading)
+    wx.hideNavigationBarLoading()
   }
 })

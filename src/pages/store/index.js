@@ -28,11 +28,7 @@ Page({
 
   async onLoad(options) {
     let store_id = options.id
-    app.loadingToast({
-      content: '加载中',
-      duration: 0,
-      mask: false
-    })
+    wx.showNavigationBarLoading()
     // 获取店铺详情
     let res = await app.get({
       url: this.data.api_url.get_store_detail,
@@ -40,11 +36,8 @@ Page({
         id: store_id
       }
     })
-    app.hideToast()
+    wx.hideNavigationBarLoading()
     if (res.success) {
-      app.successToast({
-        content: '加载成功'
-      })
       let data = res.data
       let img_list = []
       data.info.imgs.forEach(item => {
@@ -64,11 +57,7 @@ Page({
         this.getServiceList()
       })
     } else { // 出错处理debug
-      console.log(res.msg)
-      app.errorToast({
-        content: '加载失败~~',
-        duration: 0
-      })
+      console.log(res)
     }
   },
 
@@ -77,8 +66,8 @@ Page({
     if (!this.data.request_lock.collect) {
       return
     }
+    wx.showNavigationBarLoading()
     let if_collected = !this.data.if_collected
-    let content = ''
     let url = ''
     let data = {
       id: this.data.store_id,
@@ -86,10 +75,8 @@ Page({
     }
     if (if_collected) {
       url = this.data.api_url.collect
-      content = '收藏成功'
     } else {
       url = this.data.api_url.collect_cancel
-      content = '取消收藏成功'
     }
     this.setData({
       'request_lock.collect': false
@@ -97,14 +84,10 @@ Page({
     let res = await app.post({ url, data })
     if (res.success && res.data.errorCode === 0) {
       this.setData({ if_collected })
-      app.successToast({ content })
     } else { // 出错处理debug
-      console.log(res.msg)
-      app.errorToast({
-        content: '操作失败~~',
-        duration: 0
-      })
+      console.log(res)
     }
+    wx.hideNavigationBarLoading()
     this.setData({
       'request_lock.collect': true
     })
@@ -159,11 +142,7 @@ Page({
           if_no_more
         })
       } else { // 出错处理debug
-        console.log(res.msg)
-        app.errorToast({
-          content: '加载失败~~',
-          duration: 0
-        })
+        console.log(res)
       }
       this.setData({
         if_loading: false,

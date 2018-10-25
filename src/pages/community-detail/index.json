@@ -4,7 +4,6 @@
   "usingComponents": {
     "scroll-loading": "/components/scroll-loading/index",
     "fit-img": "/components/fit-img/index",
-    "comment-list": "/components/comment-list/index",
-    "i-toast": "/iview/toast/index"
+    "comment-list": "/components/comment-list/index"
   }
 }

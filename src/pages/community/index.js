@@ -66,11 +66,7 @@ Page({
 
   // 获取圈子类别列表
   async getCommunityType() {
-    app.loadingToast({
-      content: '加载中',
-      duration: 0,
-      mask: false
-    })
+    wx.showNavigationBarLoading()
     // 获取圈子类别列表
     let res = await app.get({
       url: this.data.api_url.get_community_type,
@@ -80,45 +76,31 @@ Page({
         area: this.data.location[2]
       }
     })
-    app.hideToast()
+    wx.hideNavigationBarLoading()
     if (res.success) {
-      app.successToast({
-        content: '加载成功'
-      })
       let data = res.data
       let tabs_list = []
-      if (data.length > 0) {
-        data.forEach(item => {
-          tabs_list.push({
-            id: item.id,
-            title: item.name,
-            dot: false,
-            count: 0,
-            page: 0,
-            total: 0,
-            if_no_more: false,
-            list: []
-          })
+      data.forEach(item => {
+        tabs_list.push({
+          id: item.id,
+          title: item.name,
+          dot: false,
+          count: 0,
+          page: 0,
+          total: 0,
+          if_no_more: false,
+          list: []
         })
-        this.setData({
-          tabs_current: 0,
-          tabs_list
-        }, () => {
-          // 默认让 tabs_current 为 0 以获取第一项圈子类别列表
-          this.getCommunityList()
-        })
-      } else {
-        app.warnToast({
-          content: '暂时没有数据哦~~',
-          duration: 0
-        })
-      }
-    } else { // 出错处理debug
-      console.log(res.msg)
-      app.errorToast({
-        content: '加载失败~~',
-        duration: 0
       })
+      this.setData({
+        tabs_current: 0,
+        tabs_list
+      }, () => {
+        // 默认让 tabs_current 为 0 以获取第一项圈子类别列表
+        this.getCommunityList()
+      })
+    } else { // 出错处理debug
+      console.log(res)
     }
   },
 
@@ -167,11 +149,7 @@ Page({
         tabs_list[tabs_current] = item
         this.setData({ tabs_list })
       } else { // 出错处理debug
-        console.log(res.msg)
-        app.errorToast({
-          content: '加载失败~~',
-          duration: 0
-        })
+        console.log(res)
       }
       this.setData({
         if_loading: false,

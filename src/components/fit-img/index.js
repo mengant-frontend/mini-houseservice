@@ -8,6 +8,11 @@ Component({
     // 需要显示的宽高，单位rpx，只需定义其一
     width: Number,
     height: Number,
+    // 显示比例
+    ratio: {
+      type: Number,
+      value: 16/9
+    },
     // 图片地址
     src: String,
     // 是否能预览，默认能
@@ -31,8 +36,7 @@ Component({
     },
     // 按原图比例计算图片的显示大小
     imgLoad({ detail }) {
-      // 暂时以16：9的比例
-      let ratio = 16/9 //detail.width / detail.height
+      let ratio = this.data.ratio //detail.width / detail.height
       let width = Number(this.data.width)
       let height = Number(this.data.height)
       let view_width = 0

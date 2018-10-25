@@ -5,7 +5,6 @@
   "usingComponents": {
     "tabs-swiper-page": "/components/tabs-swiper-page/index",
     "scroll-loading": "/components/scroll-loading/index",
-    "fit-img": "/components/fit-img/index",
-    "i-toast": "/iview/toast/index"
+    "fit-img": "/components/fit-img/index"
   }
 }
