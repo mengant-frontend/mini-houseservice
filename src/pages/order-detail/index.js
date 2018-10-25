@@ -52,10 +52,6 @@ Page({
     wx.stopPullDownRefresh()
   },
   init({ id, type, state }) {
-
-    console.log("id", id)
-    console.log("type", type)
-    console.log("state", state)
     let shop_id = app.global_data.shop_id
     let has_shop = false
     if (shop_id > 0) {

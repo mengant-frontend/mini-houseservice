@@ -133,7 +133,6 @@ Page({
       case 'name':
       case 'des':
       case 'price':
-
         form_data[form_key] = value
         break
       case 'unit':
@@ -200,6 +199,7 @@ Page({
     let form_data = app._deepClone(this.data.form_data)
     let local_location = app._deepClone(this.data.local_location)
     let is_valid = true
+    console.log(form_data)
     for (let key in form_data) {
       if (key === 'imgs' || key === 'cover') {
 

@@ -63,3 +63,6 @@ typings/
 dist/
 yarn-error.log
 yarn.lock
+package-lock.json
+project.config.json
+test.html
