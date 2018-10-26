@@ -75,7 +75,7 @@ Page({
       url: '/pages/shop-orders/index'
     })
   },
-  cancelOrder() {
+  async cancelOrder() {
     let wx_res = await app.asyncApi(wx.showModal, {
       title: '温馨提示',
       content: '请确认取消订单操作'
