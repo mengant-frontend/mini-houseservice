@@ -1,26 +1,31 @@
 <tabs-swiper-page tabs-list='{{tabs_list}}' bind:swiperChange='swiperChange'>
   <scroll-loading bg-color='#EFEFF4' wx:for='{{tabs_list}}' wx:key='id' slot='{{item.id}}' if-no-more='{{item.if_no_more}}' if-loading='{{if_loading}}' bind:scrolltolower='getOrderList'>
     <view>
-      <navigator class='item' wx:for='{{item.order_list}}' wx:key='order_id' wx:for-item='t' url='/pages/order-detail/index?type=2&state={{t.state}}&id={{t.order_id}}'>
-        <view class='title'>{{t.title}}</view>
+      <view class='item' wx:for='{{item.order_list}}' wx:key='order_id' wx:for-item='t'>
+        <navigator url='{{item.id === "ordered" ? "/pages/command-detail/index?id=" + t.order_id : "/pages/order-detail/index?type=2&state=" + t.state + "&id=" + t.order_id}}' class='title'>{{t.title}}</navigator>
         <view class='info'>
           <view class='money-date'>
             <view class='money'>
               价格：
-              <text class='origin-money'>{{t.origin_money}} 元 </text>
-              <text class='update-money' wx:if='{{t.update_money}}'> {{t.update_money}} 元</text>
+              <block wx:if='{{t.update_money}}'>
+                <text class='origin-money'>{{t.origin_money}} 元 </text>
+                <text class='update-money' wx:if='{{t.update_money}}'> {{t.update_money}} 元</text>
+              </block>
+              <block wx:else>
+                <text class='update-money'> {{t.origin_money}} 元</text>
+              </block>
             </view>
             <text>服务时间：{{t.date}}</text>
           </view>
           <view class='btn-bar'>
-            <view class='cancel' wx:if='{{item.id === "ordered"}}'>取消订单</view>
+            <view class='cancel' wx:if='{{item.id === "ordered"}}' data-id='{{t.order_id}}' bindtap='cancelDemand'>取消订单</view>
             <view class='pay' wx:if='{{item.id === "unpaid"}}'>去付款</view>
             <view class='consult' wx:if='{{item.id === "unconfirmed"}}'>协商</view>
             <view class='confirm' wx:if='{{item.id === "unconfirmed"}}'>完工</view>
             <view class='evaluate' wx:if='{{item.id === "unevaluated"}}'>去评价</view>
           </view>
         </view>
-      </navigator>
+      </view>
     </view>
   </scroll-loading>
 </tabs-swiper-page>
@@ -30,3 +35,5 @@
     <text>+ 发布需求</text>
   </navigator>
 </view>
+
+<i-message id='message'></i-message>

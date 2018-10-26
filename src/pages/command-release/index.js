@@ -32,6 +32,9 @@ Page({
     if (form_key === 'time_begin') {
       other.time_begin = value
     }
+    if (form_key === 'type') {
+      other.command_type = command_types[value].label
+    }
     this.setData({
       ...other,
       form_data: form_data

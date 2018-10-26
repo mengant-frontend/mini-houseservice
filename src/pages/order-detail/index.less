@@ -96,6 +96,8 @@ button {
   display: flex;
   flex-direction: row;
   padding: 20px @blank 10px;
+  box-sizing: border-box;
+  background: @background_color;
 }
 
 .shop_name {
@@ -103,6 +105,7 @@ button {
   flex-shrink: 1;
   color: @title_color;
   font-size: @title_size;
+  padding-right: @gutter_small;
 }
 
 .state__order {

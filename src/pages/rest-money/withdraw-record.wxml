@@ -4,7 +4,7 @@
       <view class="panel-title">
         <text>提现金额</text>
         <text class='money'>￥{{item.money || 0}}</text>
-        <view class="state {{item.state === 2 ? 'fail' : item.pay_id === 99999 ? 'process' : 'success'}}">
+        <view class="state {{item.state === 2 ? 'fail' : (!item.pay_id || item.pay_id == 99999) ? 'process' : 'success'}}">
           {{item.state_text}}
         </view>
       </view>

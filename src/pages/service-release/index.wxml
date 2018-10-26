@@ -13,8 +13,8 @@
         <input slot='footer' maxlength="10" placeholder="请输入服务名称" bindchange='bindFormChange' data-form_key='name' placeholder='限10个汉字'></input>
       </i-cell>
       <i-cell title='服务区域'>
-        <picker slot='footer' mode='region' bindchange='bindFormChange' value='{{local_location}}' data-form_key='area'>
-          <text>{{local_location[0] ? local_location[0] + local_location[1] + local_location[2] : '请选择服务区域'}}</text>
+        <picker slot='footer' mode='region' bindchange='bindFormChange' value='{{[form_data.province, form_data.city, form_data.area]}}' data-form_key='area'>
+          <text>{{form_data.province ? form_data.province + form_data.city + form_data.area : '请选择服务区域'}}</text>
           <i-icon type='enter'></i-icon>
         </picker>
       </i-cell>

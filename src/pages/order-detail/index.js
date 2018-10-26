@@ -35,6 +35,7 @@ Page({
     this.getRedPacketList()
   },
   onShow() {
+    console.log(this.data.order_detail)
     let red_packet = app.global_data.red_packet
     let order_detail_state = app.global_data.order_detail_state
     let change_price = this.data.change_price
@@ -50,6 +51,9 @@ Page({
     wx.stopPullDownRefresh()
   },
   init({ id, type, state }) {
+    console.log('id', id)
+    console.log('type', type)
+    console.log('state', state)
     let shop_id = app.global_data.shop_id
     let has_shop = false
     if (shop_id > 0) {
@@ -95,6 +99,8 @@ Page({
       app._error(msg)
       return
     }
+    console.log('order_detail', data)
+
     this.setData({
       order_detail: data
     })
@@ -174,6 +180,15 @@ Page({
       app._error(msg)
       return false
     }
+    let order_detail = app._deepClone(this.data.order_detail)
+    if (this.data.has_shop) {
+      order_detail.phone_user = 1
+    } else {
+      order_detail.phone_shop = 1
+    }
+    this.setData({
+      order_detail: order_detail
+    })
     return true
   },
   // 确认订单接口
@@ -195,6 +210,24 @@ Page({
   },
   // 商家确认订单
   async shoperConfirm() {
+    let detail = this.data.order_detail
+    let money = detail.update_money ? detail.update_money : detail.origin_money
+    let bail = await app.checkBail(money)
+    if (!bail.success) {
+      if (bail.need > 0) {
+        let res = await app.asyncApi(wx.showModal, {
+          title: '保证金充值',
+          content: '保证金不足，是否千万充值?'
+        })
+        if (!res.success) {
+          return
+        }
+        wx.navigateTo({
+          url: '/pages/rest-money/recharge?type=2'
+        })
+      }
+      return
+    }
     let is_success = await this.confirmConnection()
     if (!is_success) {
       return
@@ -207,16 +240,22 @@ Page({
       title: '成功'
     })
     let { state, id, type, order_detail } = this.data
-    if (this.data.is_service_order) {
-      state = state + 1
-    } else {
-      order_detail.shop_confirm = 2
+    let other_data = {
+      had_connect: false
     }
+    if (this.data.is_service_order) {
+      state = Number(state) + 1
+    } else {
+      order_detail.shop_confirm = 1
+    }
+    this.setData({
+      order_detail: order_detail,
+      ...other_data
+    })
     this.init({
       state: state,
       id: id,
-      type: type,
-      order_detail
+      type: type
     })
   },
   // 检查用户是否已经付款
@@ -241,7 +280,24 @@ Page({
     return true
   },
   async shoperGotoServe() {
-    let { type, id, state } = this.data
+    let { type, id, state, order_detail } = this.data
+    let money = order_detail.update_money ? order_detail.update_money : order_detail.origin_money
+    let bail = await app.checkBail(money)
+    if (!bail.success) {
+      if (bail.need > 0) {
+        let res = await app.asyncApi(wx.showModal, {
+          title: '保证金充值',
+          content: '保证金不足，是否千万充值?'
+        })
+        if (!res.success) {
+          return
+        }
+        wx.navigateTo({
+          url: '/pages/rest-money/recharge?type=2'
+        })
+      }
+      return
+    }
     let is_pay = await this.checkPay()
     if (!is_pay) {
       return
@@ -259,7 +315,7 @@ Page({
       return
     }
     this.init({
-      state: state + 1,
+      state: Number(state) + 1,
       id: id,
       type: type
     })
@@ -325,7 +381,7 @@ Page({
     this.init({
       id,
       type,
-      state: state + 1
+      state: Number(state) + 1
     })
   },
   async customerFinish() {
@@ -374,7 +430,7 @@ Page({
   },
   gotoEvaluate() {
     let { id, type, state } = this.data
-    state = state + 1
+    state = Number(state) + 1
     wx.redirectTo({
       url: `/pages/order-evaluate/index?id=${id}&type=${type}&state=${state}`
     })

@@ -61,8 +61,9 @@
     </view>
   </view>
 
-  <view class="fixed" wx:if='{{has_shop}}'>
-    <i-button type='primary' bind:click='getIt'>接单</i-button>
+  <view class="fixed">
+    <i-button wx:if='{{has_shop}}' type='primary' bind:click='getIt'>接单</i-button>
+    <i-button wx:else type='primary' bind:click='cancelOrder'>取消订单</i-button>
   </view>
   <i-message id='message'></i-message>
 </view>

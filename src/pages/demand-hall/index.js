@@ -92,7 +92,7 @@ Page({
           longitude: app.global_data.longitude,
           page: item.current_page + 1,
           size: 6,
-          type: tabs_current === 0 ? 2 : 1
+          type: tabs_current === 0 ? 1 : 2
         }
       })
       if (res.success) {
@@ -127,8 +127,9 @@ Page({
   },
   // 商家接单
   async takeOrder(e) {
-    let { currentTarget: { dataset: { demand } } } = e
-    if (!demand.id) {
+    let { currentTarget: { dataset: { index } } } = e
+    let demand = this.data.tabs_list[this.data.tabs_current].demand_list[index]
+    if (!demand.demand_id) {
       app._error('缺少需求id')
       return
     }
@@ -156,7 +157,7 @@ Page({
     let server_res = await app.post({
       url: '/api/v1/order/taking',
       data: {
-        id: demand.id
+        id: demand.demand_id
       }
     })
     await app.asyncApi(wx.hideLoading)
@@ -166,7 +167,7 @@ Page({
       return
     }
     wx.navigateTo({
-      url: `/pages/order-detail/index?id=${data.id}&type=2`
+      url: `/pages/order-detail/index?id=${data.id}&type=2&state=1`
     })
   }
 })

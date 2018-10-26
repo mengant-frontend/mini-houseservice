@@ -14,10 +14,10 @@ Component({
     ifLoading: {
       type: Boolean,
       value: false,
-      observer (new_val) {
+      observer(new_val) {
         if (new_val) {
           this.setData({
-            load_more: '正在加载',
+            load_more: '',
             padding_bottom: '0'
           })
         } else {
@@ -32,13 +32,13 @@ Component({
 
   data: {
     load_more: '上拉显示更多',
-    no_more: '没有更多数据了',
+    no_more: '',
     padding_bottom: '20px'
   },
 
   methods: {
     // 触发触底加载
-    scrolltolower () {
+    scrolltolower() {
       // 执行组件使用者绑定的 scrolltolower 监听事件
       this.triggerEvent('scrolltolower')
     },

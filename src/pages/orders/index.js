@@ -19,13 +19,65 @@ Page({
 
   async onLoad() {
     this.setData({
-      shop_id: app.global_data.shop_id
+      shop_id: app.global_data.shop_id,
+      tabs_list: [
+        {
+          id: 'ordered',
+          title: '已预约',
+          dot: false,
+          count: 0,
+          current_page: 0,
+          total: 0,
+          if_no_more: false,
+          order_list: []
+        },
+        {
+          id: 'unpaid',
+          title: '待付款',
+          dot: false,
+          count: 0,
+          current_page: 0,
+          total: 0,
+          if_no_more: false,
+          order_list: []
+        },
+        {
+          id: 'unconfirmed',
+          title: '待确认',
+          dot: false,
+          count: 0,
+          current_page: 0,
+          total: 0,
+          if_no_more: false,
+          order_list: []
+        },
+        {
+          id: 'unevaluated',
+          title: '待评价',
+          dot: false,
+          count: 0,
+          current_page: 0,
+          total: 0,
+          if_no_more: false,
+          order_list: []
+        },
+        {
+          id: 'completed',
+          title: '已完成',
+          dot: false,
+          count: 0,
+          current_page: 0,
+          total: 0,
+          if_no_more: false,
+          order_list: []
+        }
+      ]
     })
     await this.getOrderList()
   },
 
   async onShow() {
-    await this.setData({
+    this.setData({
       // tabs 列表数据
       tabs_list: [
         {
@@ -104,6 +156,8 @@ Page({
     let tabs_current = this.data.tabs_current
     let tabs_list = this.data.tabs_list
     let item = tabs_list[tabs_current]
+    console.log(tabs_list)
+    console.log(item)
     if (!item.if_no_more && this.data.request_lock.get_order_list) {
       this.setData({
         if_loading: true,

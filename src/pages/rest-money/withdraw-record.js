@@ -49,7 +49,7 @@ Page({
       }
       if (Number(item.state) === 1) {
         // 未支付
-        if (Number(item.pay_id) === 99999) {
+        if (!item.pay_id || Number(item.pay_id) == 99999) {
           item.state_text = '处理中'
         } else {
           item.state_text = '已到账'

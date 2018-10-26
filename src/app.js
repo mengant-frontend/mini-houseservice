@@ -339,7 +339,7 @@ App({
   async getLocation() {
     let location = this.global_data.location
     let success = true
-    if (!location) {
+    if (!location.length) {
       let wx_res = await this.asyncApi(wx.getLocation)
       if (wx_res.success) {
         this.global_data.latitude = wx_res.latitude
@@ -370,7 +370,8 @@ App({
     red_packet: null,
     order_detail_state: {
       price_change: true
-    }
+    },
+    location: []
   },
   // 通用方法
   /**

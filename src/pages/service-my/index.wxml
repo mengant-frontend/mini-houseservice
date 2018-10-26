@@ -5,7 +5,7 @@
         <image src='{{item.cover}}'></image>
       </view>
       <view class="content">
-        <view class="title">{{item.name}}</view>
+        <navigator url='/pages/service-detail/index?id={{item.id}}' class="title">{{item.name}}</navigator>
         <view class="desc">
           <view class="price">￥{{item.price}}</view>
           <view class="operate">

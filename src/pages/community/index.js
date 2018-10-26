@@ -97,6 +97,7 @@ Page({
         tabs_list
       }, () => {
         // 默认让 tabs_current 为 0 以获取第一项圈子类别列表
+        if (!tabs_list.length) return
         this.getCommunityList()
       })
     } else { // 出错处理debug
@@ -107,8 +108,11 @@ Page({
   // 根据 tabs_current 获取对应圈子类别列表
   async getCommunityList() {
     let tabs_current = this.data.tabs_current
+    console.log('tabs_current', tabs_current)
     let location = this.data.location
+    console.log('location', location)
     let tabs_list = this.data.tabs_list
+    console.log('tabs_list', tabs_list)
     let item = tabs_list[tabs_current]
     if (!item.if_no_more && this.data.request_lock.get_community_list) {
       this.setData({

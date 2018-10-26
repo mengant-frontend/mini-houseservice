@@ -71,8 +71,31 @@ Page({
       title: '成功'
     })
     await app.sleep()
-    wx.switchTab({
-      url: '/pages/command/index'
+    wx.redirectTo({
+      url: '/pages/shop-orders/index'
     })
+  },
+  cancelOrder() {
+    let wx_res = await app.asyncApi(wx.showModal, {
+      title: '温馨提示',
+      content: '请确认取消订单操作'
+    })
+    if (!wx_res.confirm) {
+      return
+    }
+    let url = '/api/v1/demand/handel'
+    let { detail } = this.data
+    let server_res = await app.post({
+      url: url,
+      data: {
+        id: detail.id
+      }
+    })
+    let { success, msg } = server_res
+    if (!success) {
+      app._error(msg)
+      return
+    }
+    wx.navigateBack()
   }
 })

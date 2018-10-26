@@ -9,7 +9,6 @@ Page({
     extend: true,
     picture_list: [],
     shop_location: [],
-    local_location: [],
     // 店铺类型，家政还是维修
     type: '',
     shop_id: 0
@@ -65,13 +64,14 @@ Page({
       data.city,
       data.area
     ]
-    let local_location = app._deepClone(this.data.local_location)
-    if (!local_location[0]) {
-      local_location = shop_location
+    let form_data = app._deepClone(this.data.form_data)
+    if (!form_data.province) {
+      form_data.province = data.province
+      form_data.city = data.city
+      form_data.area = data.area
     }
     this.setData({
       shop_location: shop_location,
-      local_location: local_location,
       type: data.type,
       shop_id: data.id
     })
@@ -110,7 +110,6 @@ Page({
     }
     if (form_key === 'area') {
       this.checkArea(value)
-      other_data.local_location = value
     }
     if (form_key === 'picture') {
       other_data.picture_list = value
@@ -197,7 +196,6 @@ Page({
   //发布服务
   async releaseService() {
     let form_data = app._deepClone(this.data.form_data)
-    let local_location = app._deepClone(this.data.local_location)
     let is_valid = true
     console.log(form_data)
     for (let key in form_data) {
@@ -231,7 +229,7 @@ Page({
       app._warn('请至少上传一张服务照片')
       return
     }
-    if (!this.checkArea(local_location)) {
+    if (!this.checkArea([form_data.province, form_data.city, form_data.area])) {
       return
     }
     let check_status = await this.checkMoney(form_data.price)
