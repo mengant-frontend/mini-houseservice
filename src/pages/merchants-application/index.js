@@ -32,7 +32,8 @@ Page({
     padding_bottom: padding_bottom_0,
     // 图片数量
     count: 4,
-    shop_id: ''
+    shop_id: '',
+    head_url: []
   },
   onLoad() {
     let form_data = this.initFormData()
@@ -44,6 +45,19 @@ Page({
   //下拉事件
   onPullDownRefresh() {
     wx.stopPullDownRefresh()
+  },
+  onShow() {
+    let head_url_list = app.global_data.head_url_list || []
+    let global_head_url_list = app._deepClone(head_url_list)
+    if (!global_head_url_list.length) return
+    let form_data = app._deepClone(this.data.form_data)
+    form_data.head_url = global_head_url_list.filter(img => !!img.id)
+      .map(img => img.id)
+      .join(',')
+    this.setData({
+      head_url: global_head_url_list,
+      form_data
+    })
   },
   initFormData() {
     let form_data = {
@@ -68,6 +82,11 @@ Page({
       }
     })
     return form_data
+  },
+  changeHeadUrl() {
+    wx.navigateTo({
+      url: '/pages/avatar/index?max=1&type=head_url'
+    })
   },
   //检查当前状态
   async checkStatus() {
@@ -160,6 +179,9 @@ Page({
           other_data.type_text = command.value
         }
       })
+    }
+    if (form_key === 'head_url') {
+      other_data.head_url = value
     }
     this.setData({
       form_data: form_data,

@@ -72,7 +72,7 @@ Page({
     })
     await app.sleep()
     wx.redirectTo({
-      url: '/pages/shop-orders/index'
+      url: '/pages/shop-command/index'
     })
   },
   async cancelOrder() {

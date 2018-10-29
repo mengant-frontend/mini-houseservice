@@ -17,6 +17,25 @@ Page({
   onLoad() {
     this.loadData()
   },
+  onShow() {
+    let staffs_list = app.global_data.staffs_list || []
+    let global_staffs = app._deepClone(staffs_list)
+    let local_staffs = app._deepClone(this.data.staffs)
+    if (!global_staffs.length) return
+    let new_staffs = global_staffs.filter(g_staff => {
+      let is_new = true
+      local_staffs.forEach(l_staff => {
+        if (l_staff.id === g_staff.id || l_staff.path === g_staff.path) {
+          is_new = false
+        }
+      })
+      return is_new
+    })
+    app.global_data.staffs_list = []
+    this.setData({
+      staffs: local_staffs.concat(new_staffs)
+    })
+  },
   async onPullDownRefresh() {
     await this.loadData()
     wx.stopPullDownRefresh()
@@ -35,22 +54,17 @@ Page({
     }
     let staffs = data.staffs || []
     staffs = staffs.map(staff => {
-      let img_url = staff.img_url
-      return {
-        loaded: true,
-        path: img_url.url,
-        id: staff.id,
-        state: staff.state,
-        face_token: staff.face_token,
-        city: data.city
-      }
-    })
-
-    let form_data2 = {
-      ...data,
-      staffs: staffs.map(staff => staff.id)
-        .join(',')
-    }
+        let img_url = staff.img_url
+        return {
+          loaded: true,
+          path: img_url.url,
+          id: staff.id,
+          state: staff.state,
+          face_token: staff.face_token || 0,
+          city: data.city || 0
+        }
+      })
+      .slice(0, 9)
     this.setData({
       staffs: staffs,
       form_data: {
@@ -63,8 +77,13 @@ Page({
   bindFormChange(e) {
     let { form_key, value } = app._bindFormChange(e)
     let form_data = this.updateFormData(form_key, value)
+    let other = {}
+    if (form_key === 'staffs') {
+      other.staffs = value
+    }
     this.setData({
-      form_data: form_data
+      form_data: form_data,
+      ...other
     })
   },
   updateFormData(form_key, value) {
@@ -80,6 +99,7 @@ Page({
         let imgs = value || []
         form_data[form_key] = imgs.filter(img => img.id)
           .map(img => img.id)
+          .slice(0, 9)
           .join(',')
         break
       case 'region':
@@ -159,6 +179,13 @@ Page({
     await app.asyncApi(wx.hideToast)
     wx.redirectTo({
       url: '/pages/shop/index'
+    })
+  },
+  addstaffsAvatars() {
+    let staffs = app._deepClone(this.data.staffs)
+    let max = 9 - staffs.length
+    wx.navigateTo({
+      url: '/pages/avatar/index?max=' + max + '&type=' + 'staffs'
     })
   }
 })

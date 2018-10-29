@@ -371,7 +371,9 @@ App({
     order_detail_state: {
       price_change: true
     },
-    location: []
+    location: [],
+    staffs_list: [],
+    head_url_list: []
   },
   // 通用方法
   /**

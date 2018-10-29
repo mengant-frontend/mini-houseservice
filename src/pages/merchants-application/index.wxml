@@ -13,7 +13,7 @@
         <i-cell title='商家头像' only-tap-footer='{{true}}'>
           <view slot='footer' class='container__avatar'>
             <view class="f-photo">
-              <f-photo source='{{["camera"]}}' type='avatar' bind:update='bindFormChange' data-form_key='head_url'></f-photo>
+              <f-photo alaways_new='{{head_url}}' add='{{false}}' bind:add='changeHeadUrl' type='avatar' bind:update='bindFormChange' data-form_key='head_url'></f-photo>
             </view>
           </view>
         </i-cell>

@@ -42,7 +42,8 @@
     "pages/rest-money/withdraw-record",
     "pages/rest-money/common-record",
     "pages/shop/edit",
-    "pages/order-detail/index"
+    "pages/order-detail/index",
+    "pages/avatar/index"
   ],
   "window": {
     "navigationBarTitleText": "久房通",

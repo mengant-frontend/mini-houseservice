@@ -11,7 +11,7 @@ Page({
     type: '',
     // 订单状态
     state: '',
-    test: '',
+    shop_id: '',
     // 订单数据
     order_detail: {},
     is_service_order: false,
@@ -30,6 +30,7 @@ Page({
       type: query.type,
       state: query.state
     })
+    console.log(query)
     await this.loadOrder()
     this.init(query)
     this.getRedPacketList()
@@ -51,9 +52,6 @@ Page({
     wx.stopPullDownRefresh()
   },
   init({ id, type, state }) {
-    console.log('id', id)
-    console.log('type', type)
-    console.log('state', state)
     let shop_id = app.global_data.shop_id
     let has_shop = false
     if (shop_id > 0) {
@@ -118,7 +116,7 @@ Page({
       // 商家不显示店铺title，也不跳转
       return
     }
-    let shop_id = app.global_data.shop_id
+    let shop_id = this.data.order_detail.shop_id
     wx.navigateTo({
       url: '/pages/store/index?id=' + shop_id
     })

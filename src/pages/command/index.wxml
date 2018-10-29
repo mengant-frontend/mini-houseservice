@@ -18,11 +18,11 @@
             <text>服务时间：{{t.date}}</text>
           </view>
           <view class='btn-bar'>
-            <view class='cancel' wx:if='{{item.id === "ordered"}}' data-id='{{t.order_id}}' bindtap='cancelDemand'>取消订单</view>
-            <view class='pay' wx:if='{{item.id === "unpaid"}}'>去付款</view>
-            <view class='consult' wx:if='{{item.id === "unconfirmed"}}'>协商</view>
-            <view class='confirm' wx:if='{{item.id === "unconfirmed"}}'>完工</view>
-            <view class='evaluate' wx:if='{{item.id === "unevaluated"}}'>去评价</view>
+            <view class='cancel' wx:if='{{item.id === "ordered"}}' data-id='{{t.order_id}}' data-state='1' bindtap='cancelDemand'>取消订单</view>
+            <view class='pay' wx:if='{{item.id === "unpaid"}}' bindtap='doAction' data-state='2' data-id='{{t.order_id}}'>去付款</view>
+            <view class='consult' wx:if='{{item.id === "unconfirmed"}}' bindtap='doAction' data-state='3' data-id='{{t.order_id}}'>协商</view>
+            <view class='confirm' wx:if='{{item.id === "unconfirmed"}}' bindtap='doAction' data-state='3' data-id='{{t.order_id}}'>完工</view>
+            <view class='evaluate' wx:if='{{item.id === "unevaluated"}}' bindtap='doAction' data-state='4' data-id='{{t.order_id}}'>去评价</view>
           </view>
         </view>
       </view>

@@ -21,6 +21,15 @@ Component({
         }
       }
     },
+    alaways_new: {
+      type: Array,
+      value: [],
+      observer(newVal) {
+        this.setData({
+          photo_list: newVal
+        })
+      }
+    },
     delete_url: {
       type: String,
       value: ''
@@ -32,6 +41,10 @@ Component({
     source: {
       type: Array,
       value: ['album', 'camera']
+    },
+    add: {
+      type: Boolean,
+      value: true
     }
   },
   data: {
@@ -40,13 +53,15 @@ Component({
   },
   ready() {
     let remote = app._deepClone(this.data.remote)
-    if (remote instanceof Array) {
-
-    } else if (remote instanceof Object) {
-      remote = [remote]
+    let alaways_new = app._deepClone(this.data.alaways_new)
+    let defaults = []
+    if (alaways_new.length > 0) {
+      defaults = alaways_new
+    } else if (remote.length > 0) {
+      defaults = remote
     }
     this.setData({
-      photo_list: remote
+      photo_list: defaults
     })
   },
   methods: {
@@ -76,6 +91,10 @@ Component({
     },
     //选择图片
     async chooseImage(count) {
+      if (!this.data.add) {
+        this.triggerEvent('add')
+        return
+      }
       let photo_list = app._deepClone(this.data.photo_list)
       count = count || this.data.count
       let rest = count - photo_list.length
@@ -151,19 +170,28 @@ Component({
       //展示spining
       await this.update(photo_list)
       let delete_params = this.data.delete_params
+
       let params = {}
       delete_params.forEach(p => {
-        params[p] = photo_list[index][p]
+        if (p in photo_list[index]) {
+          params[p] = photo_list[index][p]
+        }
       })
-      let server_res = await app.post({
-        url: this.data.delete_url,
-        data: params
-      })
-      let { msg, success } = server_res
-      if (!success) {
-        photo_list[index].deleting = false
-      } else {
+      if (Object.keys(params)
+        .length !== delete_params.length) {
         photo_list.splice(index, 1)
+      } else {
+        let server_res = await app.post({
+          url: this.data.delete_url,
+          data: params
+        })
+        console.log(server_res)
+        let { msg, success } = server_res
+        if (!success) {
+          photo_list[index].deleting = false
+        } else {
+          photo_list.splice(index, 1)
+        }
       }
       this.update(photo_list)
     }

@@ -1,0 +1,27 @@
+<view class="page">
+  <view class="container">
+    <view class="camera">
+      <camera device-position="front" flash="off">
+        <cover-view class="container__outer">
+          <cover-view class="container__circle">
+            <cover-view class="circle"></cover-view>
+            <cover-view class="polyfill"></cover-view>
+          </cover-view>
+        </cover-view>
+      </camera>
+    </view>
+    <view class="container__taking">
+      <view class='container__btn'>
+        <i-button wx:if='{{img_list.length < max }}' type='primary' size='small' bind:click='takingPhoto'>拍照</i-button>
+        <i-button wx:if='{{img_list.length > 0}}' type='success' size='small' bind:click='goBack'>确定</i-button>
+      </view>
+    </view>
+
+    <view class="container__photos">
+      <view wx:for='{{img_list}}' wx:key='path' class="photo {{ index % 4 === 0 ? 'photo_0' : ''}}">
+        <image src='{{item.path}}'></image>
+      </view>
+    </view>
+  </view>
+  <i-message id='message'></i-message>
+</view>

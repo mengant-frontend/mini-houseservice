@@ -9,7 +9,7 @@ Page({
     photo_list: [],
     time_begin: [],
     form_data: {
-      type: 2,
+      type: 1,
       name: '',
       phone: '',
       des: '',

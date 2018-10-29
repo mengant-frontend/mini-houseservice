@@ -189,5 +189,27 @@ Page({
     this.setData({
       tabs_list
     })
+  },
+  doAction({ currentTarget }) {
+    let { dataset: { id, state } } = currentTarget
+    let current = this.data.tabs_current
+    let tabs_list = app._deepClone(this.data.tabs_list)
+    let list = tabs_list[current].order_list
+    let item
+    for (let i = 0; i < list.length; i++) {
+      if (list[i].order_id = id) {
+        item = list[i]
+        break
+      }
+    }
+    if (state == 4) {
+      wx.navigateTo({
+        url: "/pages/order-detail/index?type=2&state=4&id=" + item.order_id
+      })
+    } else if (item !== undefined) {
+      wx.navigateTo({
+        url: "/pages/order-detail/index?type=2&state=" + state + "&id=" + item.order_id
+      })
+    }
   }
 })
