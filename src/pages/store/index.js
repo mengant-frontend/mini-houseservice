@@ -51,6 +51,7 @@ Page({
         phone: data.info.phone,
         comment_count: data.comment_count,
         score: data.score ? data.score : 5,
+        collection: data.collection,
         if_collected: data.collection > 0 ? true : false
       }, () => {
         // 获取服务列表
@@ -68,22 +69,31 @@ Page({
     }
     wx.showNavigationBarLoading()
     let if_collected = !this.data.if_collected
-    let url = ''
-    let data = {
-      id: this.data.store_id,
-      type: 2
-    }
+    let url = '',
+      data
     if (if_collected) {
       url = this.data.api_url.collect
+      data = {
+        id: this.data.store_id,
+        type: 2
+      }
     } else {
       url = this.data.api_url.collect_cancel
+      data = {
+        id: this.data.collection,
+        type: 2
+      }
     }
     this.setData({
       'request_lock.collect': false
     })
     let res = await app.post({ url, data })
-    if (res.success && res.data.errorCode === 0) {
-      this.setData({ if_collected })
+    if (res.success) {
+      let collection = 0
+      if (if_collected) {
+        collection = res.data.id
+      }
+      this.setData({ if_collected, collection })
     } else { // 出错处理debug
       console.log(res)
     }

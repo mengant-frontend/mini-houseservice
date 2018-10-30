@@ -416,7 +416,13 @@ Page({
     })
   },
   finishOrChat(confirm) {
-    let { id, type } = this.data
+    let { id, type, order_detail } = this.data
+    if (order_detail.service_begin != 1) {
+      return {
+        success: false,
+        msg: '商家未确认去服务'
+      }
+    }
     return app.post({
       url: '/api/v1/order/confirm',
       data: {

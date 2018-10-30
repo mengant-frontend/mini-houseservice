@@ -126,6 +126,7 @@ App({
         params.header = params.header || {}
         params.header.token = this.global_data.token
       }
+      console.log(params)
       return this.asyncApi(wx.request, params)
         .then(res => {
           // errMsg是微信wx.request fail回调函数中的参数 res:{ errMsg }

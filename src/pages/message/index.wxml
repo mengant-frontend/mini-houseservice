@@ -3,7 +3,7 @@
     <view wx:for='{{list}}' wx:key='id' class='list-item {{index === 0 ? "list-item_0" : ""}}'>
       <view class='title'>
         <view class='title-left'>
-          <image class='title-icon' src='{{item.cover}}'></image>
+          <image class='title-icon' src='/images/setting.png'></image>
           <text class='title-text'>订单提示</text>
         </view>
         <view class='title-right'>
@@ -16,7 +16,7 @@
         </view>
         <view class='order'>
           <view class='order-desc'>
-            <image class='order-img' src='/images/avatar.jpg'></image>
+            <image class='order-img' src='{{item.cover}}'></image>
             <view class="center">
               <text class="order-name">{{item.name}}</text>
               <text class='order-price'>￥{{item.money || 0}}</text>

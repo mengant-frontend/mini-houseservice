@@ -11,7 +11,8 @@ Page({
     shop_location: [],
     // 店铺类型，家政还是维修
     type: '',
-    shop_id: 0
+    shop_id: 0,
+    location: []
   },
   async onLoad() {
     this.initData()
@@ -65,15 +66,17 @@ Page({
       data.area
     ]
     let form_data = app._deepClone(this.data.form_data)
-    if (!form_data.province) {
-      form_data.province = data.province
-      form_data.city = data.city
+    let location = app._deepClone(this.data.location)
+    if (!location[0]) {
+      location = [data.province, data.city, data.area]
       form_data.area = data.area
     }
     this.setData({
+      location: location,
       shop_location: shop_location,
       type: data.type,
-      shop_id: data.id
+      shop_id: data.id,
+      form_data: form_data
     })
   },
   // 获取服务列表
@@ -109,6 +112,7 @@ Page({
       other_data.extend = value
     }
     if (form_key === 'area') {
+      other_data.location = value
       this.checkArea(value)
     }
     if (form_key === 'picture') {
@@ -196,18 +200,43 @@ Page({
   //发布服务
   async releaseService() {
     let form_data = app._deepClone(this.data.form_data)
-    let is_valid = true
-    console.log(form_data)
-    for (let key in form_data) {
-      if (key === 'imgs' || key === 'cover') {
 
-      } else if (!form_data[key]) {
+    let require_params = [{
+      key: 'c_id',
+      required: '请选择服务类型'
+    }, {
+      key: 'name',
+      required: '请输入服务名称'
+    }, {
+      key: 'area',
+      required: '请选择服务区域'
+    }, {
+      key: 'price',
+      required: '请输入服务价格'
+    }, {
+      key: 'unit',
+      required: '请输入服务简介'
+    }, {
+      key: 'cover',
+      required: '请上传店铺封面图'
+    }, {
+      key: 'imgs',
+      required: '请上传服务相关照片'
+    }, {
+      key: 'extend',
+      required: '请选择是否推广'
+    }]
+    let is_valid = true
+    let err_msg = ''
+    for (let i = 0; i < require_params.length; i++) {
+      if (!form_data[require_params[i].key]) {
         is_valid = false
+        err_msg = require_params[i].required
         break
       }
     }
     if (!is_valid) {
-      app._warn('请完善表单信息')
+      app._warn(err_msg)
       return
     }
     let has_error_photos = false
@@ -221,15 +250,7 @@ Page({
       app._warn('请先删除上传失败的照片')
       return
     }
-    if (!form_data.cover) {
-      app._warn('请上传店铺封面照')
-      return
-    }
-    if (!form_data.imgs) {
-      app._warn('请至少上传一张服务照片')
-      return
-    }
-    if (!this.checkArea([form_data.province, form_data.city, form_data.area])) {
+    if (!this.checkArea(this.data.location)) {
       return
     }
     let check_status = await this.checkMoney(form_data.price)
@@ -277,7 +298,7 @@ Page({
     await app.asyncApi(wx.showLoading, {
       title: 'loading...'
     })
-    let server_res = await app.post({
+    let server_res = await app.get({
       url: '/api/v1/bond/check',
       data: {
         money: money

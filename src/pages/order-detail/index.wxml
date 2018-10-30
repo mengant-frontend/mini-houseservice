@@ -151,7 +151,7 @@
         </view>
       </block>
       <block wx:else>
-        <view class="card" wx:if='{{state == 1}}'>
+        <view class="card" wx:if='{{state == 2 || (state == 1 && order_detail.shop_confirm == 1)}}'>
           <i-panel>
             <i-cell-group>
               <i-cell title="商家是否已联系" only-tap-footer>
@@ -235,7 +235,7 @@
         <i-button type='primary' long bind:click='customerFinish'>完工</i-button>
         <i-button type='ghost' long bind:click='customerChat' disabled='{{!!chat_text}}'>{{chat_text || '协商'}}</i-button>
       </block>
-      <block wx:elif='{{state == "4" || order_detail.confirm_id == 1}}'>
+      <block wx:elif='{{state == "4" || (order_detail.confirm_id == 1 && state <= 4)}}'>
         <i-button type='primary' long bind:click='gotoEvaluate'>去评价</i-button>
       </block>
       <!-- state为5 订单已完成 -->
