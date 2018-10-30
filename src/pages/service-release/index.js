@@ -215,6 +215,9 @@ Page({
       required: '请输入服务价格'
     }, {
       key: 'unit',
+      required: '请选择价格单位'
+    }, {
+      key: 'des',
       required: '请输入服务简介'
     }, {
       key: 'cover',
