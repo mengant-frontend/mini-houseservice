@@ -32,8 +32,14 @@ Page({
       return is_new
     })
     app.global_data.staffs_list = []
+    let form_data = app._deepClone(this.data.form_data)
+    form_data.staffs = local_staffs.concat(new_staffs)
+      .filter(staff => staff.id)
+      .map(staff => staff.id)
+      .join(',')
     this.setData({
-      staffs: local_staffs.concat(new_staffs)
+      staffs: local_staffs.concat(new_staffs),
+      form_data: form_data
     })
   },
   async onPullDownRefresh() {

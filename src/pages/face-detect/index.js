@@ -32,18 +32,24 @@ Page({
         let src = res.tempImagePath
         this.setData({ src })
         wx.showNavigationBarLoading()
+        await app.asyncApi(wx.showLoading, {
+          title: '识别中...',
+          mask: true
+        })
         let task_res = await app._uploadFile({
           url: this.data.api_url.detect,
           filePath: src,
           formData: {
-            file: src,
             city: app.global_data.location[1]
           }
         })
+        console.log(task_res)
+        await app.asyncApi(wx.hideLoading)
         if (task_res.success) {
           wx.hideNavigationBarLoading()
           let data = task_res.data
-          if (String(data.error_code).indexOf('99') === 0 || !data.shop_info) {
+          if (String(data.error_code)
+            .indexOf('99') === 0 || !data.shop_info) {
             this.setData({
               if_warn: true,
               if_detect: false,
@@ -72,11 +78,15 @@ Page({
 
   // 确认订单
   async confirmOrder() {
-    let order_list = this.data.order_list
+    let order_list = app._deepClone(this.data.order_list)
     let index = this.data.choose_index
     if (order_list.length > 0 && this.data.request_lock.confirm_order) {
       // 提交
       wx.showNavigationBarLoading()
+      await app.asyncApi(wx.showLoading, {
+        title: '确认中...',
+        mask: true
+      })
       this.setData({
         'request_lock.confirm_order': false
       })
@@ -88,16 +98,27 @@ Page({
         }
       })
       wx.hideNavigationBarLoading()
+      await app.asyncApi(wx.hideLoading)
+      console.log(res)
       if (!res.success) { // 出错处理debug
         this.setData({
           'request_lock.confirm_order': true
         })
         return
       }
+      order_list.splice(index, 1)
+      await app.asyncApi(wx.showToast, {
+        title: '成功',
+        mask: true
+      })
+      await app.sleep()
+      await app.asyncApi(wx.hideToast)
     }
     this.setData({
+      order_list: order_list,
       if_success: false,
       if_detect: true,
+      if_warn: false,
       choose_index: 0,
       'request_lock.confirm_order': true
     })

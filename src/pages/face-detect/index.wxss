@@ -8,10 +8,12 @@ page {
   flex-direction: column;
   align-items: center;
 }
+
 .camera-bar,
 .warn-bar .img {
   margin-top: 200rpx;
 }
+
 .detect-bar .btn-detect,
 .warn-bar .btn-turn-back {
   padding: 0 80rpx;
@@ -19,23 +21,34 @@ page {
   font-size: 32rpx;
   border-radius: 8rpx;
 }
+
 .camera-bar {
-  width: 375rpx;
-  height: 375rpx;
+  width: 376rpx;
+  height: 376rpx;
 }
-.detect-bar .camera  {
+
+.detect-bar .camera {
   width: 100%;
   height: 100%;
+  position: relative;
+  outline: none;
+  border: none;
+  overflow: visible !important;
+  font-size: 0;
+  vertical-align: top;
 }
+
 .detect-bar .btn-detect {
   margin-top: 80rpx;
   background: #2d8cf0;
   color: #fff;
 }
+
 .warn-bar .img {
   width: 200rpx;
   height: 200rpx;
 }
+
 .warn-bar .warn-text {
   margin-top: 50rpx;
   /* iview 推荐主标题样式 */
@@ -43,6 +56,7 @@ page {
   font-weight: bold;
   color: #464c5b;
 }
+
 .warn-bar .btn-turn-back {
   margin-top: 120rpx;
   background: #FFFFFF;
@@ -58,6 +72,7 @@ page {
   padding-bottom: 140rpx;
   background: #EFEFF4;
 }
+
 .success-bar .btn-confirm {
   position: absolute;
   bottom: 30rpx;
@@ -71,10 +86,12 @@ page {
   background: #2d8cf0;
   color: #fff;
 }
+
 .success-bar .tip {
   line-height: 2.4;
   padding-left: 25rpx;
 }
+
 .success-bar .store-info,
 .success-bar .store-order {
   display: flex;
@@ -85,26 +102,31 @@ page {
   /* iview 推荐次级标题大小 */
   font-size: 28rpx;
 }
+
 .success-bar .icon-bar {
   width: 90rpx;
 }
+
 .success-bar .title {
   /* iview 推荐主标题样式 */
   font-size: 32rpx;
   font-weight: bold;
   color: #464c5b;
 }
+
 .success-bar .icon-phone {
   width: 40rpx;
   height: 40rpx;
   padding: 10rpx;
 }
+
 .success-bar .order-bar {
   padding: 15rpx 0;
   line-height: 1.8;
   display: flex;
   flex-direction: column;
 }
+
 .success-bar .icon-success {
   width: 40rpx;
   height: 40rpx;
@@ -112,4 +134,40 @@ page {
   border-radius: 50%;
   border: 5rpx solid #D8D8D8;
   margin: 10rpx;
+}
+
+.container__outer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.container__circle {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.circle {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  left: -188rpx;
+  top: -188rpx;
+  border: 188rpx solid #fff;
+  border-radius: 376rpx;
+  transform: translate(1px, 1px);
+  box-sizing: content-box;
+  background-color: transparent;
+}
+
+.polyfill {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 1px;
+  height: 100%;
+  background-color: #fff;
 }

@@ -131,6 +131,7 @@ App({
         .then(res => {
           // errMsg是微信wx.request fail回调函数中的参数 res:{ errMsg }
           let { data = {}, statusCode, header, errMsg, success } = res
+          console.log(data, statusCode, errMsg)
           data = data || {} // 有些接口data为null
           let response = { data }
           if (!(data instanceof Object)) {

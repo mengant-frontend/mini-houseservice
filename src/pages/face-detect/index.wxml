@@ -1,6 +1,13 @@
 <view class='detect-bar' hidden='{{!if_detect}}'>
   <view class='camera-bar'>
-    <camera class='camera' device-position='back' flash='auto' bindstop='' binderror='error' hidden='{{src}}'></camera>
+    <camera class='camera' device-position='front' flash='auto' bindstop='' binderror='error' hidden='{{src}}'>
+      <cover-view class="container__outer">
+        <cover-view class="container__circle">
+          <cover-view class="circle"></cover-view>
+          <cover-view class="polyfill"></cover-view>
+        </cover-view>
+      </cover-view>
+    </camera>
     <fit-img width='375' src='{{src}}' can-preview='{{false}}' hidden='{{!src}}'></fit-img>
   </view>
   <text class='btn-detect' bindtap='takePhoto'>开始识别</text>
