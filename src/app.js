@@ -8,10 +8,14 @@ const qq_map = new QQMapSdk({
 })
 App({
   async onLaunch() {
+    console.log(arguments)
     let system_info = await this.asyncApi(wx.getSystemInfo)
     if (system_info.success) {
       this.global_data.system_info = system_info
     }
+  },
+  onShow() {
+    console.log(arguments)
   },
   // 登录
   async login() {

@@ -28,6 +28,7 @@
     "pages/command-release/index",
     "pages/service-release/index",
     "pages/redpacket/index",
+    "pages/redpacket/tip",
     "pages/command-detail/index",
     "pages/bbs/index",
     "pages/collection/index",
