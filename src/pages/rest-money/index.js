@@ -7,33 +7,16 @@ Page({
     detail: {}
   },
   onLoad() {
-    this.getStore()
-    this.getBalance()
-  },
-  // 获取店铺信息，判断有没有店铺
-  async getStore() {
-    let server_res = await app.get({
-      url: '/api/v1/shop/info'
-    })
-    let { success, msg, data } = server_res
-    if (!success) {
-      app._error(msg)
-      return
-    }
-    let has_shop = true
-    let shop_id = 0
-    if (Object.keys(data)
-      .length === 0) {
-      has_shop = false
-    } else if (Number(data.state) < 4) {
-      has_shop = false
-    } else {
-      shop_id = data.id
+    let shop_id = app.global_data.shop_id || 0
+    let has_shop = false
+    if(Number(shop_id) > 0){
+      has_shop = true
     }
     this.setData({
-      has_shop: has_shop,
-      shop_id: shop_id
+      has_shop,
+      shop_id
     })
+    this.getBalance()
   },
   async getBalance() {
     let server_res = await app.get({

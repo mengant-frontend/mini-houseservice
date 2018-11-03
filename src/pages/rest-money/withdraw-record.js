@@ -40,6 +40,14 @@ Page({
       return
     }
     let list = app._deepClone(this.data.list)
+    if(!Object.keys(data).length){
+      data = {
+        "total": 0,
+        "current_page": 1,
+        "last_page": 1,
+        "data": []
+      }
+    }
     let new_list = data.data
     new_list.forEach(item => {
       if (Number(item.type) === 1) {

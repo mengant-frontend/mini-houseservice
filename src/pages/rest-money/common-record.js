@@ -41,11 +41,20 @@ Page({
       return
     }
     let list = app._deepClone(this.data.list)
+    if(!Object.keys(data).length){
+      data = {
+        "total": 0,
+        "current_page": 1,
+        "last_page": 1,
+        "data": []
+      }
+    }
     let new_list = data.data
     if (page > 1) {
       new_list = list.concat(new_list)
     }
     let is_end = false
+
     if (new_list.length >= data.total) {
       is_end = true
     }

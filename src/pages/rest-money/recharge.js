@@ -3,8 +3,8 @@ const app = getApp()
 Page({
   data: {
     // 当前的店铺保证金
-    balance: '',
-    // 保证金的类型 1 新增服务 2接单
+    balance: 0,
+    // 保证金的类型 1 新增服务 2接单, 3充值
     type: ''
   },
   onLoad(query) {
@@ -12,6 +12,7 @@ Page({
     this.setData({
       type: type
     })
+    this.getBalance()
   },
   // 表单
   updateMoney(e) {
@@ -32,6 +33,7 @@ Page({
     }
     let { type } = this.data
     let balance = data.bond_balance
+    console.log(balance)
     this.setData({
       balance: balance
     })

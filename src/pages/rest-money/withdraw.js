@@ -4,13 +4,13 @@ Page({
   data: {
     type: '',
     type_text: '',
-    shop_id: '',
+    shop_id: 0,
     balance: 0,
     money: '',
     can_withdraw: false
   },
   onLoad(query) {
-    let { type, shop_id } = query
+    let { type, shop_id = 0 } = query
     let type_text = ''
     if (type === '1') {
       type_text = '保证金'
