@@ -405,14 +405,17 @@ Page({
     if (!wx_res.success) {
       return
     }
-    let server_res = await app.finishOrChat(2)
+    let server_res = await this.finishOrChat(2)
     if (!server_res.success) {
       app._error(server_res.msg)
       return
     }
-    let time_end = this.data.form_data.time_end
+    let order_detail = app._deepClone(this.data.order_detail)
+    let time_end = order_detail.time_end
+    order_detail.confirm_id = 2
     this.setData({
-      chat_text: `将于${time_end}自动完工`
+      chat_text: `将于${time_end}自动完工`,
+      order_detail: order_detail
     })
   },
   finishOrChat(confirm) {

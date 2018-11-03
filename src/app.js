@@ -14,9 +14,6 @@ App({
       this.global_data.system_info = system_info
     }
   },
-  onShow() {
-    console.log(arguments)
-  },
   // 登录
   async login() {
     await this.asyncApi(wx.showLoading, {
@@ -130,12 +127,10 @@ App({
         params.header = params.header || {}
         params.header.token = this.global_data.token
       }
-      console.log(params)
       return this.asyncApi(wx.request, params)
         .then(res => {
           // errMsg是微信wx.request fail回调函数中的参数 res:{ errMsg }
           let { data = {}, statusCode, header, errMsg, success } = res
-          console.log(data, statusCode, errMsg)
           data = data || {} // 有些接口data为null
           let response = { data }
           if (!(data instanceof Object)) {

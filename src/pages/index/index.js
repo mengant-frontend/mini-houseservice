@@ -64,7 +64,9 @@ Page({
           data.forEach(item => {
             notice_content.push(item.des)
           })
-          this.setData({ notice_content })
+          notice_content = notice_content.join(' ')
+          console.log(notice_content)
+          this.setData({ notice_content})
         } else { // 出错处理debug
           console.log(res)
         }

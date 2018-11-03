@@ -23,7 +23,8 @@ Page({
     comment_page: 0,
     comment_total: 0,
     if_no_more: false,
-    comment_list: []
+    comment_list: [],
+    if_collected: false
   },
 
   async onLoad(options) {
@@ -92,7 +93,7 @@ Page({
       'request_lock.collect': false
     })
     let res = await app.post({ url, data })
-    if (res.success && res.data.errorCode === 0) {
+    if (res.success) {
       let collection = 0
       if (if_collected) {
         collection = res.data.id
