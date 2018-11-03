@@ -5,6 +5,7 @@
     "scroll-loading": "/components/scroll-loading/index",
     "banner-img": "/components/banner-img/index",
     "comment-list": "/components/comment-list/index",
-    "i-icon": "/iview/icon/index"
+    "i-icon": "/iview/icon/index",
+    "i-message": "/iview/message/index"
   }
 }

@@ -165,5 +165,17 @@ Page({
         'request_lock.get_comment_list': true
       })
     }
+  },
+  // 点击预约
+  booking(e){
+    let shop_id = app.global_data.shop_id
+    if(Number(shop_id) > 0){
+      app._error('商家不可执行预约服务操作')
+      return
+    }
+    let { currentTarget: {dataset:{s_id}}} = e
+    wx.navigateTo({
+      url: '/pages/booking/index?s_id=' + s_id
+    })
   }
 })

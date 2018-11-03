@@ -124,6 +124,11 @@ Page({
     })
   },
   async confirm() {
+    let shop_id = app.global_data.shop_id
+    if(Number(shop_id) > 0){
+      app._error('商家不可执行预约服务操作')
+      return
+    }
     let { form_data, service_data } = this.data
     let is_valid = true
     for (let key in form_data) {
