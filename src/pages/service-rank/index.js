@@ -54,7 +54,7 @@ Page({
         size: 10,
         area: app.global_data.location[2],
         c_id: 0,
-        type: tabs_current + 1
+        type: tabs_current === 0 ? 2 : 1
       }
     })
     wx.hideNavigationBarLoading()

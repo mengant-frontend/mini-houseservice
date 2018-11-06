@@ -19,7 +19,7 @@
 </tabs-swiper-page>
 
 <view class='release-bar'>
-  <navigator class='release-demand' url='/pages/command-release/index'>
+  <navigator class='release-demand' url='/pages/command-release/index' wx:if='{{shop_id <= 0}}'>
     <text>+ 发布需求</text>
   </navigator>
 </view>

@@ -18,6 +18,9 @@ Page({
     })
     this.getBalance()
   },
+  async onShow(){
+    await this.getBalance()
+  },
   async getBalance() {
     let server_res = await app.get({
       url: '/api/v1/withdraw/balance'
@@ -26,6 +29,15 @@ Page({
     if (!success) {
       app._error(msg)
       return
+    }
+    if(data.balance === 0 || data.balance > 0){
+      data.balance = app._toMoney(data.balance)
+    }
+    if(data.bond_balance === 0 || data.bond_balance > 0){
+      data.bond_balance = app._toMoney(data.bond_balance)
+    }
+    if(data.business_balance === 0 || data.business_balance > 0){
+      data.business_balance = app._toMoney(data.business_balance)
     }
     this.setData({
       detail: data

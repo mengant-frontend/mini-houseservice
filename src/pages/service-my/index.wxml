@@ -1,9 +1,9 @@
 <view class="page">
   <view class="list">
     <view wx:for='{{list}}' class="item">
-      <view class="photo">
+      <navigator class="photo" url='/pages/service-detail/index?id={{item.id}}'>
         <image src='{{item.cover}}'></image>
-      </view>
+      </navigator>
       <view class="content">
         <navigator url='/pages/service-detail/index?id={{item.id}}' class="title">{{item.name}}</navigator>
         <view class="desc">

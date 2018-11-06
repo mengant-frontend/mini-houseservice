@@ -33,7 +33,7 @@ Page({
     }
     let { type } = this.data
     let balance = data.bond_balance
-    console.log(balance)
+    balance = app._toMoney(balance)
     this.setData({
       balance: balance
     })
@@ -92,6 +92,8 @@ Page({
       title: '成功'
     })
     await app.sleep()
-    wx.navigateBack()
+    wx.navigateBack({
+      delta: 1
+    })
   }
 })

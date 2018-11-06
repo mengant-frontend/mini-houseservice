@@ -134,7 +134,7 @@ Page({
               id: item.id,
               img_url: item.cover,
               title: item.name,
-              price: item.price
+              price: app._toMoney(item.price)
             })
           })
           if_no_more = list.length < total ? false : true

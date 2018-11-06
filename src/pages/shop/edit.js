@@ -3,6 +3,7 @@ const app = getApp()
 Page({
   data: {
     staffs: [],
+    origin_staffs: [],
     form_data: {
       name: '',
       phone: '',
@@ -73,6 +74,7 @@ Page({
       .slice(0, 9)
     this.setData({
       staffs: staffs,
+      origin_staffs: staffs.map(staff => staff.id),
       form_data: {
         ...data,
         staffs: staffs.map(staff => staff.id)
@@ -169,10 +171,26 @@ Page({
       app._error(err_msg)
       return
     }
+    let origin_staffs = this.data.origin_staffs.map(staff => String(staff))
+    let staffs = form_data.staffs.split(',')
+    staffs = staffs.filter(staff => {
+      return origin_staffs.indexOf(staff) === -1
+    }).join(',')
+    if(staffs){
+      form_data.staffs = staffs
+    }else{
+      delete form_data.staffs
+    }
+
+    await app.asyncApi(wx.showLoading, {
+      title: 'loading...',
+      mask: true
+    })
     let server_res = await app.post({
       url: '/api/v1/shop/update',
       data: form_data
     })
+    await app.asyncApi(wx.hideLoading)
     let { success, msg, data } = server_res
     if (!success) {
       app._error(msg)

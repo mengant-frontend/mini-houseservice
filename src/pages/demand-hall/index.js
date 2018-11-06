@@ -46,7 +46,17 @@ Page({
     })
     this.getDemandList()
   },
-
+  async onShow(){
+    let tabs_current = this.data.tabs_current
+    let tabs_list = this.data.tabs_list
+    let item = tabs_list[tabs_current]
+    item.current_page = 0
+    item.if_no_more = false
+    item.demand_list = []
+    tabs_list[tabs_current] = item
+    await this.setData({ tabs_list })
+    await this.getDemandList()
+  },
   // 下拉刷新
   async onPullDownRefresh() {
     let tabs_current = this.data.tabs_current
@@ -57,7 +67,7 @@ Page({
     item.demand_list = []
     tabs_list[tabs_current] = item
     await this.setData({ tabs_list })
-    this.getDemandList()
+    await this.getDemandList()
     wx.stopPullDownRefresh()
   },
 
@@ -92,7 +102,7 @@ Page({
           longitude: app.global_data.longitude,
           page: item.current_page + 1,
           size: 6,
-          type: tabs_current === 0 ? 1 : 2
+          type: tabs_current === 0 ? 2 : 1
         }
       })
       if (res.success) {
@@ -104,7 +114,7 @@ Page({
             item.demand_list.push({
               demand_id: t.id,
               title: t.des,
-              money: t.money,
+              money: app._toMoney(t.money),
               area: t.area,
               distance: t.distance
             })

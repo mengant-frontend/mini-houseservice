@@ -67,7 +67,7 @@ Page({
       return
     }
     let { id, state, type } = this.data
-    state = state + 1
+    state = Number(state) + 1
     wx.redirectTo({
       url: `/pages/order-detail/index?id=${id}&type=${type}&state=${state}`
     })
@@ -91,6 +91,7 @@ Page({
       url: '/api/v1/order/price/update',
       data: {
         id: id,
+        type: type,
         money: form_data.money,
         price_remark: form_data.price_remark
       }
@@ -142,6 +143,8 @@ Page({
     let order_detail_state = app._deepClone(app.global_data.order_detail_state)
     order_detail_state.price_change = false
     app.global_data.order_detail_state = order_detail_state
-    wx.navigateBack()
+    wx.navigateBack({
+      delta: 1
+    })
   }
 })

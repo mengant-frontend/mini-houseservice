@@ -25,16 +25,16 @@ Page({
   },
 
   async onLoad({ service_type }) {
-    // 服务类型，1为家政，2为维修
+    // 服务类型，2为家政，1为维修
     if (service_type == 1) {
       service_type = 3
       app.asyncApi(wx.setNavigationBarTitle, {
-        title: '家政服务'
+        title: '维修服务'
       })
     } else {
       service_type = 4
       app.asyncApi(wx.setNavigationBarTitle, {
-        title: '维修服务'
+        title: '家政服务'
       })
     }
     let location = app.global_data.location
@@ -131,7 +131,7 @@ Page({
               img_url: item.cover,
               title: item.name,
               sales: item.sell_num,
-              money: item.sell_money
+              money: app._toMoney(item.sell_money)
             })
           })
           if_no_more = service_list.length < total ? false : true

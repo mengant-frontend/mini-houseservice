@@ -8,7 +8,6 @@ const qq_map = new QQMapSdk({
 })
 App({
   async onLaunch() {
-    console.log(arguments)
     let system_info = await this.asyncApi(wx.getSystemInfo)
     if (system_info.success) {
       this.global_data.system_info = system_info
@@ -56,6 +55,7 @@ App({
         console.log(wx_res)
         return
       }
+      console.log(user_type)
       if (!wx_res.authSetting['scope.userInfo']) {
         // 用户没有授权获取用户信息时跳转到授权页
         await this.asyncApi(wx.redirectTo, {
@@ -146,7 +146,17 @@ App({
             //接口调用失败都是401
           } else if (statusCode > 200) {
             response.success = false
-            response.msg = response.data && response.data.msg || `server: ${url} api 调用失败`
+            if(response.data){
+              console.log(response.data)
+              console.log(response.data.msg)
+              if(typeof response.data.msg === 'object'){
+                response.msg = JSON.stringify(response.data.msg)
+              }else if(typeof response.data.msg === 'string'){
+                response.msg = response.data.msg
+              }else {
+                response.msg = `server: ${url} api 调用失败`
+              }
+            }
           } else {
             //其他错误可能是网络问题或者服务器问题或者微信接口出错
             response.msg = errMsg
@@ -157,7 +167,9 @@ App({
     }
     let res = await request()
     //此处只做登录失效下自动调用登录接口
-    if (Number(res.data.code) === 10001) {
+    let status_code = res.data.code || res.data.error_code || res.data.errorCode
+    status_code = Number(status_code)
+    if (status_code === 10001) {
       if (auto) {
         let login = await this.login()
         if (login.success) {
@@ -305,6 +317,20 @@ App({
     return {
       form_key,
       value
+    }
+  },
+  //
+  _toMoney(money){
+    let new_money_origin = Number(money)
+    if(new_money_origin === parseInt(new_money_origin)){
+      return new_money_origin + '.00'
+    }else{
+      let new_money_10 = new_money_origin * 10
+      if(new_money_10 === parseInt(new_money_10)){
+        return new_money_origin + '0'
+      }else{
+        return new_money_origin
+      }
     }
   },
   //输入坐标返回地理位置信息和附近poi列表

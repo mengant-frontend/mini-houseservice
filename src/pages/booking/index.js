@@ -165,6 +165,8 @@ Page({
     })
     await app.sleep()
     await app.asyncApi(wx.hideToast)
-    wx.navigateBack()
+    wx.navigateBack({
+      delta: 1
+    })
   }
 })

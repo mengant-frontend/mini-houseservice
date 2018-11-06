@@ -16,7 +16,8 @@ Page({
     wx.stopPullDownRefresh()
   },
   async onReachBottom() {
-    let page = this.data.page
+    let { page, is_end } = this.data
+    if(is_end) return
     await this.loadData(page + 1)
   },
   async loadData(page) {
@@ -41,12 +42,15 @@ Page({
     }
     let new_list = data.data
     if (page > 1) {
-      new_list = list.concat(data.data)
+      new_list = list.concat(new_list)
     }
     let is_end = false
     if (new_list.length === data.total) {
       is_end = true
     }
+    new_list.forEach(item => {
+      item.money = app._toMoney(item.money)
+    })
     this.setData({
       list: new_list,
       page: page,
@@ -57,25 +61,46 @@ Page({
   async readMessage(e) {
     let { currentTarget: { dataset: { index } } } = e
     let order = this.data.list[index]
-    let type = order.order_type,
+    let type = order.type,
       id = order.order_id,
       state = order.state
-    this.changeState(order.id)
+    await this.changeState(id, 2)
     wx.navigateTo({
       url: `/pages/order-detail/index?id=${id}&type=${type}&state=${state}`
     })
   },
-  async changeState(id) {
-    let server_res = await app.get({
-      url: '/',
+  async changeState(id, state) {
+    await app.asyncApi(wx.showLoading, {
+      title: 'loading...',
+      mask: true
+    })
+    let server_res = await app.post({
+      url: '/api/v1/center/msg/handel',
       data: {
-        id: id
+        id: id,
+        state: state
       }
     })
+    await app.asyncApi(wx.hideLoading)
     let { success, msg, data } = server_res
     if (!success) {
       app._error(msg)
-      return
+      return false
     }
+    return true
+  },
+  async deleteMessage(e){
+    let { currentTarget: { dataset: { index } } } = e
+    let order = this.data.list[index]
+    let type = order.order_type,
+      id = order.order_id,
+      state = order.state
+    let res = await this.changeState(id, 3)
+    if(!res) return
+    let list = app._deepClone(this.data.list)
+    list.splice(index, 1)
+    this.setData({
+      list: list
+    })
   }
 })

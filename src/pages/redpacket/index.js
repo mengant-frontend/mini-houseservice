@@ -4,11 +4,13 @@ Page({
   data: {
     list: [],
     type: '',
-    active_index: -1
+    active_index: -1,
+    money: 0
   },
   onLoad(query) {
     this.setData({
-      type: query.type || ''
+      type: query.type || '',
+      money: query.money || 0
     })
     this.loadList()
   },
@@ -17,6 +19,7 @@ Page({
   },
   //获取红包列表
   async loadList() {
+    let { type, money } = this.data
     await app.asyncApi(wx.showLoading, {
       title: 'loading...'
     })
@@ -33,6 +36,14 @@ Page({
     data.forEach(item => {
       item.detail = item.detail || {}
     })
+    data.forEach(item => {
+      item.money = app._toMoney(item.money)
+    })
+    if(type === 'select'){
+      data = data.filter(item => {
+        return item.money < money
+      })
+    }
     this.setData({
       list: data
     })
@@ -51,10 +62,14 @@ Page({
     let list = app._deepClone(this.data.list)
     let active_index = this.data.active_index
     app.global_data.red_packet = list[active_index]
-    wx.navigateBack()
+    wx.navigateBack({
+      delta: 1
+    })
   },
   cancel() {
     app.global_data.red_packet = null
-    wx.navigateBack()
+    wx.navigateBack({
+      delta: 1
+    })
   }
 })

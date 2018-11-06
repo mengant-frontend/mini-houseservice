@@ -101,13 +101,13 @@ Page({
               img_url: item.cover,
               title: item.name,
               sales: item.sell_num,
-              money: item.sell_money
+              money: app._toMoney(item.sell_money)
             }
             switch (item.type) {
-              case 1:
+              case 2:
                 house_service_list.push(list_item)
                 break;
-              case 2:
+              case 1:
                 maintain_service_list.push(list_item)
                 break;
             }

@@ -29,7 +29,7 @@ Page({
     }
 
     let server_res = await app.get({
-      url: '/api/v1/token/admin',
+      url: '/api/v1/token/village',
       data: form_data
     })
     let { success, msg } = server_res

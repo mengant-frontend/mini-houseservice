@@ -49,7 +49,7 @@ Page({
         store_id: data.shop_id,
         banner_img: img_list,
         name: data.name,
-        money: data.price,
+        money: app._toMoney(data.price),
         unit: data.unit,
         location: data.shop.address,
         phone: data.shop.phone,
@@ -74,20 +74,15 @@ Page({
     wx.showNavigationBarLoading()
     let if_collected = !this.data.if_collected
     let url = '',
-      data
+    data = {
+      id: this.data.service_id,
+      type: 1
+    }
 
     if (if_collected) {
       url = this.data.api_url.collect
-      data = {
-        id: this.data.service_id,
-        type: 1
-      }
     } else {
       url = this.data.api_url.collect_cancel
-      data = {
-        id: this.data.collection,
-        type: 1
-      }
     }
     this.setData({
       'request_lock.collect': false
@@ -141,8 +136,8 @@ Page({
           data_list.forEach((item, index) => {
             comment_list.push({
               id: len + index,
-              avatar_url: item.user.avatarUrl,
-              nick_name: item.user.nickName,
+              avatar_url: item.avatarUrl,
+              nick_name: item.nickName,
               date: item.create_time,
               content: item.content
             })

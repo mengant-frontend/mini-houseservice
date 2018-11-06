@@ -74,7 +74,7 @@ Page({
       }
     }
     if (err_msg) {
-      app._error(msg)
+      app._error(err_msg)
       return
     }
     let server_res = await app.post({

@@ -40,6 +40,10 @@ Page({
       app._error(msg)
       return
     }
+    data.origin_money = app._toMoney(data.origin_money)
+    if(data.update_money){
+      data.update_money = app._toMoney(data.update_money)
+    }
     this.setData({
       order_data: data
     })

@@ -95,7 +95,7 @@ Component({
       if (start_date && start_hour && start_minute) {
         local_start = [start_date, start_hour, start_minute]
       } else {
-        let now = moment()
+        let now = moment().add(10, 'm')
         local_start = [now.format('YYYY-MM-DD'), now.format('H'), now.format('m')]
       }
       await new Promise(resolve => {
@@ -141,20 +141,21 @@ Component({
           minute = start_minute
         }
       }
-      for (let i = hour; i < 24; i++) {
+      for (let i = Number(hour); i < 24; i++) {
         let hour_str = i
         if (i < 10) {
           hour_str = '0' + i
         }
         hours.push('' + hour_str)
       }
-      for (let i = minute; i < 60; i++) {
+      for (let i = Number(minute); i < 60; i++) {
         let minute_str = i
         if (i < 10) {
           minute_str = '0' + i
         }
         minutes.push('' + minute_str)
       }
+      console.log(hours)
       return [dates, hours, minutes]
     }
   }

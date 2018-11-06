@@ -16,7 +16,7 @@
         </picker>
       </i-cell>
       <i-cell title='商家地址'>
-        <view slot='footer' bindtap='chooseLocation'>
+        <view slot='footer' bindtap='chooseLocation' class='ellipsis'>
           <text>{{form_data.address || '请选择商家地址'}}</text>
           <i-icon type='enter'></i-icon>
         </view>

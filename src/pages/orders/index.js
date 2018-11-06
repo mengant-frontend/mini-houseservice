@@ -156,8 +156,6 @@ Page({
     let tabs_current = this.data.tabs_current
     let tabs_list = this.data.tabs_list
     let item = tabs_list[tabs_current]
-    console.log(tabs_list)
-    console.log(item)
     if (!item.if_no_more && this.data.request_lock.get_order_list) {
       this.setData({
         if_loading: true,
@@ -181,8 +179,8 @@ Page({
             item.order_list.push({
               order_id: t.order_id,
               title: t.source_name,
-              origin_money: t.origin_money,
-              update_money: t.update_money,
+              origin_money: app._toMoney(t.origin_money),
+              update_money: t.update_money > 0 ? app._toMoney(t.update_money) : t.update_money,
               date: t.time_begin
             })
           })

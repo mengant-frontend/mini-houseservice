@@ -12,7 +12,7 @@
       </view>
       <view class='main'>
         <view class='message-desc'>
-          <text>您有新的{{item.order_type === '1' ? '家政' : '维修'}}信息，点击阅读</text>
+          <text>您有新的家政信息，点击阅读</text>
         </view>
         <view class='order'>
           <view class='order-desc'>
@@ -23,7 +23,8 @@
             </view>
           </view>
           <view class='order-operate'>
-            <i-button type='info' bind:click='readMessage' data-index='{{index}}'>查看</i-button>
+            <i-button i-class='delete-btn' type='error' size='small' bind:click='deleteMessage' data-index='{{index}}'>删除</i-button>
+            <i-button type='info' size='small' bind:click='readMessage' data-index='{{index}}'>查看</i-button>
           </view>
         </view>
       </view>

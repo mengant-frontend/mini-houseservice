@@ -27,6 +27,7 @@ Page({
       app._error(msg)
       return
     }
+    data.balance = app._toMoney(data.balance)
     this.setData({
       detail: data
     })

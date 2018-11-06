@@ -1,15 +1,15 @@
 import regeneratorRuntime from '../../lib/runtime'
-import { command_types } from '../../common/constant'
+import { command_types, default_type } from '../../common/constant'
 import moment from '../../lib/moment'
 const app = getApp()
 Page({
   data: {
     command_types: command_types,
-    command_type: '家政',
+    command_type: default_type,
     photo_list: [],
     time_begin: [],
     form_data: {
-      type: 1,
+      type: 2,
       name: '',
       phone: '',
       des: '',
@@ -140,7 +140,6 @@ Page({
     let wx_res = await app.asyncApi(wx.chooseLocation)
     let { success, name, latitude, longitude, address } = wx_res
     if (!success) {
-      app._error(msg)
       return
     }
     let location_res = await app._getAdInfo({

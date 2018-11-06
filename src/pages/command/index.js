@@ -71,6 +71,9 @@ Page({
   },
 
   async onLoad() {
+    this.setData({
+      shop_id: app.global_data.shop_id
+    })
     await this.getOrderList()
   },
 
@@ -85,9 +88,22 @@ Page({
     item.if_no_more = false
     item.order_list = []
     tabs_list[tabs_current] = item
-    await this.setData({ tabs_list })
-    this.getOrderList()
+    this.setData({ tabs_list })
+    await this.getOrderList()
     wx.stopPullDownRefresh()
+  },
+  async onShow(){
+    let tabs_current = this.data.tabs_current
+    let tabs_list = this.data.tabs_list
+    let item = tabs_list[tabs_current]
+    item.current_page = 0
+    item.total = 0
+    item.count = 0
+    item.if_no_more = false
+    item.order_list = []
+    tabs_list[tabs_current] = item
+    this.setData({ tabs_list })
+    await this.getOrderList()
   },
 
   // 加载订单列表
@@ -119,8 +135,8 @@ Page({
               state: t.state,
               order_id: tabs_current === 0 ? t.id : t.order_id,
               title: tabs_current === 0 ? t.demand_name : t.source_name,
-              origin_money: item.id === 'ordered' ? t.money : t.origin_money,
-              update_money: t.update_money,
+              origin_money: item.id === 'ordered' ? app._toMoney(t.money) : app._toMoney(t.origin_money),
+              update_money: app._toMoney(t.update_money),
               date: t.time_begin
             })
           })

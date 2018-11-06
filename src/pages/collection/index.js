@@ -95,7 +95,7 @@ Page({
               id: t.id,
               img_url: tabs_current === 0 ? t.service.cover : t.shop.head_url,
               title: tabs_current === 0 ? t.service.name : t.shop.name,
-              money: tabs_current === 0 ? t.service.price : '',
+              money: tabs_current === 0 ? app._toMoney(t.service.price) : '',
               address: tabs_current === 0 ? '' : t.shop.address,
               phone: tabs_current === 0 ? '' : t.shop.phone
             })

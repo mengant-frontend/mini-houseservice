@@ -44,6 +44,7 @@ Page({
     data.imgs.forEach(img => {
       img.url = img.img_url.url
     })
+    data.origin_money = app._toMoney(data.origin_money)
     this.setData({
       detail: data
     })
@@ -96,6 +97,8 @@ Page({
       app._error(msg)
       return
     }
-    wx.navigateBack()
+    wx.navigateBack({
+      delta: 1
+    })
   }
 })

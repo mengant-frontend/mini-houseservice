@@ -50,6 +50,9 @@ Page({
       new_list = list.concat(new_list)
     }
     let can_load_more = this.updateCanLoadMore(new_list, total)
+    new_list.forEach(item => {
+      item.price = app._toMoney(item.price)
+    })
     this.setData({
       list: new_list,
       total: total,
@@ -58,7 +61,7 @@ Page({
       can_load_more: can_load_more
     })
   },
-  // 
+  //
   updateCanLoadMore(list, total) {
     let can_load_more = true
     if (list.length >= total) {

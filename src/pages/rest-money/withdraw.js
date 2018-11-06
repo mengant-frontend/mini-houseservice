@@ -45,8 +45,9 @@ Page({
     } else {
       balance = data.balance
     }
+    balance = app._toMoney(balance)
     this.setData({
-      balance: Number(balance)
+      balance: balance
     })
   },
   // 获取是否正在进行的提现操作

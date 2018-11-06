@@ -73,6 +73,9 @@ Page({
     if (new_list.length >= data.total) {
       is_end = true
     }
+    new_list.forEach(item => {
+      item.money = app._toMoney(item.money)
+    })
     this.setData({
       is_end,
       page: page,

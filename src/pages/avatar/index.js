@@ -62,6 +62,8 @@ Page({
     let img_list = app._deepClone(this.data.img_list)
     let type = this.data.type
     app.global_data[type + '_list'] = img_list
-    wx.navigateBack()
+    wx.navigateBack({
+      delta: 1
+    })
   }
 })

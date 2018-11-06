@@ -61,7 +61,6 @@ Page({
       console.log(res)
     }
   },
-
   // 收藏
   async collect() {
     if (!this.data.request_lock.collect) {
@@ -70,19 +69,15 @@ Page({
     wx.showNavigationBarLoading()
     let if_collected = !this.data.if_collected
     let url = '',
-      data
+    data = {
+      id: this.data.store_id,
+      type: 2
+    }
     if (if_collected) {
       url = this.data.api_url.collect
-      data = {
-        id: this.data.store_id,
-        type: 2
-      }
+
     } else {
       url = this.data.api_url.collect_cancel
-      data = {
-        id: this.data.collection,
-        type: 2
-      }
     }
     this.setData({
       'request_lock.collect': false
@@ -137,7 +132,7 @@ Page({
               id: item.id,
               img_url: item.cover,
               title: item.name,
-              money: item.price,
+              money: app._toMoney(item.price),
               sales: item.sell_num
             })
           })

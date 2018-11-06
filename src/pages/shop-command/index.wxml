@@ -14,6 +14,7 @@
           </view>
           <view class='btn-bar'>
             <view class='unserviced' wx:if='{{item.id === "unserviced"}}'>联系客户</view>
+            <view class='completed' wx:if='{{item.id === "completed"}}'>删除订单</view>
           </view>
         </view>
       </navigator>

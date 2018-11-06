@@ -23,11 +23,11 @@
 </navigator>
 
 <view class='menu'>
-  <navigator class='item' url='/pages/service/index?service_type=1'>
+  <navigator class='item' url='/pages/service/index?service_type=2'>
     <image mode='aspectFit' src='/images/house.png' />
     <text>家政服务</text>
   </navigator>
-  <navigator class='item' url='/pages/service/index?service_type=2'>
+  <navigator class='item' url='/pages/service/index?service_type=1'>
     <image mode='aspectFit' src='/images/maintain.png' />
     <text>维修服务</text>
   </navigator>
@@ -39,8 +39,8 @@
 
 <demand-hall></demand-hall>
 
-<service-title-bar service-type='1'></service-title-bar>
+<service-title-bar service-type='2'></service-title-bar>
 <service-list list='{{house_service_list}}' wx:if='{{house_service_list.length > 0}}'></service-list>
 
-<service-title-bar service-type='2'></service-title-bar>
+<service-title-bar service-type='1'></service-title-bar>
 <service-list list='{{maintain_service_list}}' wx:if='{{maintain_service_list.length > 0}}'></service-list>

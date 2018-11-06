@@ -139,7 +139,7 @@ Page({
           this.redirectTo()
           break
         default:
-          console.error('暂时不想处理')
+          console.error(state, '暂时不想处理')
       }
       let form_data = app._deepClone(this.data.form_data)
       let imgs = []
@@ -174,15 +174,16 @@ Page({
       other_data.photo_list = value
     }
     if (form_key === 'type') {
-      command_types.forEach(command => {
-        if (command.label === value) {
-          other_data.type_text = command.value
+      command_types.forEach((command, index) => {
+        if (index == value) {
+          other_data.type_text = command.label
         }
       })
     }
     if (form_key === 'head_url') {
       other_data.head_url = value
     }
+    console.log(other_data)
     this.setData({
       form_data: form_data,
       ...other_data
@@ -197,8 +198,14 @@ Page({
       case 'phone':
       case 'phone_sub':
       case 'id_number':
-      case 'type':
         form_data[form_key] = value
+        break
+      case 'type':
+        command_types.forEach((command, index) => {
+          if(value == index){
+            form_data[form_key] = command.value
+          }
+        })
         break
       case 'services_region':
         form_data.province = value[0]

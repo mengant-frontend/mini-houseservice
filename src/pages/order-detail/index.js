@@ -30,13 +30,15 @@ Page({
       type: query.type,
       state: query.state
     })
-    console.log(query)
     await this.loadOrder()
     this.init(query)
-    this.getRedPacketList()
+    let has_shop = this.data.has_shop
+    if(!has_shop){
+      this.getRedPacketList()
+    }
+
   },
   onShow() {
-    console.log(this.data.order_detail)
     let red_packet = app.global_data.red_packet
     let order_detail_state = app.global_data.order_detail_state
     let change_price = this.data.change_price
@@ -97,8 +99,10 @@ Page({
       app._error(msg)
       return
     }
-    console.log('order_detail', data)
-
+    data.origin_money = app._toMoney(data.origin_money)
+    if(data.update_money && data.update_money > 0){
+      data.update_money = app._toMoney(data.update_money)
+    }
     this.setData({
       order_detail: data
     })
@@ -112,6 +116,7 @@ Page({
   },
   // 前往店铺
   goToShop() {
+    console.log(this.data.has_shop)
     if (this.data.has_shop) {
       // 商家不显示店铺title，也不跳转
       return
@@ -144,14 +149,25 @@ Page({
       app._error(msg)
       return
     }
+    let order_detail = app._deepClone(this.data.order_detail)
+    let money = order_detail.update_money ? order_detail.update_money : order_detail.origin_money
+    data = data.filter(item => {
+      return item.money < money
+    })
     this.setData({
       red_packet_list: data
     })
   },
   // 前往使用红包
   selectRedPacket() {
+    let order = app._deepClone(this.data.order_detail)
+    let red_packet_list = app._deepClone(this.data.red_packet_list)
+    if(!red_packet_list.length){
+      return
+    }
+    let money = order.update_money ? order.update_money : order.origin_money
     wx.navigateTo({
-      url: '/pages/redpacket/index?type=select'
+      url: '/pages/redpacket/index?type=select&money=' + money
     })
   },
   // 前往修改价格
@@ -343,7 +359,9 @@ Page({
       app._error(msg)
       return
     }
-    wx.navigateBack()
+    wx.navigateBack({
+      delta: 1
+    })
   },
   async customerPayOrder() {
     if (Number(this.data.order_detail.shop_confirm) !== 1) {
@@ -410,11 +428,10 @@ Page({
       app._error(server_res.msg)
       return
     }
-    let order_detail = app._deepClone(this.data.order_detail)
-    let time_end = order_detail.time_end
-    order_detail.confirm_id = 2
+    await this.loadOrder()
+    let detail = app._deepClone(this.data.order_detail)
     this.setData({
-      chat_text: `将于${time_end}自动完工`,
+      chat_text: `将于${detail.consult_time}自动完工`,
       order_detail: order_detail
     })
   },
@@ -440,6 +457,34 @@ Page({
     state = Number(state) + 1
     wx.redirectTo({
       url: `/pages/order-evaluate/index?id=${id}&type=${type}&state=${state}`
+    })
+  },
+  async deleteOrder(){
+    let { id, type } = this.data
+    let wx_res = await app.asyncApi(wx.showModal, {
+      title: '删除订单',
+      content: '请确认删除该条订单'
+    })
+    if(!wx_res.confirm) return
+    await app.asyncApi(wx.showLoading, {
+      title: 'loading...',
+      mask: true
+    })
+    let server_res = await app.post({
+      url: '/api/v1/order/delete',
+      data: {
+        id,
+        type
+      }
+    })
+    await app.asyncApi(wx.hideLoading)
+    let { success, msg } = server_res
+    if(!success){
+      app._error(msg)
+      return
+    }
+    wx.navigateBack({
+      delta: 1
     })
   }
 })

@@ -48,7 +48,7 @@ Page({
         form_data.city = value[1]
         form_data.area = value[2]
         break
-      default: 
+      default:
         throw new Error('form_key 无效')
     }
     this.setData({
@@ -64,7 +64,7 @@ Page({
     let { data, success, msg } = server_res
     if(!success){
       app._error(msg)
-      return 
+      return
     }
     this.setData({
       form_data: data
@@ -80,7 +80,7 @@ Page({
     })
     if(!is_valid){
       app._warn('请完善表单')
-      return 
+      return
     }
     //Todo 保存接口
     let server_res = await app.post({
@@ -90,8 +90,10 @@ Page({
     let { success, msg } = server_res
     if(!success){
       app._error(msg)
-      return 
+      return
     }
-    wx.navigateBack()    
+    wx.navigateBack({
+      delta: 1
+    })
   }
 })
