@@ -21,7 +21,7 @@ Page({
       like: true,
       send: true
     },
-    padding_bottom: 90,
+    padding_bottom: 60,
     page: 0,
     total: 0,
     total_add: 0,
@@ -34,10 +34,6 @@ Page({
 
   async onLoad({ id }) {
     // 获取 #container 节点的高度
-    let container_height = 0
-    wx.createSelectorQuery().select('#container').boundingClientRect(rect => {
-      container_height = rect.height - 45
-    }).exec()
     wx.showNavigationBarLoading()
     // 获取圈子内容
     let res = await app.get({
@@ -49,14 +45,16 @@ Page({
     wx.hideNavigationBarLoading()
     if (res.success) {
       let data = res.data
+      wx.setNavigationBarTitle({
+        title: data.title
+      })
       this.setData({
         id: Number(id),
         title: data.title,
         date: data.create_time,
         view_num: data.read_num,
         img_url: data.head_img,
-        content: data.content,
-        container_height
+        content: decodeURIComponent(data.content)
       }, () => {
         // 获取评论列表
         this.getCommentList()
@@ -248,19 +246,6 @@ Page({
         console.log(res)
       }
       this.setData({ 'request_lock.send': true })
-    }
-  },
-
-  // 输入框高度发生变化时计算 padding_bottom
-  inputHeightChange({ detail }) {
-    let input_bar_height = detail.heightRpx + 22
-    let padding_bottom = this.data.padding_bottom
-    if (input_bar_height > 90) {
-      this.setData({
-        padding_bottom: input_bar_height
-      })
-    } else {
-      this.setData({ padding_bottom })
     }
   },
 
