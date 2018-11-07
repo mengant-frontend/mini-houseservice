@@ -1,0 +1,10 @@
+<view class="carousel" wx:if="{{list.length > 0}}">
+    <view class="container__icon">
+        <i-icon type="activity" size="20" color="#f76a24"></i-icon>
+    </view>
+    <swiper class="swiper" autoplay interval="2000" circular="true" vertical="true" >
+        <swiper-item wx:for="{{list}}" wx:key="*this">
+            <view class="content">用户 {{item.user_name}} 预约了 {{item.source_name}} 服务</view>
+        </swiper-item>
+    </swiper>
+</view>
