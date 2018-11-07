@@ -7,6 +7,8 @@
     "banner-img": "/components/banner-img/index",
     "demand-hall": "/components/demand-hall/index",
     "service-title-bar": "/components/service-title-bar/index",
-    "service-list": "/components/service-list/index"
+    "service-list": "/components/service-list/index",
+    "carousel": "/components/carousel/index",
+    "i-message": "/iview/message/index"
   }
 }

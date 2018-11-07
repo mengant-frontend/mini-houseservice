@@ -2,6 +2,7 @@
   <view>
     <banner-img list='{{banner_img}}'></banner-img>
     <demand-hall></demand-hall>
+    <carousel list="{{list}}"></carousel>
     <service-category-tabs category-list='{{category_list}}' bind:tabsChange='tabsChange'></service-category-tabs>
     <service-list list='{{service_list}}'></service-list>
   </view>

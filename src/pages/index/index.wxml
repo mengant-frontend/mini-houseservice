@@ -25,7 +25,9 @@
     【红包攻略】{{notice_content}}
   </i-notice-bar>
 </navigator>
-
+<view class='carousel'>
+    <view class="carousel-item"></view>
+</view>
 <view class='menu'>
   <navigator class='item' url='/pages/service/index?service_type=2'>
     <image mode='aspectFit' src='/images/house.png' />
@@ -42,9 +44,10 @@
 </view>
 
 <demand-hall></demand-hall>
-
+<carousel list="{{list}}"></carousel>
 <service-title-bar service-type='2'></service-title-bar>
 <service-list list='{{house_service_list}}' wx:if='{{house_service_list.length > 0}}'></service-list>
 
 <service-title-bar service-type='1'></service-title-bar>
 <service-list list='{{maintain_service_list}}' wx:if='{{maintain_service_list.length > 0}}'></service-list>
+<i-message id="message"></i-message>

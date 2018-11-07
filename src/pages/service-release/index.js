@@ -6,7 +6,7 @@ Page({
     form_data: {},
     type_text: '',
     price_keys: [],
-    extend: true,
+    extend: false,
     picture_list: [],
     shop_location: [],
     // 店铺类型，家政还是维修

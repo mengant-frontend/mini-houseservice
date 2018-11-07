@@ -119,25 +119,5 @@ Page({
         break
       default:
     }
-  },
-  // 协商
-  async chat(){
-    await app.asyncApi(wx.showNavigationBarLoading)
-    let server_ res = await app.post({
-      url: '/api/v1/order/confirm',
-      data: {
-        id,
-        type,
-        confirm
-      }
-    })
-    await app.asyncApi(wx.hideNavigationBarLoading)
-    let { success, msg, data} = server_res
-    if(!success){
-      app._error(msg)
-      return
-    }
-    wx.navigateBack()
   }
-
 })

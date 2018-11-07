@@ -8,15 +8,6 @@ const qq_map = new QQMapSdk({
 })
 App({
   async onLaunch() {
-    let had_used = false
-    try{
-      had_used = wx.getStorageSync('had_used')
-      if(had_used){
-        wx.redirectTo({
-          url: '/pages/welcome/index'
-        })
-      }
-    }catch(e){}
     let system_info = await this.asyncApi(wx.getSystemInfo)
     if (system_info.success) {
       this.global_data.system_info = system_info
@@ -42,6 +33,7 @@ App({
         code: wx_res.code
       }
     })
+    await this.asyncApi(wx.hideLoading)
     if (!server_res.success) { // 出错处理debug
       console.log(server_res)
       return
@@ -53,7 +45,7 @@ App({
     if (!this.global_data.user_info) {
       await this.getUserInfo(Number(data.type))
     }
-    await this.asyncApi(wx.hideLoading)
+
     return server_res
   },
   // 获取用户信息
