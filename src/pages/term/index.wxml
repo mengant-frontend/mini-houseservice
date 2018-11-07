@@ -1,0 +1,14 @@
+<view class='page card' style='padding-bottom: {{has_btns ? 60 : 0}}'>
+  <rich-text nodes='{{term_data.content}}'></rich-text>
+  <view class='fixed' wx:if='{{has_btns}}'>
+    <view class='flex-btn'>
+      <!-- 服务协议不能拒绝 -->
+      <view class='container__btn' wx:if='{{ type != "service_term"}}'>
+        <i-button type='error' size='small' long>拒绝</i-button>
+      </view>
+      <view class='container__btn'>
+        <i-button type='primary' size='small' bind:click='confirm' long>同意</i-button>
+      </view>
+    </view>
+  </view>
+</view>

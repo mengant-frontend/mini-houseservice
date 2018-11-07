@@ -13,16 +13,15 @@ Page({
       // 获取推广的服务列表
       get_service_list: '/api/v1/service/index'
     },
-    location: []
+    location: [],
+    // 获取加盟消息
+    join_msg: ''
   },
 
   async onLoad() {
-    console.log(12131312)
-
     wx.showNavigationBarLoading()
     // 获取地理位置
     let res = await app.getLocation()
-    console.log(res)
     if (res.success) {
       await this.setData({
         location: res.location
@@ -71,6 +70,7 @@ Page({
           console.log(res)
         }
       })
+    this.getJoinMsg()
     // 获取推广的服务列表
     await this.getServiceList()
     wx.hideNavigationBarLoading()
@@ -79,6 +79,26 @@ Page({
   onShow() {
     this.setData({
       village: app.global_data.village
+    })
+  },
+  // 本地是否存在商户
+  async getJoinMsg(){
+    let location = this.data.location
+    let server_res = await app.get({
+      url: '/api/v1/check/join',
+      data: {
+        province: location[0],
+        city: location[1],
+        area: location[2]
+      }
+    })
+    let { success, msg, data} = server_res
+    if(!success){
+      app._error(msg)
+      return
+    }
+    this.setData({
+      join_msg: data.join_msg
     })
   },
 

@@ -48,3 +48,11 @@ page {
   margin-top: 14rpx;
 }
 /* 三个菜单 end */
+.join-msg{
+  width: 100%;
+  padding: 50rpx 25rpx;
+  font-size: 12px;
+  color: #80848f;
+  text-align: center;
+  box-sizing: border-box;
+}

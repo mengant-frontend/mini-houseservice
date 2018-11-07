@@ -22,7 +22,8 @@ Page({
     red_packet: null,
     // 红包列表
     red_packet_list: [],
-    chat_text: ''
+    chat_text: '',
+    consult_message: ''
   },
   async onLoad(query) {
     this.setData({
@@ -30,13 +31,14 @@ Page({
       type: query.type,
       state: query.state
     })
+
     await this.loadOrder()
     this.init(query)
     let has_shop = this.data.has_shop
     if(!has_shop){
       this.getRedPacketList()
+      this.getConsultMessage()
     }
-
   },
   onShow() {
     let red_packet = app.global_data.red_packet
@@ -168,6 +170,20 @@ Page({
     let money = order.update_money ? order.update_money : order.origin_money
     wx.navigateTo({
       url: '/pages/redpacket/index?type=select&money=' + money
+    })
+  },
+  //获取协商提示语
+  async getConsultMessage(){
+    let server_res = await app.get({
+      url: '/api/v1/system/tip'
+    })
+    let { success, msg, data } = server_res
+    if(!success){
+      app._error(msg)
+      return
+    }
+    this.setData({
+      consult_message: data.consult
     })
   },
   // 前往修改价格
@@ -416,9 +432,10 @@ Page({
     this.gotoEvaluate()
   },
   async customerChat() {
+    let consult_message = this.data.consult_message || '请确认协商操作'
     let wx_res = await app.asyncApi(wx.showModal, {
       title: '温馨提示',
-      content: '请确认协商操作'
+      content: consult_message
     })
     if (!wx_res.success) {
       return

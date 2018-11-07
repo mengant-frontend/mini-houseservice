@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/term/index",
     "pages/welcome/index",
     "pages/authorize/index",
 

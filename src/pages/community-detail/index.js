@@ -29,7 +29,8 @@ Page({
     comment_list: [],
     parent_id: 0,
     parent_nick_name: '',
-    parent_content: ''
+    parent_content: '',
+    bottom: 0
   },
 
   async onLoad({ id }) {
@@ -124,7 +125,16 @@ Page({
       })
     }
   },
-
+  onFocus({detail}){
+    this.setData({
+      bottom: 15
+    })
+  },
+  onBlur(){
+    this.setData({
+      bottom: 0
+    })
+  },
   // 点赞，不能取消
   like({ detail }) {
     let id = detail.id
@@ -240,7 +250,8 @@ Page({
           enter_comment: '',
           parent_id: 0,
           parent_nick_name: '',
-          parent_content: ''
+          parent_content: '',
+          input_focus: false
         })
       } else { // 出错处理debug
         console.log(res)

@@ -16,10 +16,14 @@
 
 <banner-img list='{{banner_img}}'></banner-img>
 
+<view class='join-msg' wx:if='{{join_msg.length > 0}}'>
+  {{join_msg}}
+</view>
+
 <navigator url='/pages/redpacket/tip'>
-<i-notice-bar icon="systemprompt" loop speed='{{notice_content.length > 30 ? 1000 : 2000}}' wx:if='{{notice_content}}'>
-  【红包攻略】{{notice_content}}
-</i-notice-bar>
+  <i-notice-bar icon="systemprompt" loop speed='{{notice_content.length > 30 ? 1000 : 2000}}' wx:if='{{notice_content}}'>
+    【红包攻略】{{notice_content}}
+  </i-notice-bar>
 </navigator>
 
 <view class='menu'>

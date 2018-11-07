@@ -40,7 +40,7 @@
     </i-cell-group>
   </i-panel>
 
-  <i-panel>
+  <i-panel i-class='gutter'>
     <i-cell-group>
       <i-cell title='小区管理员登录' url='/pages/area-manager/index' is-link link-type='navigateTo'>
         <i-icon type='mine_fill' slot='icon' size='20' color='#5cadff'></i-icon>
@@ -48,5 +48,15 @@
     </i-cell-group>
   </i-panel>
 
+  <i-panel>
+    <i-cell-group>
+      <i-cell title='用户指南' url='/pages/term/index?type=user_guide' is-link link-type='navigateTo'>
+        <i-icon type='document_fill' slot='icon' size='20' color='#5cadff'></i-icon>
+      </i-cell>
+      <i-cell title='关于我们' url='/pages/term/index?type=about_us' is-link link-type='navigateTo'>
+        <i-icon type='barrage_fill' slot='icon' size='20' color='#5cadff'></i-icon>
+      </i-cell>
+    </i-cell-group>
+  </i-panel>
   <i-message id='message'></i-message>
 </view>

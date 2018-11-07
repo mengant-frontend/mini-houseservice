@@ -239,7 +239,7 @@
           <i-button type='primary' long bind:click='customerPayOrder' wx:if='{{had_connect}}'>确认付款</i-button>
         </block>
         <block wx:else>
-          <i-button type='ghost' long bind:click='customerCancelOrder' disabled='{{type == "2"}}'>取消订单</i-button>
+          <i-button wx:if='{{order_detail.cancel == 1}}' type='ghost' long bind:click='customerCancelOrder' disabled='{{type == "2"}}'>取消订单</i-button>
         </block>
       </block>
       <block wx:elif='{{state == "2"}}'>

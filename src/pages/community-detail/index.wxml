@@ -13,9 +13,9 @@
     </view>
   </scroll-loading>
 
-  <view class='input-bar'>
+  <view class='input-bar' style='bottom: {{bottom}}px;'>
     <view class='input-container'>
-      <input class='input' placeholder='发表评论····' maxlength='-1' auto-height fixed value='{{parent_nick_name}}{{enter_comment}}' focus='{{input_focus}}' bindinput='enterComment'></input>
+      <input class='input' placeholder='发表评论····' adjust-position maxlength='-1' fixed value='{{parent_nick_name}}{{enter_comment}}' focus='{{input_focus}}' bindinput='enterComment' bindfocus='onFocus' bindblur='onBlur'></input>
       <button class='btn' bindtap='send'>
         发送
       </button>
