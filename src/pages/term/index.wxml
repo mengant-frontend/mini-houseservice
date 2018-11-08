@@ -1,13 +1,15 @@
 <view class='page card' style='padding-bottom: {{has_btns ? 60 : 0}}'>
   <rich-text nodes='{{term_data.content}}'></rich-text>
+  <checkbox-group bindchange="checkboxChange" class="checkbox" wx:if='{{has_btns}}'>
+    <label class="checkbox">
+      <checkbox />
+      您已阅读并同意遵守《<text class="strong">久房通服务条款说明</text>》
+    </label>
+  </checkbox-group>
   <view class='fixed' wx:if='{{has_btns}}'>
     <view class='flex-btn'>
-      <!-- 服务协议不能拒绝 -->
-      <view class='container__btn' wx:if='{{ type != "service_term"}}'>
-        <i-button type='error' size='small' long>拒绝</i-button>
-      </view>
       <view class='container__btn'>
-        <i-button type='primary' size='small' bind:click='confirm' long>同意</i-button>
+        <i-button type='primary' size='small' disabled="{{confirm_disabled}}" bind:click='confirm' long>同意</i-button>
       </view>
     </view>
   </view>

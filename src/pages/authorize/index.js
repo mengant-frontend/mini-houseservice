@@ -22,7 +22,7 @@ Page({
             if (Number(this.data.user_type) === 2) {
                 let server_res = await app.post({
                     url: '/api/v1/user/info',
-                    data: {encryptedData, iv}
+                    data: { encryptedData, iv }
                 })
                 if (!server_res.success) { // 出错处理debug
                     console.log(server_res)
@@ -30,7 +30,7 @@ Page({
                 }
             }
             app.global_data.user_info = userInfo
-            let had_used = wx.getStorageSync('had_used')
+            let had_used = wx.getStorageSync('had_used_2')
             if(had_used){
                 app.asyncApi(wx.redirectTo, {
                     url: '/pages/welcome/index'

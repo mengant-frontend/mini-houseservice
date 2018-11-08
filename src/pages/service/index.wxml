@@ -7,3 +7,8 @@
     <service-list list='{{service_list}}'></service-list>
   </view>
 </scroll-loading>
+<view class='bar'>
+  <navigator class='navigator' url='/pages/term/index?type=price_guide'>
+    <text>价格指导</text>
+  </navigator>
+</view>

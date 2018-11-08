@@ -3,7 +3,13 @@
     <banner-img list='{{banner_img}}'></banner-img>
     <view class='name-fees'>
       <text class='name'>{{name}}</text>
-      <text class='fees'>￥{{money}}/{{unit}}</text>
+      <block wx:if="{{extend == 1}}">
+        <text class='origin-money'>原价 ￥{{money}}/{{unit}}</text>
+        <text class='fees'>折后价 ￥{{extend_price}}/{{unit}}</text>
+      </block>
+      <block wx:else>
+        <text class='fees'>￥{{money}}/{{unit}}</text>
+      </block>
     </view>
     <view class='location-phone'>
       <view class='location-bar'>

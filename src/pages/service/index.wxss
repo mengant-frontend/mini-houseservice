@@ -2,3 +2,18 @@ page {
   /* 给 scroll-loading 组件继承高度 */
   height: 100%;
 }
+.bar {
+  position: fixed;
+  right: 25rpx;
+  bottom: 170rpx;
+}
+
+.navigator{
+  box-shadow: 0 1rpx 2rpx 0;
+  border-radius: 8rpx;
+  padding: 15rpx;
+  background: #fff;
+}
+.navigator text {
+  color: #ff9900;
+}

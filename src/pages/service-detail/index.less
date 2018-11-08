@@ -1,3 +1,4 @@
+@import "../../variable.less";
 page {
   /* 除去底部菜单 .menu-bar 的高度，
   剩下空间给 scroll-loading 组件继承高度 */
@@ -60,6 +61,12 @@ page {
 .name-fees .fees {
   /* iview 推荐 warning 辅助色 */
   color: #ff9900;
+  font-size: @title_size;
+}
+.origin-money{
+  text-decoration: line-through;
+  color: @sub_content_color;
+  font-size: @sub_content_size;
 }
 .location-phone .location,
 .des,

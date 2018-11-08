@@ -1,3 +1,4 @@
+@import "../../variable.less";
 .container {
   background: #fff;
   padding: 0 35rpx 30rpx;
@@ -12,7 +13,16 @@
   width: 320rpx;
   display: flex;
   flex-direction: column;
-  align-items: center; 
+  align-items: center;
+  position: relative;
+}
+.discount{
+  position: absolute;
+  top: 20rpx;
+  left: 0;
+  padding: 10rpx;
+  background: @warning;
+  color: #fff;
 }
 /* 给 fit-img 组件设置更多样式 */
 .img-style {

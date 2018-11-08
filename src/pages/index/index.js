@@ -180,6 +180,7 @@ Page({
         wx.showNavigationBarLoading()
         await this.setData({location})
         // 重新获取推广的服务列表
+        this.getJoinMsg()
         await this.getServiceList()
         wx.hideNavigationBarLoading()
     }

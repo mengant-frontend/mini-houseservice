@@ -133,7 +133,8 @@ Page({
                             img_url: item.cover,
                             title: item.name,
                             sales: item.sell_num,
-                            money: app._toMoney(item.sell_money)
+                            money: app._toMoney(item.sell_money),
+                            extend: item.extend
                         })
                     })
                     if_no_more = service_list.length < total ? false : true
