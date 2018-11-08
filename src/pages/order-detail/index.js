@@ -249,7 +249,7 @@ Page({
           title: '保证金充值',
           content: '保证金不足，是否千万充值?'
         })
-        if (!res.success) {
+        if (!res.success || !res.confirm) {
           return
         }
         wx.navigateTo({
@@ -319,7 +319,7 @@ Page({
           title: '保证金充值',
           content: '保证金不足，是否千万充值?'
         })
-        if (!res.success) {
+        if (!res.success || !res.confirm) {
           return
         }
         wx.navigateTo({
@@ -356,7 +356,7 @@ Page({
       title: '温馨提示',
       content: '请确认取消订单操作'
     })
-    if (!wx_res.confirm) {
+    if (!wx_res.success || !wx_res.confirm) {
       return
     }
     let url = '/api/v1/demand/handel'
@@ -421,7 +421,7 @@ Page({
       title: '温馨提示',
       content: '请确认完工操作'
     })
-    if (!wx_res.confirm) {
+    if (!wx_res.success || !wx_res.confirm) {
       return
     }
     let server_res = await this.finishOrChat(1)
@@ -437,7 +437,7 @@ Page({
       title: '温馨提示',
       content: consult_message
     })
-    if (!wx_res.success) {
+    if (!wx_res.success || !wx_res.confirm) {
       return
     }
     let server_res = await this.finishOrChat(2)
@@ -482,7 +482,7 @@ Page({
       title: '删除订单',
       content: '请确认删除该条订单'
     })
-    if(!wx_res.confirm) return
+    if(!wx_res.success || !wx_res.confirm) return
     await app.asyncApi(wx.showLoading, {
       title: 'loading...',
       mask: true
