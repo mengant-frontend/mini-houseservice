@@ -4,8 +4,10 @@
     <view class='name-fees'>
       <text class='name'>{{name}}</text>
       <block wx:if="{{extend == 1}}">
-        <text class='origin-money'>原价 ￥{{money}}/{{unit}}</text>
-        <text class='fees'>折后价 ￥{{extend_price}}/{{unit}}</text>
+          <view>
+            <text class='origin-money'>原价 ￥{{money}}/{{unit}}</text>
+            <text class='fees'>折后价 ￥{{extend_price}}/{{unit}}</text>
+          </view>
       </block>
       <block wx:else>
         <text class='fees'>￥{{money}}/{{unit}}</text>

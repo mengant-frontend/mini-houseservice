@@ -60,6 +60,15 @@
         <view class="tip">1. 请上传店铺封面照、营业执照、证件照等图片</view>
         <view class="tip">2. 总共可上传{{count}}张图片，第一张默认为店铺展示页，请谨慎上传</view>
       </view>
+
+      <view class="tips flex-tips">
+        <navigator url="/pages/term/index?type=shop_term">
+          <text class="tip">点击确认即表示您已阅读并同意《</text>
+          <text class="tips-title">商家入驻协议</text>
+          <text class="tip">》</text>
+        </navigator>
+
+      </view>
     </i-panel>
   </view>
 

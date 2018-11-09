@@ -4,3 +4,4 @@
   <button class='btn' open-type='getUserInfo' bindgetuserinfo='getUserInfo' wx:if='{{auth_type==="userinfo"}}'>获取头像昵称</button>
   <view class='btn' wx:if='{{auth_type==="location"}}' bindtap='openSetting'>去设置</view>
 </view>
+<i-message id="message"></i-message>

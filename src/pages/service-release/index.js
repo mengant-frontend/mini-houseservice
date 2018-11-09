@@ -221,9 +221,6 @@ Page({
       required: '请输入服务简介'
     }, {
       key: 'cover',
-      required: '请上传店铺封面图'
-    }, {
-      key: 'imgs',
       required: '请上传服务相关照片'
     }, {
       key: 'extend',
@@ -275,7 +272,7 @@ Page({
       return
     }
     await app.asyncApi(wx.showLoading, {
-      title: 'loading...'
+      title: '提交中...'
     })
     let server_res = await app.post({
       url: '/api/v1/shop/service/save',

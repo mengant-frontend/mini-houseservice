@@ -34,7 +34,7 @@
       </i-cell>
     </i-cell-group>
   </i-panel>
-  <i-panel title='添加图片(限5张，第一张默认为店铺封面图，请谨慎上传)'>
+  <i-panel title='请添加图片，用于介绍服务内容。'>
     <view class="container__pictures">
       <f-photo count='5' bind:update='bindFormChange' data-form_key="picture"></f-photo>
     </view>

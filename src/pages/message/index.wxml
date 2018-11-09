@@ -12,7 +12,7 @@
       </view>
       <view class='main'>
         <view class='message-desc'>
-          <text>您有新的家政信息，点击阅读</text>
+          <text>您有新的订单信息，点击阅读</text>
         </view>
         <view class='order'>
           <view class='order-desc'>

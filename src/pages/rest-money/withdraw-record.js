@@ -55,15 +55,22 @@ Page({
       } else {
         item.type_text = '余额'
       }
-      if (Number(item.state) === 1) {
-        // 未支付
-        if (!item.pay_id || Number(item.pay_id) == 99999) {
+      item.state = Number(item.state)
+      switch (item.state) {
+        case 1:
           item.state_text = '处理中'
-        } else {
+          item.className = 'process'
+          break
+        case 2:
           item.state_text = '已到账'
-        }
-      } else {
-        item.state_text = '已拒绝'
+          item.className = 'success'
+          break
+        case 3:
+          item.state_text = '已拒绝'
+          item.className = 'fail'
+          break
+        default:
+        
       }
     })
     if (page > 1) {

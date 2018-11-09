@@ -62,11 +62,12 @@ Page({
     let { currentTarget: { dataset: { index } } } = e
     let order = this.data.list[index]
     let type = order.type,
-      id = order.order_id,
+      id = order.id,
+      order_id = order.order_id,
       state = order.state
     await this.changeState(id, 2)
     wx.navigateTo({
-      url: `/pages/order-detail/index?id=${id}&type=${type}&state=${state}`
+      url: `/pages/order-detail/index?id=${order_id}&type=${type}&state=${state}`
     })
   },
   async changeState(id, state) {
@@ -93,7 +94,7 @@ Page({
     let { currentTarget: { dataset: { index } } } = e
     let order = this.data.list[index]
     let type = order.order_type,
-      id = order.order_id,
+      id = order.id,
       state = order.state
     let res = await this.changeState(id, 3)
     if(!res) return

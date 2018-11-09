@@ -3,6 +3,10 @@
     "env"
   ],
   "plugins": [
+    ["import", {
+      "libraryName": "iview",
+      "libraryDirectory": "src/components"
+    }],
     "transform-object-rest-spread",
     "transform-async-to-generator"
   ]

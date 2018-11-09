@@ -6,6 +6,8 @@ import { domain } from './common/constant'
 const qq_map = new QQMapSdk({
   key: 'A75BZ-ORRKU-A5NVI-B2WK5-4GYOH-6BFON'
 })
+let is_forbidden = false
+let login_promise = null
 App({
   async onLaunch() {
     let system_info = await this.asyncApi(wx.getSystemInfo)
@@ -15,30 +17,57 @@ App({
   },
   // 登录
   async login() {
+    if(is_forbidden){
+      return {
+        success: false
+      }
+    }
+    let text = this.global_data.token ? '重新登录中...' : '登录中...'
     await this.asyncApi(wx.showLoading, {
-      title: '登录中'
+      title: text
     })
     let wx_res = await this.asyncApi(wx.login)
     if (!wx_res.success) { // 出错处理debug
       console.log(wx_res)
-      return
-    }
-    let server_res = await this.get({
-      // 不用处理 token 失效的问题
-      auto: false,
-      // 不用校验 token
-      token_required: false,
-      url: '/api/v1/token/user',
-      data: {
-        code: wx_res.code
+      return {
+        success: false
       }
-    })
-    await this.asyncApi(wx.hideLoading)
-    if (!server_res.success) { // 出错处理debug
-      console.log(server_res)
-      return
     }
+    if(!login_promise){
+      login_promise = this.get({
+        // 不用处理 token 失效的问题
+        auto: false,
+        // 不用校验 token
+        token_required: false,
+        url: '/api/v1/token/user',
+        data: {
+          code: wx_res.code
+        }
+      })
+    }
+    let server_res = await login_promise
+    await this.asyncApi(wx.hideLoading)
+    login_promise = null
     let { data } = server_res
+    if (!server_res.success) { // 出错处理debug
+      let code = data.errorCode || data.error_code || data.code
+      let err_msg = data.msg || '小程序用户被禁用，请联系平台'
+      //小程序用户被禁用，请联系平台
+      if(code == 20010){
+        await this.asyncApi(wx.showModal, {
+          showCancel: false,
+          title: '登录失败提醒',
+          content: err_msg
+        })
+        is_forbidden = true
+        this.asyncApi(wx.hideNavigationBarLoading)
+        this.asyncApi(wx.setNavigationBarTitle, {
+          title: '登录失败'
+        })
+        return {success: false}
+      }
+      return {success: false}
+    }
     this.global_data.token = data.token
     this.global_data.shop_id = data.shop_id
     // 获取用户信息
@@ -148,8 +177,6 @@ App({
           } else if (statusCode > 200) {
             response.success = false
             if(response.data){
-              console.log(response.data)
-              console.log(response.data.msg)
               if(typeof response.data.msg === 'object'){
                 response.msg = JSON.stringify(response.data.msg)
               }else if(typeof response.data.msg === 'string'){
