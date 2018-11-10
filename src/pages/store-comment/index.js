@@ -50,12 +50,17 @@ Page({
         let len = comment_list.length
         if (comment_total > 0) {
           data_list.forEach((item, index) => {
+            item.imgs = item.imgs || []
+            let imgs = item.imgs.map(img => {
+              return img.img_url.url
+            })
             comment_list.push({
               id: len + index,
               avatar_url: item.avatarUrl,
               nick_name: item.nickName,
               date: item.create_time,
-              content: item.content
+              content: item.content,
+              imgs: imgs
             })
           })
           if_no_more = comment_list.length < comment_total ? false : true

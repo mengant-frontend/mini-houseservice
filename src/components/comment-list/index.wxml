@@ -6,6 +6,7 @@
         <text>{{item.nick_name}}</text>
         <text class='date'>{{item.date}}</text>
       </view>
+
       <view class='reply-likes' wx:if='{{canReply}}'>
         <text class='reply' data-id='{{item.id}}' bindtap='reply'>回复</text>
         <!-- #657180 为 iview 推荐正文颜色 -->
@@ -14,6 +15,12 @@
       </view>
     </view>
     <text class='content'>{{item.content}}</text>
+    <view class='comment_img' wx:if='{{item.imgs.length > 0}}'>
+      <view wx:for='{{item.imgs}}' wx:key='*this' wx:for-item='img' class='img__comment'>
+          <fit-img width='160' ratio='{{1}}' src='{{img}}'></fit-img>
+      </view>
+
+    </view>
     <view class='comment-someone' wx:if='{{canReply&&item.comment_someone.nick_name}}'>
       <text>@{{item.comment_someone.nick_name}}：</text>
       <text class='someone-content'>{{item.comment_someone.content}}</text>

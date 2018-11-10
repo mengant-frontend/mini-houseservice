@@ -220,8 +220,8 @@ Page({
       key: 'des',
       required: '请输入服务简介'
     }, {
-      key: 'cover',
-      required: '请上传服务相关照片'
+      key: 'imgs',
+      required: '请上传服务相关照片(至少两张)'
     }, {
       key: 'extend',
       required: '请选择是否推广'

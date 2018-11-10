@@ -102,7 +102,7 @@ Page({
       return
     }
     data.origin_money = app._toMoney(data.origin_money)
-    if(data.update_money && data.update_money > 0){
+    if(data.update_money && data.update_money >= 0){
       data.update_money = app._toMoney(data.update_money)
     }
     this.setData({

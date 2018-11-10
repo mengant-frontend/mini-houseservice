@@ -180,7 +180,7 @@ Page({
               order_id: t.order_id,
               title: t.source_name,
               origin_money: app._toMoney(t.origin_money),
-              update_money: t.update_money > 0 ? app._toMoney(t.update_money) : t.update_money,
+              update_money: app._toMoney(t.update_money),
               date: t.time_begin
             })
           })

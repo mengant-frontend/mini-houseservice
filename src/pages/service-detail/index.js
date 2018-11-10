@@ -26,7 +26,7 @@ Page({
     comment_list: [],
     if_collected: false
   },
-  
+
   async onLoad(options) {
     let service_id = options.id
     wx.showNavigationBarLoading()
@@ -70,7 +70,7 @@ Page({
       console.log(res)
     }
   },
-  
+
   // 收藏
   async collect() {
     if (!this.data.request_lock.collect) {
@@ -83,7 +83,7 @@ Page({
         id: this.data.service_id,
         type: 1
       }
-    
+
     if (if_collected) {
       url = this.data.api_url.collect
     } else {
@@ -107,14 +107,14 @@ Page({
       'request_lock.collect': true
     })
   },
-  
+
   // 调起拨号面板拨打电话
   callPhone() {
     app.asyncApi(wx.makePhoneCall, {
       phoneNumber: this.data.phone
     })
   },
-  
+
   // 获取评论列表
   async getCommentList() {
     let comment_list = this.data.comment_list
@@ -139,12 +139,17 @@ Page({
         let len = comment_list.length
         if (comment_total > 0) {
           data_list.forEach((item, index) => {
+            item.imgs = item.imgs || []
+            let imgs = item.imgs.map(img => {
+              return img.img_url.url
+            })
             comment_list.push({
               id: len + index,
               avatar_url: item.avatarUrl,
               nick_name: item.nickName,
               date: item.create_time,
-              content: item.content
+              content: item.content,
+              imgs: imgs
             })
           })
           if_no_more = comment_list.length < comment_total ? false : true
