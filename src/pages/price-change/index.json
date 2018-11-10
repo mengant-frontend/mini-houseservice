@@ -5,6 +5,7 @@
     "i-cell": "../../iview/cell/index",
     "f-textarea": "../../components/f-textarea/index",
     "i-button": "../../iview/button/index",
-    "i-message": "../../iview/message/index"
+    "i-message": "../../iview/message/index",
+    "i-input-number": "/iview/input-number/index"
   }
 }

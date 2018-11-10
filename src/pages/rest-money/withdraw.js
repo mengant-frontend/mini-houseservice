@@ -6,7 +6,7 @@ Page({
     type_text: '',
     shop_id: 0,
     balance: 0,
-    money: '',
+    money: 1,
     can_withdraw: false
   },
   onLoad(query) {

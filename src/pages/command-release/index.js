@@ -21,7 +21,7 @@ Page({
       latitude: '',
       time_begin: '',
       time_end: '',
-      money: '',
+      money: 1,
       imgs: ''
     }
   },

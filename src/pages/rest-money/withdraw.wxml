@@ -6,7 +6,7 @@
     <view class="container">
       <view class="title">金额</view>
       <view>
-        <i-input i-class='input' maxlength='-1' value='{{money}}' bind:change='updateMoney' placeholder='请输入提现金额'></i-input>
+        <i-input-number i-class='input' value='{{money}}' bind:change='updateMoney'></i-input-number>
       </view>
       <view class="tips">总额￥{{balance}}，可提现￥{{balance}}, <text bindtap='withdrawAll' class="link">全部提现</text></view>
       <view class="container__btn">

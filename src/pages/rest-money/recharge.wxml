@@ -3,7 +3,7 @@
     <view class="container">
       <view class="title">充值金额</view>
       <view>
-        <i-input i-class='input' maxlength='-1' value='{{money}}' bind:change='updateMoney' placeholder='请输入充值金额'></i-input>
+        <i-input-number i-class='input' value='{{money}}' bind:change='updateMoney'></i-input-number>
       </view>
       <view class="tips">当前店铺保证金为￥{{balance || 0}}</view>
       <view class="container__btn">

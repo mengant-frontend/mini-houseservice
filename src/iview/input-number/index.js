@@ -36,7 +36,7 @@ Component({
         },
         step: {
             type: Number,
-            value: 1
+            value: 0.1
         }
     },
     
@@ -56,7 +56,7 @@ Component({
                 value = addNum(value, step);
             }
 
-            if (value < this.data.min || value > this.data.max) return null;
+            if (value < 0 || value > Infinity) return null;
 
             this.handleEmit(value, type);
         },
@@ -71,7 +71,7 @@ Component({
 
         handleBlur(e) {
             let { value } = e.detail;
-            const { min, max } = this.data;
+            const min = 0, max = Infinity
 
             if (!value) {
                 setTimeout(() => {

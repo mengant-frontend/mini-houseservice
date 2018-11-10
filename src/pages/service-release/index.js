@@ -26,7 +26,7 @@ Page({
       "c_id": '',
       "name": "",
       "area": "",
-      "price": '',
+      "price": 1,
       "unit": "",
       "cover": '',
       "des": "",

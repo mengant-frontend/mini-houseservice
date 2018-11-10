@@ -25,7 +25,7 @@
         </picker>
       </i-cell>
       <i-cell title='服务价格'>
-        <input slot='footer' type='number' bindchange='bindFormChange' data-form_key='price' placeholder="单位：元"></input>
+        <i-input-number slot='footer' value="{{form_data.price}}" bind:change='bindFormChange' data-form_key='price'/>
       </i-cell>
       <i-cell title='服务简介'>
         <view class="textarea">

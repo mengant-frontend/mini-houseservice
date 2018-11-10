@@ -10,6 +10,7 @@
     "f-date-time": "../../components/f-date-time/index",
     "i-button": "../../iview/button/index",
     "i-switch": "../../iview/switch/index",
-    "f-textarea": "../../components/f-textarea/index"
+    "f-textarea": "../../components/f-textarea/index",
+    "i-input-number": "/iview/input-number/index"
   }
 }

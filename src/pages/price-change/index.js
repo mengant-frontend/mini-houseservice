@@ -3,7 +3,7 @@ const app = getApp()
 Page({
   data: {
     form_data: {
-      money: '',
+      money: 1,
       price_remark: ''
     }
   },

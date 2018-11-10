@@ -5,7 +5,8 @@ Page({
     // 当前的店铺保证金
     balance: 0,
     // 保证金的类型 1 新增服务 2接单, 3充值
-    type: ''
+    type: '',
+    money: 1
   },
   onLoad(query) {
     let { type } = query

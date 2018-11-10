@@ -5,6 +5,7 @@
     "i-cell": "../../iview/cell/index",
     "i-message": "../../iview/message/index",
     "i-input": "../../iview/input/index",
-    "i-button": "../../iview/button/index"
+    "i-button": "../../iview/button/index",
+    "i-input-number": "/iview/input-number/index"
   }
 }

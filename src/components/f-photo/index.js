@@ -181,6 +181,8 @@ Component({
         .length !== delete_params.length) {
         photo_list.splice(index, 1)
       } else {
+        console.log('删除图片')
+        console.log(params)
         let server_res = await app.post({
           url: this.data.delete_url,
           data: params

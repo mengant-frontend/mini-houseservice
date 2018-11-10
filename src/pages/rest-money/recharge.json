@@ -6,6 +6,7 @@
     "i-message": "../../iview/message/index",
     "i-input": "../../iview/input/index",
     "i-button": "../../iview/button/index",
-    "i-toast": "../../iview/toast/index"
+    "i-toast": "../../iview/toast/index",
+    "i-input-number": "/iview/input-number/index"
   }
 }
