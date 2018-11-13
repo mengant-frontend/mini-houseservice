@@ -14,7 +14,12 @@
         <text style='color:{{item.if_liked?"#66BD07":"#657180"}};'>{{item.likes===0?'':item.likes}}</text>
       </view>
     </view>
-    <text class='content'>{{item.content}}</text>
+    <text class='content'>
+      {{item.content}}{{item.score_type}}
+    </text>
+    <view class='score-type'>
+      {{item.score_type == 1 ? '好评' : item.score_type == 2 ? '中评' : item.score_type == 3 ? '差评' : ''}}
+    </view>
     <view class='comment_img' wx:if='{{item.imgs.length > 0}}'>
       <view wx:for='{{item.imgs}}' wx:key='*this' wx:for-item='img' class='img__comment'>
           <fit-img width='160' ratio='{{1}}' src='{{img}}'></fit-img>

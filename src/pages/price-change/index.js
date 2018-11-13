@@ -3,7 +3,7 @@ const app = getApp()
 Page({
   data: {
     form_data: {
-      money: 1,
+      money: '',
       price_remark: ''
     }
   },
@@ -22,6 +22,12 @@ Page({
   bindFormChange(e) {
     let { form_key, value } = app._bindFormChange(e)
     let form_data = this.updateFormData(form_key, value)
+    if(form_key === 'money'){
+      let money_100 = value * 100
+      if(money_100 !== parseInt(money_100)){
+        form_data.money = parseInt(money_100) / 100
+      }
+    }
     this.setData({
       form_data: form_data
     })

@@ -1,1 +1,3 @@
-<web-view src="{{src}}" bindmessage="bindmessage"></web-view>
+<view class="page">
+    <web-view wx:if="{{view_term}}" src="{{src}}" bindmessage="bindmessage"></web-view>
+</view>

@@ -174,6 +174,7 @@ Page({
         let data = res.data
         let data_list = data.data
         let total = data.total
+        let count_all = data.count
         if (total > 0) {
           data_list.forEach(t => {
             item.order_list.push({
@@ -192,6 +193,25 @@ Page({
         item.total = total
         item.current_page = data.current_page
         tabs_list[tabs_current] = item
+        tabs_list.forEach(tab => {
+          switch (tab.id) {
+            case 'ordered':
+              tab.count = count_all.booking
+              break
+            case 'unpaid':
+              tab.count = count_all.pay
+              break
+            case 'unconfirmed':
+              tab.count = count_all.confirm
+              break
+            case 'unevaluated':
+              tab.count = count_all.comment
+              break
+            case 'completed':
+              tab.count = count_all.complete
+              break
+          }
+        })
         this.setData({ tabs_list })
       } else { // 出错处理debug
         console.log(res)

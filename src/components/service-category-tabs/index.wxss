@@ -5,6 +5,7 @@
   border-bottom: 1rpx solid #dddee1;
   background: #fff;
   display: flex;
+  flex-direction: row;
 }
 .menu-toggle {
   height: 100%;
@@ -17,9 +18,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-grow: 0;
+  flex-shrink: 0;
 }
 .menu-scroll {
   flex-grow: 1;
+  flex-shrink: 1;
+  overflow-x: scroll;
+  padding: 0 20rpx;
 }
 .scroll-view {
   width: 375rpx;

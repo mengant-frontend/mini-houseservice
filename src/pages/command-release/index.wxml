@@ -45,7 +45,7 @@
         </f-date-time>
       </i-cell>
       <i-cell title='酬金'>
-        <i-input-number slot='footer' value="{{form_data.money}}" data-form_key='money' bind:change='bindFormChange'></i-input-number>
+        <input slot='footer' placeholder='请输入酬金' type="digit" min="0" value="{{form_data.money}}" data-form_key='money' bindinput='bindFormChange'/>
       </i-cell>
     </i-cell-group>
   </i-panel>

@@ -23,7 +23,6 @@ Page({
         dot: false,
         count: 0,
         current_page: 0,
-        total: 0,
         if_no_more: false,
         order_list: []
       },
@@ -33,7 +32,6 @@ Page({
         dot: false,
         count: 0,
         current_page: 0,
-        total: 0,
         if_no_more: false,
         order_list: []
       },
@@ -43,7 +41,6 @@ Page({
         dot: false,
         count: 0,
         current_page: 0,
-        total: 0,
         if_no_more: false,
         order_list: []
       },
@@ -53,7 +50,6 @@ Page({
         dot: false,
         count: 0,
         current_page: 0,
-        total: 0,
         if_no_more: false,
         order_list: []
       }
@@ -70,7 +66,6 @@ Page({
     let tabs_list = this.data.tabs_list
     let item = tabs_list[tabs_current]
     item.current_page = 0
-    item.total = 0
     item.count = 0
     item.if_no_more = false
     item.order_list = []
@@ -84,7 +79,6 @@ Page({
     let tabs_list = this.data.tabs_list
     let item = tabs_list[tabs_current]
     item.current_page = 0
-    item.total = 0
     item.count = 0
     item.if_no_more = false
     item.order_list = []
@@ -116,6 +110,7 @@ Page({
         let data = res.data
         let data_list = data.data
         let total = data.total
+        let count_all = data.count
         if (total > 0) {
           data_list.forEach(t => {
             item.order_list.push({
@@ -131,10 +126,26 @@ Page({
         } else {
           item.if_no_more = true
         }
-        item.count = item.id !== 'completed' ? total : 0
-        item.total = total
         item.current_page = data.current_page
         tabs_list[tabs_current] = item
+        tabs_list.forEach(tab => {
+          switch (tab.id) {
+            case 'unconfirmed':
+              tab.count = count_all.shopConfirm
+              break
+            case 'unserviced':
+              tab.count =  count_all.service
+              break
+            case 'servicing':
+              tab.count = count_all.serviceIng
+              break
+            case 'completed':
+              tab.count = count_all.shopComplete
+                break
+            default:
+            
+          }
+        })
         this.setData({ tabs_list })
       } else { // 出错处理debug
         console.log(res)

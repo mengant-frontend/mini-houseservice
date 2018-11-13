@@ -26,7 +26,7 @@ Page({
       "c_id": '',
       "name": "",
       "area": "",
-      "price": 1,
+      "price": '',
       "unit": "",
       "cover": '',
       "des": "",
@@ -117,6 +117,12 @@ Page({
     }
     if (form_key === 'picture') {
       other_data.picture_list = value
+    }
+    if(form_key === 'price'){
+      let price_100 = value * 100
+      if(price_100 !== parseInt(price_100)){
+        form_data.price = parseInt(price_100) / 100
+      }
     }
     this.setData({
       form_data: form_data,
@@ -246,6 +252,7 @@ Page({
         has_error_photos = true
       }
     })
+    console.log(JSON.stringify(picture_list))
     if (has_error_photos) {
       app._warn('请先删除上传失败的照片')
       return

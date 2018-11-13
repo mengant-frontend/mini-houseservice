@@ -66,3 +66,6 @@
   margin-right: 20rpx;
   margin-bottom: 20rpx;
 }
+.score-type{
+  margin-top: 10rpx;
+}

@@ -14,17 +14,15 @@ page {
   background-color: #fff;
   padding-bottom: @gutter_large;
 }
-
-.input::before {
-  content: '￥';
-  font-size: 20px;
-  font-weight: 600;
-}
-
 .link {
   color: @primary;
 }
-
+.input__money{
+  display: flex;
+  align-items: center;
+  padding-left: 25rpx;
+  padding-right: 25rpx;
+}
 .title {
   color: @title_color;
   font-size: @title_size;
@@ -39,4 +37,8 @@ page {
 
 .container__btn {
   margin-top: @gutter;
+}
+input[type=digit]{
+  flex-grow: 1;
+  font-size: 16px;
 }

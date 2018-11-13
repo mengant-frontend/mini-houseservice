@@ -6,7 +6,8 @@ Component({
 
   data: {
     if_show: false,
-    category_name: '全部'
+    category_name: '全部',
+    category_id: 0
   },
 
   methods: {

@@ -6,7 +6,7 @@ Page({
     balance: 0,
     // 保证金的类型 1 新增服务 2接单, 3充值
     type: '',
-    money: 1
+    money: ''
   },
   onLoad(query) {
     let { type } = query
@@ -17,9 +17,14 @@ Page({
   },
   // 表单
   updateMoney(e) {
-    let detail = e.detail.detail
+    let detail = e.detail
+    let money_100 = detail.value * 100
+    let money = detail.value
+    if(money_100 !== parseInt(money_100)){
+      money = parseInt(money_100) / 100
+    }
     this.setData({
-      money: detail.value
+      money: money
     })
   },
   // 获取当前保证金

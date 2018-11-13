@@ -2,8 +2,9 @@
   <view class="card">
     <view class="container">
       <view class="title">充值金额</view>
-      <view>
-        <i-input-number i-class='input' value='{{money}}' bind:change='updateMoney'></i-input-number>
+      <view class="input__money">
+        <i-icon type='coupons' size='48' color='#ff9900'></i-icon>
+        <input class='input' type="digit" min="0" value='{{money}}' bindinput='updateMoney' placeholder='请输入充值金额'/>
       </view>
       <view class="tips">当前店铺保证金为￥{{balance || 0}}</view>
       <view class="container__btn">

@@ -6,11 +6,11 @@ Page({
     type_text: '',
     shop_id: 0,
     balance: 0,
-    money: 1,
+    money: '',
     can_withdraw: false
   },
   onLoad(query) {
-    let { type, shop_id = 0 } = query
+    let { type = 1, shop_id = 0 } = query
     let type_text = ''
     if (type === '1') {
       type_text = '保证金'
@@ -78,9 +78,14 @@ Page({
   },
   // 表单
   updateMoney(e) {
-    let detail = e.detail.detail
+    let detail = e.detail
+    let money_100 = detail.value * 100
+    let money = detail.value
+    if(money_100 !== parseInt(money_100)){
+      money = parseInt(money_100) / 100
+    }
     this.setData({
-      money: detail.value
+      money: money
     })
   },
   //全部提现

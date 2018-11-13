@@ -21,7 +21,7 @@ Page({
       latitude: '',
       time_begin: '',
       time_end: '',
-      money: 1,
+      money: '',
       imgs: ''
     }
   },
@@ -34,6 +34,12 @@ Page({
     }
     if (form_key === 'type') {
       other.command_type = command_types[value].label
+    }
+    if(form_key === 'money'){
+      let money_100 = value * 100
+      if(money_100 !== parseInt(money_100)){
+        form_data.money = parseInt(money_100) / 100
+      }
     }
     this.setData({
       ...other,

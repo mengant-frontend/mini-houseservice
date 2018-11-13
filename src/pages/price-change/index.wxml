@@ -9,7 +9,7 @@
         </view>
       </i-cell>
       <i-cell title='修改后价格'>
-        <i-input-number slot='footer' value="{{form_data.money}}" data-form_key='money' bindchange='bindFormChange'></i-input-number>
+        <input type='digit' slot='footer' placeholder='请输入修改后的价格' value="{{form_data.money}}" data-form_key='money' bindinput='bindFormChange'/>
       </i-cell>
       <i-cell title='备注'>
         <view class="container__textarea">

@@ -23,7 +23,6 @@ Page({
         dot: false,
         count: 0,
         current_page: 0,
-        total: 0,
         if_no_more: false,
         order_list: []
       },
@@ -33,7 +32,6 @@ Page({
         dot: false,
         count: 0,
         current_page: 0,
-        total: 0,
         if_no_more: false,
         order_list: []
       },
@@ -43,7 +41,6 @@ Page({
         dot: false,
         count: 0,
         current_page: 0,
-        total: 0,
         if_no_more: false,
         order_list: []
       },
@@ -53,7 +50,6 @@ Page({
         dot: false,
         count: 0,
         current_page: 0,
-        total: 0,
         if_no_more: false,
         order_list: []
       },
@@ -63,7 +59,6 @@ Page({
         dot: false,
         count: 0,
         current_page: 0,
-        total: 0,
         if_no_more: false,
         order_list: []
       }
@@ -129,6 +124,7 @@ Page({
         let data = res.data
         let data_list = data.data
         let total = data.total
+        let count_all = data.count
         if (total > 0) {
           data_list.forEach(t => {
             item.order_list.push({
@@ -147,8 +143,26 @@ Page({
         item.count = item.id !== 'completed' ? total : 0
         item.total = total
         item.current_page = data.current_page
-        console.log(item.order_list)
         tabs_list[tabs_current] = item
+        tabs_list.forEach(tab => {
+          switch (tab.id) {
+            case 'ordered':
+              tab.count = count_all.taking
+              break
+            case 'unpaid':
+              tab.count = count_all.pay
+              break
+            case 'unconfirmed':
+              tab.count = count_all.confirm
+              break
+            case 'unevaluated':
+              tab.count = count_all.comment
+              break
+            case 'completed':
+              tab.count = count_all.complete
+              break
+          }
+        })
         this.setData({ tabs_list })
       } else { // 出错处理debug
         console.log(res)

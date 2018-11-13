@@ -149,7 +149,8 @@ Page({
               nick_name: item.nickName,
               date: item.create_time,
               content: item.content,
-              imgs: imgs
+              imgs: imgs,
+              score_type: item.score_type
             })
           })
           if_no_more = comment_list.length < comment_total ? false : true

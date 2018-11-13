@@ -10,11 +10,9 @@ let is_forbidden = false
 let login_promise = null
 App({
   async onLaunch() {
-    let system_info = await this.asyncApi(wx.getSystemInfo)
-    if (system_info.success) {
-      this.global_data.system_info = system_info
-    }
+  
   },
+  
   // 登录
   async login() {
     if(is_forbidden){
@@ -85,7 +83,6 @@ App({
         console.log(wx_res)
         return
       }
-      console.log(user_type)
       if (!wx_res.authSetting['scope.userInfo']) {
         // 用户没有授权获取用户信息时跳转到授权页
         await this.asyncApi(wx.redirectTo, {
@@ -418,7 +415,6 @@ App({
     return { success, location }
   },
   global_data: {
-    system_info: {},
     token: '',
     shop_id: 0, // 0 代表是普通用户，大于 0 的都是商家
     village: 0, // 1 代表用户是小区管理员
