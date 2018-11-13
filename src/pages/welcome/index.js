@@ -11,7 +11,7 @@ Page({
     },
     list: []
   },
-  
+
   async onLoad() {
     wx.showNavigationBarLoading()
     await app.asyncApi(wx.setNavigationBarTitle, {
@@ -21,7 +21,7 @@ Page({
       url: this.data.api_url.get_guid_img
     })
     wx.hideNavigationBarLoading()
-    
+
     if (!res.success) {
       // this.comeInto()
       return
@@ -60,7 +60,7 @@ Page({
       list
     })
   },
-  
+
   // 进入首页
   comeInto() {
     wx.switchTab({

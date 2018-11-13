@@ -267,3 +267,5 @@
 
   <i-message id='message'></i-message>
 </view>
+
+<red-packet-modal wx:if='{{red_money > 0}}' money='{{red_money}}' bind:close='closeRedPacketModal'></red-packet-modal>

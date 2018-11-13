@@ -9,7 +9,8 @@ Page({
     remark: '',
     order_data: {},
     evaluate_type: '',
-    imgs: ''
+    imgs: '',
+    red_money: 0
   },
   onLoad(query) {
     this.setData({
@@ -130,6 +131,23 @@ Page({
       app._error(msg)
       return
     }
+    if(data.red_money && data.red_money > 0){
+      this.setData({
+        red_money: data.red_money
+      })
+    }else{
+      this.goNext()
+    }
+
+  },
+  async closeRedPacketModal(){
+    this.setData({
+      red_money: 0
+    })
+    this.goNext()
+  },
+  async goNext(){
+    let { rate, evaluate_type, remark, id, type, order_data, imgs, state } = this.data
     await app.asyncApi(wx.showToast, {
       title: '已提交'
     })

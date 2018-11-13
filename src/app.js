@@ -10,9 +10,9 @@ let is_forbidden = false
 let login_promise = null
 App({
   async onLaunch() {
-  
+
   },
-  
+
   // 登录
   async login() {
     if(is_forbidden){
@@ -68,6 +68,7 @@ App({
     }
     this.global_data.token = data.token
     this.global_data.shop_id = data.shop_id
+    this.global_data.red_money = data.red_money
     // 获取用户信息
     if (!this.global_data.user_info) {
       await this.getUserInfo(Number(data.type))
@@ -424,7 +425,8 @@ App({
     },
     location: [],
     staffs_list: [],
-    head_url_list: []
+    head_url_list: [],
+    red_money: 0
   },
   // 通用方法
   /**

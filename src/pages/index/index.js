@@ -16,10 +16,14 @@ Page({
     location: [],
     // 获取加盟消息
     join_msg: '',
-    list: []
+    list: [],
+    red_money: 0
   },
-  
+
   async onLoad() {
+    this.setData({
+      red_money: app.global_data.red_money || 0
+    })
     wx.showNavigationBarLoading()
     // 获取地理位置
     let res = await app.getLocation()
@@ -54,7 +58,7 @@ Page({
         })
         return
       }
-      
+
     }
     // 获取轮播图
     app.get({
@@ -99,7 +103,7 @@ Page({
     await this.getServiceList()
     wx.hideNavigationBarLoading()
   },
-  
+
   onShow() {
     this.setData({
       village: app.global_data.village
@@ -154,7 +158,7 @@ Page({
       list: list
     })
   },
-  
+
   // 获取推广的服务列表
   async getServiceList() {
     app.get({
@@ -195,7 +199,7 @@ Page({
       }
     })
   },
-  
+
   // 地区选择，对应更新在首页推广的家政、维修服务列表
   async locationChoose({detail}) {
     let location = detail.value
@@ -206,5 +210,10 @@ Page({
     this.getJoinMsg()
     await this.getServiceList()
     wx.hideNavigationBarLoading()
+  },
+  closeRedPacketModal(){
+    this.setData({
+      red_money: 0
+    })
   }
 })

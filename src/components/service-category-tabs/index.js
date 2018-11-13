@@ -7,7 +7,16 @@ Component({
   data: {
     if_show: false,
     category_name: '全部',
-    category_id: 0
+    category_id: 0,
+    to_view: 'date0'
+  },
+  ready(){
+    console.log(123)
+    setTimeout(() => {
+      this.setData({
+        to_view: 'date6'
+      })
+    }, 3000)
   },
 
   methods: {
@@ -29,16 +38,19 @@ Component({
       let category_name = target.dataset.name
       this.setData({
         if_show: false,
-        category_id: 0,
+        category_id: category_id,
         category_name
       })
       // 将 category_id 传递给组件使用者绑定的 tabsChange 监听事件
       this.triggerEvent('tabsChange', { category_id })
     },
     // tabs 切换交互
-    tabsChange({ detail }) {
+    tabsChange({detail}) {
       let category_id = detail.key
-      this.setData({ category_id, category_name: '全部' })
+      let category_name = this.data.categoryList.filter(category => {
+        return Number(category.id) === Number(category_id)
+      }).map(category => category.name)[0] || '全部'
+      this.setData({ category_id, category_name: category_name })
       // 将 category_id 传递给组件使用者绑定的 tabsChange 监听事件
       this.triggerEvent('tabsChange', { category_id })
     }

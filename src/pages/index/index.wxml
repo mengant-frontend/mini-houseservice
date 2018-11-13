@@ -51,3 +51,5 @@
 <service-title-bar service-type='1'></service-title-bar>
 <service-list list='{{maintain_service_list}}' wx:if='{{maintain_service_list.length > 0}}'></service-list>
 <i-message id="message"></i-message>
+
+<red-packet-modal wx:if='{{red_money > 0}}' money='{{red_money}}' bind:close='closeRedPacketModal'></red-packet-modal>

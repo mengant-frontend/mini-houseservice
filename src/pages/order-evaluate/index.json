@@ -4,6 +4,7 @@
     "i-button": "../../iview/button/index",
     "i-message": "../../iview/message/index",
     "f-textarea": "../../components/f-textarea/index",
-    "f-photo": "../../components/f-photo/index"
+    "f-photo": "../../components/f-photo/index",
+    "red-packet-modal": "/components/red-packet-modal/index"
   }
 }

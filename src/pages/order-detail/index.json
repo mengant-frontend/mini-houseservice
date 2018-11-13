@@ -6,6 +6,7 @@
     "i-button": "../../iview/button/index",
     "i-icon": "../../iview/icon/index",
     "i-message": "../../iview/message/index",
-    "i-switch": "../../iview/switch/index"
+    "i-switch": "../../iview/switch/index",
+    "red-packet-modal": "/components/red-packet-modal/index"
   }
 }

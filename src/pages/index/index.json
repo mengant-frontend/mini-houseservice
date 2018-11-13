@@ -9,6 +9,7 @@
     "service-title-bar": "/components/service-title-bar/index",
     "service-list": "/components/service-list/index",
     "carousel": "/components/carousel/index",
-    "i-message": "/iview/message/index"
+    "i-message": "/iview/message/index",
+    "red-packet-modal": "/components/red-packet-modal/index"
   }
 }

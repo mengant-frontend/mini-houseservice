@@ -23,7 +23,8 @@ Page({
     // 红包列表
     red_packet_list: [],
     chat_text: '',
-    consult_message: ''
+    consult_message: '',
+    red_money: 0
   },
   async onLoad(query) {
     this.setData({
@@ -407,13 +408,31 @@ Page({
       app._error(wx_res.msg)
       return
     }
-    await app.asyncApi(wx.showToast, {
-      title: '成功'
+    let red_money_res = await app.get({
+      url: '/api/v1/red/order'
     })
+    if(!red_money_res.success){
+      app._error(wx_res.msg)
+      return
+    }
+    if(red_money_res.data.red_money && red_money_res.data.red_money > 0){
+      this.setData({
+        red_money: red_money_res.data.red_money
+      })
+    }else{
+      await app.asyncApi(wx.showToast, {
+        title: '成功'
+      })
+    }
     this.init({
       id,
       type,
       state: Number(state) + 1
+    })
+  },
+  closeRedPacketModal(){
+    this.setData({
+      red_money: 0
     })
   },
   async customerFinish() {

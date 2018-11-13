@@ -5,12 +5,15 @@ Component({
         '../tab/index': {
             type: 'child',
             linked () {
+                console.log('linked')
                 this.changeCurrent();
             },
             linkChanged () {
+              console.log('linkChanged')
                 this.changeCurrent();
             },
             unlinked () {
+              console.log('unlinked')
                 this.changeCurrent();
             }
         }
@@ -40,7 +43,6 @@ Component({
         changeCurrent (val = this.data.current) {
             let items = this.getRelationNodes('../tab/index');
             const len = items.length;
-
             if (len > 0) {
                 items.forEach(item => {
                     item.changeScroll(this.data.scroll);
