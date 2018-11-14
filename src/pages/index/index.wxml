@@ -52,4 +52,4 @@
 <service-list list='{{maintain_service_list}}' wx:if='{{maintain_service_list.length > 0}}'></service-list>
 <i-message id="message"></i-message>
 
-<red-packet-modal wx:if='{{red_money > 0}}' money='{{red_money}}' bind:close='closeRedPacketModal'></red-packet-modal>
+<red-packet-modal wx:if='{{red_money > 0}}' money='{{red_money}}' title='首次登陆奖励' bind:close='closeRedPacketModal'></red-packet-modal>

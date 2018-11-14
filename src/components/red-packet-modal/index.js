@@ -3,6 +3,10 @@ Component({
     money: {
       type: Number,
       value: 0
+    },
+    title: {
+      type: String,
+      value: ''
     }
   },
   data: {

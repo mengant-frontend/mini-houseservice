@@ -7,6 +7,7 @@
           <image src='/images/red.png' class='bg-img' mode='widthFix' bindload='load'></image>
         </view>
         <view class='content' wx:if='{{load_end}}'>
+          <view class='title'>{{title}}</view>
           <text>￥{{money}}</text>
         </view>
         <view class='close-container' wx:if='{{load_end}}'>

@@ -268,4 +268,4 @@
   <i-message id='message'></i-message>
 </view>
 
-<red-packet-modal wx:if='{{red_money > 0}}' money='{{red_money}}' bind:close='closeRedPacketModal'></red-packet-modal>
+<red-packet-modal wx:if='{{red_money > 0}}' money='{{red_money}}' title='首次下单奖励' bind:close='closeRedPacketModal'></red-packet-modal>
