@@ -1,5 +1,6 @@
 import regeneratorRuntime from '../../lib/runtime'
 const app = getApp()
+let update_promise = null
 Component({
   properties: {
     count: {
@@ -49,7 +50,7 @@ Component({
   },
   data: {
     photo_list: [],
-    default_photo_list: [{}]
+    default_photo_list: [{empty: true}]
   },
   ready() {
     let remote = app._deepClone(this.data.remote)
@@ -66,15 +67,22 @@ Component({
   },
   methods: {
     //更新数据
-    update(photo_list) {
-      return new Promise(resolve => {
+    async update(photo_list) {
+      if(update_promise){
+        await update_promise
+      }
+      update_promise = new Promise(resolve => {
         this.triggerEvent('update', {
           value: photo_list
         })
         this.setData({
           photo_list: photo_list
-        }, resolve)
+        }, () => {
+          update_promise = null
+          resolve()
+        })
       })
+      return update_promise
     },
     //选择头像
     async chooseAvatar() {
@@ -142,6 +150,7 @@ Component({
             if (promise.success) {
               photo.id = promise.data.id
             } else {
+              app._error(promise.msg)
               photo.error = true
             }
           }

@@ -1,6 +1,6 @@
 //async 需要显式引入regeneratorRuntime
 import regeneratorRuntime from '../../lib/runtime'
-import {command_types, default_region, default_type} from '../../common/constant'
+import {command_types, default_type} from '../../common/constant'
 
 const app = getApp()
 
@@ -21,7 +21,7 @@ Page({
       status: ''
     }],
     step_current: 0,
-    
+
     command_types: command_types,
     //商家图片
     photo_list: [],
@@ -52,6 +52,7 @@ Page({
     let head_url_list = app.global_data.head_url_list || []
     let global_head_url_list = app._deepClone(head_url_list)
     if (!global_head_url_list.length) return
+    app.global_data.head_url_list = []
     let form_data = app._deepClone(this.data.form_data)
     form_data.head_url = global_head_url_list.filter(img => !!img.id)
     .map(img => img.id)
@@ -75,9 +76,13 @@ Page({
       id_number: '',
       imgs: ''
     }
-    form_data.province = default_region[0]
-    form_data.city = default_region[1]
-    form_data.area = default_region[2]
+    let location = app.global_data.location
+    if(location[0]){
+      form_data.province = location[0]
+      form_data.city = location[1]
+      form_data.area = location[2]
+    }
+
     command_types.forEach(type => {
       if (type.label === default_type) {
         form_data.type = type.value
@@ -96,7 +101,7 @@ Page({
       title: '请稍候...'
     })
     await app.asyncApi(wx.showNavigationBarLoading)
-    
+
     let server_res = await app.get({
       url: '/api/v1/shop/info'
     })
@@ -246,11 +251,74 @@ Page({
     }
     return form_data
   },
-  
+
   async confirm() {
-    let {step_current} = this.data;
+    let {step_current, form_data, photo_list} = this.data;
     switch (step_current) {
       case 0:
+        let require_params = [{
+          key: 'head_url',
+          required: '请上传商家头像'
+        }, {
+          key: 'type',
+          required: '请选择经营类型'
+        }, {
+          key: 'name',
+          required: '请输入店铺名称'
+        }, {
+          key: 'province',
+          required: '请选择店铺所在省份'
+        }, {
+          key: 'city',
+          required: '请选择店铺所在地区市'
+        }, {
+          key: 'area',
+          required: '请选择店铺所在地区'
+        },  {
+          key: 'address',
+          required: '请输入店铺详细地址'
+        }, {
+          key: 'phone',
+          required: '请输入商家手机号码'
+        }, {
+          key: 'phone_sub',
+          required: '请输入商家备用手机号码'
+        }, {
+          key: 'id_number',
+          required: '请输入身份证号码'
+        }, {
+          key: 'imgs',
+          required: '请上传商家资料图片'
+        }]
+        let error_msg = ''
+        for(let i = 0; i < require_params.length; i++){
+          if(!form_data[require_params[i].key]){
+            error_msg = require_params[i].required
+            break
+          }
+        }
+
+        if (error_msg) {
+          app._warn(error_msg)
+          return
+        }
+        let has_error_photo = false
+        photo_list.forEach(img => {
+          if (!img.id) {
+            has_error_photo = true
+          }
+        })
+        if (has_error_photo) {
+          app._warn('请先删除上传失败的照片')
+          return
+        }
+        let server_res = await this.sumbit()
+        //如果submit返回success:false,则接口出错
+        let {success, msg} = server_res
+        if (!success) {
+          app._error(msg)
+          return
+        }
         let tip_res = await this.getTips()
         if (!tip_res.success) {
           app._error(tip_res.msg)
@@ -262,22 +330,13 @@ Page({
             showCancel: false
           })
         }
-        let server_res = await this.sumbit()
-        //如果submit返回undefined，则为提交被暂停
-        if (!server_res) return
-        //如果submit返回success:false,则接口出错
-        let {success, msg} = server_res
-        if (!success) {
-          app._error(msg)
-          return
-        }
         //提交成功后刷新页面
         this.checkStatus()
         break
       case 1:
         break
       case 2:
-        
+
         break
       default:
         throw new Error('step_current 不合法')
@@ -285,27 +344,7 @@ Page({
   },
   //提交请求
   sumbit() {
-    let {form_data, photo_list} = this.data
-    let is_valid = true
-    Object.keys(form_data)
-    .forEach(key => {
-      if (!form_data[key]) {
-        is_valid = false
-      }
-    })
-    if (!is_valid) {
-      app._warn('请完善您的店铺信息')
-      return
-    }
-    let has_error_photo = false
-    photo_list.forEach(img => {
-      if (!img.id) {
-        has_error_photo = true
-      }
-    })
-    if (has_error_photo) {
-      app._warn('上传失败的照片将不会被提交')
-    }
+    let {form_data} = this.data
     return app.post({
       url: '/api/v1/shop/apply',
       data: form_data

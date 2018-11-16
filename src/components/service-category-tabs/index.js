@@ -8,15 +8,14 @@ Component({
     if_show: false,
     category_name: '全部',
     category_id: 0,
-    to_view: 'date0'
+    to_view: 't0'
   },
   ready(){
-    console.log(123)
     setTimeout(() => {
       this.setData({
-        to_view: 'date6'
+        to_view: 't1'
       })
-    }, 3000)
+    }, 10000)
   },
 
   methods: {

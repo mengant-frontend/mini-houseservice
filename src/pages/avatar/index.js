@@ -42,6 +42,14 @@ Page({
       return
     }
     let img_list = app._deepClone(this.data.img_list)
+    if(!server_res.data.id){
+      await app.asyncApi(wx.showModal, {
+        title: '上传失败提醒',
+        content: '图片上传失败，请重新尝试',
+        showCancel: false
+      })
+      return
+    }
     let img = {
       id: server_res.data.id,
       path: wx_res.tempImagePath,

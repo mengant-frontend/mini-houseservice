@@ -4,10 +4,10 @@
       <view class="photo">
         <image src='{{item.path}}' mode="aspectFill"></image>
       </view>
-      <view class="photo" wx:if='{{!item.loaded || item.error || item.deleting}}'>
+      <view class="photo" wx:if='{{!item.empty && (!item.loaded || item.error || item.deleting)}}'>
         <view class="flex status">
           <text wx:if='{{item.deleting}}'>删除中...</text>
-          <text wx:elif='{{!item.error}}'>{{item.progress ? item.progress + '%' : ''}}</text>
+          <text wx:elif='{{!item.error}}'>{{item.progress || 0 }}%</text>
           <i-icon wx:else type='prompt' color='#ff9900' size='36'></i-icon>
         </view>
       </view>
@@ -23,7 +23,7 @@
       <view class="photo" wx:if='{{!item.loaded || item.error || item.deleting}}'>
         <view class="flex status">
           <text wx:if='{{item.deleting}}'>删除中...</text>
-          <text wx:elif='{{!item.error}}'>{{item.progress}}%</text>
+          <text wx:elif='{{!item.error}}'>{{item.progress || 0}}%</text>
           <i-icon wx:else type='prompt' color='#ff9900' size='36'></i-icon>
         </view>
       </view>

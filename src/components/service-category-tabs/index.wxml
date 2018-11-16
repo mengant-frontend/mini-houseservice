@@ -4,10 +4,14 @@
     <i-icon type='unfold' size='14' color='#2d8cf0'></i-icon>
   </view>
   <view class='menu-scroll'>
-    <i-tabs current='{{category_id}}' scroll="{{true}}"  bindchange='tabsChange'>
+    <scroll-view scroll-x scroll-into-view='{{"t" + category_id}}' style='width:100%;' class="scroll">
+      <view class='scroll-item {{category_id == 0 ? "scroll-item-current" : ""}}' id='t0' data-id='0' data-name='全部' bindtap='choose'>全部</view>
+      <view class='scroll-item {{category_id == item.id ? "scroll-item-current" : ""}}' wx:for='{{categoryList}}' wx:key='id' id='t{{item.id}}' data-id='{{item.id}}' data-name='{{item.name}}' bindtap='choose'>{{item.name}}</view>
+    </scroll-view>
+    <!-- <i-tabs current='{{category_id}}' scroll="{{true}}"  bindchange='tabsChange'>
       <i-tab title="全部" key='0' id='t0'></i-tab>
       <i-tab wx:for='{{categoryList}}' wx:key='id' key='{{item.id}}' title='{{item.name}}' id="{{'t' + item.id}}"></i-tab>
-    </i-tabs>
+    </i-tabs> -->
   </view>
 </view>
 <i-drawer mode='left' visible='{{if_show}}' bind:close='toggleLeft'>
