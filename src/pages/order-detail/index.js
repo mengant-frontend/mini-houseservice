@@ -169,8 +169,13 @@ Page({
       return
     }
     let money = order.update_money ? order.update_money : order.origin_money
+    let s_money = parseFloat(money)
+    if(!s_money){
+      app._error('获取金额异常，暂不能使用红包， 金额参数为：' + money)
+      return
+    }
     wx.navigateTo({
-      url: '/pages/redpacket/index?type=select&money=' + money
+      url: '/pages/redpacket/index?type=select&money=' + s_money
     })
   },
   //获取协商提示语

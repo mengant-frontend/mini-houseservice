@@ -30,17 +30,32 @@ page {
 }
 
 .service-store {
-  padding: 0 20rpx;
-  margin-right: 20rpx;
-  /* 跟随搜索图标颜色 */
-  border-right: 1rpx solid #bbbbbb;
-  /* iview 推荐次级标题样式，不加粗 */
-  font-size: 28rpx;
-  color: #464c5b;
+
   flex-grow: 0;
   flex-shrink: 0;
 }
+.store-service{
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  /* iview 推荐次级标题样式，不加粗 */
+  font-size: 28rpx;
+  color: #464c5b;
+  margin-right: 20rpx;
+  position: relative;
+}
+.service-name{
+  padding-left: 20rpx;
+}
 
+
+.border-right-mock{
+  margin-left: 20rpx;
+  width: 1px;
+  height: 28rpx;
+  background-color: #bbbbbb;
+  box-sizing: border-box;
+}
 .arrow::after {
   content: '';
   display: inline-block;
@@ -55,9 +70,12 @@ page {
   margin-bottom: 2rpx;
 }
 
-.input {
+.flex1 {
   flex-grow: 1;
   margin: 0 10rpx;
+}
+.input{
+  font-size: 13px;
 }
 
 .confirm-text {

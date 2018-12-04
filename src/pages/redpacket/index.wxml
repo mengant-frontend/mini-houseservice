@@ -18,6 +18,8 @@
       </view>
     </view>
   </view>
+
+  <i-load-more loading='{{loading}}' tip='{{loading ? "loading..." : ""}}'></i-load-more>
   <view class="fixed" wx:if='{{type === "select"}}'>
     <i-button type='primary' bind:click='ensure'>确认选择</i-button>
     <i-button type='ghost' bind:click='cancel'>取消选择</i-button>

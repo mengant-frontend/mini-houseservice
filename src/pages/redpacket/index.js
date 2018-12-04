@@ -5,7 +5,8 @@ Page({
     list: [],
     type: '',
     active_index: -1,
-    money: 0
+    money: 0,
+    loading: false
   },
   onLoad(query) {
     this.setData({
@@ -23,11 +24,17 @@ Page({
     await app.asyncApi(wx.showLoading, {
       title: 'loading...'
     })
+    this.setData({
+      loading: true
+    })
     let server_res = await app.get({
       url: '/api/v1/red/list'
     })
     await app.asyncApi(wx.hideLoading)
     let { success, msg, data } = server_res
+    this.setData({
+      loading: false
+    })
     if (!success) {
       app._error(msg)
       return
@@ -40,6 +47,7 @@ Page({
       item.money = app._toMoney(item.money)
     })
     if(type === 'select'){
+      money = parseFloat(money)
       data = data.filter(item => {
         return item.money < money
       })

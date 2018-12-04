@@ -1,25 +1,46 @@
 <view class='header'>
   <view class='search-bar'>
     <view class='search'>
-      <view class='service-store' bindtap='changeType'>
-        {{choose_type}}
-        <text class='arrow'></text>
+      <view class='service-store'>
+        <f-form-id bind:submit='changeType'>
+          <view class='store-service'>
+            <text class='service-name'>{{choose_type}}</text>
+            <text class='arrow'></text>
+            <view class='border-right-mock'></view>
+          </view>
+        </f-form-id>
       </view>
       <icon type='search' size='12' color='#bbbbbb' />
-      <input class='input' placeholder='搜索' placeholder-style='color:#bbbbbb;' maxlength='-1' confirm-type='search' bindinput='enter' bindconfirm='search' />
+      <view class='flex1'>
+        <f-form-id f-class='flex1'>
+          <input class='input' placeholder='搜索' placeholder-style='color:#bbbbbb;font-size: 14rpx;' maxlength='-1' confirm-type='search' bindinput='enter' bindconfirm='search' />
+        </f-form-id>
+      </view>
     </view>
-    <text class='confirm-text' bindtap='search'>确认</text>
+    <f-form-id bind:submit="search">
+      <text class='confirm-text'>确认</text>
+    </f-form-id>
+
   </view>
   <view class='tabs'>
     <view class='tabs-item border-right' style='color:{{type<4?"#2d8cf0":"#464c5b"}};' bindtap='changeColligate'>
-      {{choose_colligate}}
-      <i-icon type='unfold' size='16' color='{{type<4?"#2d8cf0":"#464c5b"}}'></i-icon>
+      <view>
+        <f-form-id>
+          {{choose_colligate}}
+          <i-icon type='unfold' size='16' color='{{type<4?"#2d8cf0":"#464c5b"}}'></i-icon>
+        </f-form-id>
+      </view>
     </view>
     <view class='tabs-item' style='color:{{type<4?"#464c5b":"#2d8cf0"}};' bindtap='changeSales'>
-      {{choose_sales}}
-      <i-icon type='unfold' size='16' color='{{type<4?"#464c5b":"#2d8cf0"}}'></i-icon>
+      <view>
+        <f-form-id>
+          {{choose_sales}}
+          <i-icon type='unfold' size='16' color='{{type<4?"#464c5b":"#2d8cf0"}}'></i-icon>
+        </f-form-id>
+      </view>
     </view>
   </view>
+
 </view>
 
 <scroll-loading if-no-more='{{if_no_more}}' if-loading='{{if_loading}}' bind:scrolltolower='getList'>

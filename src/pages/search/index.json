@@ -4,6 +4,7 @@
   "usingComponents": {
     "scroll-loading": "/components/scroll-loading/index",
     "fit-img": "/components/fit-img/index",
-    "i-icon": "/iview/icon/index"
+    "i-icon": "/iview/icon/index",
+    "f-form-id": "/components/form-id/index"
   }
 }
