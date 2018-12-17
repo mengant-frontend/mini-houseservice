@@ -10,6 +10,7 @@
     "service-list": "/components/service-list/index",
     "carousel": "/components/carousel/index",
     "i-message": "/iview/message/index",
-    "red-packet-modal": "/components/red-packet-modal/index"
+    "red-packet-modal": "/components/red-packet-modal/index",
+    "f-form-id": "/components/form-id/index"
   }
 }

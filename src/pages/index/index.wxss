@@ -11,10 +11,16 @@ page {
 .header .search {
   flex-grow: 1;
   margin: 0 25rpx;
-  padding: 13rpx 0;
+  padding: 0;
   background: #fff;
   border-radius: 6rpx;
   color: #bbbbbb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.search-form{
+  flex-grow: 1;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -31,6 +37,8 @@ page {
 }
 .menu .item {
   flex-grow: 1;
+}
+.item-form{
   height: 150rpx; /* 暂时定义为 swiper 的一半 */
   display: flex;
   flex-direction: column;
@@ -45,7 +53,6 @@ page {
   font-size: 28rpx; /* iview 推荐次级标题样式 */
   color: #464c5b;
   font-weight: bold;
-  margin-top: 14rpx;
 }
 /* 三个菜单 end */
 .join-msg{
@@ -55,7 +62,4 @@ page {
   color: #80848f;
   text-align: center;
   box-sizing: border-box;
-}
-.carousel{
-  width: 100%;
 }

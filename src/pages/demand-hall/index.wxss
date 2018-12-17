@@ -65,7 +65,7 @@ page {
 .release-demand {
   box-shadow: 0 1rpx 2rpx 0;
   border-radius: 8rpx;
-  padding: 15rpx;
+  padding: 0 15rpx;
   background: #fff;
 }
 .release-demand {

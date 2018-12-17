@@ -77,12 +77,19 @@ page {
 .input{
   font-size: 13px;
 }
-
+.flex0{
+  flex-grow: 0;
+  flex-shrink: 0;
+}
 .confirm-text {
   color: #2d8cf0;
   font-size: 28rpx;
-  flex-grow: 0;
-  flex-shrink: 0;
+}
+.choose{
+  text-align: center;
+  /* iview 推荐主标题样式，不加粗 */
+  font-size: 32rpx;
+  color: #464c5b;
 }
 
 .tabs {
@@ -93,11 +100,7 @@ page {
 
 .tabs-item {
   width: 374rpx;
-  text-align: center;
   line-height: 90rpx;
-  /* iview 推荐主标题样式，不加粗 */
-  font-size: 32rpx;
-  color: #464c5b;
 }
 
 .border-right {

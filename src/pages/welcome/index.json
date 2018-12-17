@@ -1,4 +1,7 @@
 {
   "navigationBarTitleText": "登录中...",
-  "enablePullDownRefresh": false
+  "enablePullDownRefresh": false,
+  "usingComponents":{
+    "f-form-id": "/components/form-id/index"
+  }
 }

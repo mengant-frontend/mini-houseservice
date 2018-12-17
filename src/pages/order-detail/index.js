@@ -24,13 +24,15 @@ Page({
     red_packet_list: [],
     chat_text: '',
     consult_message: '',
-    red_money: 0
+    red_money: 0,
+    show_home: false
   },
   async onLoad(query) {
     this.setData({
       id: query.id,
       type: query.type,
-      state: query.state
+      state: query.state,
+      show_home: query.template == '1'
     })
 
     await this.loadOrder()
@@ -526,6 +528,11 @@ Page({
     }
     wx.navigateBack({
       delta: 1
+    })
+  },
+  goHome(){
+    wx.switchTab({
+      url: '/pages/index/index'
     })
   }
 })

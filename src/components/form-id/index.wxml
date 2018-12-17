@@ -1,8 +1,10 @@
 <view class='f-class'>
-<form report-submit='{{true}}' bindsubmit='formSubmit'>
+<form report-submit='{{true}}' bindsubmit='formSubmit' data-index='{{index}}'>
   <view class='form-id__container'>
     <button wx:if='{{btn}}' class="plain-btn" form-type='submit'>
-      <slot></slot>
+      <view class='plain-btn-container'>
+        <slot></slot>
+      </view>
     </button>
     <slot wx:else></slot>
   </view>

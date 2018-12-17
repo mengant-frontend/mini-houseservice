@@ -4,7 +4,9 @@
     </view>
     <swiper class="swiper" autoplay interval="2000" circular="true" vertical="true" >
         <swiper-item wx:for="{{list}}" wx:key="*this">
+          <f-form-id>
             <view class="content">用户 {{item.user_name}} 预约了 {{item.source_name}} 服务</view>
+          </f-form-id>
         </swiper-item>
     </swiper>
 </view>

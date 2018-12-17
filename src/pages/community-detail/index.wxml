@@ -5,7 +5,7 @@
       <view class='content-bar'>
         <text class='title'>{{title}}</text>
         <text decode>{{date}}&nbsp;&nbsp;|&nbsp;&nbsp;阅读&nbsp;&nbsp;{{view_num===0?1:view_num}}</text>
-        <image class='head_img' src='{{img_url}}' mode='widthFix'></image>
+        <image class='head_img' style='{{!img_url ? "height: 0;" : ""}}' src='{{img_url}}' mode='widthFix'></image>
         <rich-text nodes='{{content}}'></rich-text>
       </view>
       <view id='total' class='total'>网友评论({{total+total_add}})</view>

@@ -1,5 +1,6 @@
 .container {
   background: #fff;
+  box-sizing: border-box;
   margin: 30rpx 0;
   padding: 30rpx;
   display: flex;
@@ -16,6 +17,7 @@
   font-size: 32rpx;
   color: #464c5b;
   font-weight: bold;
+  text-align: left;
 }
 .arrow:after {
   content: '';

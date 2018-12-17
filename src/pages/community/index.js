@@ -14,7 +14,8 @@ Page({
     // 请求锁
     request_lock: {
       get_community_list: true
-    }
+    },
+    tabs_list: []
   },
 
   async onLoad() {
@@ -24,32 +25,13 @@ Page({
   },
 
   async onShow() {
-    // 如果缓存中存在刚刚浏览的圈子信息，增加对应的浏览数
-    let tabs_list = this.data.tabs_list
-    let type_id = wx.getStorageSync('community_type_id')
-    let id = wx.getStorageSync('community_id')
-    if (type_id) {
-      tabs_list.map(item => {
-        if (item.id == type_id) {
-          item.list.map(t => {
-            if (t.id == id) {
-              t.view_num++
-            }
-            return t
-          })
-        }
-        return item
-      })
-      this.setData({ tabs_list })
-      // 清除缓存
-      wx.clearStorageSync('community_type_id')
-      wx.clearStorageSync('community_id')
-    }
     // 判断地理位置是否变化，重新加载数据
     let location = app.global_data.location
     if (location[2] !== this.data.location[2]) {
       await this.setData({ location })
       await this.getCommunityType()
+    }else{
+        this.getCommunityList(true)
     }
   },
 
@@ -106,7 +88,7 @@ Page({
   },
 
   // 根据 tabs_current 获取对应圈子类别列表
-  async getCommunityList() {
+  async getCommunityList(reload) {
     let tabs_current = this.data.tabs_current
     console.log('tabs_current', tabs_current)
     let location = this.data.location
@@ -114,15 +96,15 @@ Page({
     let tabs_list = this.data.tabs_list
     console.log('tabs_list', tabs_list)
     let item = tabs_list[tabs_current]
-    if (!item.if_no_more && this.data.request_lock.get_community_list) {
-      this.setData({
+    let page = reload ? 1 : item.page + 1
+    this.setData({
         if_loading: true,
         'request_lock.get_community_list': false
       })
       let res = await app.get({
         url: this.data.api_url.get_community_list,
         data: {
-          page: item.page + 1,
+          page: page,
           size: 6,
           c_id: item.id,
           province: location[0],
@@ -135,15 +117,28 @@ Page({
         let data_list = data.data
         let total = data.total
         if (total > 0) {
-          data_list.forEach(t => {
-            item.list.push({
-              id: t.id,
-              title: t.title,
-              img_url: t.head_img,
-              date: t.create_time,
-              view_num: t.read_num
-            })
-          })
+            if(page === 1){
+                item.list = data_list.map(t => {
+                    return {
+                      id: t.id,
+                      title: t.title,
+                      img_url: t.head_img,
+                      date: t.create_time,
+                      view_num: t.read_num
+                    }
+                })
+            }else{
+                data_list.forEach(t => {
+                    item.list.push({
+                      id: t.id,
+                      title: t.title,
+                      img_url: t.head_img,
+                      date: t.create_time,
+                      view_num: t.read_num
+                    })
+                  })
+            }
+          
           item.if_no_more = item.list.length < total ? false : true
         } else {
           item.if_no_more = true
@@ -159,6 +154,5 @@ Page({
         if_loading: false,
         'request_lock.get_community_list': true
       })
-    }
   }
 })

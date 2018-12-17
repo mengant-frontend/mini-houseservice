@@ -137,7 +137,7 @@ Page({
   },
   // 商家接单
   async takeOrder(e) {
-    let { currentTarget: { dataset: { index } } } = e
+    let { detail: {index} } = e
     let demand = this.data.tabs_list[this.data.tabs_current].demand_list[index]
     if (!demand.demand_id) {
       app._error('缺少需求id')

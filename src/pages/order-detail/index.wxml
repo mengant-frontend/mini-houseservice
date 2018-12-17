@@ -266,6 +266,12 @@
   </view>
 
   <i-message id='message'></i-message>
+
+  <view class="container__home" wx:if='{{show_home}}'>
+    <view class="home" bindtap='goHome'>
+      <i-icon size='30' color='#fff' type='homepage_fill'></i-icon>
+    </view>
+  </view>
 </view>
 
 <red-packet-modal wx:if='{{red_money > 0}}' money='{{red_money}}' title='首次下单奖励' bind:close='closeRedPacketModal'></red-packet-modal>

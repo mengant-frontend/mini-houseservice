@@ -11,7 +11,9 @@
               <text>{{t.area}} {{t.distance}}km</text>
             </view>
           </view>
-          <view class='btn' wx:if='{{shop_id>0}}' bindtap='takeOrder' data-index='{{index}}'>接单</view>
+          <f-form-id bind:submit='takeOrder' index='{{index}}'>
+            <view class='btn' wx:if='{{shop_id>0}}'>接单</view>
+          </f-form-id>
         </view>
       </view>
     </view>
@@ -19,8 +21,12 @@
 </tabs-swiper-page>
 
 <view class='release-bar'>
-  <navigator class='release-demand' url='/pages/command-release/index' wx:if='{{shop_id <= 0}}'>
-    <text>+ 发布需求</text>
+  <navigator url='/pages/command-release/index' wx:if='{{shop_id <= 0}}'>
+    <f-form-id>
+      <view class='release-demand'>
+        <text>+ 发布需求</text>
+      </view>
+    </f-form-id>
   </navigator>
 </view>
 

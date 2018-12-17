@@ -1,13 +1,19 @@
 <view class='header'>
   <picker mode='region' value='{{location}}' bindchange='locationChoose'>
-    <view>
-      {{location[2]}}
-      <i-icon type='unfold' size='12' color='rgba(0,0,0,0.65)'></i-icon>
-    </view>
+    <f-form-id>
+      <view>
+        {{location[2]}}
+        <i-icon type='unfold' size='12' color='rgba(0,0,0,0.65)'></i-icon>
+      </view>
+    </f-form-id>
   </picker>
   <navigator class='search' url='/pages/search/index'>
-    <icon type='search' size='12' color='#bbbbbb' />
-    搜索
+    <f-form-id class='search-form'>
+      <view>
+        <icon type='search' size='12' color='#bbbbbb' />
+        搜索
+      </view>
+    </f-form-id>
   </navigator>
   <navigator url='/pages/face-detect/index' wx:if='{{village === 1}}'>
     <i-icon type='scan' size='30' color='#000000'></i-icon>
@@ -21,25 +27,36 @@
 </view>
 
 <navigator url='/pages/redpacket/tip'>
-  <i-notice-bar icon="systemprompt" loop speed='{{notice_content.length > 30 ? 1000 : 2000}}' wx:if='{{notice_content}}'>
-    【红包攻略】{{notice_content}}
-  </i-notice-bar>
+  <f-form-id>
+    <i-notice-bar icon="systemprompt" loop speed='{{notice_content.length > 30 ? 1000 : 2000}}' wx:if='{{notice_content}}'>
+      【红包攻略】{{notice_content}}
+    </i-notice-bar>
+  </f-form-id>
 </navigator>
-<view class='carousel'>
-    <view class="carousel-item"></view>
-</view>
 <view class='menu'>
   <navigator class='item' url='/pages/service/index?service_type=2'>
-    <image mode='aspectFit' src='/images/house.png' />
-    <text>家政服务</text>
+    <f-form-id>
+      <view class='item-form'>
+        <image mode='aspectFit' src='/images/house.png' />
+        <text>家政服务</text>
+      </view>
+    </f-form-id>
   </navigator>
   <navigator class='item' url='/pages/service/index?service_type=1'>
-    <image mode='aspectFit' src='/images/maintain.png' />
-    <text>维修服务</text>
+    <f-form-id>
+      <view class='item-form'>
+        <image mode='aspectFit' src='/images/maintain.png' />
+        <text>维修服务</text>
+      </view>
+    </f-form-id>
   </navigator>
   <navigator class='item' url='/pages/service-rank/index'>
-    <image mode='aspectFit' src='/images/rank.png' />
-    <text>服务排行</text>
+    <f-form-id>
+      <view class="item-form">
+        <image mode='aspectFit' src='/images/rank.png' />
+        <text>服务排行</text>
+      </view>
+    </f-form-id>
   </navigator>
 </view>
 

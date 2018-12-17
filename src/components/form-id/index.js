@@ -6,17 +6,18 @@ Component({
     btn: {
       type: Boolean,
       value: true
+    },
+    index: {
+      type: Number
     }
   },
   methods: {
     async formSubmit(e){
-      this.triggerEvent('submit', e)
       let { currentTarget, detail } = e
-      let { dataset } = currentTarget
-      if (detail.detail) {
-        detail = detail.detail
-      }
       let formId = detail.formId
+      this.triggerEvent('submit', {
+        index: this.data.index
+      })
       let server_res = await app.post({
         url: '/api/v1/token/formid',
         data: {

@@ -6,6 +6,7 @@
     "tabs-swiper-page": "/components/tabs-swiper-page/index",
     "scroll-loading": "/components/scroll-loading/index",
     "i-icon": "/iview/icon/index",
-    "i-message": "/iview/message/index"
+    "i-message": "/iview/message/index",
+    "f-form-id": "/components/form-id/index"
   }
 }

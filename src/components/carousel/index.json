@@ -1,6 +1,7 @@
 {
   "component": true,
   "usingComponents": {
-    "i-icon": "/iview/icon/index"
+    "i-icon": "/iview/icon/index",
+    "f-form-id": "/components/form-id/index"
   }
 }

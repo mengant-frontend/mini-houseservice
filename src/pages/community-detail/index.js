@@ -7,7 +7,7 @@ Page({
     // 接口地址
     api_url: {
       // 获取圈子内容
-      get_community: '/api/v1/circle/cms',
+      get_community: '/api/v1/circle/mini',
       // 获取评论列表
       get_comment_list: '/api/v1/circle/comment/list',
       // 点赞
@@ -60,9 +60,6 @@ Page({
         // 获取评论列表
         this.getCommentList()
       })
-      // 记录浏览
-      wx.setStorageSync('community_type_id', data.category.id)
-      wx.setStorageSync('community_id', id)
     } else { // 出错处理debug
       console.log(res)
     }

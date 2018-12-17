@@ -3,15 +3,24 @@ form, view{
   font-size: inherit;
 }
 .form-id__container{
-  overflow: hidden;
+  // overflow: hidden;
   color: inherit;
   font-size: inherit;
 }
 .plain-btn{
-  margin: -10px;
-  padding: 10px;
+  display: block;
+  padding: 0;
+  margin: 0;
   background: transparent;
-  box-sizing: border-box;
+  box-sizing: content-box;
   color: inherit;
   font-size: inherit;
+  text-align: left;
+}
+.plain-btn::after{
+  display: none;
+}
+.plain-btn-container{
+  box-sizing: border-box;
+  margin: 1px;
 }

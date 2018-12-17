@@ -1,3 +1,6 @@
 {
-  "component": true
+  "component": true,
+  "usingComponents": {
+    "f-form-id": "/components/form-id/index"
+  }
 }
