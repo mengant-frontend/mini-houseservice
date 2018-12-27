@@ -7,7 +7,7 @@ Page({
     type_text: '',
     price_keys: [],
     extend: false,
-    picture_list: [],
+    photo_list: [],
     shop_location: [],
     // 店铺类型，家政还是维修
     type: '',
@@ -20,6 +20,19 @@ Page({
     await this.getInfo()
     await this.getServiceTypes()
   },
+	onShow(){
+		let global_data = app.global_data
+		let new_data = app._deepClone(this.data)
+		if(global_data.pic_id && global_data.pic_url){
+			new_data.photo_list.push({
+				id: global_data.pic_id,
+				url: global_data.pic_url
+			})
+			app.global_data.pic_id = null
+			app.global_data.pic_url = null
+		}
+		this.setData(new_data)
+	},
   //初始化
   initData() {
     let init_form_data = {
@@ -44,6 +57,16 @@ Page({
       form_data: form_data,
     })
   },
+	confirmDelete(e){
+		let photo_list = app._deepClone(this.data.photo_list)
+		let { detail:{ index } } = e
+		if(index !== undefined){
+			photo_list.splice(index, 1)
+			this.setData({
+				photo_list: photo_list
+			})
+		}
+	},
   // 获取店铺信息
   async getInfo() {
     let server_res = await app.get({
@@ -115,9 +138,6 @@ Page({
       other_data.location = value
       this.checkArea(value)
     }
-    if (form_key === 'picture') {
-      other_data.picture_list = value
-    }
     if(form_key === 'price'){
       let price_100 = value * 100
       if(price_100 !== parseInt(price_100)){
@@ -149,20 +169,6 @@ Page({
         break
       case 'area':
         form_data.area = value[2]
-        break
-      case 'picture':
-        let cover = '',
-          imgs = ''
-        if (value.length >= 1) {
-          cover = value[0].id
-          let img_list = value.slice(1)
-          imgs = img_list.map(img => {
-              return img.id || ''
-            })
-            .join(',')
-        }
-        form_data.cover = cover
-        form_data.imgs = imgs
         break
       case 'extend':
         // 是为1，否为2
@@ -206,7 +212,7 @@ Page({
   //发布服务
   async releaseService() {
     let form_data = app._deepClone(this.data.form_data)
-
+		
     let require_params = [{
       key: 'c_id',
       required: '请选择服务类型'
@@ -232,6 +238,11 @@ Page({
       key: 'extend',
       required: '请选择是否推广'
     }]
+		let photo_list = app._deepClone(this.data.photo_list)
+		if(photo_list.length > 1){
+			form_data.cover = photo_list[0].id
+			form_data.imgs = photo_list.slice(1).map(photo => photo.id).join(',')
+		}
     let is_valid = true
     let err_msg = ''
     for (let i = 0; i < require_params.length; i++) {
@@ -243,18 +254,6 @@ Page({
     }
     if (!is_valid) {
       app._warn(err_msg)
-      return
-    }
-    let has_error_photos = false
-    let picture_list = app._deepClone(this.data.picture_list)
-    picture_list.forEach(picture => {
-      if (!picture.id) {
-        has_error_photos = true
-      }
-    })
-    console.log(JSON.stringify(picture_list))
-    if (has_error_photos) {
-      app._warn('请先删除上传失败的照片')
       return
     }
     if (!this.checkArea(this.data.location)) {

@@ -1,6 +1,11 @@
 <view class="page">
   <i-panel title='店铺信息'>
     <i-cell-group>
+			<i-cell title='店铺头像'>
+				<view slot='footer' class='f2-photo'>
+					<f2-photo type='avatar' shape='square' list='{{head_url_list}}' count='1'></f2-photo>
+				</view>
+			</i-cell>
       <i-cell title='店铺名称'>
         <input slot='footer' placeholder='请输入店铺名称' maxlength='10' value='{{form_data.name}}' data-form_key='name' bind:change='bindFormChange'></input>
       </i-cell>
@@ -29,6 +34,11 @@
     </i-cell-group>
   </i-panel>
 
+	<i-panel title='编辑商家图片'>
+		<view class="f-photo">
+			<f2-photo count='5' url='/api/v1/shop/image/handel' params='{{delete_params}}' add='{{true}}' list='{{photo_list}}' shape='16-9' type='photo' bind:delete='confirmDelete'></f2-photo>
+		</view>
+	</i-panel>
   <i-panel title='编辑员工头像'>
     <view class="f-photo">
       <f-photo count='9' add='{{false}}' bind:add='addstaffsAvatars' alaways_new='{{staffs}}' delete_url='/api/v1/shop/staff/delete' delete_params='{{["id", "face_token", "city"]}}' data-form_key='staffs' bind:update='bindFormChange'></f-photo>

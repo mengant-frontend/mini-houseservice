@@ -7,6 +7,7 @@
     "demand-hall": "/components/demand-hall/index",
     "service-category-tabs": "/components/service-category-tabs/index",
     "service-list": "/components/service-list/index",
-    "carousel": "/components/carousel/index"
+    "carousel": "/components/carousel/index",
+		"fixed-element": "/components/fixed-element/index"
   }
 }

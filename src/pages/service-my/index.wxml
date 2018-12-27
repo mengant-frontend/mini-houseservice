@@ -16,11 +16,8 @@
     </view>
   </view>
 
-  <view class="container__add">
-    <view class="add" bindtap='addService'>
-      <i-icon size='30' color='#fff' type='editor'></i-icon>
-    </view>
-  </view>
+  <fixed-element show-service='{{true}}'></fixed-element>
+	
   <i-message id='message'></i-message>
   <i-load-more loading='{{bottom_loading}}' tip='{{bottom_loading ? "" : can_load_more ? "下拉获取更多": ""}}'></i-load-more>
 </view>

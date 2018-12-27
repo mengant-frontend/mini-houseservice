@@ -8,11 +8,10 @@ Page({
     }
   },
   onLoad(query) {
-    let { id, type, state, origin } = query
+    let { id, type, origin } = query
     this.setData({
       id: id,
       type: type,
-      state: state,
       origin: origin
     })
   },
@@ -72,10 +71,9 @@ Page({
     if (!is_success) {
       return
     }
-    let { id, state, type } = this.data
-    state = Number(state) + 1
+    let { id, type } = this.data
     wx.redirectTo({
-      url: `/pages/order-detail/index?id=${id}&type=${type}&state=${state}`
+      url: `/pages/order-detail/index?id=${id}&type=${type}`
     })
   },
   // 弹框提醒
@@ -92,7 +90,7 @@ Page({
   },
   // 确定更改价格
   async ensureModify() {
-    let { id, type, state, form_data } = this.data
+    let { id, type, form_data } = this.data
     let server_res = await app.post({
       url: '/api/v1/order/price/update',
       data: {

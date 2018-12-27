@@ -51,9 +51,7 @@
           </view>
           <view class="table-cell content">
             <view class="container__img">
-              <view class="square" wx:for='{{detail.imgs}}' wx:for-item='img' wx:key='img_id'>
-                <image src='{{img.url}}'></image>
-              </view>
+							<f2-photo add='{{false}}' list='{{detail.imgs}}' can-tap='{{false}}'></f2-photo>
             </view>
           </view>
         </view>

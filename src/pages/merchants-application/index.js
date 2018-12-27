@@ -23,6 +23,7 @@ Page({
     step_current: 0,
 
     command_types: command_types,
+		head_url_list: [],
     //商家图片
     photo_list: [],
     //默认的服务类型
@@ -49,19 +50,37 @@ Page({
     wx.stopPullDownRefresh()
   },
   onShow() {
-    let head_url_list = app.global_data.head_url_list || []
-    let global_head_url_list = app._deepClone(head_url_list)
-    if (!global_head_url_list.length) return
-    app.global_data.head_url_list = []
-    let form_data = app._deepClone(this.data.form_data)
-    form_data.head_url = global_head_url_list.filter(img => !!img.id)
-    .map(img => img.id)
-    .join(',')
-    this.setData({
-      head_url: global_head_url_list,
-      form_data
-    })
+    let global_data = app.global_data
+    let new_data = app._deepClone(this.data)
+    if(global_data.pic_id && global_data.pic_url){
+			if(global_data.pic_type === 'avatar'){
+				new_data.head_url_list = [{
+					url: global_data.pic_url,
+					id: global_data.pic_id
+				}]
+			}else{
+				new_data.photo_list.push({
+					url: global_data.pic_url,
+					id: global_data.pic_id
+				})
+			}
+    	app.global_data.pic_type = null
+    	app.global_data.pic_id = null
+    	app.global_data.pic_url = null
+    }
+    this.setData(new_data)
   },
+	// 删除图片
+	confirmDelete(e){
+		let photo_list = app._deepClone(this.data.photo_list)
+		let { detail:{ index } } = e
+		if(index !== undefined){
+			photo_list.splice(index, 1)
+			this.setData({
+				photo_list: photo_list
+			})
+		}
+	},
   initFormData() {
     let form_data = {
       head_url: '',
@@ -155,22 +174,27 @@ Page({
       }
       let form_data = app._deepClone(this.data.form_data)
       let imgs = []
-      if (remote_data.imgs instanceof Array) {
-        remote_data.imgs.forEach(item => {
-          let img = {
-            id: item.img_id
-          }
-          let img_url = item.img_url || {}
-          img.path = img_url.url
-          imgs.push(img)
-        })
-      }
+      let head_url_list = [], photo_list = []
+			if(remote_data.head_url){
+				head_url_list = [{
+					url: remote_data.head_url,
+					id: remote_data.head_url
+				}]
+			}
+			
+			photo_list = remote_data.imgs.map(photo => {
+				return {
+					id: photo.img_id,
+					url: photo.img_url.url
+				}
+			})
       Object.keys(form_data)
       .forEach(key => {
         form_data[key] = remote_data[key]
       })
-      form_data.imgs = imgs
       this.setData({
+				photo_list: photo_list,
+				head_url_list: head_url_list,
         form_data: form_data,
         steps_list: steps_list,
         ...new_data
@@ -194,9 +218,6 @@ Page({
     let {form_key, value} = app._bindFormChange(e)
     let form_data = this.updateFormData(form_key, value)
     let other_data = {}
-    if (form_key === 'imgs') {
-      other_data.photo_list = value
-    }
     if (form_key === 'type') {
       command_types.forEach((command, index) => {
         if (index == value) {
@@ -204,10 +225,6 @@ Page({
         }
       })
     }
-    if (form_key === 'head_url') {
-      other_data.head_url = value
-    }
-    console.log(other_data)
     this.setData({
       form_data: form_data,
       ...other_data
@@ -236,16 +253,6 @@ Page({
         form_data.city = value[1]
         form_data.area = value[2]
         break
-      case 'head_url':
-        form_data.head_url = value.filter(img => !!img.id)
-        .map(img => img.id)
-        .join(',')
-        break
-      case 'imgs':
-        form_data.imgs = value.filter(img => !!img.id)
-        .map(img => img.id)
-        .join(',')
-        break;
       default:
         throw new Error('form_key 无效')
     }
@@ -290,6 +297,8 @@ Page({
           key: 'imgs',
           required: '请上传商家资料图片'
         }]
+				form_data.head_url = this.data.head_url_list.map(photo => photo.id).join(',')
+				form_data.imgs = this.data.photo_list.map(photo => photo.id).join(',')
         let error_msg = ''
         for(let i = 0; i < require_params.length; i++){
           if(!form_data[require_params[i].key]){

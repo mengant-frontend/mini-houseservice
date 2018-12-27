@@ -10,12 +10,10 @@ Page({
     // 订单类别，服务订单还是需求订单
     type: '',
     // 订单状态
-    state: '',
     shop_id: '',
     // 订单数据
     order_detail: {},
     is_service_order: false,
-    had_connect: false,
     change_price: false,
     use_red_packet: false,
     // 红包信息
@@ -31,7 +29,6 @@ Page({
     this.setData({
       id: query.id,
       type: query.type,
-      state: query.state,
       show_home: query.template == '1'
     })
 
@@ -44,6 +41,7 @@ Page({
     }
   },
   onShow() {
+		this.loadOrder()
     let red_packet = app.global_data.red_packet
     let order_detail_state = app.global_data.order_detail_state
     let change_price = this.data.change_price
@@ -58,7 +56,7 @@ Page({
   onPullDownRefresh() {
     wx.stopPullDownRefresh()
   },
-  init({ id, type, state }) {
+  init({ id, type }) {
     let shop_id = app.global_data.shop_id
     let has_shop = false
     if (shop_id > 0) {
@@ -68,15 +66,10 @@ Page({
     if (type === '1') {
       is_service_order = true
     }
-    if (!has_shop && state === '4') {
-      this.gotoEvaluate()
-      return
-    }
     this.setData({
       has_shop: has_shop,
       id,
       type,
-      state,
       is_service_order
     })
   },
@@ -91,6 +84,14 @@ Page({
       return
     }
     await app.asyncApi(wx.showNavigationBarLoading)
+		let loading_text = '获取订单信息中'
+		if(Object.keys(this.data.order_detail).length > 0){
+			loading_text = '更新订单信息中'
+		}
+		await app.asyncApi(wx.showLoading, {
+			title: loading_text,
+			mask: true
+		})
     let server_res = await app.get({
       url: '/api/v1/order',
       data: {
@@ -99,6 +100,7 @@ Page({
       }
     })
     await app.asyncApi(wx.hideNavigationBarLoading)
+		await app.asyncApi(wx.hideLoading)
     let { success, msg, data } = server_res
     if (!success) {
       app._error(msg)
@@ -121,7 +123,6 @@ Page({
   },
   // 前往店铺
   goToShop() {
-    console.log(this.data.has_shop)
     if (this.data.has_shop) {
       // 商家不显示店铺title，也不跳转
       return
@@ -129,13 +130,6 @@ Page({
     let shop_id = this.data.order_detail.shop_id
     wx.navigateTo({
       url: '/pages/store/index?id=' + shop_id
-    })
-  },
-  //是否联系
-  updateHadConnect(e) {
-    let { detail: { value } } = e
-    this.setData({
-      had_connect: value
     })
   },
   // 是否修改价格
@@ -196,38 +190,12 @@ Page({
   },
   // 前往修改价格
   goToChangePrice() {
-    let { id, type, state, order_detail } = this.data
+    let { id, type, order_detail } = this.data
     let origin = order_detail.origin_money
     app.global_data.order_detail_state.price_change = true
     wx.navigateTo({
-      url: `/pages/price-change/index?id=${id}&type=${type}&state=${state}&origin=${origin}`
+      url: `/pages/price-change/index?id=${id}&type=${type}&origin=${origin}`
     })
-  },
-  // 确认电话联系
-  async confirmConnection() {
-    let { id, type } = this.data
-    let server_res = await app.post({
-      url: '/api/v1/order/phone/confirm',
-      data: {
-        id: id,
-        type: type
-      }
-    })
-    let { success, msg } = server_res
-    if (!success) {
-      app._error(msg)
-      return false
-    }
-    let order_detail = app._deepClone(this.data.order_detail)
-    if (this.data.has_shop) {
-      order_detail.phone_user = 1
-    } else {
-      order_detail.phone_shop = 1
-    }
-    this.setData({
-      order_detail: order_detail
-    })
-    return true
   },
   // 确认订单接口
   async ensureOrder() {
@@ -266,35 +234,11 @@ Page({
       }
       return
     }
-    let is_success = await this.confirmConnection()
+    let is_success = await this.ensureOrder()
     if (!is_success) {
       return
     }
-    is_success = await this.ensureOrder()
-    if (!is_success) {
-      return
-    }
-    await app.asyncApi(wx.showToast, {
-      title: '成功'
-    })
-    let { state, id, type, order_detail } = this.data
-    let other_data = {
-      had_connect: false
-    }
-    if (this.data.is_service_order) {
-      state = Number(state) + 1
-    } else {
-      order_detail.shop_confirm = 1
-    }
-    this.setData({
-      order_detail: order_detail,
-      ...other_data
-    })
-    this.init({
-      state: state,
-      id: id,
-      type: type
-    })
+		this.loadOrder()
   },
   // 检查用户是否已经付款
   async checkPay() {
@@ -312,16 +256,39 @@ Page({
       return false
     }
     if (Number(data.state) === 2) {
-      app._error('用户未支付')
+      app._error('订单用户未支付')
       return false
     }
     return true
   },
+	checkOrderPaid({id, type}){
+		return app.post({
+			url: '/api/v1/order/pay/check',
+			data: {
+				id,
+				type
+			}
+		})
+	},
   async shoperGotoServe() {
-    let { type, id, state, order_detail } = this.data
+    let { type, id, order_detail } = this.data
+		await app.asyncApi(wx.showLoading)
+		let paid_res = await this.checkOrderPaid({id, type})
+		if(!paid_res.success){
+			app._error(paid_res.msg)
+			await app.asyncApi(wx.hideLoading)
+			return
+		}
+		// 1支付，2未支付
+		if(paid_res.data.state == 2){
+			app._error('订单用户未支付')
+			await app.asyncApi(wx.hideLoading)
+			return
+		}
     let money = order_detail.update_money ? order_detail.update_money : order_detail.origin_money
     let bail = await app.checkBail(money)
     if (!bail.success) {
+			await app.asyncApi(wx.hideLoading)
       if (bail.need > 0) {
         let res = await app.asyncApi(wx.showModal, {
           title: '保证金充值',
@@ -338,6 +305,7 @@ Page({
     }
     let is_pay = await this.checkPay()
     if (!is_pay) {
+			await app.asyncApi(wx.hideLoading)
       return
     }
     let res = await app.post({
@@ -348,15 +316,12 @@ Page({
       }
     })
     let { success, msg } = res
+		await app.asyncApi(wx.hideLoading)
     if (!success) {
       app._error(msg)
       return
     }
-    this.init({
-      state: Number(state) + 1,
-      id: id,
-      type: type
-    })
+    this.loadOrder()
   },
   // 取消订单
   async customerCancelOrder() {
@@ -387,13 +352,9 @@ Page({
       delta: 1
     })
   },
+	// 用户付款
   async customerPayOrder() {
-    if (Number(this.data.order_detail.shop_confirm) !== 1) {
-      app._error('商家未确认')
-      return
-    }
-    await this.confirmConnection()
-    let { id, type, state, red_packet } = this.data
+    let { id, type, red_packet } = this.data
     let params = {
       id,
       type: type
@@ -412,7 +373,7 @@ Page({
     }
     let wx_res = await app.asyncApi(wx.requestPayment, data)
     if (!wx_res.success) {
-      app._error(wx_res.msg)
+      app._error(wx_res.msg || '支付失败')
       return
     }
     let red_money_res = await app.get({
@@ -422,22 +383,17 @@ Page({
       app._error(wx_res.msg)
       return
     }
+		// 首单获得红包奖励
     if(red_money_res.data.red_money && red_money_res.data.red_money > 0){
       this.setData({
         red_money: red_money_res.data.red_money
       })
     }else{
-      await app.asyncApi(wx.showToast, {
-        title: '成功'
-      })
-    }
-    this.init({
-      id,
-      type,
-      state: Number(state) + 1
-    })
+			this.loadOrder()
+		}
   },
   closeRedPacketModal(){
+		this.loadOrder()
     this.setData({
       red_money: 0
     })
@@ -496,10 +452,9 @@ Page({
     })
   },
   gotoEvaluate() {
-    let { id, type, state } = this.data
-    state = Number(state) + 1
+    let { id, type } = this.data
     wx.redirectTo({
-      url: `/pages/order-evaluate/index?id=${id}&type=${type}&state=${state}`
+      url: `/pages/order-evaluate/index?id=${id}&type=${type}`
     })
   },
   async deleteOrder(){

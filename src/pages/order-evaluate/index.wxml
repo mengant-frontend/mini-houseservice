@@ -45,7 +45,7 @@
   </view>
 
   <view>
-    <f-photo count='9' bind:update='updateImgs'></f-photo>
+    <f2-photo add='{{true}}' list='{{photo_list}}' shape='16-9' bind:delete='confirmDelete'></f2-photo>
   </view>
   <view class="container__rate">
     <i-rate i-class="rate" size='40' count='5' value='{{rate}}' bindchange='updateRate'></i-rate>

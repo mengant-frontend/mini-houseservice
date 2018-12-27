@@ -26,3 +26,5 @@
     </navigator>
   </view>
 </scroll-loading>
+
+<i-message id='message'></i-message>

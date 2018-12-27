@@ -1,6 +1,6 @@
 {
   "pages": [
-
+		
     "pages/welcome/index",
     "pages/term/index",
     "pages/authorize/index",
@@ -46,7 +46,8 @@
     "pages/rest-money/common-record",
     "pages/shop/edit",
     "pages/order-detail/index",
-    "pages/avatar/index"
+    "pages/avatar/index",
+		"pages/cropper/upload"
   ],
   "window": {
     "navigationBarTitleText": "久房通",

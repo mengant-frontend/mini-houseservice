@@ -31,13 +31,4 @@
     </view>
   </scroll-loading>
 </tabs-swiper-page>
-
-<view class='release-bar'>
-  <navigator class='release-service' url='/pages/service-release/index' wx:if='{{shop_id>0}}'>
-    <text>+ 发布服务</text>
-  </navigator>
-  <navigator class='release-demand' url='/pages/command-release/index' wx:else>
-    <text>+ 发布需求</text>
-  </navigator>
-
-</view>
+<fixed-element show-service='{{shop_id > 0}}' show-command='{{shop_id == 0}}'></fixed-element>

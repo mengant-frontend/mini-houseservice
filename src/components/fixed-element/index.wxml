@@ -1,0 +1,13 @@
+<map class="fixed" style='width: {{width}}px; height: {{height}}px;right: {{right}}'>
+	<cover-view class='cover' id='cover' style='background: {{backgroundColor}}'>
+		<cover-view class='container command' wx:if='{{showCommand}}' data-url='/pages/command-release/index' bindtap='goNextPage'>
+			+ 发布需求
+		</cover-view>
+		<cover-view class="container service" wx:if='{{showService}}' data-url='/pages/service-release/index' bindtap='goNextPage'>
+			+ 发布服务
+		</cover-view>
+		<cover-view class='container command' wx:if='{{showGuide}}' data-url='/pages/term/index?type=price_guide' bindtap='goNextPage'>
+			+ 价格指导
+		</cover-view>
+	</cover-view>
+</map>

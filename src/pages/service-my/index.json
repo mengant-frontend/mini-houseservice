@@ -4,6 +4,7 @@
     "i-button": "../../iview/button/index",
     "i-load-more": "../../iview/load-more/index",
     "i-message": "../../iview/message/index",
-    "i-icon": "../../iview/icon/index"
+    "i-icon": "../../iview/icon/index",
+		"fixed-element":"/components/fixed-element/index"
   }
 }

@@ -1,9 +1,9 @@
 <view class="page">
   <i-cell-group>
-    <i-cell title='头像'>
+    <i-cell title='头像' i-class='avatar_cell'>
       <view slot='footer' class="avatar">
         <view class="avatar-right">
-          <f-photo type='avatar' remote='{{default_photos}}' data-form_key='head_url' bind:update='bindFormChange'></f-photo>
+          <f2-photo count='1' list='{{head_url_list}}' shape='square' type='avatar' add='{{true}}'></f2-photo>
         </view>
       </view>
     </i-cell>

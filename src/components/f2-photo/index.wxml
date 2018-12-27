@@ -1,0 +1,10 @@
+<view class="component">
+	<view class="item" wx:for='{{list}}' wx:key='id' bindtap='confirmDelete' data-index='{{index}}'>
+		<image mode='aspectFit' class="img" src='{{item.url}}'></image>
+	</view>
+	<view class="item" wx:if='{{add && count > list.length}}'>
+		<view class="add" bindtap='chooseImg'>
+			<i-icon type='{{ type === "avatar" ? "picture" : "add"}}' size='30'></i-icon>
+		</view>
+	</view>
+</view>

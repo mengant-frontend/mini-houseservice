@@ -25,6 +25,30 @@ Page({
       imgs: ''
     }
   },
+	onShow(){
+		let global_data = app.global_data
+		let new_data = app._deepClone(this.data)
+		if(global_data.pic_id && global_data.pic_url){
+			new_data.photo_list.push({
+				id: global_data.pic_id,
+				url: global_data.pic_url
+			})
+			app.global_data.pic_id = null
+			app.global_data.pic_url = null
+		}
+		this.setData(new_data)
+	},
+	// 删除图片
+	confirmDelete(e){
+		let photo_list = app._deepClone(this.data.photo_list)
+		let { detail:{ index } } = e
+		if(index !== undefined){
+			photo_list.splice(index, 1)
+			this.setData({
+				photo_list: photo_list
+			})
+		}
+	},
   bindFormChange(e) {
     let { form_key, value } = app._bindFormChange(e)
     let form_data = this.updateFormData(form_key, value)
@@ -62,15 +86,6 @@ Page({
       case 'time_end':
         form_data[form_key] = value[0] + ' ' + value[1] + ':' + value[2]
         break
-      case 'imgs':
-        let imgs = ''
-        if (value.length) {
-          imgs = value.filter(img => img.id)
-            .map(img => img.id)
-            .join(',')
-        }
-        form_data[form_key] = imgs
-        break
       default:
     }
     return form_data
@@ -78,6 +93,7 @@ Page({
   async release() {
     let form_data = app._deepClone(this.data.form_data)
     let err_msg = ''
+		form_data.imgs = this.data.photo_list.map(photo => photo.id).join(',')
     for (let key in form_data) {
       if (!form_data[key]) {
         switch (key) {

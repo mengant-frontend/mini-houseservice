@@ -426,7 +426,10 @@ App({
     location: [],
     staffs_list: [],
     head_url_list: [],
-    red_money: 0
+    red_money: 0,
+		pic_id: null,
+		pic_url: null,
+		pic_type: null
   },
   // 通用方法
   /**

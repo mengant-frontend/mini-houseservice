@@ -13,7 +13,7 @@
             <text>服务时间：{{t.date}}</text>
           </view>
           <view class='btn-bar'>
-            <view class='unconfirmed' wx:if='{{item.id === "unconfirmed"}}'>联系客户</view>
+            <view class='unconfirmed' wx:if='{{item.id === "unconfirmed"}}'>确认订单</view>
             <view class='unserviced' wx:if='{{item.id === "unserviced"}}'>去服务</view>
             <view class='unconfirmed' wx:if='{{item.id === "completed"}}'>删除订单</view>
           </view>

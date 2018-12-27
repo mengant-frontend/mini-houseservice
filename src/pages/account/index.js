@@ -53,5 +53,14 @@ Page({
     wx.navigateTo({
       url: '/pages/account/edit'
     })
-  }
+  },
+	contract(){
+		if(!this.data.detail.phone){
+			app._error('暂无电话')
+			return 
+		}
+		wx.makePhoneCall({
+			phoneNumber: this.data.detail.phone
+		})
+	}
 })

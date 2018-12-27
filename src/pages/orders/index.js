@@ -78,6 +78,7 @@ Page({
 
   async onShow() {
     this.setData({
+			shop_id: app.global_data.shop_id,
       // tabs 列表数据
       tabs_list: [
         {

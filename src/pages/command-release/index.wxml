@@ -50,9 +50,9 @@
     </i-cell-group>
   </i-panel>
   <i-panel title='添加照片'>
-    <view class="container__pictures">
-      <f-photo count='4' data-form_key='imgs' bind:update='bindFormChange'></f-photo>
-    </view>
+    <view class="photo__container">
+			<f2-photo shape='16-9' count='5' add='{{true}}' list='{{photo_list}}' bind:delete='confirmDelete'></f2-photo>
+		</view>
   </i-panel>
 
   <view class="fixed">

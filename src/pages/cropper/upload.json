@@ -1,0 +1,6 @@
+{
+	"navigationBarTitleText": "图片处理",
+	"usingComponents": {
+		"i-message": "/iview/message/index"
+	}
+}

@@ -20,15 +20,6 @@
   </scroll-loading>
 </tabs-swiper-page>
 
-<view class='release-bar'>
-  <navigator url='/pages/command-release/index' wx:if='{{shop_id <= 0}}'>
-    <f-form-id>
-      <view class='release-demand'>
-        <text>+ 发布需求</text>
-      </view>
-    </f-form-id>
-  </navigator>
-</view>
-
+<fixed-element show-command='{{shop_id <= 0}}' background-color='#fff'></fixed-element>
 
 <i-message id='message'></i-message>

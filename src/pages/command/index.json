@@ -5,6 +5,7 @@
   "usingComponents": {
     "tabs-swiper-page": "/components/tabs-swiper-page/index",
     "scroll-loading": "/components/scroll-loading/index",
-    "i-message": "/iview/message/index"
+    "i-message": "/iview/message/index",
+		"fixed-element":"/components/fixed-element/index"
   }
 }

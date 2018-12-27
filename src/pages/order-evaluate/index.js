@@ -4,24 +4,47 @@ Page({
   data: {
     id: '',
     type: '',
-    state: '',
     rate: 0,
     remark: '',
     order_data: {},
     evaluate_type: '',
     imgs: '',
-    red_money: 0
+    red_money: 0,
+		photo_list: []
   },
   onLoad(query) {
     this.setData({
       id: query.id,
-      type: query.type,
-      state: query.state
+      type: query.type
     })
     this.loadOrder()
   },
+	onShow(){
+		let global_data = app.global_data
+		let new_data = app._deepClone(this.data)
+		if(global_data.pic_id && global_data.pic_url){
+			new_data.photo_list.push({
+				id: global_data.pic_id,
+				url: global_data.pic_url
+			})
+			app.global_data.pic_id = null
+			app.global_data.pic_url = null
+		}
+		this.setData(new_data)
+	},
+	// 删除图片
+	confirmDelete(e){
+		let photo_list = app._deepClone(this.data.photo_list)
+		let { detail:{ index } } = e
+		if(index !== undefined){
+			photo_list.splice(index, 1)
+			this.setData({
+				photo_list: photo_list
+			})
+		}
+	},
   async loadOrder() {
-    let { id, type, state } = this.data
+    let { id, type } = this.data
     let err_msg = ''
     if (!id) {
       err_msg = '缺少订单id'
@@ -105,7 +128,7 @@ Page({
     })
   },
   async confirm() {
-    let { rate, evaluate_type, remark, id, type, order_data, imgs, state } = this.data
+    let { rate, evaluate_type, remark, id, type, order_data, photo_list } = this.data
     if (!rate) {
       app._warn('请对本次服务进行打分')
       return
@@ -122,7 +145,7 @@ Page({
         content: remark,
         score_type: evaluate_type,
         order_type: type,
-        imgs: imgs
+        imgs: photo_list.map(photo => photo.id).join(',')
       }
     })
     await app.asyncApi(wx.hideLoading)
@@ -147,14 +170,13 @@ Page({
     this.goNext()
   },
   async goNext(){
-    let { rate, evaluate_type, remark, id, type, order_data, imgs, state } = this.data
+    let { rate, evaluate_type, remark, id, type, order_data, imgs } = this.data
     await app.asyncApi(wx.showToast, {
       title: '已提交'
     })
     await app.sleep()
-    state = Number(state) + 1
     wx.redirectTo({
-      url: `/pages/order-detail/index?id=${id}&type=${type}&state=${state}`
+      url: `/pages/order-detail/index?id=${id}&type=${type}`
     })
   }
 })

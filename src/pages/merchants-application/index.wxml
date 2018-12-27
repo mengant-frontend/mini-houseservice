@@ -13,7 +13,7 @@
         <i-cell title='商家头像' only-tap-footer='{{true}}'>
           <view slot='footer' class='container__avatar'>
             <view class="f-photo">
-              <f-photo alaways_new='{{head_url}}' add='{{false}}' bind:add='changeHeadUrl' type='avatar' bind:update='bindFormChange' data-form_key='head_url'></f-photo>
+							<f2-photo type='avatar' count='1' list='{{head_url_list}}'></f2-photo>
             </view>
           </view>
         </i-cell>
@@ -53,7 +53,7 @@
 
     <i-panel title='商家资料图片'>
       <view class="container__photo">
-        <f-photo count='{{count}}' data-form_key="imgs" bind:update='bindFormChange'></f-photo>
+        <f2-photo shape='16-9' count='{{9}}' list='{{photo_list}}' add='{{true}}' bind:delete='confirmDelete'></f2-photo>
       </view>
       <view class="tips">
         <view class='tips-title'>温馨提示:</view>
@@ -67,7 +67,6 @@
           <text class="tips-title">商家入驻协议</text>
           <text class="tip">》</text>
         </navigator>
-
       </view>
     </i-panel>
   </view>
@@ -83,7 +82,7 @@
           <view class="table-cell checking-title">商家头像</view>
           <view class="table-cell checking-value">
             <view class="checking-pictures">
-              <image src='{{form_data.head_url}}' class="checking-photo avatar"></image>
+              <f2-photo list='{{head_url_list}}' can-tap='{{false}}' shape='square' count='1' add='{{false}}'></f2-photo>
             </view>
           </view>
         </view>
@@ -126,7 +125,7 @@
           <view class="table-cell checking-title checking-pictures-title">商家资料图片</view>
           <view class="table-cell checking-value">
             <view class="checking-pictures">
-              <image wx:for='{{form_data.imgs}}' wx:for-item='img' wx:key='path' src='{{img.path}}' class="checking-photo" mode='aspectFit'></image>
+              <f2-photo add='{{false}}' list='{{photo_list}}' can-tap='{{false}}'></f2-photo>
             </view>
           </view>
         </view>

@@ -155,7 +155,7 @@ Page({
       data: form_data
     })
 
-    let { success, msg } = server_res
+    let { success, msg, data } = server_res
     if (!success) {
       app._error(msg)
       return
@@ -165,8 +165,8 @@ Page({
     })
     await app.sleep()
     await app.asyncApi(wx.hideToast)
-    wx.navigateBack({
-      delta: 1
-    })
+		wx.redirectTo({
+			url: '/pages/order-detail/index?type=1&id=' + data.id + '&state=1'
+		})
   }
 })

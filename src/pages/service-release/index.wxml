@@ -36,7 +36,7 @@
   </i-panel>
   <i-panel title='请添加图片，用于介绍服务内容。'>
     <view class="container__pictures">
-      <f-photo count='5' bind:update='bindFormChange' data-form_key="picture"></f-photo>
+      <f2-photo shape='16-9' list='{{photo_list}}' count='5' bind:delete='confirmDelete'></f2-photo>
     </view>
   </i-panel>
   <i-panel>

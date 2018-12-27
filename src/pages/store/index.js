@@ -23,7 +23,8 @@ Page({
     service_page: 0,
     service_total: 0,
     if_no_more: false,
-    service_list: []
+    service_list: [],
+		can_call: false //是否可以联系商家
   },
 
   async onLoad(options) {
@@ -52,7 +53,8 @@ Page({
         comment_count: data.comment_count,
         score: data.score ? data.score : 5,
         collection: data.collection,
-        if_collected: data.collection > 0 ? true : false
+        if_collected: data.collection > 0 ? true : false,
+				can_call: data.phone_check == '1'
       }, () => {
         // 获取服务列表
         this.getServiceList()
@@ -100,6 +102,10 @@ Page({
 
   // 调起拨号面板拨打电话
   callPhone() {
+		if(!this.data.can_call){
+			app._error('请预约后再联系商家')
+			return 
+		}
     app.asyncApi(wx.makePhoneCall, {
       phoneNumber: this.data.phone
     })

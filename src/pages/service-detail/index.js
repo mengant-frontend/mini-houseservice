@@ -24,8 +24,10 @@ Page({
     comment_total: 0,
     if_no_more: false,
     comment_list: [],
-    if_collected: false
-  },
+    if_collected: false,
+		can_call: false //是否可以联系商家
+  
+	},
 
   async onLoad(options) {
     let service_id = options.id
@@ -61,6 +63,7 @@ Page({
         score: data.score ? data.score : 5,
         collection: data.collection,
         if_collected: data.collection > 0 ? true : false,
+				can_call: data.phone_check == '1',
         ...extend
       }, () => {
         // 获取评论列表
@@ -110,6 +113,10 @@ Page({
 
   // 调起拨号面板拨打电话
   callPhone() {
+		if(!this.data.can_call){
+			app._error('请预约后再联系商家')
+			return
+		}
     app.asyncApi(wx.makePhoneCall, {
       phoneNumber: this.data.phone
     })

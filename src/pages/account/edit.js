@@ -8,12 +8,25 @@ Page({
       nickName: '',
       address: ''
     },
-    detail: [],
-    default_photos: []
+		head_url_list: [],
+    detail: []
   },
   onLoad() {
     this.getInfo()
   },
+	onShow(){
+		let global_data = app.global_data
+		let new_data = app._deepClone(this.data)
+		if(global_data.pic_id && global_data.pic_url){
+			new_data.head_url_list.push({
+				id: global_data.pic_id,
+				url: global_data.pic_url
+			})
+			app.global_data.pic_id = null
+			app.global_data.pic_url = null
+		}
+		this.setData(new_data)
+	},
   //获取个人信息
   async getInfo() {
     let server_res = await app.get({
@@ -24,9 +37,6 @@ Page({
       app._error(msg)
       return
     }
-    let default_photos = [{
-      path: data.userInfo.avatarUrl
-    }]
     let detail = []
     if (data.userInfo.address) {
       detail = data.userInfo.address.split('-')
@@ -34,13 +44,19 @@ Page({
     if (detail.length <= 1) {
       detail = []
     }
+		let head_url_list = []
+		if(data.userInfo.avatarUrl){
+			head_url_list = [{
+				id: data.userInfo.avatarUrl,
+				url: data.userInfo.avatarUrl
+			}]
+		}
     this.setData({
-      default_photos: default_photos,
+      head_url_list: head_url_list,
       detail: detail,
       form_data: {
         address: data.userInfo.address,
         phone: data.userInfo.phone,
-        avatarUrl: data.userInfo.avatarUrl,
         nickName: data.userInfo.nickName
       }
     })
@@ -48,6 +64,9 @@ Page({
   // 更新个人信息
   async updateInfo() {
     let form_data = app._deepClone(this.data.form_data)
+		let head_url_list = app._deepClone(this.data.head_url_list)
+		
+		form_data.avatarUrl = head_url_list.map(photo => photo.id).join(',')
     if (form_data.avatarUrl.indexOf('http') !== -1) {
       delete form_data.avatarUrl
     }
@@ -112,10 +131,6 @@ Page({
         break
       case 'region':
         form_data.address = value.join('-')
-        break
-      case 'avatarUrl':
-        let avatar = value[0]
-        form_data[form_key] = avatar && avatar.id || ''
         break
       default:
 

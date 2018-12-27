@@ -56,6 +56,9 @@
       <i-cell title='关于我们' url='/pages/term/index?type=about_us' is-link link-type='navigateTo'>
         <i-icon type='barrage_fill' slot='icon' size='20' color='#5cadff'></i-icon>
       </i-cell>
+			<i-cell title='联系我们' i-class='cell-index--i-cell-access' bind:click='contract' only-tap-footer='{{false}}'>
+				<i-icon type='customerservice_fill' slot='icon' size='20' color='#5cadff'></i-icon>
+			</i-cell>
     </i-cell-group>
   </i-panel>
   <i-message id='message'></i-message>
