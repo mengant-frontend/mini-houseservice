@@ -117,7 +117,7 @@ Page({
 		if(imgs && imgs.length > 0){
 			photo_list = imgs.map(img => {
 				return {
-					id: img.img_id,
+					id: img.id,
 					url: img.img_url.url
 				}
 			})
@@ -200,6 +200,9 @@ Page({
 			}
       if (!form_data[key]) {
         switch (key) {
+					case 'head_url': 
+						err_msg = '请上传店铺头像'
+						break
           case 'name':
             err_msg = '请填写店铺名称'
             break;
@@ -232,8 +235,11 @@ Page({
       app._error(err_msg)
       return
     }
+		if(form_data.head_url.indexOf('http') !== -1){
+			delete form_data.head_url
+		}
     let origin_staffs = this.data.origin_staffs.map(staff => String(staff))
-    let staffs = form_data.staffs.split(',')
+    let staffs = Array.from(new Set(form_data.staffs.split(',')))
     staffs = staffs.filter(staff => {
       return origin_staffs.indexOf(staff) === -1
     }).join(',')
@@ -247,7 +253,6 @@ Page({
       title: 'loading...',
       mask: true
     })
-		console.log(form_data)
     let server_res = await app.post({
       url: '/api/v1/shop/update',
       data: form_data

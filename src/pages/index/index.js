@@ -75,8 +75,6 @@ Page({
           banner_img.push(item.url)
         })
         this.setData({banner_img})
-      } else { // 出错处理debug
-        console.log(res)
       }
     })
     // 获取红包攻略
@@ -91,10 +89,7 @@ Page({
           notice_content.push(item.des)
         })
         notice_content = notice_content.join(' ')
-        console.log(notice_content)
         this.setData({notice_content})
-      } else { // 出错处理debug
-        console.log(res)
       }
     })
     this.getJoinMsg()
@@ -194,8 +189,6 @@ Page({
           house_service_list,
           maintain_service_list
         })
-      } else { // 出错处理debug
-        console.log(res)
       }
     })
   },

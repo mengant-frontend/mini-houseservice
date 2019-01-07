@@ -2,101 +2,50 @@ page {
   /* 给 scroll-loading 组件继承高度 */
   height: 100%;
 }
-
-/* 店铺信息 start */
-.name-bar,
-.score-bar,
-.location-phone {
-  background: #fff;
-  padding: 20rpx 30rpx;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.message-list{
+	margin-bottom: 20rpx;
 }
-.score-bar {
-  padding-top: 0;
+.message-item{
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		padding: 30rpx;
+		background-color: #fff;
+		border-bottom: 1rpx solid #F3F3F3;
 }
-.score-bar .comment:after {
-  content: '';
-  display: inline-block;
-  width: 14rpx;
-  height: 14rpx;
-  border: 1rpx solid #464c5b; /* 跟随 .comment 颜色 */
-  border-bottom: none;
-  border-left: none;
-  transform: rotate(45deg);
-  margin-bottom: 1rpx; /* 看起来与文字垂直对齐 */
+.message-item .left{
+	flex-grow: 1;
+	flex-shrink: 1;
 }
-.location-phone {
-  border-top: 1rpx solid #dddee1;
-  border-bottom: 1rpx solid #dddee1;
-  margin-bottom: 20rpx;
+.message-item .right{
+	flex-grow: 0;
+	flex-shrink: 0;
 }
-.location-phone .location-bar {
-  flex-grow: 1;
-  border-right: 1rpx solid #dddee1;
-  display: flex;
-  align-items: center;
+.shop-name{
+	font-size: 33rpx;
+	color: #2d2d2d;
+	letter-spacing: 2px;
 }
-.location-phone .location-tip {
-  white-space: nowrap;
-  margin-right: 25rpx;
+.comment-count{
+	margin-right: 30rpx;
 }
-.location-phone .icon-phone {
-  width: 40rpx;
-  height: 40rpx;
-  margin-left: 30rpx; /* 左右等宽留白 */
+.location__text{
+	margin-left: 30rpx;
 }
-.name-bar .name,
-.location-phone .location-tip,
-.score-bar .score {
-  /* iview 推荐主标题样式 */
-  font-size: 32rpx;
-  font-weight: bold;
-  color: #464c5b;
+.phone{
+	padding-left: 30rpx;
+	border-left: 1rpx solid #dcdcdc;
 }
-.location-phone .location,
-.score-bar .comment {
-  line-height: 1.4;
-  /* iview 推荐次级标题样式，不加粗 */
-  font-size: 28rpx;
-  color: #464c5b;
+.icon-phone{
+	width: 39rpx;
+	height: 39rpx;
 }
-/* 店铺信息 end */
-
-/* 服务列表 start */
-.item {
-  background: #fff;
-  padding: 30rpx;
-  border-bottom: 1rpx solid #dddee1;
-  display: flex;
-  align-items: center;
+.card{
+	background-color: #fff;
 }
-/* 给 fit-img 组件设置更多样式 */
-.item .img-style {
-  border-radius: 8rpx;
+.card-title{
+	padding: 35rpx 30rpx;
+	font-size: 29rpx;
+	color: #2d2d2d;
+	letter-spacing: 0px;
 }
-.item .info {
-  margin-left: 40rpx;
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  /* 750-30*2-310-40 给定宽度为了让文本单行溢出省略 */
-  width: 340rpx;
-}
-.item .title {
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  /* iview 推荐主标题样式 */
-  font-size: 32rpx;
-  font-weight: bold;
-  color: #464c5b;
-}
-.item .money,
-.item .sales {
-  margin-top: 14rpx;
-  /* iview 推荐 warning 辅助色 */
-  color: #ff9900;
-}
-/* 服务列表 end */

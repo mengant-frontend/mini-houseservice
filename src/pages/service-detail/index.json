@@ -6,6 +6,7 @@
     "banner-img": "/components/banner-img/index",
     "comment-list": "/components/comment-list/index",
     "i-icon": "/iview/icon/index",
-    "i-message": "/iview/message/index"
+    "i-message": "/iview/message/index",
+		"standard-img-swiper": "/components/standard-img/swiper"
   }
 }

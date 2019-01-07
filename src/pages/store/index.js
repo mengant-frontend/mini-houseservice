@@ -24,7 +24,10 @@ Page({
     service_total: 0,
     if_no_more: false,
     service_list: [],
-		can_call: false //是否可以联系商家
+		can_call: false, //是否可以联系商家
+		params:{ 
+			id: 'id'
+		}
   },
 
   async onLoad(options) {
@@ -59,8 +62,6 @@ Page({
         // 获取服务列表
         this.getServiceList()
       })
-    } else { // 出错处理debug
-      console.log(res)
     }
   },
   // 收藏
@@ -91,8 +92,6 @@ Page({
         collection = res.data.id
       }
       this.setData({ if_collected, collection })
-    } else { // 出错处理debug
-      console.log(res)
     }
     wx.hideNavigationBarLoading()
     this.setData({
@@ -139,7 +138,8 @@ Page({
               img_url: item.cover,
               title: item.name,
               money: app._toMoney(item.price),
-              sales: item.sell_num
+              sales: item.sell_num,
+							unit: item.unit
             })
           })
           if_no_more = service_list.length < service_total ? false : true
@@ -152,8 +152,6 @@ Page({
           service_page: data.current_page,
           if_no_more
         })
-      } else { // 出错处理debug
-        console.log(res)
       }
       this.setData({
         if_loading: false,

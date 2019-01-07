@@ -24,3 +24,5 @@
     <i-button type='ghost' long i-class='btn__cancel' bind:click='cancelModify'>取消修改</i-button>
   </view>
 </view>
+
+<i-message id='message'></i-message>

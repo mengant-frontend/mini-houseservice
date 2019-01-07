@@ -107,8 +107,6 @@ Page({
         item.current_page = data.current_page
         tabs_list[tabs_current] = item
         this.setData({ tabs_list })
-      } else { // 出错处理debug
-        console.log(res)
       }
       this.setData({
         if_loading: false,

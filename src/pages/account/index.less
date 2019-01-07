@@ -1,32 +1,44 @@
 @import '../../variable.less';
 
 page {
-  background-color: @background_color;
+  background-color: #F3F3F3;
+}
+.page{
+	padding-bottom: 50rpx;
 }
 
 .container__avatar {
-  padding: 40px @blank;
-  text-align: center;
-  box-sizing: border-box;
+	display: flex;
+	flex-direction: row;
+  padding: 42rpx 30rpx;
+	background-color: #fff;
+	border-bottom: 1rpx solid #F3F3F3;
 }
 
 .avatar {
-  width: 150rpx;
-  height: 150rpx;
-  border-radius: 150rpx;
+  width: 132rpx;
+  height: 132rpx;
+  border-radius: 132rpx;
+	border: 1px solid #F3F3F3;
+	box-sizing: content-box;
 }
 
 .nickname {
-  font-size: @title_size;
-  color: @title_color;
-  padding-top: @gutter;
+  font-size: 34rpx;
+  color: #292f3d;
+  padding-left: 22rpx;
+	padding-top: 22rpx;
+	font-weight: 500;
 }
 
 .list {
-  padding: 0 @blank @gutter_small;
   display: flex;
   flex-direction: row;
   box-sizing: border-box;
+	padding-top: 27rpx;
+	padding-bottom: 33rpx;
+	background-color: #fff;
+	margin-bottom: 22rpx;
 }
 
 .item {
@@ -36,16 +48,17 @@ page {
 }
 
 .title {
-  font-size: @title_size;
-  color: @title_color;
+  font-size: 28rpx;
+  color: #2d2d2d;
 }
 
 .desc {
-  font-size: @content_size;
-  color: @success;
+  font-size: 28rpx;
+  color: #2fb97d;
   font-weight: 600;
+	margin-bottom: 18rpx;
 }
 
 .gutter {
-  margin-bottom: @gutter;
+  margin-bottom: 20rpx;
 }

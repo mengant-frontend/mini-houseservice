@@ -150,11 +150,15 @@ Page({
       app._error('开始时间不能晚于结束时间')
       return
     }
+		await app.asyncApi(wx.showLoading, {
+			mask: true,
+			title: '提交中...'
+		})
     let server_res = await app.post({
       url: '/api/v1/service/booking',
       data: form_data
     })
-
+		await app.asyncApi(wx.hideLoading)
     let { success, msg, data } = server_res
     if (!success) {
       app._error(msg)

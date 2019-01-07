@@ -68,15 +68,12 @@ Page({
         } else {
           if_no_more = true
         }
-        console.log(comment_list)
         this.setData({
           comment_list,
           comment_total,
           comment_page: data.current_page,
           if_no_more
         })
-      } else { // 出错处理debug
-        console.log(res)
       }
       this.setData({
         if_loading: false,

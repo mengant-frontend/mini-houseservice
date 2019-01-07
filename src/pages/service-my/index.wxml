@@ -9,7 +9,8 @@
         <view class="desc">
           <view class="price">￥{{item.price}}</view>
           <view class="operate">
-            <i-button type='error' inline data-id='{{item.id}}' bind:click='deleteService'>删除</i-button>
+						<navigator class='edit' data-id='{{item.id}}' url='/pages/service-release/index?id={{item.id}}'>编辑</navigator>
+						<view class='delete' data-id='{{item.id}}' bindtap='deleteService'>删除</view>
           </view>
         </view>
       </view>

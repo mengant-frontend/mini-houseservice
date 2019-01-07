@@ -55,27 +55,28 @@
   },
   "tabBar": {
     "color": "#80848f",
+		"backgroundColor": "#fff",
     "selectedColor": "#19be6b",
     "list": [{
       "pagePath": "pages/index/index",
       "text": "首页",
-      "iconPath": "images/index.png",
-      "selectedIconPath": "images/selected-index.png"
+      "iconPath": "images/tabbar/index.png",
+      "selectedIconPath": "images/tabbar/index_01.png"
     }, {
       "pagePath": "pages/community/index",
       "text": "圈子",
-      "iconPath": "images/community.png",
-      "selectedIconPath": "images/selected-community.png"
+      "iconPath": "images/tabbar/circle.png",
+      "selectedIconPath": "images/tabbar/circle_01.png"
     }, {
       "pagePath": "pages/orders/index",
       "text": "订单",
-      "iconPath": "images/orders.png",
-      "selectedIconPath": "images/selected-orders.png"
+      "iconPath": "images/tabbar/order.png",
+      "selectedIconPath": "images/tabbar/order_01.png"
     }, {
       "pagePath": "pages/account/index",
       "text": "我的",
-      "iconPath": "images/account.png",
-      "selectedIconPath": "images/selected-account.png"
+      "iconPath": "images/tabbar/me.png",
+      "selectedIconPath": "images/tabbar/me_01.png"
     }]
   },
   "debug": true

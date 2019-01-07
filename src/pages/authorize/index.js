@@ -25,7 +25,6 @@ Page({
           data: {encryptedData, iv}
         })
         if (!server_res.success) { // 出错处理debug
-          console.log(server_res)
           return
         }
       }

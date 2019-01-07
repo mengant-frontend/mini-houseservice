@@ -146,8 +146,6 @@ Page({
           page: data.current_page,
           if_no_more
         })
-      } else { // 出错处理debug
-        console.log(res.msg)
       }
       this.setData({
         if_loading: false,

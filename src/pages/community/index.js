@@ -71,7 +71,9 @@ Page({
           page: 0,
           total: 0,
           if_no_more: false,
-          list: []
+          list: [],
+					top_5: [],
+					top_5_titles: []
         })
       })
       this.setData({
@@ -82,19 +84,14 @@ Page({
         if (!tabs_list.length) return
         this.getCommunityList()
       })
-    } else { // 出错处理debug
-      console.log(res)
     }
   },
 
   // 根据 tabs_current 获取对应圈子类别列表
   async getCommunityList(reload) {
     let tabs_current = this.data.tabs_current
-    console.log('tabs_current', tabs_current)
     let location = this.data.location
-    console.log('location', location)
     let tabs_list = this.data.tabs_list
-    console.log('tabs_list', tabs_list)
     let item = tabs_list[tabs_current]
     let page = reload ? 1 : item.page + 1
     this.setData({
@@ -145,10 +142,18 @@ Page({
         }
         item.total = total
         item.page = data.current_page
-        tabs_list[tabs_current] = item
+        if(item.top_5.length < 5){
+					if(item.list.length < 5){
+						item.top_5 = item.list.map(itm => itm.img_url)
+						item.top_5_titles = item.list.map(itm => itm.title)
+					}else{
+						item.top_5 = item.list.slice(0, 5).map(itm => itm.img_url)
+						item.top_5_titles = item.list.slice(0, 5).map(itm => itm.title)
+					}
+				}
+				tabs_list[tabs_current] = item
+				
         this.setData({ tabs_list })
-      } else { // 出错处理debug
-        console.log(res)
       }
       this.setData({
         if_loading: false,

@@ -11,7 +11,6 @@ Component({
 			type: Boolean,
 			value: false,
 			observer(val){
-				console.log(val)
 				this.reRender()
 			}
 		},

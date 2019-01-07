@@ -10,7 +10,7 @@
         </picker>
       </i-cell>
       <i-cell title='服务名称'>
-        <input slot='footer' maxlength="10" placeholder="请输入服务名称" bindchange='bindFormChange' data-form_key='name' placeholder='限10个汉字'></input>
+        <input slot='footer' maxlength="10" placeholder="请输入服务名称" value='{{form_data.name}}' bindchange='bindFormChange' data-form_key='name' placeholder='限10个汉字'></input>
       </i-cell>
       <i-cell title='服务区域'>
         <picker slot='footer' mode='region' bindchange='bindFormChange' value='{{location}}' data-form_key='area'>
@@ -29,14 +29,19 @@
       </i-cell>
       <i-cell title='服务简介'>
         <view class="textarea">
-          <f-textarea maxLength='100' bind:update='bindFormChange' data-form_key='des'></f-textarea>
+          <f-textarea value='{{form_data.des}}' maxLength='100' bind:update='bindFormChange' data-form_key='des'></f-textarea>
         </view>
       </i-cell>
     </i-cell-group>
   </i-panel>
+	<i-panel title='服务封面图'>
+	  <view class="container__pictures">
+	    <f2-photo shape='16-9' list='{{cover_list}}' type='avatar' count='1'></f2-photo>
+	  </view>
+	</i-panel>
   <i-panel title='请添加图片，用于介绍服务内容。'>
     <view class="container__pictures">
-      <f2-photo shape='16-9' list='{{photo_list}}' count='5' bind:delete='confirmDelete'></f2-photo>
+      <f2-photo shape='16-9' list='{{photo_list}}' url='/api/v1/service/image/handel' params='{{delete_params}}' count='5' bind:delete='confirmDelete'></f2-photo>
     </view>
   </i-panel>
   <i-panel>
@@ -50,7 +55,7 @@
     </i-cell-group>
   </i-panel>
   <view class="fixed">
-    <i-button type='primary' bindtap='releaseService' long>确定发布</i-button>
+    <i-button type='primary' bindtap='releaseService' long>确定{{is_edit ? '更新' : '发布'}}</i-button>
   </view>
 
   <i-message id='message'></i-message>

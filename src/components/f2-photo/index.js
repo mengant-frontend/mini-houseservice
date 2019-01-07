@@ -33,13 +33,17 @@ Component({
 		params: {
 			type: Array,
 			value: []
+		},
+		path:{ 
+			type: String,
+			value: '/pages/cropper/upload'
 		}
 	},
 	methods: {
 		chooseImg(){
 			app.global_data.pic_type = this.data.type
 			wx.navigateTo({
-				url: '/pages/cropper/upload?type=' + this.data.shape
+				url: this.data.path + '?type=' + this.data.shape
 			})
 		},
 		confirmDelete(e){

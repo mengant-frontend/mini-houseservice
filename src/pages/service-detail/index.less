@@ -1,119 +1,96 @@
-@import "../../variable.less";
-page {
-  /* 除去底部菜单 .menu-bar 的高度，
-  剩下空间给 scroll-loading 组件继承高度 */
-  height: 100%;
-  box-sizing: border-box;
-  padding-bottom: 100rpx;
+.service{
+	padding: 30rpx;
+	background-color: #fff;
+	border-bottom: 1rpx solid #F3F3F3;
 }
-
-/* 服务信息 start */
-.name-fees,
-.location-phone,
-.des-tip,
-.des,
-.score-total {
-  background: #fff;
-  padding: 20rpx 30rpx;
-  display: flex;
-  align-items: center;
+.service-name{
+	font-size: 33rpx;
+	color: #2d2d2d;
+	padding-top: 12rpx;
 }
-.name-fees,
-.location-phone {
-  justify-content: space-between;
+.service-desc{
+	font-size: 26rpx;
+	color: #949495;
+	padding-top: 12rpx;
 }
-.location-phone {
-  border-top: 1rpx solid #dddee1;
-  border-bottom: 1rpx solid #dddee1;
+.service-price{
+	padding-top: 30rpx;
+	font-size: 38rpx;
+	color: #f49940;
 }
-.location-phone .location-bar {
-  flex-grow: 1;
-  border-right: 1rpx solid #dddee1;
-  display: flex;
-  align-items: center;
+.message-list{
+	margin-bottom: 20rpx;
 }
-.location-phone .location-tip {
-  white-space: nowrap;
-  margin-right: 25rpx;
+.message-item{
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		padding: 30rpx;
+		background-color: #fff;
+		border-bottom: 1rpx solid #F3F3F3;
 }
-.location-phone .icon-phone {
-  width: 40rpx;
-  height: 40rpx;
-  margin-left: 30rpx; /* 左右等宽留白 */
+.message-item .left{
+	flex-grow: 1;
+	flex-shrink: 1;
 }
-.des-tip {
-  margin-top: 20rpx;
+.message-item .right{
+	flex-grow: 0;
+	flex-shrink: 0;
 }
-.des {
-  border-top: 1rpx solid #dddee1;
-  padding-left: 50rpx;
-  margin-bottom: 20rpx;
+.location__text{
+	margin-left: 30rpx;
 }
-.name-fees,
-.location-phone .location-tip,
-.des-tip,
-.score-total .score {
-  /* iview 推荐主标题样式 */
-  font-size: 32rpx;
-  font-weight: bold;
-  color: #464c5b;
+.phone{
+	padding-left: 30rpx;
+	border-left: 1rpx solid #dcdcdc;
 }
-.name-fees .fees {
-  /* iview 推荐 warning 辅助色 */
-  color: #ff9900;
-  font-size: 13px;
+.icon-phone{
+	width: 39rpx;
+	height: 39rpx;
 }
-.origin-money{
-  text-decoration: line-through;
-  color: @sub_content_color;
-  font-size: @sub_content_size;
+.card{
+	background-color: #fff;
+	margin-bottom: 0;
 }
-.location-phone .location,
-.des,
-.score-total .total {
-  line-height: 1.4;
-  /* iview 推荐次级标题样式，不加粗 */
-  font-size: 28rpx;
-  color: #464c5b;
+.card-title{
+	padding: 35rpx 30rpx;
+	font-size: 29rpx;
+	color: #2d2d2d;
+	letter-spacing: 0px;
 }
-.score-total .total {
-  margin-left: 15rpx;
+.menu-bar{
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 105rpx;
+	display: flex;
+	flex-direction: row;
 }
-.score-total {
-  border-bottom: 1rpx solid #dddee1;
+.store, .collect{
+	width: 210rpx;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background-color: #fff;
+	font-size: 24rpx;
+	
+	
 }
-/* 服务信息 end */
-
-/* 底部菜单 start */
-.menu-bar {
-  /* 固定在屏幕底部，并且设置具体高度 */
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  height: 100rpx;
-  box-sizing: border-box;
-  padding-left: 50rpx;
-  background: #fff;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.book__btn{
+	height: 100%;
+	flex-grow: 1;
+	flex-shrink: 1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #2fb97d;
+	color: #fff;
+	font-size: 38rpx;
 }
-.menu-bar .store,
-.menu-bar .collect {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  color: #898989;
+.extend_price{
+	font-size: 26rpx;
+	color: #949495;
 }
-.menu-bar .order {
-  width: 375rpx;
-  background: #2d8cf0;
-  /* iview 推荐主标题样式，白色 */
-  font-size: 32rpx;
-  font-weight: bold;
-  color: #fff;
-  line-height: 100rpx;
-  text-align: center;
-}
-/* 底部菜单 end */

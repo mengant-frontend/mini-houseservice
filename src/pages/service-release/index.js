@@ -12,22 +12,46 @@ Page({
     // 店铺类型，家政还是维修
     type: '',
     shop_id: 0,
-    location: []
+    location: [],
+		cover_list: [],
+		delete_params: [{
+			key: 'id',
+			value: 'id'
+		}],
+		is_edit: false,
+		imgs_arr: []
   },
-  async onLoad() {
+  async onLoad(query) {
+		let is_edit = false
+		if(query.id){
+			is_edit = true
+		}
+		this.setData({
+			is_edit: is_edit
+		})
     this.initData()
     this.getPriceKeys()
     await this.getInfo()
     await this.getServiceTypes()
+		if(is_edit){
+			this.loadService(query.id)
+		}
   },
 	onShow(){
 		let global_data = app.global_data
 		let new_data = app._deepClone(this.data)
 		if(global_data.pic_id && global_data.pic_url){
-			new_data.photo_list.push({
-				id: global_data.pic_id,
-				url: global_data.pic_url
-			})
+			if(global_data.pic_type === 'avatar'){
+				new_data.cover_list = [{
+					id: global_data.pic_id,
+					url: global_data.pic_url
+				}]
+			}else{
+				new_data.photo_list.push({
+					id: global_data.pic_id,
+					url: global_data.pic_url
+				})
+			}
 			app.global_data.pic_id = null
 			app.global_data.pic_url = null
 		}
@@ -44,7 +68,7 @@ Page({
       "cover": '',
       "des": "",
       "extend": '',
-      "imgs": "",
+			"imgs": "",
     }
     let form_data = app._deepClone(this.data.form_data)
     form_data = Object.assign({}, init_form_data, form_data)
@@ -122,6 +146,55 @@ Page({
       service_types: data
     })
   },
+	async loadService(id){
+		await app.asyncApi(wx.showLoading, {
+			title: '正加载服务详情',
+			mask: true
+		})
+		let server_res = await app.get({
+			url: '/api/v1/extend/mini/service',
+			data: {
+				id: id
+			}
+		})
+		await app.asyncApi(wx.hideLoading)
+		let { success, msg, data } = server_res
+		if(!success){
+			app._error(msg)
+			return
+		}
+		let form_data = app._deepClone(this.data.form_data)
+		let service_types = this.data.service_types
+		let new_data = {}
+		form_data.id = id
+		form_data.c_id = data.c_id
+		for(let i = 0; i < service_types.length; i++){
+			if(service_types[i].id == data.c_id){
+				new_data.type_text = service_types[i].name
+				break
+			}
+		}
+		form_data.name = data.name
+		form_data.area = data.area
+		form_data.price = parseFloat(data.price)
+		form_data.unit = data.unit
+		form_data.cover = data.cover
+		new_data.cover_list = [{
+			id: data.cover,
+			url: data.cover
+		}]
+		form_data.extend = data.extend.extend
+		new_data.photo_list = data.imgs.map(img => {
+			return {
+				id: img.id,
+				url: img.img_url.url
+			}
+		})
+		new_data.imgs_arr = new_data.photo_list.map(img => img.id)
+		form_data.des = data.des
+		new_data.form_data = form_data
+		this.setData(new_data)
+	},
   //监听表单变化
   bindFormChange(e) {
     let { service_types } = this.data
@@ -191,12 +264,12 @@ Page({
     return true
   },
   // 获取价格单位
-  async getPriceKeys(shop_id) {
+  async getPriceKeys() {
     await app.asyncApi(wx.showNavigationBarLoading)
     let server_res = await app.get({
       url: '/api/v1/units/mini',
       data: {
-        id: shop_id
+        id: app.global_data.shop_id
       }
     })
     await app.asyncApi(wx.hideNavigationBarLoading)
@@ -238,14 +311,34 @@ Page({
       key: 'extend',
       required: '请选择是否推广'
     }]
-		let photo_list = app._deepClone(this.data.photo_list)
-		if(photo_list.length > 1){
-			form_data.cover = photo_list[0].id
-			form_data.imgs = photo_list.slice(1).map(photo => photo.id).join(',')
+		let need_cover = true
+		if(this.data.cover_list.length){
+			let cover = this.data.cover_list[0]
+			if(cover.id.indexOf('http') !== -1){
+				need_cover = false
+				delete form_data.cover
+			}else{
+				form_data.cover = cover.id
+			}
 		}
+		let need_photo = true
+		if(this.data.photo_list.length){
+			let imgs = this.data.photo_list.filter(img => {
+				return this.data.imgs_arr.indexOf(img.id) === -1
+			})
+			need_photo = false
+			form_data.imgs = imgs.map(img => img.id).join(',')
+		}
+		
     let is_valid = true
     let err_msg = ''
     for (let i = 0; i < require_params.length; i++) {
+			if(require_params[i].key === 'cover' && !need_cover){
+				continue
+			}
+			if(require_params[i].key === 'imgs' && !need_photo){
+				continue
+			}
       if (!form_data[require_params[i].key]) {
         is_valid = false
         err_msg = require_params[i].required
@@ -281,7 +374,7 @@ Page({
       title: '提交中...'
     })
     let server_res = await app.post({
-      url: '/api/v1/shop/service/save',
+      url: this.data.is_edit ? '/api/v1/shop/service/update' : '/api/v1/shop/service/save',
       data: form_data
     })
     await app.asyncApi(wx.hideLoading)

@@ -1,6 +1,8 @@
 <tabs-swiper-page tabs-list='{{tabs_list}}' bind:swiperChange='swiperChange'>
   <scroll-loading bg-color='#EFEFF4' wx:for='{{tabs_list}}' wx:key='id' slot='{{item.id}}' if-no-more='{{item.if_no_more}}' if-loading='{{if_loading}}' bind:scrolltolower='getOrderList'>
-    <view>
+    
+		<c-list type='order' btns='{{item.btns}}' data='{{item.order_list}}' url='/pages/order-detail/index' params='{{params}}'></c-list>
+		<!-- <view>
       <navigator class='item' wx:for='{{item.order_list}}' wx:key='order_id' wx:for-item='t' url='/pages/order-detail/index?type=1&state={{tabs_current+1}}&id={{t.order_id}}'>
         <view class='title'>{{t.title}}</view>
         <view class='info'>
@@ -19,6 +21,6 @@
           </view>
         </view>
       </navigator>
-    </view>
+    </view> -->
   </scroll-loading>
 </tabs-swiper-page>

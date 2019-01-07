@@ -81,8 +81,6 @@ Page({
           })
           break;
       }
-    } else { // 出错处理debug
-      console.log(res)
     }
   }
 })

@@ -5,33 +5,49 @@ page {
   box-sizing: border-box;
 }
 
-/* 列表 start */
-.item {
-  background: #fff;
-  padding: 20rpx 30rpx;
-  border-bottom: 1rpx solid #dddee1;
-  display: flex;
-  align-items: center; 
+.list{
+	background-color: #F3F3F3;
+	
 }
-.item .info {
-  margin-left: 30rpx;
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
+.item{
+	display: flex;
+	flex-direction: row;
+	padding: 30rpx;
+	background-color: #fff;
+	margin-bottom: 20rpx;
 }
-.item .title {
-  margin-bottom: 12rpx;
-  /* iview 推荐主标题样式 */
-  font-size: 32rpx;
-  font-weight: bold;
-  color: #464c5b;
+.left{
+	flex-grow: 1;
+	flex-shrink: 1;
+	padding-right: 30rpx;
 }
-.item .date-num {
-  line-height: 1;
-  display: flex;
-  align-items: center;
+.title{
+	width:  100%;
+	height: 80rpx;
+	font-size: 32rpx;
+	color: #272727;
+	font-weight: 600;
+	overflow: hidden;
+  text-overflow:ellipsis;
+	-webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
-.item .date {
-  margin-right: 40rpx;
+.date{
+	color: #acacac;
+	font-size: 28rpx;
+	padding-top: 16rpx;
 }
-/* 列表 end */
+.read{
+	color: #272727;
+	font-size: 28rpx;
+	padding-top: 16rpx;
+}
+.right{
+	width: 222rpx;
+	height: 169rpx;
+	flex-shrink: 0;
+}
+.img{
+		width: 100%;
+		height: 100%;
+}

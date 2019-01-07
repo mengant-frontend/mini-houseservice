@@ -41,6 +41,7 @@
 	</i-panel>
   <i-panel title='编辑员工头像'>
     <view class="f-photo">
+			<!-- <f2-photo count='9' add='{{true}}' url='/api/v1/shop/staff/delete' params='{{staffs_delete_params}}' list='{{staffs_list}}' shape='square' bind:delete='staffsConfirmDelete'></f2-photo> -->
       <f-photo count='9' add='{{false}}' bind:add='addstaffsAvatars' alaways_new='{{staffs}}' delete_url='/api/v1/shop/staff/delete' delete_params='{{["id", "face_token", "city"]}}' data-form_key='staffs' bind:update='bindFormChange'></f-photo>
     </view>
   </i-panel>

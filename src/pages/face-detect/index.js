@@ -43,7 +43,6 @@ Page({
             city: app.global_data.location[1]
           }
         })
-        console.log(task_res)
         await app.asyncApi(wx.hideLoading)
         if (task_res.success) {
           wx.hideNavigationBarLoading()
@@ -99,7 +98,6 @@ Page({
       })
       wx.hideNavigationBarLoading()
       await app.asyncApi(wx.hideLoading)
-      console.log(res)
       if (!res.success) { // 出错处理debug
         this.setData({
           'request_lock.confirm_order': true

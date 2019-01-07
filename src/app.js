@@ -26,7 +26,6 @@ App({
     })
     let wx_res = await this.asyncApi(wx.login)
     if (!wx_res.success) { // 出错处理debug
-      console.log(wx_res)
       return {
         success: false
       }
@@ -81,7 +80,6 @@ App({
     if (wx.canIUse('button.open-type.getUserInfo')) {
       let wx_res = await this.asyncApi(wx.getSetting)
       if (!wx_res.success) { // 出错处理debug
-        console.log(wx_res)
         return
       }
       if (!wx_res.authSetting['scope.userInfo']) {
@@ -97,7 +95,6 @@ App({
       withCredentials: true
     })
     if (!wx_userinfo_res.success) { // 出错处理debug
-      console.log(wx_userinfo_res)
       return
     }
     let { userInfo, encryptedData, iv } = wx_userinfo_res
@@ -108,7 +105,6 @@ App({
         data: { encryptedData, iv }
       })
       if (!server_res.success) { // 出错处理debug
-        console.log(server_res)
         return
       }
     }
@@ -405,11 +401,9 @@ App({
           this.global_data.location = res_location.data
           location = res_location.data
         } else { // 出错处理debug
-          console.log(res_location)
           success = false
         }
       } else { // 出错处理debug
-        console.log(wx_res)
         success = false
       }
     }
@@ -423,7 +417,7 @@ App({
     order_detail_state: {
       price_change: true
     },
-    location: [],
+    location: ["山东省", "枣庄市", "台儿庄区"],
     staffs_list: [],
     head_url_list: [],
     red_money: 0,

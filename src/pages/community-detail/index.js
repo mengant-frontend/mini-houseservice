@@ -60,8 +60,6 @@ Page({
         // 获取评论列表
         this.getCommentList()
       })
-    } else { // 出错处理debug
-      console.log(res)
     }
   },
 
@@ -113,8 +111,6 @@ Page({
           page: data.current_page,
           if_no_more
         })
-      } else { // 出错处理debug
-        console.log(res)
       }
       this.setData({
         if_loading: false,
@@ -151,8 +147,6 @@ Page({
               }
               return t
             })
-          } else { // 出错处理debug
-            console.log(res)
           }
           this.setData({
             comment_list,
@@ -250,9 +244,7 @@ Page({
           parent_content: '',
           input_focus: false
         })
-      } else { // 出错处理debug
-        console.log(res)
-      }
+      } 
       this.setData({ 'request_lock.send': true })
     }
   },

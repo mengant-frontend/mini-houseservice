@@ -15,43 +15,64 @@ Page({
     },
     // 记录当前 tabs_current
     tabs_current: 0,
+		params: {
+			id: 'order_id',
+			type: 'type'
+		},
     // tabs 列表数据
     tabs_list: [
       {
         id: 'unconfirmed',
         title: '待确认',
+				btns: [{
+					type: 'warning-ghost',
+					value: '确认订单'
+				}],
         dot: false,
         count: 0,
         current_page: 0,
         if_no_more: false,
-        order_list: []
+        order_list: [],
+				type: 1
       },
       {
         id: 'unserviced',
         title: '待服务',
+				btns: [{
+					type: 'warning',
+					value: '去服务'
+				}],
         dot: false,
         count: 0,
         current_page: 0,
         if_no_more: false,
-        order_list: []
+        order_list: [],
+				type: 1
       },
       {
         id: 'servicing',
         title: '服务中',
+				btns: [],
         dot: false,
         count: 0,
         current_page: 0,
         if_no_more: false,
-        order_list: []
+        order_list: [],
+				type: 1
       },
       {
         id: 'completed',
         title: '已完成',
+				btns: [{
+					type: 'warning-ghost',
+					value: '删除订单'
+				}],
         dot: false,
         count: 0,
         current_page: 0,
         if_no_more: false,
-        order_list: []
+        order_list: [],
+				type: 1
       }
     ]
   },
@@ -119,7 +140,9 @@ Page({
               title: t.source_name,
               origin_money: app._toMoney(t.origin_money),
               update_money: app._toMoney(t.update_money),
-              date: t.time_begin
+              date: t.time_begin,
+							img_url: t.cover,
+							type: 1
             })
           })
           item.if_no_more = item.order_list.length < total ? false : true
@@ -147,8 +170,6 @@ Page({
           }
         })
         this.setData({ tabs_list })
-      } else { // 出错处理debug
-        console.log(res)
       }
       this.setData({
         if_loading: false,

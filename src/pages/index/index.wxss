@@ -7,14 +7,15 @@ page {
   padding: 16rpx 20rpx;
   display: flex;
   align-items: center;
+  background-color: #fff;
 }
 .header .search {
   flex-grow: 1;
   margin: 0 25rpx;
   padding: 0;
-  background: #fff;
+  background: #f6f6f6;
   border-radius: 6rpx;
-  color: #bbbbbb;
+  color: #afafaf;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -62,4 +63,76 @@ page {
   color: #80848f;
   text-align: center;
   box-sizing: border-box;
+}
+.red-packet{
+	flex-grow: 1;
+	flex-shrink: 1;
+	height: 100rpx !important;
+	line-height: 100rpx !important;
+	background-color: #fff !important;
+}
+
+
+.memu-0107{
+	display: flex;
+	flex-direction: row;
+	background-color: #fff;
+}
+.menu-item-0107{
+	flex-grow: 1;
+	flex-shrink: 1;
+	padding:50rpx 43rpx 55rpx;
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+}
+.menu-item-0107 .cover{
+	width: 82rpx;
+	height: 82rpx;
+}
+.cover-img{
+	width: 100%;
+	height: 100%;
+}
+.menu-item-0107 .title{
+	margin-top: 25rpx;
+	font-size: 24rpx;
+	color:  #2a2a2a;
+}
+
+.img-nav-0107{
+	margin-top: 20rpx;
+	display: flex;
+	flex-direction: row;
+}
+.service_1{
+	width: 384rpx;
+	height: 500rpx;
+}
+.block_0107{
+	flex-grow: 1;
+	height: 100%;
+}
+.service_rank{
+	width: 366rpx;
+	height: 250rpx;
+}
+.service_2{
+	width: 366rpx;
+	height: 250rpx;
+}
+.service-img{
+	width: 100%;
+	height: 100%;
+}
+.test{
+	display: flex;
+	flex-direction: row;
+	background-color: #fff;
+	align-items: center;
+	padding-right: 30rpx;
+}
+.notice{
+	flex-grow: 1;
+	flex-shrink: 1;
 }

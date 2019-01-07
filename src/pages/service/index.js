@@ -54,13 +54,11 @@ Page({
         }).then(res => {
             if (res.success) {
                 let data = res.data
-                let banner_img = []
-                data.forEach(item => {
-                    banner_img.push(item.url)
-                })
+                let banner_img = ['/images/service_02.png']
+				if(data && data.length > 0){
+					banner_img = data.map(item => item.url)
+				}
                 this.setData({banner_img})
-            } else { // 出错处理debug
-                console.log(res)
             }
         })
         // 获取服务类别
@@ -80,8 +78,6 @@ Page({
                     })
                 })
                 this.setData({category_list})
-            } else { // 出错处理debug
-                console.log(res)
             }
         })
         // 获取服务列表
@@ -89,6 +85,10 @@ Page({
         await this.getServiceList()
         wx.hideNavigationBarLoading()
     },
+	// 触底加载
+	onReachBottom(){
+		this.getServiceList()
+	},
 
     tabsChange({detail}) {
         this.setData({
@@ -147,8 +147,6 @@ Page({
                     if_no_more,
                     page: data.current_page
                 })
-            } else { // 出错处理debug
-                console.log(res)
             }
             this.setData({
                 if_loading: false,

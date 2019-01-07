@@ -69,11 +69,14 @@ Page({
         // 获取评论列表
         this.getCommentList()
       })
-    } else { // 出错处理debug
-      console.log(res)
     }
   },
-
+	onShareAppMessage(){
+		return {
+			title: this.data.name,
+			path: "/pages/service-detail/index?id=" + this.data.service_id
+		}
+	},
   // 收藏
   async collect() {
     if (!this.data.request_lock.collect) {
@@ -102,8 +105,6 @@ Page({
         collection = res.data.id
       }
       this.setData({if_collected, collection})
-    } else { // 出错处理debug
-      console.log(res)
     }
     wx.hideNavigationBarLoading()
     this.setData({
@@ -170,8 +171,6 @@ Page({
           comment_page: data.current_page,
           if_no_more
         })
-      } else { // 出错处理debug
-        console.log(res)
       }
       this.setData({
         if_loading: false,

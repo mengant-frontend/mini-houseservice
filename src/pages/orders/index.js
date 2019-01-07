@@ -14,7 +14,11 @@ Page({
       get_order_list: true
     },
     // 记录当前 tabs_current
-    tabs_current: 0
+    tabs_current: 0,
+		params: {
+			id: 'order_id',
+			type: 'type'
+		}
   },
 
   async onLoad() {
@@ -24,6 +28,10 @@ Page({
         {
           id: 'ordered',
           title: '已预约',
+      		btns: [{
+      			type: 'warning-ghost',
+      			value: '取消订单'
+      		}],
           dot: false,
           count: 0,
           current_page: 0,
@@ -34,6 +42,10 @@ Page({
         {
           id: 'unpaid',
           title: '待付款',
+      		btns: [{
+      			type: 'warning',
+      			value: '去付款'
+      		}],
           dot: false,
           count: 0,
           current_page: 0,
@@ -44,6 +56,10 @@ Page({
         {
           id: 'unconfirmed',
           title: '待确认',
+      		btns: [{
+      			type: 'warning',
+      			value: '完工'
+      		}],
           dot: false,
           count: 0,
           current_page: 0,
@@ -54,6 +70,10 @@ Page({
         {
           id: 'unevaluated',
           title: '待评价',
+      		btns: [{
+      			type: 'warning',
+      			value: '去评价'
+      		}],
           dot: false,
           count: 0,
           current_page: 0,
@@ -64,6 +84,10 @@ Page({
         {
           id: 'completed',
           title: '已完成',
+      		btns: [{
+      			type: 'warning-ghost',
+      			value: '删除订单'
+      		}],
           dot: false,
           count: 0,
           current_page: 0,
@@ -84,6 +108,10 @@ Page({
         {
           id: 'ordered',
           title: '已预约',
+					btns: [{
+						type: 'warning-ghost',
+						value: '取消订单'
+					}],
           dot: false,
           count: 0,
           current_page: 0,
@@ -94,6 +122,10 @@ Page({
         {
           id: 'unpaid',
           title: '待付款',
+					btns: [{
+						type: 'warning',
+						value: '去付款'
+					}],
           dot: false,
           count: 0,
           current_page: 0,
@@ -104,6 +136,10 @@ Page({
         {
           id: 'unconfirmed',
           title: '待确认',
+					btns: [{
+						type: 'warning',
+						value: '完工'
+					}],
           dot: false,
           count: 0,
           current_page: 0,
@@ -114,6 +150,10 @@ Page({
         {
           id: 'unevaluated',
           title: '待评价',
+					btns: [{
+						type: 'warning',
+						value: '去评价'
+					}],
           dot: false,
           count: 0,
           current_page: 0,
@@ -124,6 +164,10 @@ Page({
         {
           id: 'completed',
           title: '已完成',
+					btns: [{
+						type: 'warning-ghost',
+						value: '删除订单'
+					}],
           dot: false,
           count: 0,
           current_page: 0,
@@ -177,13 +221,16 @@ Page({
         let total = data.total
         let count_all = data.count
         if (total > 0) {
+					
           data_list.forEach(t => {
             item.order_list.push({
               order_id: t.order_id,
               title: t.source_name,
               origin_money: app._toMoney(t.origin_money),
               update_money: app._toMoney(t.update_money),
-              date: t.time_begin
+              date: t.time_begin,
+							img_url: t.cover,
+							type: 1
             })
           })
           item.if_no_more = item.order_list.length < total ? false : true
@@ -214,8 +261,6 @@ Page({
           }
         })
         this.setData({ tabs_list })
-      } else { // 出错处理debug
-        console.log(res)
       }
       this.setData({
         if_loading: false,

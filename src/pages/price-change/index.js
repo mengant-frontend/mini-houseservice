@@ -61,11 +61,7 @@ Page({
       await app.asyncApi(wx.hideLoading)
       return
     }
-    is_success = await this.confirmConnection()
-    if (!is_success) {
-      await app.asyncApi(wx.hideLoading)
-      return
-    }
+
     is_success = await this.ensureOrder()
     await app.asyncApi(wx.hideLoading)
     if (!is_success) {
@@ -98,24 +94,6 @@ Page({
         type: type,
         money: form_data.money,
         price_remark: form_data.price_remark
-      }
-    })
-    let { success, msg } = server_res
-    if (!success) {
-      app._error(msg)
-      return false
-    }
-    return true
-  },
-  // 确认电话联系
-  // 确认电话联系
-  async confirmConnection() {
-    let { id, type } = this.data
-    let server_res = await app.post({
-      url: '/api/v1/order/phone/confirm',
-      data: {
-        id: id,
-        type: type
       }
     })
     let { success, msg } = server_res

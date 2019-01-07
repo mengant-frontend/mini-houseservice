@@ -155,7 +155,6 @@ Component({
         }
         minutes.push('' + minute_str)
       }
-      console.log(hours)
       return [dates, hours, minutes]
     }
   }

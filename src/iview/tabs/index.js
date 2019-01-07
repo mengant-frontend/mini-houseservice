@@ -5,15 +5,12 @@ Component({
         '../tab/index': {
             type: 'child',
             linked () {
-                console.log('linked')
                 this.changeCurrent();
             },
             linkChanged () {
-              console.log('linkChanged')
                 this.changeCurrent();
             },
             unlinked () {
-              console.log('unlinked')
                 this.changeCurrent();
             }
         }

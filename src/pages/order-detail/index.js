@@ -41,6 +41,9 @@ Page({
     }
   },
   onShow() {
+		this.setData({
+			shop_id: app.global_data.shop_id
+		})
 		this.loadOrder()
     let red_packet = app.global_data.red_packet
     let order_detail_state = app.global_data.order_detail_state

@@ -3,10 +3,15 @@ const app = getApp()
 Page({
   data: {
     detail: {},
-    has_shop: true
+    has_shop: true,
+		// 客服电话
+		customer: '',
+		// 监督电话
+		supervise: ''
   },
   onLoad() {
     this.loadData()
+		this.loadPhone()
   },
   onPullDownRefresh() {
     wx.stopPullDownRefresh()
@@ -54,13 +59,51 @@ Page({
       url: '/pages/account/edit'
     })
   },
-	contract(){
-		if(!this.data.detail.phone){
-			app._error('暂无电话')
-			return 
+	async loadPhone(){
+		this.phone_promise = app.get({
+			url: '/api/v1/system/phone'
+		})
+		let server_res = await this.phone_promise
+		this.phone_promise = null
+		let { success, msg, data } = server_res
+		if(!success){
+			app._error(msg)
+			return
 		}
+		this.setData({
+			supervise: data.supervise,
+			customer: data.customer
+		})
+	},
+	
+	async contract(){
+		if(this.phone_promise){
+			await this.phone_promise
+		}
+		let { supervise, customer } = this.data
+		let phones = [], phone_items = []
+		if(supervise){
+			phones.push(supervise)
+			phone_items.push('监督电话: ' + supervise)
+		}
+		if(customer){
+			phones.push(customer)
+			phone_items.push('客服电话: ' + customer)
+		}
+		if(!phones.length){
+			app._warn('暂无电话')
+			return
+		}
+		let wx_res = await app.asyncApi(wx.showActionSheet, {
+			itemList: phone_items
+		})
+		let { success, msg , tapIndex} = wx_res 
+		if(!success && msg){
+			app._error(msg)
+			return
+		}		
 		wx.makePhoneCall({
-			phoneNumber: this.data.detail.phone
+			phoneNumber: phones[tapIndex]
 		})
 	}
 })
