@@ -50,7 +50,7 @@ Page({
 				btns: [{
 					type: 'warning-ghost',
 					value: '删除订单'
-				}]
+				}],
         dot: false,
         count: 0,
         current_page: 0,

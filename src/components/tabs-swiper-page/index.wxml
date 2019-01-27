@@ -1,4 +1,4 @@
-<i-tabs fixed current='{{tabsCurrent}}' bindchange='tabsChange'>
+<i-tabs fixed="{{fixed}}" current='{{tabsCurrent}}' bindchange='tabsChange'>
   <i-tab wx:for='{{tabsList}}' wx:key='id' key='{{index}}' title='{{item.title}}' dot='{{item.dot}}' count='{{item.count}}'></i-tab>
 </i-tabs>
 

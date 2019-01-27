@@ -1,48 +1,48 @@
-<scroll-loading bg-color='#EFEFF4' if-no-more='{{if_no_more}}' if-loading='{{if_loading}}' bind:scrolltolower='getCommentList'>
-	<view>
-    <standard-img-swiper data='{{banner_img}}'></standard-img-swiper>
-    
-    <view class="service">
-    	<view class="service-name">
-    		<text>{{name}}</text>
-    	</view>
-    	<view class="service-desc">
-    		<text>{{des}}</text>
-    	</view>
-    	<view class="service-price">
-    		<!-- 推广价 -->
-    		<block wx:if='{{extend == 1}}'>
-    			<text  class='extend_price'>推广价</text>
-    			<text>￥{{extend_price}}/{{unit}}</text>
-    		</block>
-    		<block wx:else>
-    			<text>￥{{money}}/{{unit}}</text>
-    		</block>
-    	</view>
-    </view>
-    <view class="message-list">
-    	<view class="message-item location">
-    		<view class="left">
-    			<i-icon type='coordinates' size='18' color='#a0a4a7'></i-icon>
-    			<text class='location__text'>{{location}}</text>
-    		</view>
-    		<view class="right">
-    			<view class='phone'>
-    				<image class='icon-phone' mode='aspectFit' src='/images/phone.png' bindtap='callPhone' />
-    			</view>
-    		</view>
-    	</view>
-    </view>
-    <view class="card">
-    	<view class="card">
-    		<view class="card-title">
-    			<text>{{score}}分({{comment_total}}条评论)</text>
-    		</view>
-    	</view>
-    </view>
-    <comment-list list='{{comment_list}}'></comment-list>
-  </view>
-</scroll-loading>
+<view class='bg'>
+	<standard-img-swiper data='{{banner_img}}'></standard-img-swiper>
+	
+	<view class="service">
+		<view class="service-name">
+			<text>{{name}}</text>
+		</view>
+		<view class="service-desc">
+			<text>{{des}}</text>
+		</view>
+		<view class="service-price">
+			<!-- 推广价 -->
+			<block wx:if='{{extend == 1}}'>
+				<text  class='extend_price'>推广价</text>
+				<text>￥{{extend_price}}/{{unit}}</text>
+			</block>
+			<block wx:else>
+				<text>￥{{money}}/{{unit}}</text>
+			</block>
+		</view>
+	</view>
+	<view class="message-list">
+		<view class="message-item location">
+			<view class="left">
+				<i-icon type='coordinates' size='18' color='#a0a4a7'></i-icon>
+				<text class='location__text'>{{location}}</text>
+			</view>
+			<view class="right">
+				<view class='phone'>
+					<image class='icon-phone' mode='aspectFit' src='/images/phone.png' bindtap='callPhone' />
+				</view>
+			</view>
+		</view>
+	</view>
+	<view class="card">
+		<view class="card">
+			<view class="card-title">
+				<text>{{score}}分({{comment_total}}条评论)</text>
+			</view>
+		</view>
+	</view>
+	<comment-list list='{{comment_list}}'></comment-list>
+	
+	<i-load-more tip='{{if_loading ? "正在加载" : ""}}' loading='{{if_loading}}'></i-load-more>
+</view>
 
 <view class='menu-bar'>
   <navigator class='store' url='/pages/store/index?id={{store_id}}'>

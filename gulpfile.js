@@ -1,78 +1,68 @@
-const gulp = require('gulp')
-const babel = require('gulp-babel')
-const postcss = require('gulp-postcss')
-const rename = require('gulp-rename')
-const htmlmin = require('gulp-htmlmin')
+const { series, parallel, src, dest, watch } = require("gulp")
 const jsonmin = require('gulp-jsonmin')
-const plumber = require('gulp-plumber')
+const postcss = require('gulp-postcss')
 const less = require('gulp-less')
-const uglify = require('gulp-uglify')
+const babel = require('gulp-babel')
+const plumber = require('gulp-plumber')
+const rename = require('gulp-rename')
 const imagemin = require('gulp-imagemin')
-gulp.task('default', ['babel', 'less', 'wxml', 'json', 'fonts', 'images'], () => {
-  console.log('tasks have started successfully')
-})
-
-gulp.task('babel', cb => {
-  return gulp
-          .src('src/**/*.js')
-          .pipe(plumber())
-          .pipe(babel())
-          // .pipe(uglify())
-          .pipe(gulp.dest('dist/'))
-})
-gulp.task('less', cb => {
-  return gulp
-          .src(['src/**/*.less', 'src/**/*.wxss'])
-          .pipe(plumber())
-          .pipe(less())
-          .pipe(postcss())
-          .pipe(rename((path) => {
-              path.extname = '.wxss';
-          }))
-          .pipe(gulp.dest('dist'))
-})
-
-gulp.task('wxml', cb => {
-  return gulp
-          .src('src/**/*.wxml')
-          // .pipe(htmlmin({
-          //   collapseWhitespace: true
-          // }))
-          .pipe(gulp.dest('dist'))
-})
-
-gulp.task('json', cb => {
-  return gulp
-          .src('src/**/*.json')
-          .pipe(plumber())
-          .pipe(jsonmin())
-          .pipe(plumber.stop())
-          .pipe(gulp.dest('dist'))
-
-})
-
-gulp.task('images', cb => {
-  return gulp
-          .src('src/images/**/*')
-          .pipe(imagemin())
-          .pipe(gulp.dest('dist/images'))
-})
-
-gulp.task('fonts', cb => {
-  return gulp
-          .src('src/fonts/**/*')
-          .pipe(gulp.dest('dist/fonts'))
-})
-
-
-gulp.task('dev', ['default'], cb => {
-  gulp.watch('src/**/*.js', ['babel'], watch)
-  gulp.watch(['src/**/*.less', 'src/**/*.wxss'], ['less'], watch)
-  gulp.watch('src/**/*.wxml', ['wxml'], watch)
-  gulp.watch('src/**/*.json', ['json'], watch)
-  gulp.watch('src/fonts/**/*', ['fonts'], watch)
-  gulp.watch('src/images/**/*', ['images'], watch)
-})
-function watch(e){
-  console.log('File' + e.path + ' was ' + e.type + ' , running tasks')
+//脚本
+const script_src = [
+  './src/**/*.js'
+]
+function script(cb) {
+  return src(script_src)
+    .pipe(plumber())
+    .pipe(babel())
+    .pipe(plumber.stop())
+    .pipe(dest('dist'))
 }
+//样式
+const style_src = ['./src/**/*.less', './src/**/*.wxss']
+function style(cb) {
+  return src(style_src)
+    .pipe(plumber())
+    .pipe(less())
+    .pipe(postcss())
+    .pipe(rename((path) => {
+      path.extname = '.wxss';
+    }))
+    .pipe(dest('dist'))
+}
+//页面
+const wxml_src = [
+  './src/**/*.wxml'
+]
+function wxml(cb) {
+  return src(wxml_src)
+    .pipe(dest('dist'))
+}
+//json
+const json_src = ['./src/**/*.json']
+function json(cb) {
+  return src(json_src)
+    .pipe(plumber())
+    .pipe(jsonmin())
+    .pipe(plumber.stop())
+    .pipe(dest('dist'))
+}
+
+//图片
+const img_src = [
+  'src/images/**/*'
+]
+function img(cb) {
+  return src(img_src)
+    .pipe(imagemin())
+    .pipe(dest('dist/images'))
+}
+//监听
+function watchFn(){
+  watch(script_src, script)
+  watch(style_src, style)
+  watch(json_src, json)
+  watch(wxml_src, wxml)
+  watch(img_src, img)
+}
+exports.watch = series(parallel(script, style, wxml, json, img), watchFn )
+exports.default = parallel(script, style, wxml, json)

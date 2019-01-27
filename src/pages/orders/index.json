@@ -5,7 +5,7 @@
   "usingComponents": {
     "tabs-swiper-page": "/components/tabs-swiper-page/index",
     "scroll-loading": "/components/scroll-loading/index",
-		"fixed-element": "/components/fixed-element/index",
-		"c-list": "/components/c-list/index"
+    "fixed-element": "/components/fixed-element/index",
+    "c-list": "/components/c-list/index"
   }
 }

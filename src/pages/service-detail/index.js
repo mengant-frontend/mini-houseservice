@@ -77,6 +77,9 @@ Page({
 			path: "/pages/service-detail/index?id=" + this.data.service_id
 		}
 	},
+	onReachBottom(){
+		this.getCommentList()
+	},
   // 收藏
   async collect() {
     if (!this.data.request_lock.collect) {

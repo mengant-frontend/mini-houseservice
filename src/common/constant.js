@@ -8,6 +8,4 @@ export const command_types = [{
 }]
 export const default_type = '家政'
 
-export const default_region = ['广东省', '广州市', '天河区']
-
 export const size = 15;

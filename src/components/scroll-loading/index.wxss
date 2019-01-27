@@ -20,4 +20,5 @@
   min-height: 100%;
   /* padding-bottom 改变时实现动画效果 */
   transition: padding-bottom 0.5s;
+  box-sizing: border-box;
 }

@@ -16,7 +16,11 @@ Component({
     },
     // tabs 列表数据，数据模型必须包含{id, title, dot(boolean), count(number)}
     // 其中 id 用于标识 slot 节点，将对应放置在 swiper-item 下
-    tabsList: Array
+    tabsList: Array,
+    fixed: {
+      type: Boolean,
+      value: true
+    }
   },
 
   methods: {

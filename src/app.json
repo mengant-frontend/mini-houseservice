@@ -47,7 +47,21 @@
     "pages/shop/edit",
     "pages/order-detail/index",
     "pages/avatar/index",
-		"pages/cropper/upload"
+    "pages/cropper/upload",
+
+    "pages/bound/index",
+    "pages/bound/detail",
+    "pages/bound/redeem-code",
+    "pages/bound/buy",
+    "pages/bound/record",
+    "pages/bound/order",
+    "pages/bound/order-confirm",
+    "pages/bound/logistics",
+    "pages/bound/address",
+    "pages/bound/address-add",
+    "pages/bound-shop/index",
+    "pages/bound-shop/list",
+    "pages/bound-shop/detail"
   ],
   "window": {
     "navigationBarTitleText": "久房通",
