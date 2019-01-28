@@ -1,0 +1,102 @@
+<view class="page">
+    <view class="logistics">
+        <view class="icon-container">
+            <i-icon type="service" size="24" color="#ef6e69"></i-icon>
+        </view>
+        <view class="desc">
+            <view class="detail">
+                <text>已签收已签收已签收已签收已签收已签收已签收已签收已签收已签收已签收已签收已签收已签收已签收已签收已签收已签收已签收已签收已签收</text>
+            </view>
+            <view class="date">
+                <text>2019-01-24 08:00</text>
+            </view>
+        </view>
+        <view class="icon-container">
+            <i-icon type="enter" size="24" color="#ddd"></i-icon>
+        </view>
+    </view>
+    <view class="address">
+        <view class="icon-container">
+            <i-icon type="coordinates_fill" size="24" color="#4fcb9f"></i-icon>
+        </view>
+        <view class="desc">
+            <view class="user">
+                <view class="name">
+                    <text>张三</text>
+                </view>
+                <view class="phone">
+                    <text>18219112831</text>
+                </view>
+            </view>
+            <view class="addr ellipsis">
+                <text>广东省广州市越秀区东风东路水均岗1号505</text>
+            </view>
+        </view>
+    </view>
+
+    <view class="goods">
+        <view class="goods-img">
+            <image src="/images/mi.jpg" class="goods-cover"></image>
+        </view>
+        <view class="goods-desc">
+            <view class="goods-name">
+                <text>小米移动电源2C移动电源</text>
+            </view>
+            <view class="price">
+                <text>￥120.00</text>
+            </view>
+            <view class="bound">
+                <text>19999积分</text>
+            </view>
+            <view class="num">
+                <text>x1</text>
+            </view>
+        </view>
+    </view>
+
+    <view class="order-detail">
+        <view class="order-title">
+            <text class="order-title-text">订单详情</text>
+        </view>
+        <view class="order-desc">
+            <view class="desc-item">
+                <view class="item-title">
+                    <text>订单编号: </text>
+                </view>
+                <view class="item-desc">
+                    <text>123456789</text>
+                </view>
+            </view>
+            <view class="desc-item">
+                <view class="item-title">
+                    <text>创建时间: </text>
+                </view>
+                <view class="item-desc">
+                    <text>123456789</text>
+                </view>
+            </view>
+            <view class="desc-item">
+                <view class="item-title">
+                    <text>发货时间: </text>
+                </view>
+                <view class="item-desc">
+                    <text>123456789</text>
+                </view>
+            </view>
+            <view class="desc-item">
+                <view class="item-title">
+                    <text>成交时间: </text>
+                </view>
+                <view class="item-desc">
+                    <text>123456789</text>
+                </view>
+            </view>
+        </view>
+    </view>
+
+    <view class="bottom-element">
+        <view class="btn">
+            <text>评价</text>
+        </view>
+    </view>
+</view>

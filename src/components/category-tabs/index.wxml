@@ -1,0 +1,34 @@
+<view class="tabs">
+	<view class="title__tabs">
+		<view class="title__tab title__all {{active_id == 0 ? 'active' : ''}}" bindtap='select' data-id='0'>
+			<text>全部</text>
+		</view>
+		<view class="container__title" wx:if='{{is_close}}'>
+			<view class="title__tab {{item.id === active_id ? 'active' : ''}}" wx:for='{{titles}}' bindtap='select' data-id='{{item.id}}'>
+				<text>{{item.name}}</text>
+			</view>
+		</view>
+		
+		<view class="icon__tab" bindtap='toggleStatus'>
+			<view class="roll {{is_close ? 'close' : 'open'}}">
+				<i-icon type='unfold' size='18' color='#616161'></i-icon>
+			</view>
+		</view>
+	</view>
+	
+	<view class="container__category">
+		<view class="main__category {{is_close ? 'close' : 'open'}}">
+			<view class="categories">
+				<view class="category" wx:for='{{data}}' wx:key='name' bindtap='select' data-id='{{item.id}}'>
+					<view class="category__main">
+						<text>{{item.name}}</text>
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+</view>
+
+<service-list data='{{serviceList}}'>
+	<view class="{{is_close ? '' : 'mask'}}" bindtap='closeMask'></view>
+</service-list>

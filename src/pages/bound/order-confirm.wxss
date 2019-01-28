@@ -1,0 +1,22 @@
+@import "./order-common.wxss";
+.operator{
+    margin-top: 30rpx;
+}
+.confirm-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.total{
+    height: 100%;
+    flex-grow: 1;
+    flex-shrink: 1;
+    text-align: right;
+    padding: 0 30rpx;
+}
+
+.btn{
+    flex-shrink: 0;
+    flex-grow: 0;
+    width: 250rpx;
+}

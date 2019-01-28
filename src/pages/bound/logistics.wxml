@@ -1,0 +1,14 @@
+<view class="page">
+    <view class="steps">
+        <i-steps direction="vertical">
+            <i-step wx:for="{{5}}">
+                <view slot="title">
+                    已完成
+                </view>
+                <view slot="content">
+                    这里是该步骤的描述信息
+                </view>
+            </i-step>
+        </i-steps>
+    </view>
+</view>

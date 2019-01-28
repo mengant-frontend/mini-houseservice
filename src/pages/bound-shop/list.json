@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "积分商城",
+  "usingComponents": {
+    "i-message": "/iview/message/index",
+    "i-load-more": "/iview/load-more/index"
+  }
+}

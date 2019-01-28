@@ -1,0 +1,30 @@
+<view class="page">
+    <view class="list">
+        <view class="item" wx:for="{{10}}">
+            <view class="desc">
+                <view class="user">
+                    <view class="name">
+                        <text>张三</text>
+                    </view>
+                    <view class="phone">
+                        <text>18219112831</text>
+                    </view>
+                </view>
+                <view class="address ellipsis">
+                    <text>广东省广州市越秀区东风东路水均岗1号505</text>
+                </view>
+            </view>
+            <view class="operator">
+                <view class="operator-container">
+                    <text class="operator-text">编辑</text>
+                </view>
+            </view>
+        </view>
+    </view>
+
+    <view class="bottom-element">
+        <navigator class="btn" url="/pages/bound/address-add">
+            <text>新增收货地址</text>
+        </navigator>
+    </view>
+</view>

@@ -1,0 +1,42 @@
+<view class="page">
+    <view class="input-area">
+        <i-cell-group>
+            <i-cell title="收货人">
+                <view slot="footer">
+                    <input type="text" placeholder="请输入收货人" bindchange="bindFormChange"/>
+                </view>
+            </i-cell>
+            <i-cell title="手机号码">
+                <view slot="footer">
+                    <input type="text" placeholder="请输入手机号码"/>
+                </view>
+            </i-cell>
+            <i-cell title="所在地区">
+                <picker slot="footer" mode='region' value='{{location}}' bindchange='bindFormChange' >
+                    <view>
+                        测试
+                        <i-icon type='enter' size='12' color='rgba(0,0,0,0.65)'></i-icon>
+                    </view>
+                </picker>
+            </i-cell>
+            <i-cell>
+                <view class="container__textarea">
+                    <f-textarea placeholder='请填写备注信息' maxLength='100' data-form_key='remark' bind:update='bindFormChange'></f-textarea>
+                </view>
+            </i-cell>
+        </i-cell-group>
+    </view>
+    <view class="select-area">
+        <i-cell-group>
+            <i-cell title="设为默认地址">
+                <i-switch slot="footer"></i-switch>
+            </i-cell>
+        </i-cell-group>
+    </view>
+
+    <view class="bottom-element">
+        <view class="btn">
+            <text>保存</text>
+        </view>
+    </view>
+</view>

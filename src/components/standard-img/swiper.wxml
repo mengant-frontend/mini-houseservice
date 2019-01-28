@@ -1,0 +1,21 @@
+<swiper
+	style='height: {{max_img_height > 0 && data.length > 0 ? max_img_height : 422}}rpx;'
+	indicator-dots='{{true}}'
+	autoplay='{{autoplay}}'
+	indicator-dots='{{data.length > 1 && titles.length === 0}}'
+	interval='{{interval}}'
+	bindchange='swiperChange'
+>
+	<swiper-item wx:for='{{data}}' wx:key='src'>
+		<view class="item">
+			<image 
+				class='img' 
+				src='{{item}}' 
+				bindload='imgLoad'
+			></image>
+			<view wx:if='{{titles.length > 0}}' class="title">
+				<text>{{titles[index]}}</text>
+			</view>
+		</view>
+	</swiper-item>
+</swiper>

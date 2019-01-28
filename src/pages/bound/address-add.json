@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "新增地址",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "i-cell-group": "/iview/cell-group/index",
+    "i-cell": "/iview/cell/index",
+    "i-switch": "/iview/switch/index",
+    "i-icon": "/iview/icon/index",
+    "f-textarea": "../../components/f-textarea/index"
+  }
+}

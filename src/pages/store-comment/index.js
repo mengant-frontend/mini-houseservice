@@ -39,7 +39,7 @@ Page({
         url: this.data.api_url.get_comment_list,
         data: {
           page: this.data.comment_page + 1,
-          size: 6,
+          size: 10,
           id: this.data.store_id
         }
       })

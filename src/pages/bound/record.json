@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "兑换记录",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "tabs-swiper-page": "/components/tabs-swiper-page/index",
+    "scroll-loading": "/components/scroll-loading/index"
+  }
+}

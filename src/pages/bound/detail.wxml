@@ -1,0 +1,25 @@
+<view class="page">
+    <sign-in height="218"></sign-in>
+    <view class="container">
+        <tabs-swiper-page fixed="{{false}}" tabs-list='{{tabs_list}}' bind:swiperChange='changeTab'>
+            <scroll-loading bg-color='#fff' wx:for='{{tabs_list}}' wx:key='id' slot='{{item.id}}' if-no-more='{{item.if_no_more}}' if-loading='{{if_loading}}' bind:scrolltolower='getList'>
+                <view class="list" wx:for="{{50}}" wx:for-item="itm" wx:for-index="idx">
+                    <view class="item">
+                        <view class="bound ellipsis">
+                            <text>{{item.id === 'income' ? '+' : '-'}} 8000</text>
+                        </view>
+                        <view class="desc">
+                            <view class="title">
+                                <text>系统赠送积分{{idx}}</text>
+                            </view>
+                            <view class="date">
+                                <text>2019-01-23 10:00</text>
+                            </view>
+                        </view>
+                    </view>
+
+                </view>
+            </scroll-loading>
+        </tabs-swiper-page>
+    </view>
+</view>

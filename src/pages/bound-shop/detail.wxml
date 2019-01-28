@@ -1,0 +1,96 @@
+<view class="page">
+    <standard-img-swiper data='{{banner_imgs}}'/>
+
+    <view class="desc">
+        <view class="goods">
+            <view class="bound">
+                <text>{{detail.score || 0}}积分</text>
+            </view>
+            <view class="price">
+                <text>￥{{detail.money || 0}}</text>
+            </view>
+        </view>
+        <view class="title">
+            <text>{{detail.name}}</text>
+        </view>
+        <view class="sub-desc">
+            <view class="sale">
+                <text>月销{{detail.sell_num}}件</text>
+            </view>
+            <view class="address">
+                <text>{{detail.address}}</text>
+            </view>
+        </view>
+    </view>
+
+    <view class="product-param">
+        <view class="param-title">
+            <text>产品参数</text>
+        </view>
+        <view class="param-more" bindtap="showParam">
+            <text>···</text>
+        </view>
+    </view>
+
+    <view class="comment-container">
+        <view class="title-container">
+            <view class="comment-title">
+                <text>宝贝评价({{comment_total || 0}})</text>
+            </view>
+            <view class="comment-more" bindtap="goToMoreComment">
+                <text>查看全部 ></text>
+            </view>
+        </view>
+        <view class="user" wx:if="comment.id">
+            <view class="avatar-container">
+                <image src="{{comment.avatarUrl}}" class="avatar"></image>
+            </view>
+            <view class="name">
+                <text>{{comment.nickName}}</text>
+            </view>
+        </view>
+        <view class="comment-line">
+            <text class="comment">{{comment.content}}</text>
+        </view>
+    </view>
+
+    <view class="goods-detail">
+        <view class="line"></view>
+        <view class="goods-detail-text">
+            <text>宝贝详情</text>
+        </view>
+        <view class="line"></view>
+    </view>
+    <view class="imgs-container">
+        <image wx:for="{{detail_imgs}}" class="detail-img" src="{{item}}" mode="widthFix"></image>
+    </view>
+    <i-load-more loading="{{false}}" tip="已经到底了~"></i-load-more>
+</view>
+
+<view class="bottom-element">
+    <view class="btn" bindtap="goToExchange">
+        <text>去兑换</text>
+    </view>
+</view>
+
+<view class="mask" hidden="{{hide_param}}" bindtap="hideParam"></view>
+
+<view class="params {{hide_param ? 'out' : 'in'}}">
+    <view class="params-container">
+        <view class="params-title">
+            <text>产品参数</text>
+        </view>
+        <view class="params-list">
+            <view class="params-item" wx:for="{{detail.format}}">
+                <view class="params-item-title">
+                    <text>{{item.name}}</text>
+                </view>
+                <view class="params-item-value">
+                    <text>{{item.detail}}</text>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+
+<i-message id="message"></i-message>

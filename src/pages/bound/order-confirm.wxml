@@ -1,0 +1,71 @@
+<view class="page">
+    <view class="address">
+        <view class="icon-container">
+            <i-icon type="coordinates_fill" size="24" color="#4fcb9f"></i-icon>
+        </view>
+        <view class="desc">
+            <view class="user">
+                <view class="name">
+                    <text>张三</text>
+                </view>
+                <view class="phone">
+                    <text>18219112831</text>
+                </view>
+            </view>
+            <view class="addr ellipsis">
+                <text>广东省广州市越秀区东风东路水均岗1号505</text>
+            </view>
+        </view>
+        <view class="icon-container">
+            <i-icon type="enter" size="24" color="#ddd"></i-icon>
+        </view>
+    </view>
+
+    <view class="goods">
+        <view class="goods-img">
+            <image src="/images/mi.jpg" class="goods-cover"></image>
+        </view>
+        <view class="goods-desc">
+            <view class="goods-name">
+                <text>小米移动电源2C移动电源</text>
+            </view>
+            <view class="price">
+                <text>￥120.00</text>
+            </view>
+            <view class="bound">
+                <text>19999积分</text>
+            </view>
+            <view class="num">
+                <text>x1</text>
+            </view>
+        </view>
+    </view>
+
+    <view class="operator">
+        <i-cell-group>
+            <i-cell title="选择数量">
+                <view slot="footer">
+                    <i-input-number></i-input-number>
+                </view>
+            </i-cell>
+            <i-cell title="配送方式">
+                <view slot="footer">
+                    <text>快递 免邮</text>
+                    <i-icon type="enter" size="24" color="#ddd"></i-icon>
+                </view>
+            </i-cell>
+        </i-cell-group>
+    </view>
+
+    <view class="bottom-element">
+        <view class="confirm-container">
+            <view class="total">
+                <text>合计: </text>
+                <text class="bound">19999积分</text>
+            </view>
+            <view class="btn">
+                <text>提交订单</text>
+            </view>
+        </view>
+    </view>
+</view>

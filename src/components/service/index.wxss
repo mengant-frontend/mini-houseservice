@@ -1,0 +1,71 @@
+.component{
+	position: relative;
+	left: 0;
+	top: 0;
+}
+.list{
+	box-sizing: border-box;
+	width: 750rpx;
+	padding: 20rpx 30rpx;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+.item{
+	width: 330rpx;
+	height: 315rpx;
+	background-color: #fff;
+	margin-bottom: 30rpx;
+}
+.item-left{
+	margin-right: 30rpx;
+}
+.item-right{
+	margin-right: 0;
+}
+.cover{
+	width: 329rpx;
+	height: 185rpx;
+}
+.cover-img{
+	width: 100%;
+	height: 100%;
+}
+.title{
+	font-size: 32rpx;
+	color: #2d2d2d;
+	padding: 24rpx 10rpx 0;
+	text-align: center;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.desc{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	padding: 16rpx 10rpx 24rpx;
+}
+.desc-item{
+	font-size: 24rpx;
+	color: #767575;
+	text-align: center;
+	display: inline-flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	overflow: hidden;
+}
+.desc-item.left{
+	margin-right: 16rpx;
+}
+.desc-title{
+	flex-shrink: 0;
+}
+.special{
+	color: #ff9306;
+	font-weight: 500;
+	padding: 5rpx;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}

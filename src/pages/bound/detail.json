@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "积分明细",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "sign-in": "./comp/sign-in",
+    "tabs-swiper-page": "/components/tabs-swiper-page/index",
+    "scroll-loading": "/components/scroll-loading/index"
+  }
+}

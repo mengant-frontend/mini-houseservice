@@ -1,0 +1,16 @@
+.a-btn{
+		padding: 14rpx 20rpx;
+		font-size: 26rpx;
+		color: #fff;
+		letter-spacing: 1px;
+		line-height: 1.2;
+		min-width: 132rpx;
+}
+.a-btn.warning{
+	background-color: #f49940;
+}
+.a-btn.warning-ghost{
+	background-color: #fff;
+	color: #f49940;
+	border-color: #f49940;
+}
