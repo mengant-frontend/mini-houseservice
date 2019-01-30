@@ -6,7 +6,7 @@
         <view class="desc">
             <view class="user">
                 <view class="name">
-                    <text>{{address.name}}</text>
+                    <text>{{address.name || '未设置收件信息'}}</text>
                 </view>
                 <view class="phone">
                     <text>{{address.phone}}</text>
@@ -45,7 +45,7 @@
         <i-cell-group>
             <i-cell title="选择数量">
                 <view slot="footer">
-                    <i-input-number value="{{sell_num}}" min="1" bindchange="updateSellNum"></i-input-number>
+                    <i-input-number value="{{sell_num}}" min="1" step="1" bindchange="updateSellNum"></i-input-number>
                 </view>
             </i-cell>
             <i-cell title="配送方式">

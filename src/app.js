@@ -423,7 +423,8 @@ App({
     red_money: 0,
 		pic_id: null,
 		pic_url: null,
-		pic_type: null
+		pic_type: null,
+		bound_address: undefined
   },
   // 通用方法
   /**

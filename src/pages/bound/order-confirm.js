@@ -19,6 +19,15 @@ Page({
 		await Promise.all([this.getAddress(), this.getGoodsDetail()])
 		wx.hideLoading()
 	},
+	onShow(){
+		let { bound_address } = app.global_data
+		if(bound_address){
+			this.setData({
+				address: bound_address
+			})
+			app.global_data.bound_address = undefined
+		}
+	},
 	//加载地址列表
 	async getAddress(){
 		let res = await app.get({
@@ -71,7 +80,7 @@ Page({
 	updateSellNum(e){
 		let { detail } = e,
 			sell_num = detail.value || 1,
-			total_bound = 0
+			total_bound = this.data.detail.score
 		total_bound = sell_num * total_bound
 		this.setData({
 			sell_num: sell_num,

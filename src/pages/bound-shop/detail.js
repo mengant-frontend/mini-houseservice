@@ -94,10 +94,6 @@ Page({
       comment_total: comment_total
     })
   },
-  //去兑换
-  goToExchange(){
-  
-  },
   //查看更多评论
   goToMoreComment(){
     wx.navigateTo({

@@ -37,9 +37,9 @@
             <view class="comment-title">
                 <text>宝贝评价({{comment_total || 0}})</text>
             </view>
-            <view class="comment-more" bindtap="goToMoreComment">
+            <navigator class="comment-more" url="{{'/pages/bound-shop/comment?id=' + id}}">
                 <text>查看全部 ></text>
-            </view>
+            </navigator>
         </view>
         <view class="user" wx:if="comment.id">
             <view class="avatar-container">
@@ -68,9 +68,9 @@
 </view>
 
 <view class="bottom-element">
-    <view class="btn" bindtap="goToExchange">
+    <navigator class="btn" url="{{ '/pages/bound/order-confirm?id=' + id }}">
         <text>去兑换</text>
-    </view>
+    </navigator>
 </view>
 
 <view class="mask" hidden="{{hide_param}}" bindtap="hideParam"></view>

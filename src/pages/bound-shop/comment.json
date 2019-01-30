@@ -1,4 +1,8 @@
 {
-  "navigationBarTitleText": "宝贝评价",
-  "enablePullDownRefresh": false
+  "navigationBarTitleText": "评论",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "scroll-loading": "/components/scroll-loading/index",
+    "comment-list": "/components/comment-list/index"
+  }
 }

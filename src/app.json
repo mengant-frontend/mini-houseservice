@@ -62,6 +62,7 @@
     "pages/bound-shop/index",
     "pages/bound-shop/list",
     "pages/bound-shop/detail",
+    "pages/bound-shop/comment",
 
     "pages/invite/index",
 

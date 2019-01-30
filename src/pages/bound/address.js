@@ -4,9 +4,20 @@ Page({
 	data: {
 		list: [],
 		page: 1,
-		loading: false
+		loading: false,
+		is_select: false
 	},
-	onLoad(){
+	onLoad(query){
+		let { type = ''} = query,
+			is_select = type === 'select'
+		this.setData({
+			is_select: is_select
+		})
+		if(is_select){
+			wx.setNavigationBarTitle({
+				title: '选择地址'
+			})
+		}
 		this.getList()
 	},
 	onShow(){
@@ -42,6 +53,35 @@ Page({
 		let data = res.data || []
 		this.setData({
 			list: data
+		})
+	},
+	select(e){
+		let { detail } = e,
+			id = detail.value[0],
+			{ list } = this.data
+		list.forEach(item => {
+			if(item.id == id){
+				item.checked = true
+				return
+			}
+			item.checked = false
+		})
+		this.setData({
+			list: list
+		})
+	},
+	ensure(){
+		let { list } = this.data
+		let selected_item = list.filter(item => {
+			return item.checked
+		})
+		if(!selected_item.length){
+			app._warn('请选择收件地址')
+			return
+		}
+		app.global_data.bound_address = selected_item[0]
+		wx.navigateBack({
+			delta: 1
 		})
 	}
 })
