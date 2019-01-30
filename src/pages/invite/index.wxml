@@ -1,0 +1,86 @@
+<view class="page">
+    <view class="container">
+        <view class="bg-container">
+            <image src="/images/invite.png" class="bg" mode="widthFix"></image>
+        </view>
+
+        <block wx:if="{{type === 'invite'}}">
+            <view class="tips">
+                <view class="line" wx:for="{{lines}}">
+                    <text>{{item}}</text>
+                </view>
+            </view>
+
+            <view class="code-container">
+                <view class="line">
+                    <text>我的邀请码</text>
+                </view>
+                <view class="code">
+                    <text>{{code}}</text>
+                </view>
+            </view>
+
+            <view class="share-container">
+                <view class="btn-container">
+                    <button class="btn" open-type="share">点我邀请好友</button>
+                </view>
+                <view class="desc">
+                    <text>已复制邀请码到剪贴板</text>
+                </view>
+            </view>
+        </block>
+
+
+        <block wx:elif="{{type === 'be_invited'}}">
+            <view class="tip-code-container">
+                <view class="line">
+                    <text>好友邀请码</text>
+                </view>
+                <view class="code code-line">
+                    <text>{{code}}</text>
+                </view>
+            </view>
+            <view class="login-container">
+                <view class="line">
+                    <text>输入好友邀请码，领取积分</text>
+                </view>
+                <view class="btn-container">
+                    <button class="btn" open-type="share">微信注册领取</button>
+                </view>
+            </view>
+        </block>
+
+        <block wx:elif="{{type === 'input'}}">
+            <view class="input-container">
+                <view class="line">
+                    <text>输入好友邀请码，领取积分</text>
+                </view>
+
+                <view class="form-item">
+                    <view class="label">
+                        <text>姓名</text>
+                    </view>
+                    <view class="input">
+                        <input type="text" value="{{name}}" data-form_key="name" bindinput="bindFormChange" placeholder="请输入姓名"></input>
+                    </view>
+                </view>
+                <view class="form-item">
+                    <view class="label">
+                        <text>手机号</text>
+                    </view>
+                    <view class="input">
+                        <input type="text" value="{{phone}}" data-form_key="phone" bindinput="bindFormChange"  placeholder="请输入手机号"></input>
+                    </view>
+                </view>
+                <view class="form-item">
+                    <view class="label">
+                        <text>邀请码</text>
+                    </view>
+                    <view class="input">
+                        <input type="text" value="{{code}}" data-form_key="code" bindinput="bindFormChange" placeholder="请输入邀请码"></input>
+                    </view>
+                </view>
+            </view>
+        </block>
+    </view>
+</view>

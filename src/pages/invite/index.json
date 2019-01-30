@@ -1,4 +1,6 @@
 {
-  "navigationBarTitleText": "邀请",
-  "enablePullDownRefresh": false
+  "navigationBarTitleText": "邀请好友",
+  "enablePullDownRefresh": false,
+  "navigationBarBackgroundColor": "#fef0c9",
+  "navigationBarTextStyle": "black"
 }
