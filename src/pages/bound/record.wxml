@@ -18,12 +18,19 @@
                                 <text>x{{itm.count}}</text>
                             </view>
                             <view class="operator-right">
-                                <navigator class="btn common" url="{{'/pages/bound/logistics?id=' + itm.id}}">
-                                    <text>查看物流</text>
-                                </navigator>
-                                <navigator class="btn primary" url="{{'/pages/bound/order?id=' + itm.id}}">
-                                    <text>确认收货</text>
-                                </navigator>
+                                <block wx:if="{{itm.status === 2}}">
+                                    <navigator class="btn common" url="{{'/pages/bound/logistics?id=' + itm.id}}">
+                                        <text>查看物流</text>
+                                    </navigator>
+                                    <navigator class="btn primary" url="{{'/pages/bound/order?id=' + itm.id}}">
+                                        <text>确认收货</text>
+                                    </navigator>
+                                </block>
+                                <block wx:elif="{{itm.status === 3 && itm.comment_id === 0}}">
+                                    <navigator class="btn primary" url="{{'/pages/bound/order?id=' + itm.id}}">
+                                        <text>去评价</text>
+                                    </navigator>
+                                </block>
                             </view>
                         </view>
                     </view>

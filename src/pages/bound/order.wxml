@@ -1,11 +1,11 @@
 <view class="page">
-    <navigator class="logistics" url="{{'/pages/bound/logistics?id=' + id}}">
+    <navigator class="logistics" url="{{'/pages/bound/logistics?express_no=' + logistic_detail.express_no + '&express_code=' + logistic_detail.express_code}}">
         <view class="icon-container">
             <i-icon type="service" size="24" color="#ef6e69"></i-icon>
         </view>
         <view class="desc">
             <view class="detail">
-                <text>{{logistic_detail.detail.context || '暂无物流信息'}}</text>
+                <text>{{logistic_detail.detail.context}}</text>
             </view>
             <view class="date" wx:if="{{!!logistic_detail.no}}">
                 <text>{{logistic_detail.detail.time}}</text>
@@ -72,7 +72,7 @@
                     <text>创建时间: </text>
                 </view>
                 <view class="item-desc">
-                    <text>{{order_detail.create_timea}}</text>
+                    <text>{{order_detail.create_time}}</text>
                 </view>
             </view>
             <view class="desc-item">
@@ -94,9 +94,9 @@
         </view>
     </view>
 
-    <view class="bottom-element">
-        <view class="btn">
-            <text>评价</text>
+    <view class="bottom-element" wx:if="{{status === 2 || (status === 3 && comment_id <= 0)}}">
+        <view class="btn"  bindtap="ensure">
+            <text>{{status === 3 ? '评价' : '确认收货'}}</text>
         </view>
     </view>
 </view>

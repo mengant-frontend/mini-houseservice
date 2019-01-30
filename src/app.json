@@ -59,6 +59,7 @@
     "pages/bound/logistics",
     "pages/bound/address",
     "pages/bound/address-add",
+    "pages/bound/comment",
     "pages/bound-shop/index",
     "pages/bound-shop/list",
     "pages/bound-shop/detail",

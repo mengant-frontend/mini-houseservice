@@ -45,9 +45,6 @@ Page({
   async getList(){
   	let { current, tabs_list } = this.data,
 			tab = tabs_list[current]
-		if(tab.if_no_more){
-			return
-		}
 		if(tab.loading){
 			return
 		}
@@ -80,6 +77,11 @@ Page({
 		}else{
 			tab.list = tab.list.concat(data.data)
 		}
+		tab.list = Array.from(new Set(tab.list.map(item => {
+			return JSON.stringify(item)
+		}))).map(item => {
+			return JSON.parse(item)
+		})
 		tab.if_no_more = tab.list.length >= data.total
 		this.setData({
 			tabs_list: tabs_list
@@ -97,6 +99,9 @@ Page({
 	reachBottom(){
   	let { current, tabs_list } = this.data,
 			tab = tabs_list[current]
+		if(tab.if_no_more){
+			return
+		}
 		tab.page = tab.page + 1
 		this.setData({
 			tabs_list
