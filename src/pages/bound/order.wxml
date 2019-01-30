@@ -1,20 +1,20 @@
 <view class="page">
-    <view class="logistics">
+    <navigator class="logistics" url="{{'/pages/bound/logistics?id=' + id}}">
         <view class="icon-container">
             <i-icon type="service" size="24" color="#ef6e69"></i-icon>
         </view>
         <view class="desc">
             <view class="detail">
-                <text>已签收已签收已签收已签收已签收已签收已签收已签收已签收已签收已签收已签收已签收已签收已签收已签收已签收已签收已签收已签收已签收</text>
+                <text>{{logistic_detail.detail.context || '暂无物流信息'}}</text>
             </view>
-            <view class="date">
-                <text>2019-01-24 08:00</text>
+            <view class="date" wx:if="{{!!logistic_detail.no}}">
+                <text>{{logistic_detail.detail.time}}</text>
             </view>
         </view>
         <view class="icon-container">
             <i-icon type="enter" size="24" color="#ddd"></i-icon>
         </view>
-    </view>
+    </navigator>
     <view class="address">
         <view class="icon-container">
             <i-icon type="coordinates_fill" size="24" color="#4fcb9f"></i-icon>
@@ -22,34 +22,34 @@
         <view class="desc">
             <view class="user">
                 <view class="name">
-                    <text>张三</text>
+                    <text>{{user_detail.name}}</text>
                 </view>
                 <view class="phone">
-                    <text>18219112831</text>
+                    <text>{{user_detail.phone}}</text>
                 </view>
             </view>
             <view class="addr ellipsis">
-                <text>广东省广州市越秀区东风东路水均岗1号505</text>
+                <text>{{user_detail.province}}{{user_detail.city}}{{user_detail.area}}{{user_detail.detail}}</text>
             </view>
         </view>
     </view>
 
     <view class="goods">
         <view class="goods-img">
-            <image src="/images/mi.jpg" class="goods-cover"></image>
+            <image src="{{goods_detail.cover}}" class="goods-cover"></image>
         </view>
         <view class="goods-desc">
             <view class="goods-name">
-                <text>小米移动电源2C移动电源</text>
+                <text>{{goods_detail.name}}</text>
             </view>
             <view class="price">
-                <text>￥120.00</text>
+                <text>￥{{goods_detail.money}}</text>
             </view>
             <view class="bound">
-                <text>19999积分</text>
+                <text>{{goods_detail.score}}积分</text>
             </view>
             <view class="num">
-                <text>x1</text>
+                <text>x{{goods_detail.count}}</text>
             </view>
         </view>
     </view>
@@ -64,7 +64,7 @@
                     <text>订单编号: </text>
                 </view>
                 <view class="item-desc">
-                    <text>123456789</text>
+                    <text>{{order_detail.code_number}}</text>
                 </view>
             </view>
             <view class="desc-item">
@@ -72,7 +72,7 @@
                     <text>创建时间: </text>
                 </view>
                 <view class="item-desc">
-                    <text>123456789</text>
+                    <text>{{order_detail.create_timea}}</text>
                 </view>
             </view>
             <view class="desc-item">
@@ -80,7 +80,7 @@
                     <text>发货时间: </text>
                 </view>
                 <view class="item-desc">
-                    <text>123456789</text>
+                    <text>{{order_detail.send_time}}</text>
                 </view>
             </view>
             <view class="desc-item">
@@ -88,7 +88,7 @@
                     <text>成交时间: </text>
                 </view>
                 <view class="item-desc">
-                    <text>123456789</text>
+                    <text></text>
                 </view>
             </view>
         </view>

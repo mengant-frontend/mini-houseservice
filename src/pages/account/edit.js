@@ -18,10 +18,10 @@ Page({
 		let global_data = app.global_data
 		let new_data = app._deepClone(this.data)
 		if(global_data.pic_id && global_data.pic_url){
-			new_data.head_url_list.push({
+			new_data.head_url_list = [{
 				id: global_data.pic_id,
 				url: global_data.pic_url
-			})
+			}]
 			app.global_data.pic_id = null
 			app.global_data.pic_url = null
 		}

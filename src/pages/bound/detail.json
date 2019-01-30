@@ -4,6 +4,7 @@
   "usingComponents": {
     "sign-in": "./comp/sign-in",
     "tabs-swiper-page": "/components/tabs-swiper-page/index",
-    "scroll-loading": "/components/scroll-loading/index"
+    "scroll-loading": "/components/scroll-loading/index",
+    "i-message": "/iview/message/index"
   }
 }

@@ -1,4 +1,4 @@
-import regeneratorRuntime from '../../lib/runtime'
+import regeneratorRuntime from '../../../lib/runtime'
 const app = getApp()
 Component({
   properties: {
@@ -9,10 +9,16 @@ Component({
   },
   data: {
     sign_in: undefined,
-    score: 0
+    score: 0,
+    loading: false
   },
   ready(){
     this.checkLoginStatus()
+  },
+	pageLifetimes: {
+    show(){
+			this.checkLoginStatus()
+    }
   },
   methods: {
     async checkLoginStatus(){
@@ -32,8 +38,17 @@ Component({
       })
     },
     async login(){
+      if(this.data.loading){
+        return
+      }
+      this.setData({
+        loading: true
+      })
       let res = await app.post({
         url: '/api/v1/sign/in'
+      })
+      this.setData({
+        loading: false
       })
       if(!res.success){
         app._error(res.msg, {
@@ -41,10 +56,11 @@ Component({
         })
         return
       }
-      let data = res.data
+      let data = res.data,
+        score = this.data.score
       this.setData({
         sign_in: true,
-        score: data.score
+        score: parseFloat(score) + parseFloat(data)
       })
     }
   }

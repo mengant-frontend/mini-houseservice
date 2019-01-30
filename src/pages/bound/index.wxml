@@ -31,7 +31,7 @@
                 </navigator>
             </view>
             <view class="s-list">
-                <view class="s-item" wx:for="{{list}}">
+                <navigator class="s-item" wx:for="{{list}}" url="{{'/pages/bound-shop/detail?id=' + item.id}}">
                     <view class="s-img">
                         <image src="{{item.cover}}" class="img"></image>
                     </view>
@@ -41,7 +41,7 @@
                     <view class="s-bound ellipsis">
                         <text>{{item.score || 0}}积分</text>
                     </view>
-                </view>
+                </navigator>
             </view>
         </view>
     </view>

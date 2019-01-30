@@ -8,7 +8,7 @@ Page({
       title: '全部',
       dot: false,
       count: 0,
-      page: 0,
+      page: 1,
       total: 0,
       if_no_more: false,
       list: [],
@@ -17,9 +17,7 @@ Page({
       id: 'to_be_shipped',
       title: '待发货',
       dot: false,
-      count: 0,
-      page: 0,
-      total: 0,
+      page: 1,
       if_no_more: false,
       list: [],
 			type: 2
@@ -27,8 +25,7 @@ Page({
       id: 'due_in',
       title: '待收货',
       dot: false,
-      page: 0,
-      total: 0,
+      page: 1,
       if_no_more: false,
       list: [],
 			type: 3
@@ -36,8 +33,7 @@ Page({
       id: 'evaluate',
       title: '待评价',
       dot: false,
-      page: 0,
-      total: 0,
+      page: 1,
       if_no_more: false,
       list: [],
 			type: 4
@@ -84,8 +80,7 @@ Page({
 		}else{
 			tab.list = tab.list.concat(data.data)
 		}
-		tab.total = data.total
-		tab.if_no_more = tab.list.length >= tab.total
+		tab.if_no_more = tab.list.length >= data.total
 		this.setData({
 			tabs_list: tabs_list
 		})
@@ -96,6 +91,15 @@ Page({
 		let { tabs_current } = detail
   	this.setData({
 			current: tabs_current
+		})
+		this.getList()
+	},
+	reachBottom(){
+  	let { current, tabs_list } = this.data,
+			tab = tabs_list[current]
+		tab.page = tab.page + 1
+		this.setData({
+			tabs_list
 		})
 		this.getList()
 	}

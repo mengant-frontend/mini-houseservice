@@ -1,26 +1,32 @@
 <view class="page">
     <view class="list">
-        <view class="item" wx:for="{{10}}">
+        <view class="item" wx:for="{{list}}">
             <view class="desc">
                 <view class="user">
                     <view class="name">
-                        <text>张三</text>
+                        <text>{{item.name}}</text>
                     </view>
                     <view class="phone">
-                        <text>18219112831</text>
+                        <text>{{item.phone}}</text>
                     </view>
                 </view>
                 <view class="address ellipsis">
-                    <text>广东省广州市越秀区东风东路水均岗1号505</text>
+                    <text>{{item.province}}{{item.city}}{{item.area}}{{item.detail}}</text>
+                </view>
+
+                <view class="default" wx:if="{{item.type == 1}}">
+                    <text>默认</text>
                 </view>
             </view>
             <view class="operator">
-                <view class="operator-container">
+                <navigator class="operator-container" url="{{'/pages/bound/address-add?id=' + item.id}}">
                     <text class="operator-text">编辑</text>
-                </view>
+                </navigator>
             </view>
         </view>
     </view>
+
+    <i-load-more tip="" loading="{{loading}}"></i-load-more>
 
     <view class="bottom-element">
         <navigator class="btn" url="/pages/bound/address-add">
@@ -28,3 +34,5 @@
         </navigator>
     </view>
 </view>
+
+<i-message id="message"></i-message>

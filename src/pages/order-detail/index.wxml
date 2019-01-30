@@ -14,19 +14,19 @@
           <view class="state__order">
             <!-- 商家 -->
             <block wx:if='{{has_shop}}'>
-							<text wx:if='{{order_detail.confirm_id && order_detail.confirm_id != 99999}}'>已完成</text>
-							<text wx:elif='{{order_detail.service_begin == 1 && order_detail.pay_id && order_detail.pay_id != 99999}}'>待用户确认完工</text>
-							<text wx:elif='{{ order_detail.pay_id && order_detail.pay_id != 99999 }}'>待服务</text>
-							<text wx:elif='{{order_detail.shop_confirm ==1 && (!order_detail.pay_id || order_detail.pay_id == 99999)}}'>待用户支付</text>
-							<text wx:elif='{{order_detail.shop_confirm == 2}}'>待确认</text>
+                <text wx:if='{{order_detail.confirm_id && order_detail.confirm_id != 99999}}'>已完成</text>
+                <text wx:elif='{{order_detail.service_begin == 1 && order_detail.pay_id && order_detail.pay_id != 99999}}'>待用户确认完工</text>
+                <text wx:elif='{{ order_detail.pay_id && order_detail.pay_id != 99999 }}'>待服务</text>
+                <text wx:elif='{{order_detail.shop_confirm ==1 && (!order_detail.pay_id || order_detail.pay_id == 99999)}}'>待用户支付</text>
+                <text wx:elif='{{order_detail.shop_confirm == 2}}'>待确认</text>
             </block>
             <!--  -->
             <block wx:else>
-							<text wx:if='{{order_detail.comment_id && order_detail.comment_id != 99999}}'>已完成</text>
-							<text wx:elif='{{order_detail.confirm_id && order_detail.confirm_id != 99999}}'>待评价</text>
-							<text wx:elif='{{order_detail.pay_id && order_detail.pay_id != 99999}}'>{{order_detail.confirm_id == 2 ? '已协商' : '待确认'}}</text>
-              <text wx:elif='{{order_detail.shop_confirm == 1}}'>待付款</text>
-							<text wx:else>{{is_service_order ? '已预约' : '待接单'}}</text>
+                <text wx:if='{{order_detail.comment_id && order_detail.comment_id != 99999}}'>已完成</text>
+                <text wx:elif='{{order_detail.confirm_id && order_detail.confirm_id != 99999}}'>待评价</text>
+                <text wx:elif='{{order_detail.pay_id && order_detail.pay_id != 99999}}'>{{order_detail.confirm_id == 2 ? '已协商' : '待确认'}}</text>
+                <text wx:elif='{{order_detail.shop_confirm == 1}}'>待付款</text>
+                <text wx:else>{{is_service_order ? '已预约' : '待接单'}}</text>
             </block>
           </view>
         </view>
@@ -36,7 +36,7 @@
               <image class="img" src='{{order_detail.cover}}'></image>
             </view>
             <view class="flex-content">
-              <view class="order-title">{{order_detail.source_name}}</view>
+              <navigator class="order-title" url="{{source_url}}">{{order_detail.source_name}}</navigator>
               <view class="order-price">
                 <text wx:if='{{order_detail.update_money && order_detail.update_money !== order_detail.origin_money}}' class="origin-price">￥{{order_detail.origin_money}}</text>
                 <text class="update-price">￥{{order_detail.update_money || order_detail.origin_money}}</text>

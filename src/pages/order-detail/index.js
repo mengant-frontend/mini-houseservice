@@ -23,13 +23,15 @@ Page({
     chat_text: '',
     consult_message: '',
     red_money: 0,
-    show_home: false
+    show_home: false,
+		source_url: ''
   },
   async onLoad(query) {
+    let { id, type, template } = query
     this.setData({
-      id: query.id,
-      type: query.type,
-      show_home: query.template == '1'
+      id: id,
+      type: type,
+      show_home: template == '1'
     })
 
     await this.loadOrder()
@@ -79,11 +81,11 @@ Page({
   async loadOrder() {
     let { id, type } = this.data
     if (!id) {
-      app._error('缺少订单id')
+      app._error('无效订单ID')
       return
     }
     if (!type) {
-      app._error('缺少订单类型')
+      app._error('无效订单类型')
       return
     }
     await app.asyncApi(wx.showNavigationBarLoading)
@@ -113,8 +115,10 @@ Page({
     if(data.update_money && data.update_money >= 0){
       data.update_money = app._toMoney(data.update_money)
     }
+    let url = type === '1' ? '/pages/service-detail/index?id=' : '/pages/command-detail/index?bar=1&id='
     this.setData({
-      order_detail: data
+      order_detail: data,
+			source_url: url + data.source_id
     })
   },
   // 打电话

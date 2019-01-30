@@ -15,10 +15,12 @@ page{
 .desc{
     flex-grow: 1;
     flex-shrink: 1;
+    position: relative;
 }
 .user{
     display: flex;
     flex-direction: row;
+    align-items: center;
 }
 .name{
     font-size: 24rpx;
@@ -33,6 +35,11 @@ page{
     font-size: 24rpx;
     color: #343434;
     margin-top: 10rpx;
+}
+.default{
+    position: absolute;
+    top: -20rpx;
+    right: 10rpx;
 }
 .operator{
     flex-grow: 0;

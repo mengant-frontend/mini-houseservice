@@ -18,11 +18,13 @@ page{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-around;
     padding: 30rpx 0;
 }
 .item{
-    margin-bottom: 30rpx;
+    margin: 0 15rpx 30rpx;
+}
+.item.active{
+    background-color: #b8e986;
 }
 .price-container{
     width: 180rpx;
@@ -38,9 +40,15 @@ page{
     font-size: 30rpx;
     color: #343434;
 }
+.active .price{
+    color: #417505;
+}
 .bound{
     font-size: 20rpx;
     color: #bbbbbb;
+}
+.active .bound{
+    color: #a7e16c;
 }
 .btn{
     background-color: #4fcb9f;

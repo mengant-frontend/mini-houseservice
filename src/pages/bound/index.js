@@ -8,6 +8,9 @@ Page({
   onLoad(){
     this.getList()
   },
+	onShow(){
+  	this.getList()
+	},
   getScore(e){
     // Todo 暂时想不到更好的做法 此处待定
     let { detail } = e

@@ -1,4 +1,7 @@
 {
   "navigationBarTitleText": "购买积分",
-  "enablePullDownRefresh": false
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "i-message": "/iview/message/index"
+  }
 }

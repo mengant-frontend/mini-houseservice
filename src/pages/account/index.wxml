@@ -37,9 +37,15 @@
       <i-cell title='我的留言' is-link link-type='navigateTo' url='/pages/bbs/index'>
         <i-icon type='interactive' slot='icon' size='20' color='#2b85e4'></i-icon>
       </i-cell>
-			<i-cell title='小区管理员登录' url='/pages/area-manager/index' is-link link-type='navigateTo'>
-			  <i-icon type='mine_fill' slot='icon' size='20' color='#5cadff'></i-icon>
-			</i-cell>
+      <i-cell title='我的积分' is-link link-type='navigateTo' url='/pages/bound/index'>
+        <i-icon type='commodity' slot='icon' size='20' color='#2b85e4'></i-icon>
+      </i-cell>
+      <i-cell title='邀请好友' is-link link-type='navigateTo' url='/pages/invite/index'>
+        <i-icon type='group_fill' slot='icon' size='20' color='#2b85e4'></i-icon>
+      </i-cell>
+      <i-cell title='小区管理员登录' url='/pages/area-manager/index' is-link link-type='navigateTo'>
+        <i-icon type='mine_fill' slot='icon' size='20' color='#5cadff'></i-icon>
+      </i-cell>
     </i-cell-group>
   </i-panel>
   <i-panel>

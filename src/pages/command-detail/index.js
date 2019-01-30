@@ -4,18 +4,21 @@ Page({
   data: {
     detail: {},
     id: 0,
-    has_shop: false
+    has_shop: false,
+    show_handle_bar: true
   },
   async onPullDownRefresh() {
     await this.loadDetail(this.data.id)
     wx.stopPullDownRefresh()
   },
   onLoad(query) {
-    let id = query.id || 0
-    let has_shop = app.global_data.shop_id > 0 ? true : false
+    let id = query.id || 0,
+      has_shop = app.global_data.shop_id > 0 ? true : false,
+			show_handle_bar = query.bar !== '1'
     this.setData({
       id: id,
-      has_shop
+      has_shop,
+			show_handle_bar: show_handle_bar
     })
     this.loadDetail(id)
   },

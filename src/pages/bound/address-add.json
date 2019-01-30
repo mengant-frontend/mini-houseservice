@@ -1,9 +1,10 @@
 {
-  "navigationBarTitleText": "新增地址",
+  "navigationBarTitleText": "地址管理",
   "enablePullDownRefresh": false,
   "usingComponents": {
     "i-cell-group": "/iview/cell-group/index",
     "i-cell": "/iview/cell/index",
+    "i-message": "/iview/message/index",
     "i-switch": "/iview/switch/index",
     "i-icon": "/iview/icon/index",
     "f-textarea": "../../components/f-textarea/index"

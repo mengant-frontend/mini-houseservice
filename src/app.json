@@ -61,7 +61,11 @@
     "pages/bound/address-add",
     "pages/bound-shop/index",
     "pages/bound-shop/list",
-    "pages/bound-shop/detail"
+    "pages/bound-shop/detail",
+
+    "pages/invite/index",
+
+    "pages/status/index"
   ],
   "window": {
     "navigationBarTitleText": "久房通",

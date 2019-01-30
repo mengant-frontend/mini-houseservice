@@ -51,7 +51,7 @@
           </view>
           <view class="table-cell content">
             <view class="container__img">
-							<f2-photo add='{{false}}' list='{{detail.imgs}}' can-tap='{{false}}'></f2-photo>
+                <f2-photo add='{{false}}' list='{{detail.imgs}}' can-tap='{{false}}'></f2-photo>
             </view>
           </view>
         </view>
@@ -59,7 +59,7 @@
     </view>
   </view>
 
-  <view class="fixed">
+  <view class="fixed" wx:if="{{ show_handle_bar }}">
     <i-button wx:if='{{has_shop}}' type='primary' bind:click='getIt'>接单</i-button>
     <i-button wx:elif="{{detail.cancel == 1 }}" type='primary' bind:click='cancelOrder'>取消订单</i-button>
   </view>
