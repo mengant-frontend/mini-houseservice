@@ -1,0 +1,23 @@
+<view class="page">
+    <view class="evaluate">
+        <image class="img" bindtap='selectEvaluate' data-type='1' src='{{type === "1" ? "/images/good_active.png" : "/images/good.png"}}'></image>
+        <image class="img" bindtap='selectEvaluate' data-type='2' src='{{type === "2" ? "/images/middle_active.png" : "/images/middle.png"}}'></image>
+        <image class="img" bindtap='selectEvaluate' data-type='3' src='{{type === "3" ? "/images/bad_active.png" : "/images/bad.png"}}'></image>
+    </view>
+
+    <view>
+        <f-textarea maxLength='100' placeholder='对本产品满意吗?有什么特别值得推荐的地方?' bind:update='updateRemark'></f-textarea>
+    </view>
+
+    <view>
+        <f2-photo add='{{true}}' list='{{photo_list}}' shape='16-9' bind:delete='confirmDelete'></f2-photo>
+    </view>
+    <view class="container__rate">
+        <i-rate i-class="rate" size='40' count='5' value='{{rate}}' bindchange='updateRate'></i-rate>
+    </view>
+    <view class="fixed">
+        <i-button type='primary' long bind:click='confirm'>提交</i-button>
+    </view>
+
+    <i-message id='message'></i-message>
+</view>
