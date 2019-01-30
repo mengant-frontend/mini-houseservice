@@ -56,7 +56,7 @@
 
     <view class="order-detail">
         <view class="order-title">
-            <text class="order-title-text">订单详情</text>
+            <text class="order-title-text">订单信息</text>
         </view>
         <view class="order-desc">
             <view class="desc-item">

@@ -1,5 +1,5 @@
 <view class="page">
-    <sign-in></sign-in>
+    <sign-in bind:score="getScore"></sign-in>
     <view class="operator">
         <view class="o-list">
             <navigator class="o-item" url="/pages/bound/detail">
@@ -26,20 +26,20 @@
                 <view class="title-main">
                     <text>积分商城</text>
                 </view>
-                <view class="title-sub" bindtap="viewAll">
+                <navigator class="title-sub" url="/pages/bound-shop/list">
                     <text>全部 >></text>
-                </view>
+                </navigator>
             </view>
             <view class="s-list">
-                <view class="s-item" wx:for="{{20}}">
+                <view class="s-item" wx:for="{{list}}">
                     <view class="s-img">
-                        <image src="/images/mi.jpg" class="img"></image>
+                        <image src="{{item.cover}}" class="img"></image>
                     </view>
                     <view class="s-name ellipsis">
-                        <text>小米随身充电宝小米随身充电宝</text>
+                        <text>{{item.name}}</text>
                     </view>
                     <view class="s-bound ellipsis">
-                        <text>19999积分</text>
+                        <text>{{item.score || 0}}积分</text>
                     </view>
                 </view>
             </view>

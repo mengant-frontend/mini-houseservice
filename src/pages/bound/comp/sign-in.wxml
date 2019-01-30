@@ -1,6 +1,6 @@
 <view class="bg" style="height: {{height}}rpx"></view>
 <view class="sign-in-container">
-    <view class="btn" wx:if="{{sign_in === false}}">
+    <view class="btn" wx:if="{{sign_in === false}}" bindtap="login">
         <text>签到</text>
     </view>
     <view class="sign-in" wx:elif="{{sign_in === true}}">
@@ -8,7 +8,7 @@
             <text>可用积分</text>
         </view>
         <view class="sign-in-bound">
-            <text>39066</text>
+            <text>{{score}}</text>
         </view>
     </view>
 </view>

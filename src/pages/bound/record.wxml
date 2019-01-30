@@ -1,29 +1,29 @@
 <view class="container">
     <tabs-swiper-page tabs-list='{{tabs_list}}' bind:swiperChange='swiperChange'>
-        <scroll-loading bg-color='#EFEFF4' wx:for='{{tabs_list}}' wx:key='id' slot='{{item.id}}' if-no-more='{{item.if_no_more}}' if-loading='{{if_loading}}' bind:scrolltolower='getOrderList'>
+        <scroll-loading bg-color='#EFEFF4' wx:for='{{tabs_list}}' wx:key='id' slot='{{item.id}}' if-no-more='{{item.if_no_more}}' if-loading='{{item.loading}}' bind:scrolltolower='getList'>
             <view class="list">
-                <view class="item" wx:for="{{5}}" wx:for-item="itm" wx:for-index="idx">
+                <view class="item" wx:for="{{item.list}}" wx:for-item="itm" wx:for-index="idx">
                     <view class="img-container">
-                        <image src="/images/mi.jpg" class="img"></image>
+                        <image src="{{itm.cover}}" class="img"></image>
                     </view>
                     <view class="desc">
                         <view class="title ellipsis">
-                            <text>小米移动电源2C移动电源</text>
+                            <text>{{itm.goods_name}}</text>
                         </view>
                         <view class="bound">
-                            <text>19999积分</text>
+                            <text>{{itm.score || 0}}积分</text>
                         </view>
                         <view class="operator">
                             <view class="operator-left">
-                                <text>x1</text>
+                                <text>x{{itm.count}}</text>
                             </view>
                             <view class="operator-right">
-                                <view class="btn common">
+                                <navigator class="btn common" url="{{'/pages/bound/logistics?id=' + itm.id}}">
                                     <text>查看物流</text>
-                                </view>
-                                <view class="btn primary">
+                                </navigator>
+                                <navigator class="btn primary" url="{{'/pages/bound/order?id=' + itm.id}}">
                                     <text>确认收货</text>
-                                </view>
+                                </navigator>
                             </view>
                         </view>
                     </view>
@@ -32,3 +32,5 @@
         </scroll-loading>
     </tabs-swiper-page>
 </view>
+
+<i-message id="message"></i-message>

@@ -5,6 +5,7 @@
     "i-icon": "/iview/icon/index",
     "i-cell": "/iview/cell/index",
     "i-cell-group": "/iview/cell-group/index",
-    "i-input-number": "/iview/input-number/index"
+    "i-input-number": "/iview/input-number/index",
+    "i-message": "/iview/message/index"
   }
 }

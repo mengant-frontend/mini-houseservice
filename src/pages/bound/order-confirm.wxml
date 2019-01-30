@@ -1,42 +1,42 @@
 <view class="page">
-    <view class="address">
+    <navigator class="address" url="/pages/bound/address?type=select">
         <view class="icon-container">
             <i-icon type="coordinates_fill" size="24" color="#4fcb9f"></i-icon>
         </view>
         <view class="desc">
             <view class="user">
                 <view class="name">
-                    <text>张三</text>
+                    <text>{{address.name}}</text>
                 </view>
                 <view class="phone">
-                    <text>18219112831</text>
+                    <text>{{address.phone}}</text>
                 </view>
             </view>
             <view class="addr ellipsis">
-                <text>广东省广州市越秀区东风东路水均岗1号505</text>
+                <text>{{address.province}}{{address.city}}{{address.area}}{{address.detail}}</text>
             </view>
         </view>
         <view class="icon-container">
             <i-icon type="enter" size="24" color="#ddd"></i-icon>
         </view>
-    </view>
+    </navigator>
 
     <view class="goods">
         <view class="goods-img">
-            <image src="/images/mi.jpg" class="goods-cover"></image>
+            <image src="{{detail.cover}}" class="goods-cover"></image>
         </view>
         <view class="goods-desc">
             <view class="goods-name">
-                <text>小米移动电源2C移动电源</text>
+                <text>{{detail.name}}</text>
             </view>
             <view class="price">
-                <text>￥120.00</text>
+                <text>￥{{detail.money || 0}}</text>
             </view>
             <view class="bound">
-                <text>19999积分</text>
+                <text>{{detail.score || 0}}积分</text>
             </view>
             <view class="num">
-                <text>x1</text>
+                <text>x{{sell_num}}</text>
             </view>
         </view>
     </view>
@@ -45,7 +45,7 @@
         <i-cell-group>
             <i-cell title="选择数量">
                 <view slot="footer">
-                    <i-input-number></i-input-number>
+                    <i-input-number value="{{sell_num}}" min="1" bindchange="updateSellNum"></i-input-number>
                 </view>
             </i-cell>
             <i-cell title="配送方式">
@@ -61,11 +61,13 @@
         <view class="confirm-container">
             <view class="total">
                 <text>合计: </text>
-                <text class="bound">19999积分</text>
+                <text class="bound">{{ total_bound || 0 }}积分</text>
             </view>
-            <view class="btn">
+            <view class="btn" bindtap="confirmOrder">
                 <text>提交订单</text>
             </view>
         </view>
     </view>
 </view>
+
+<i-message id="message"></i-message>
