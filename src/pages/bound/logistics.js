@@ -17,7 +17,7 @@ Page({
 	async getDetail(){
 		let { express_code, express_no } = this.data
 		if(!express_code){
-			app._error('无效订单号')
+			app._error('无效物流单号')
 			return
 		}
 		if(!express_no){

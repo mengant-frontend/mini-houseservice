@@ -12,7 +12,11 @@ Page({
     list: []
   },
 
-  async onLoad() {
+  async onLoad(query) {
+    let { code } = query
+		if(code){
+			app.bindUser()
+		}
     wx.showNavigationBarLoading()
     await app.asyncApi(wx.setNavigationBarTitle, {
       title: '登录中...'
@@ -21,9 +25,7 @@ Page({
       url: this.data.api_url.get_guid_img
     })
     wx.hideNavigationBarLoading()
-
     if (!res.success) {
-      // this.comeInto()
       return
     }
     let last_modified_local

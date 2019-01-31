@@ -6,6 +6,7 @@ const babel = require('gulp-babel')
 const plumber = require('gulp-plumber')
 const rename = require('gulp-rename')
 const imagemin = require('gulp-imagemin')
+const uglify = require('gulp-uglify');
 //脚本
 const script_src = [
   './src/**/*.js'
@@ -15,6 +16,7 @@ function script(cb) {
     .pipe(plumber())
     .pipe(babel())
     .pipe(plumber.stop())
+    .pipe(uglify())
     .pipe(dest('dist'))
 }
 //样式

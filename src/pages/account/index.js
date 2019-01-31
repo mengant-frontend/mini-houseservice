@@ -7,11 +7,14 @@ Page({
 		// 客服电话
 		customer: '',
 		// 监督电话
-		supervise: ''
+		supervise: '',
+		show_input_invite: false,
+		loading: false
   },
   onLoad() {
     this.loadData()
 		this.loadPhone()
+		this.checkBindUser()
   },
   onPullDownRefresh() {
     wx.stopPullDownRefresh()
@@ -19,13 +22,36 @@ Page({
   onShow() {
     this.loadData()
   },
+	async checkBindUser(){
+  	let res = await app.checkBindUser()
+		if(!res.success){
+			app._error(res.msg)
+			return
+		}
+		let show_input_invite = true
+		if(res.data.bind == 1){
+			show_input_invite = false
+		}
+		this.setData({
+			show_input_invite: show_input_invite
+		})
+	},
   async loadData() {
     let shop_id = app.global_data.shop_id
     this.checkHasShop(shop_id)
     await app.asyncApi(wx.showNavigationBarLoading)
+		if(this.data.loading){
+			return
+		}
+		this.setData({
+			loading: true
+		})
     let server_res = await app.get({
       url: '/api/v1/center/info'
     })
+		this.setData({
+			loading: false
+		})
     await app.asyncApi(wx.hideNavigationBarLoading)
     let { success, msg, data } = server_res
     if (!success) {

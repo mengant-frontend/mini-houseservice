@@ -1,5 +1,5 @@
 import regeneratorRuntime from './lib/runtime'
-import QQMapSdk from './lib/qqmap-wx-jssdk'
+import QQMapSdk from './lib/qqmap-wx-jssdk.min'
 import { $Message, $Toast } from './iview/base/index'
 import { domain } from './common/constant'
 
@@ -68,6 +68,7 @@ App({
     this.global_data.token = data.token
     this.global_data.shop_id = data.shop_id
     this.global_data.red_money = data.red_money
+		this.global_data.code = data.code
     // 获取用户信息
     if (!this.global_data.user_info) {
       await this.getUserInfo(Number(data.type))
@@ -410,6 +411,7 @@ App({
     return { success, location }
   },
   global_data: {
+  	code: '', //邀请码
     token: '',
     shop_id: 0, // 0 代表是普通用户，大于 0 的都是商家
     village: 0, // 1 代表用户是小区管理员
@@ -454,5 +456,35 @@ App({
       ret.need = Number(data.need)
     }
     return ret
-  }
+  },
+	//check绑定关系
+	async checkBindUser(){
+  	let res = await this.get({
+			url: '/api/v1/user/bind/check'
+		})
+		return res
+	},
+	//绑定好友邀请关系
+	async bindUser(code){
+  	if(!code){
+  		return
+		}
+		let res = await this.checkBindUser()
+		if(!res.success){
+			return res
+		}
+		if(res.data.bind == 1){
+			return {
+				success: false,
+				msg: '已绑定邀请人，不能再次绑定'
+			}
+		}
+  	res = await this.post({
+			url: '/api/v1/user/bind',
+			data: {
+				code: code
+			}
+		})
+		return res
+	}
 })

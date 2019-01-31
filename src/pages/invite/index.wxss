@@ -65,11 +65,22 @@ page{
 .form-item{
     display: flex;
     flex-direction: row;
+    align-items: center;
+    padding: 10rpx 30rpx;
+    margin: 0 30rpx 50rpx;
+    background-color: #fff;
 }
 .label{
     font-size: 26rpx;
     color: #F19233;
+    margin-right: 20rpx;
+    width: 120rpx;
 }
 .input{
+
+}
+.input-container .btn{
+    background-color: #F19539;
+    color: #fff;
 
 }

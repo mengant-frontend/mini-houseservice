@@ -2,5 +2,8 @@
   "navigationBarTitleText": "邀请好友",
   "enablePullDownRefresh": false,
   "navigationBarBackgroundColor": "#fef0c9",
-  "navigationBarTextStyle": "black"
+  "navigationBarTextStyle": "black",
+  "usingComponents":{
+    "i-message": "/iview/message/index"
+  }
 }

@@ -129,7 +129,7 @@ Page({
 		wx_res = await app.asyncApi(wx.showModal, {
 			title: '订单错误提示',
 			content: '积分不足',
-			cancelText: '返回上一页',
+			cancelText: '返回上页',
 			confirmText: '去充值'
 		})
 		if(wx_res.success && wx_res.confirm){

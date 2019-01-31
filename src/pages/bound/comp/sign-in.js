@@ -60,7 +60,7 @@ Component({
         score = this.data.score
       this.setData({
         sign_in: true,
-        score: parseFloat(score) + parseFloat(data)
+        score: parseFloat(score) + parseFloat(data.score)
       })
     }
   }

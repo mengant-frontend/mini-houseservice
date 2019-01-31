@@ -123,6 +123,10 @@ Page({
       app._error('不可超过可提现金额')
       return
     }
+    app.showLoading({
+      title: '提交中...',
+      mask: true
+    })
     let server_res = await app.post({
       url: '/api/v1/withdraw/apply',
       data: {
@@ -130,6 +134,7 @@ Page({
         money: money
       }
     })
+    wx.hideLoading()
     let { success, msg } = server_res
     if (!success) {
       app._error(msg)

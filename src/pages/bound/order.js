@@ -39,7 +39,7 @@ Page({
 			app._error(res.msg)
 			return
 		}
-		let { address, goods, count, score, send_time, create_time, code_number, express_info =  [], express_code, express_no, status, comment_id } = res.data
+		let { address, goods, count, score, send_time, create_time,receive_time, code_number, express_info =  [], express_code, express_no, status, comment_id } = res.data
 		let logistic_detail = {},
 			user_detail = Object.assign({}, address),
 			goods_detail = Object.assign({}, goods, {
@@ -50,6 +50,7 @@ Page({
 				code_number: code_number, //订单编号
 				create_time: create_time, //创建时间
 				send_time: send_time, //发货时间
+				receive_time: receive_time
 			})
 		let express = express_info[0] || { data: [] }
 		logistic_detail = Object.assign({}, {

@@ -3,23 +3,23 @@
         <scroll-loading bg-color='#EFEFF4' wx:for='{{tabs_list}}' wx:key='id' slot='{{item.id}}' if-no-more='{{item.if_no_more}}' if-loading='{{item.loading}}' bind:scrolltolower='reachBottom'>
             <view class="list">
                 <view class="item" wx:for="{{item.list}}" wx:for-item="itm" wx:for-index="idx">
-                    <view class="img-container">
+                    <navigator class="img-container" url="{{'/pages/bound/order?id=' + itm.id}}">
                         <image src="{{itm.cover}}" class="img"></image>
-                    </view>
+                    </navigator>
                     <view class="desc">
-                        <view class="title ellipsis">
+                        <navigator class="title ellipsis" url="{{'/pages/bound/order?id=' + itm.id}}">
                             <text>{{itm.goods_name}}</text>
-                        </view>
-                        <view class="bound">
+                        </navigator>
+                        <navigator class="bound" url="{{'/pages/bound/order?id=' + itm.id}}">
                             <text>{{itm.score || 0}}积分</text>
-                        </view>
+                        </navigator>
                         <view class="operator">
                             <view class="operator-left">
                                 <text>x{{itm.count}}</text>
                             </view>
                             <view class="operator-right">
                                 <block wx:if="{{itm.status === 2}}">
-                                    <navigator class="btn common" url="{{'/pages/bound/logistics?id=' + itm.id}}">
+                                    <navigator class="btn common" url="{{'/pages/bound/logistics?express_code=' + itm.express_code + '&express_no=' + itm.express_no}}">
                                         <text>查看物流</text>
                                     </navigator>
                                     <navigator class="btn primary" url="{{'/pages/bound/order?id=' + itm.id}}">
