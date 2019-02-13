@@ -58,10 +58,12 @@ Page({
 			app._error(res.msg)
 			return
 		}
-		wx.showToast({
-			title: '成功',
-			mask: true,
+		res = await app.asyncApi(wx.showModal, {
+			title: '绑定成功',
+			content: '本次获得' + res.data.score + '积分',
+			showCancel: false
 		})
+		if()
 		await app.sleep()
 		wx.navigateBack({
 			delta: 1

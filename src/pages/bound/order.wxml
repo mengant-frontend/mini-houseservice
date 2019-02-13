@@ -94,6 +94,14 @@
         </view>
     </view>
 
+    <view class="order-detail" wx:if="{{comment_list.length}}">
+        <view class="order-title">
+            <text class="order-title-text">宝贝评价</text>
+        </view>
+        <view class="comment-container">
+            <comment-list list='{{comment_list}}'></comment-list>
+        </view>
+    </view>
     <view class="bottom-element" wx:if="{{status === 2 || (status === 3 && comment_id <= 0)}}">
         <view class="btn"  bindtap="ensure">
             <text>{{status === 3 ? '评价' : '确认收货'}}</text>

@@ -147,5 +147,55 @@ page{
     font-size: 28rpx;
     height: 100rpx;
     line-height: 100rpx;
-
+}
+.comment-container{
+    padding: 30rpx;
+    background-color: #fff;
+}
+.title-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.comment-title{
+    flex-grow: 1;
+    flex-shrink: 1;
+    font-size: 24rpx;
+    color: #4a4a4a;
+}
+.user{
+    padding: 20rpx 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.avatar-container{
+    border: 1rpx solid #ddd;
+    border-radius: 40rpx;
+    width: 40rpx;
+    height: 40rpx;
+    overflow: hidden;
+}
+.avatar{
+    width: 100%;
+    height: 100%;
+}
+.name{
+    margin-left: 20rpx;
+    font-size: 20rpx;
+    color: #898989;
+}
+.comment-line{
+    line-height: 1;
+    height: 56rpx;
+    overflow: hidden;
+}
+.comment{
+    font-size: 24rpx;
+    color: #1f1f1f;
+    line-height: 28rpx;
+}
+.comment-container{
+    width: 750rpx;
+    margin-left: -60rpx;
 }

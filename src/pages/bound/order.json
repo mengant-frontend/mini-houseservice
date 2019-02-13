@@ -2,6 +2,7 @@
   "navigationBarTitleText": "订单详情",
   "enablePullDownRefresh": false,
   "usingComponents": {
-    "i-icon": "/iview/icon/index"
+    "i-icon": "/iview/icon/index",
+    "comment-list": "/components/comment-list/index"
   }
 }

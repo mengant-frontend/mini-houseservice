@@ -41,7 +41,7 @@
                 <text>查看全部 ></text>
             </navigator>
         </view>
-        <view class="user" wx:if="comment.id">
+        <view class="user" wx:if="{{comment.id}}">
             <view class="avatar-container">
                 <image src="{{comment.avatarUrl}}" class="avatar"></image>
             </view>

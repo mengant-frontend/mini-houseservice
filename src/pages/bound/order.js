@@ -8,7 +8,8 @@ Page({
 		goods_detail: {},
 		order_detail: {},
 		loading: false,
-		status: 1
+		status: 1,
+		comment_list: []
 	},
 	onLoad(query){
 		let id = query.id
@@ -39,7 +40,7 @@ Page({
 			app._error(res.msg)
 			return
 		}
-		let { address, goods, count, score, send_time, create_time,receive_time, code_number, express_info =  [], express_code, express_no, status, comment_id } = res.data
+		let { comment, user = {}, address, goods, count, score, send_time, create_time,receive_time, code_number, express_info =  [], express_code, express_no, status, comment_id } = res.data
 		let logistic_detail = {},
 			user_detail = Object.assign({}, address),
 			goods_detail = Object.assign({}, goods, {
@@ -51,7 +52,8 @@ Page({
 				create_time: create_time, //创建时间
 				send_time: send_time, //发货时间
 				receive_time: receive_time
-			})
+			}),
+			comment_list = []
 		let express = express_info[0] || { data: [] }
 		logistic_detail = Object.assign({}, {
 			express_no: express_no,
@@ -59,13 +61,28 @@ Page({
 			brand: express.brand,
 			detail: express.data[0] || {}
 		})
+		if(comment && comment.id){
+			comment_list = [comment].map(c => {
+				return {
+					avatar_url: user.avatarUrl,
+					nick_name: user.nickName ,
+					date: c.create_time,
+					content: c.content,
+					imgs: c.imgs.map(img => {
+						let img_url = img.img_url || {}
+						return img_url.url
+					})
+				}
+			})
+		}
 		this.setData({
 			logistic_detail,
 			user_detail,
 			goods_detail,
 			order_detail,
 			status: status,
-			comment_id: comment_id
+			comment_id: comment_id,
+			comment_list
 		})
 	},
 	async ensure(){

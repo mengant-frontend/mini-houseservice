@@ -8,6 +8,10 @@
 .img-style {
   border-radius: 50%;
   margin-top: 10rpx;
+  border: 1px solid #dddddd;
+  width: 100% !important;
+  height: 100% !important;
+
 }
 .content-bar {
   margin-left: 20rpx;
@@ -69,10 +73,12 @@
   flex-wrap: wrap;
   padding: 10rpx 0;
   margin-bottom: -40rpx;
+
 }
 .img__comment{
   margin-right: 20rpx;
   margin-bottom: 20rpx;
+  border: 1px solid #ddd;
 }
 .score-type{
   margin-top: 10rpx;
