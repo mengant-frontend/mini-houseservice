@@ -1,0 +1,51 @@
+page {
+  /* 给 scroll-loading 组件继承高度 */
+  height: 100%;
+}
+.message-list {
+  margin-bottom: 20rpx;
+}
+.message-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 30rpx;
+  background-color: #fff;
+  border-bottom: 1rpx solid #F3F3F3;
+}
+.message-item .left {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+.message-item .right {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+.shop-name {
+  font-size: 33rpx;
+  color: #2d2d2d;
+  letter-spacing: 2px;
+}
+.comment-count {
+  margin-right: 30rpx;
+}
+.location__text {
+  margin-left: 30rpx;
+}
+.phone {
+  padding-left: 30rpx;
+  border-left: 1rpx solid #dcdcdc;
+}
+.icon-phone {
+  width: 39rpx;
+  height: 39rpx;
+}
+.card {
+  background-color: #fff;
+}
+.card-title {
+  padding: 35rpx 30rpx;
+  font-size: 29rpx;
+  color: #2d2d2d;
+  letter-spacing: 0px;
+}

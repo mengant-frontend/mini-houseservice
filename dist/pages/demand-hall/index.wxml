@@ -1,0 +1,25 @@
+<tabs-swiper-page tabs-list='{{tabs_list}}' bind:swiperChange='swiperChange'>
+  <scroll-loading wx:for='{{tabs_list}}' wx:key='id' slot='{{item.id}}' if-no-more='{{item.if_no_more}}' if-loading='{{if_loading}}' bind:scrolltolower='getDemandList'>
+    <view>
+      <view class='item' wx:for='{{item.demand_list}}' wx:key='demand_id' wx:for-item='t'>
+        <navigator url='/pages/command-detail/index?id={{t.demand_id}}&grade={{item.grade}}' class='title'>{{t.title}}</navigator>
+        <view class='info'>
+          <view class='money-location'>
+            <text>酬金：<text class='money'>{{t.money}} 元</text></text>
+            <view class='location'>
+              <i-icon class='location-icon' type='coordinates' size='16' color='#657180'></i-icon>
+              <text>{{t.area}} {{t.distance}}km</text>
+            </view>
+          </view>
+          <f-form-id bind:submit='takeOrder' index='{{index}}'>
+            <view class='btn' wx:if='{{shop_id>0}}'>接单</view>
+          </f-form-id>
+        </view>
+      </view>
+    </view>
+  </scroll-loading>
+</tabs-swiper-page>
+
+<fixed-element show-command='{{shop_id <= 0}}' background-color='#fff'></fixed-element>
+
+<i-message id='message'></i-message>

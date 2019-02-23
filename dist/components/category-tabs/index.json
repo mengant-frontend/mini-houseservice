@@ -1,0 +1,8 @@
+{
+	"component": true,
+	"usingComponents": {
+		"i-icon": "/iview/icon/index",
+		
+		"service-list": "/components/service/index"
+	}
+}

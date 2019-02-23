@@ -1,0 +1,145 @@
+page {
+  background-color: #f8f8f8;
+  padding-bottom: 100rpx;
+  box-sizing: border-box;
+}
+.logistics,
+.address {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 30rpx 30rpx 50rpx;
+  border-bottom: 1rpx solid #ddd;
+  background-color: #fff;
+}
+.address {
+  padding-bottom: 30rpx;
+}
+.icon-container {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+.desc {
+  flex-grow: 1;
+  flex-shrink: 1;
+  margin: 0 15rpx;
+  position: relative;
+}
+.detail {
+  font-size: 24rpx;
+  color: #343434;
+  height: 66rpx;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  text-overflow: ellipsis;
+}
+.date {
+  position: absolute;
+  left: 0;
+  bottom: -30rpx;
+  font-size: 18rpx;
+  color: #a9a9a9;
+}
+.user {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.name {
+  font-size: 24rpx;
+  color: #343434;
+}
+.phone {
+  font-size: 20rpx;
+  color: #a9a9a9;
+  margin-left: 30rpx;
+}
+.goods {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 50rpx;
+  margin-top: 30rpx;
+  background-color: #fff;
+}
+.goods-cover {
+  width: 150rpx;
+  height: 150rpx;
+}
+.goods-desc {
+  flex-shrink: 1;
+  flex-grow: 1;
+  margin-left: 20rpx;
+}
+.goods-name {
+  font-size: 28rpx;
+  color: #000;
+}
+.price {
+  font-size: 24rpx;
+  color: #a9a9a9;
+  margin-top: 5rpx;
+}
+.bound {
+  font-size: 24rpx;
+  color: #f08e33;
+  margin-top: 10rpx;
+}
+.num {
+  text-align: right;
+  font-size: 22rpx;
+  color: #a9a9a9;
+}
+.order-detail {
+  margin-top: 30rpx;
+  padding: 30rpx 50rpx;
+  background-color: #fff;
+}
+.order-title {
+  font-size: 24rpx;
+  color: #161616;
+  position: relative;
+}
+.order-title-text {
+  position: relative;
+}
+.order-title-text::before {
+  content: ' ';
+  position: absolute;
+  left: -15rpx;
+  top: 0;
+  height: 100%;
+  width: 5rpx;
+  background-color: #f08e33;
+}
+.order-desc {
+  padding-top: 20rpx;
+  margin-bottom: -20rpx;
+}
+.desc-item {
+  display: flex;
+  flex-direction: row;
+  font-size: 20rpx;
+  color: #4a4a4a;
+  margin-bottom: 20rpx;
+}
+.item-desc {
+  margin-left: 20rpx;
+}
+.bottom-element {
+  position: fixed;
+  width: 100%;
+  height: 100rpx;
+  left: 0;
+  bottom: 0;
+  background-color: #fff;
+}
+.btn {
+  background-color: #4fcb9f;
+  color: #fff;
+  text-align: center;
+  font-size: 28rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+}

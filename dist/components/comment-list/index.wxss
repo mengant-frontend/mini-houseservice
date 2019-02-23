@@ -1,0 +1,82 @@
+.container {
+  padding: 25rpx 30rpx;
+  display: flex;
+  border-bottom: 1rpx solid #F3F3F3;
+  /* margin-bottom: 20rpx; */
+}
+/* 为 fit-img 组件设置更多样式 */
+.img-style {
+  border-radius: 50%;
+  margin-top: 10rpx;
+  border: 1px solid #dddddd;
+  width: 100% !important;
+  height: 100% !important;
+}
+.content-bar {
+  margin-left: 20rpx;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+.info {
+  /* 和头像同高 */
+  height: 72rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+/* 昵称、时间、回复按钮、点赞数应该继承正文样式 */
+.name-date {
+  flex-grow: 1;
+  display: flex;
+  /* justify-content: flex-start; */
+  flex-direction: column;
+}
+.user-name {
+  font-size: 29rpx;
+  color: #2d2d2d;
+  margin-bottom: 20rpx;
+}
+.date {
+  color: #a3a7aa;
+  font-size: 24rpx;
+}
+.reply-likes {
+  display: flex;
+  align-items: center;
+}
+.reply {
+  margin-right: 30rpx;
+  /* iview 推荐 warning 辅助色 */
+  color: #ff9900;
+}
+.content,
+.comment-someone {
+  /* iview 推荐次级标题样式 */
+  font-size: 29rpx;
+  font-weight: bold;
+  color: #2d2d2d;
+}
+.comment-someone {
+  background: #fff;
+  margin-top: 20rpx;
+  padding: 20rpx;
+}
+.someone-content {
+  opacity: 0.5;
+}
+.comment_img {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 10rpx 0;
+  margin-bottom: -40rpx;
+}
+.img__comment {
+  margin-right: 20rpx;
+  margin-bottom: 20rpx;
+  border: 1px solid #ddd;
+}
+.score-type {
+  margin-top: 10rpx;
+}

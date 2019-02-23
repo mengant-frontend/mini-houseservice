@@ -1,0 +1,25 @@
+<view class="page">
+    <view class="container">
+        <view class="title">
+            <text>选择金额</text>
+        </view>
+        <view class="list">
+            <view class="item {{selected_item.id === item.id ? 'active' : ''}}" wx:for="{{list}}" bindtap="select" data-index="{{index}}">
+                <view class="price-container">
+                    <view class="price">
+                        <text>￥{{item.money || 0}}</text>
+                    </view>
+                    <view class="bound">
+                        <text>={{item.score || 0}}积分</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="btn-container">
+            <view class="btn" bindtap="ensure">
+                <text>立即购买</text>
+            </view>
+        </view>
+    </view>
+</view>
+<i-message id="message"></i-message>

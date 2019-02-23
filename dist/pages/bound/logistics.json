@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "物流信息",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "i-steps": "/iview/steps/index",
+    "i-step": "/iview/step/index",
+    "i-message": "/iview/message/index"
+  }
+}

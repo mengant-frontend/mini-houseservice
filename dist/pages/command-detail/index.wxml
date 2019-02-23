@@ -1,0 +1,67 @@
+<view class="page">
+  <view class="container">
+    <view class="container-title ellipsis">
+      <text>{{detail.des}}</text>
+    </view>
+    <view class="table">
+      <view class="tbody">
+        <view class="table-row">
+          <view class="table-cell title">
+            <text>酬金</text>
+          </view>
+          <view class="table-cell content">
+            <text>￥{{detail.origin_money}}</text>
+          </view>
+        </view>
+        <view class="table-row">
+          <view class="table-cell title">
+            <text>发布人</text>
+          </view>
+          <view class="table-cell content">
+            <text>{{detail.name}}</text>
+          </view>
+        </view>
+        <view class="table-row">
+          <view class="table-cell title">
+            <text>联系电话</text>
+          </view>
+          <view class="table-cell content">
+            <text>{{detail.phone}}</text>
+          </view>
+        </view>
+        <view class="table-row">
+          <view class="table-cell title">
+            <text>服务时间</text>
+          </view>
+          <view class="table-cell content">
+            <text>{{detail.time_begin}} ~ {{detail.time_end}}</text>
+          </view>
+        </view>
+        <view class="table-row">
+          <view class="table-cell title">
+            <text>服务地址</text>
+          </view>
+          <view class="table-cell content">
+            <text>{{detail.province}}{{detail.city}}{{detail.area}}{{detail.address}}</text>
+          </view>
+        </view>
+        <view class="table-row">
+          <view class="table-cell title">
+            <text>相关照片</text>
+          </view>
+          <view class="table-cell content">
+            <view class="container__img">
+                <f2-photo add='{{false}}' list='{{detail.imgs}}' can-tap='{{false}}'></f2-photo>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="fixed" wx:if="{{ show_handle_bar }}">
+    <i-button wx:if='{{has_shop}}' type='primary' bind:click='getIt'>接单</i-button>
+    <i-button wx:elif="{{detail.cancel == 1 }}" type='primary' bind:click='cancelOrder'>取消订单</i-button>
+  </view>
+  <i-message id='message'></i-message>
+</view>

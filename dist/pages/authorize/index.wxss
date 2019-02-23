@@ -1,0 +1,36 @@
+/* 覆盖基础组件原样式 start */
+button {
+  padding: 0;
+  margin: 0;
+  border-radius: 0;
+  background-color: #fff;
+  line-height: 1;
+}
+button::after {
+  border: none;
+}
+/* 覆盖基础组件原样式 end */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.img {
+  width: 250rpx;
+  height: 250rpx;
+  margin-top: 100rpx;
+}
+.title {
+  margin: 50rpx 100rpx 100rpx;
+  /* iview 推荐主标题样式 */
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #464c5b;
+}
+.btn {
+  background: #2d8cf0;
+  padding: 25rpx 50rpx;
+  color: #fff;
+  font-size: 28rpx;
+  border-radius: 8rpx;
+}

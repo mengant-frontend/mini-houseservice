@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "我的收藏",
+  "backgroundColor": "#EFEFF4",
+  "backgroundTextStyle": "light",
+  "usingComponents": {
+    "tabs-swiper-page": "/components/tabs-swiper-page/index",
+    "scroll-loading": "/components/scroll-loading/index",
+    "fit-img": "/components/fit-img/index"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "需求详情",
+	"enablePullDownRefresh": false,
+  "usingComponents": {
+    "i-message": "../../iview/message/index",
+    "i-button": "../../iview/button/index",
+		"f2-photo": "/components/f2-photo/index"
+  }
+}

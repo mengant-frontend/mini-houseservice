@@ -1,0 +1,19 @@
+<view class='modal'>
+  <view class='mask'></view>
+  <view class='outer'>
+    <view class='inner'>
+      <view class='body'>
+        <view class='bg'>
+          <image src='/images/red.png' class='bg-img' mode='widthFix' bindload='load'></image>
+        </view>
+        <view class='content' wx:if='{{load_end}}'>
+          <view class='title'>{{title}}</view>
+          <text>￥{{money}}</text>
+        </view>
+        <view class='close-container' wx:if='{{load_end}}'>
+          <i-icon type='delete' size='32' color='#fff' bindtap='close'></i-icon>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

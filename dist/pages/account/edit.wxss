@@ -1,0 +1,13 @@
+.page {
+  padding-bottom: 64px;
+}
+.avatar {
+  width: 100%;
+  text-align: right;
+}
+.avatar-right {
+  display: inline-block;
+}
+.avatar_cell {
+  padding: 0 12px;
+}

@@ -1,0 +1,40 @@
+.icon-container {
+  padding: 50rpx 0;
+  text-align: center;
+}
+.title {
+  text-align: center;
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #000;
+  padding-bottom: 20rpx;
+}
+.sub-desc {
+  font-size: 24rpx;
+  color: #4a4a4a;
+  text-align: center;
+  padding-bottom: 20rpx;
+}
+.score {
+  color: #4fcb9f;
+}
+.btn-container {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 30rpx;
+  margin-top: 50rpx;
+}
+.btn {
+  padding: 20rpx;
+  border-radius: 10rpx;
+  text-align: center;
+  font-size: 30rpx;
+}
+.btn.success {
+  border: 1px solid #4fcb9f;
+  color: #4fcb9f;
+}
+.btn.fail {
+  color: #f29432;
+  border: 1px solid #f29432;
+}

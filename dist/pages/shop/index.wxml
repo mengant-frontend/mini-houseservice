@@ -1,0 +1,48 @@
+<view class="page">
+  <view class="wrapper">
+    <view class="container">
+      <view class="main">
+        <view class="container__avatar">
+          <view class="avatar">
+            <view class="container__image">
+              <image src='{{detail.head_url}}' class="image"></image>
+            </view>
+          </view>
+        </view>
+        <view class="editor">
+          <i-icon bindtap='goToEdit' type='editor' i-class='icon__editor'></i-icon>
+        </view>
+        <view class="table info">
+          <view class="tbody">
+            <view class="table-row">
+              <view class="table-cell label">店铺名</view>
+              <view class="table-cell content">{{detail.name}}</view>
+            </view>
+            <view class="table-row">
+              <view class="table-cell label">电话</view>
+              <view class="table-cell content">{{detail.phone}}</view>
+            </view>
+            <view class="table-row">
+              <view class="table-cell label">所在地</view>
+              <view class="table-cell content">{{detail.province}}{{detail.city}}{{detail.area}}</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <i-cell-group>
+    <i-cell title='进入店铺' is-link url='/pages/store/index?id={{store_id}}'>
+      <i-icon slot='icon' type='shop_fill' size='20' color='#5cadff'></i-icon>
+    </i-cell>
+    <i-cell title='商家订单' is-link url='/pages/shop-orders/index'>
+      <i-icon slot='icon' type='flag_fill' size='20' color='#ed3f14'></i-icon>
+    </i-cell>
+    <i-cell title='需求服务' is-link url='/pages/shop-command/index'>
+      <i-icon slot='icon' type='service' size='20' color='#2b85e4'></i-icon>
+    </i-cell>
+    <i-cell title='我的服务' is-link url='/pages/service-my/index'>
+      <i-icon slot='icon' type='createtask_fill' size='20' color='#ff9900'></i-icon>
+    </i-cell>
+  </i-cell-group>
+</view>

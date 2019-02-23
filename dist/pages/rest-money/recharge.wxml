@@ -1,0 +1,22 @@
+<view class="page">
+  <view class="card">
+    <view class="container">
+      <view class="title">充值金额</view>
+      <view class="input__money">
+        <i-icon type='coupons' size='48' color='#ff9900'></i-icon>
+        <input class='input' type="digit" min="0" value='{{money}}' bindinput='updateMoney' placeholder='请输入充值金额'/>
+      </view>
+      <view class="tips">当前店铺保证金为￥{{balance || 0}}</view>
+      <view class="container__btn">
+        <i-button type='primary' bind:click='submit'>充值</i-button>
+      </view>
+    </view>
+
+    <view class='container__tips'>
+      <view class='title__tip'>温馨提示:</view>
+      <view class='content__tip'>当所接订单的酬金小于或者等于￥1000元时，店铺保证金需满足￥500元及以上;当所接订单的酬金大于￥1000时，店铺保证金需满足服务金额的50%。</view>
+    </view>
+  </view>
+
+  <i-message id='message'></i-message>
+</view>

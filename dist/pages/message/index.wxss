@@ -1,0 +1,149 @@
+/*
+  全屏宽
+*/
+/*
+  两侧空白
+*/
+/*
+  元素间隔
+*/
+/*
+  边框颜色
+*/
+/*
+  背景色
+*/
+/*
+  分割线
+*/
+/*
+  标题颜色
+*/
+/*
+  正文颜色
+*/
+/*
+  辅助文本颜色
+*/
+/*
+  disabled下颜色
+*/
+/*
+  底部button的bottom值
+*/
+/*
+  通用阴影
+*/
+page {
+  background-color: #f8f8f9;
+  width: 100%;
+  min-height: 100%;
+}
+.page {
+  padding: 20rpx 25rpx;
+}
+.list-item {
+  border-bottom: 1px solid #dddee1;
+  overflow: hidden;
+  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.05);
+  padding: 0 20rpx 20rpx;
+  margin-top: 25rpx;
+  background-color: #fff;
+  border-radius: 6px;
+}
+.list-item_0 {
+  margin-top: 0;
+}
+.title {
+  display: flex;
+  flex-direction: row;
+  color: #80848f;
+  padding: 12px 0;
+}
+.title-left {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+.title-right {
+  flex-shrink: 0;
+  flex-grow: 0;
+}
+.title-left,
+.title-right {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  height: 24px;
+  line-height: 24px;
+  font-size: 12px;
+  vertical-align: middle;
+}
+.title-icon {
+  width: 24px;
+  height: 24px;
+  float: left;
+}
+.title-text {
+  float: left;
+  margin-left: 6px;
+}
+.main {
+  overflow: hidden;
+}
+.message-desc {
+  font-size: 14px;
+  color: #1c2438;
+  padding-bottom: 8px;
+}
+.order {
+  display: flex;
+}
+.order-desc {
+  flex-shrink: 1;
+  flex-grow: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  display: flex;
+}
+.order-img {
+  width: 240rpx;
+  height: 160rpx;
+  vertical-align: text-bottom;
+  border-radius: 2px;
+}
+.order-text {
+  margin-left: 8px;
+  font-size: 16px;
+  color: #2d8cf0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.order-operate {
+  flex-grow: 0;
+  flex-shrink: 0;
+  align-self: flex-end;
+}
+.button-index--i-btn {
+  height: 26px !important;
+  line-height: 26px !important;
+  margin: 0 !important;
+}
+.center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 25rpx;
+}
+.order-price {
+  color: #ff9900;
+  font-size: 14px;
+}
+.order-name {
+  color: #1c2438;
+  font-size: 14px;
+}
+.delete-btn {
+  margin-bottom: 20rpx !important;
+}

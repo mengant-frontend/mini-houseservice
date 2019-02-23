@@ -1,0 +1,25 @@
+<tabs-swiper-page tabs-list='{{tabs_list}}' bind:swiperChange='intCommunityList'>
+  <scroll-loading wx:for='{{tabs_list}}' wx:key='id' slot='{{item.id}}' bg-color='#EFEFF4' if-no-more='{{item.if_no_more}}' if-loading='{{if_loading}}' bind:scrolltolower='getCommunityList'>
+    <standard-img-swiper data='{{item.top_5}}' titles='{{item.top_5_titles}}'></standard-img-swiper>
+		
+		<view class="list">
+			<navigator class='item' url='/pages/community-detail/index?id={{t.id}}' wx:key='id' wx:for-item='t' wx:for='{{item.list}}'>
+				<view class="left">
+					<view class="title">
+						<text>{{t.title}}</text>
+					</view>
+					<view class="date">
+						<text>{{t.date}}</text>
+					</view>
+					<view class="read">
+						<i-icon type='browse_fill' size='16' color='#acacac'></i-icon>
+						<text>{{t.view_num}}</text>
+					</view>
+				</view>
+				<view class="right">
+					<image class='img' src='{{t.img_url}}'></image>
+				</view>
+			</navigator>
+		</view>
+  </scroll-loading>
+</tabs-swiper-page>

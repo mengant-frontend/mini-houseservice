@@ -1,0 +1,18 @@
+<tabs-swiper-page tabs-list='{{tabs_list}}' bind:swiperChange='intServiceList'>
+  <view wx:for='{{tabs_list}}' wx:key='id' slot='{{item.id}}'>
+    <navigator class='item' wx:for='{{item.list}}' wx:key='id' wx:for-item='t' wx:for-index='i' url='/pages/service-detail/index?id={{t.id}}'>
+      <fit-img more-style='img-style' width='270' can-preview='{{false}}' src='{{t.img_url}}'></fit-img>
+      <view class='info'>
+        <text class='title'>{{t.title}}</text>
+        <view class='sales'>
+          <image class='icon-fire' mode='aspectFit' src='/images/fire.png' />
+          <text class='sales-text'>月销量 {{t.sales}}</text>
+        </view>
+      </view>
+      <image class='icon-medal' mode='aspectFit' src='/images/gold-medal.png' wx:if='{{i === 0}}' />
+      <image class='icon-medal' mode='aspectFit' src='/images/sliver-medal.png' wx:elif='{{i === 1}}' />
+      <image class='icon-medal' mode='aspectFit' src='/images/bronze-medal.png' wx:elif='{{i === 2}}' />
+      <text class='rank' wx:else>{{i+1}}</text>
+    </navigator>
+  </view>
+</tabs-swiper-page>

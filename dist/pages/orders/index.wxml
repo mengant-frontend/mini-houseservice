@@ -1,0 +1,7 @@
+<tabs-swiper-page tabs-list='{{tabs_list}}' bind:swiperChange='swiperChange'>
+  <scroll-loading bg-color='#EFEFF4' wx:for='{{tabs_list}}' wx:key='id' slot='{{item.id}}' if-no-more='{{item.if_no_more}}' if-loading='{{if_loading}}' bind:scrolltolower='getOrderList'>
+    
+		<c-list type='order' btns='{{item.btns}}' data='{{item.order_list}}' url='/pages/order-detail/index' params='{{params}}'></c-list>
+  </scroll-loading>
+</tabs-swiper-page>
+<fixed-element show-service='{{shop_id > 0}}' show-command='{{shop_id == 0}}'></fixed-element>

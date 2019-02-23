@@ -1,0 +1,134 @@
+/*
+  全屏宽
+*/
+/*
+  两侧空白
+*/
+/*
+  元素间隔
+*/
+/*
+  边框颜色
+*/
+/*
+  背景色
+*/
+/*
+  分割线
+*/
+/*
+  标题颜色
+*/
+/*
+  正文颜色
+*/
+/*
+  辅助文本颜色
+*/
+/*
+  disabled下颜色
+*/
+/*
+  底部button的bottom值
+*/
+/*
+  通用阴影
+*/
+.a-btn {
+  padding: 14rpx 20rpx;
+  font-size: 26rpx;
+  color: #fff;
+  letter-spacing: 1px;
+  line-height: 1.2;
+  min-width: 132rpx;
+}
+.a-btn.warning {
+  background-color: #f49940;
+}
+.a-btn.warning-ghost {
+  background-color: #fff;
+  color: #f49940;
+  border-color: #f49940;
+}
+page {
+  /* iview 推荐字体 */
+  font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+  /* iview 推荐正文样式 */
+  font-size: 24rpx;
+  color: #657180;
+}
+.f-btn {
+  line-height: 1;
+  font-size: 13px;
+  padding: 6px 12px;
+  color: #fff;
+}
+.f-btn-primary {
+  background-color: #19be6b;
+}
+.f-btn-error {
+  background-color: #ed3f14;
+}
+.btn-hover {
+  opacity: 0.9;
+}
+/*
+cover iview
+*/
+.cell-index--i-cell {
+  overflow: hidden !important;
+}
+.panel-index--i-panel-title {
+  padding-left: 25rpx !important;
+  padding-right: 25rpx !important;
+}
+.cell-index--i-cell-bd {
+  flex-shrink: 0 !important;
+  flex-grow: 0 !important;
+  flex: none !important;
+}
+.cell-index--i-cell-ft {
+  flex-grow: 1;
+  flex-shrink: 1;
+  overflow: hidden;
+  padding-left: 20rpx;
+  box-sizing: border-box;
+  min-height: 19px;
+}
+/*
+  模拟table
+*/
+.table {
+  display: table;
+  /* width: 100%; */
+}
+.table-body {
+  display: table-row-group;
+  /* width: 100%; */
+}
+.table-row {
+  display: table-row;
+}
+.table-cell {
+  display: table-cell;
+}
+.card {
+  margin-bottom: 25rpx;
+  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.05);
+}
+.fixed {
+  position: fixed;
+  width: 100%;
+  bottom: 10px;
+  left: 0;
+  padding: 0 25rpx;
+  box-sizing: border-box;
+}
+.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.navigator-hover {
+  background-color: #fff;
+}

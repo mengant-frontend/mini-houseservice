@@ -1,0 +1,33 @@
+<view class="page">
+  <i-panel>
+    <i-cell-group>
+      <i-cell title='店铺名称'>
+        <input slot='footer' data-form_key="name" bindchange='bindFormChange' placeholder="请输入"></input>
+      </i-cell>
+      <i-cell title='商家手机号'>
+        <input slot='footer' type='number' data-form_key="phone" bindchange='bindFormChange' placeholder="请输入手机号码"></input>
+      </i-cell>
+      <i-cell title='服务区域' i-class='i-cell'>
+        <picker slot='footer' mode='region' bindchange='bindFormChange' data-form_key="services_region" value='{{[form_data.province, form_data.city, form_data.area]}}'>
+          <view>
+            <text>{{form_data.province}}{{form_data.city}}{{form_data.area}}</text>
+            <i-icon type='enter'></i-icon>
+          </view>
+        </picker>
+      </i-cell>
+      <i-cell title='详细地址' value='{{form_data.address}}' only-tap-footer>
+        <view slot='footer' bindtap='chooseLocation'>
+          {{form_data.address ? form_data.address : '点击获取位置'}}
+          <i-icon type='enter'></i-icon>
+        </view>
+      </i-cell>
+      <i-cell title='商家简介'>
+        <textarea class="textarea" data-form_key="remark" bindchange='bindFormChange' placeholder="请输入商家简介"></textarea>
+      </i-cell>
+    </i-cell-group>
+  </i-panel>
+
+  <view class="container__btn">
+      <button type='primary'>确认</button>
+  </view>
+</view>

@@ -1,0 +1,18 @@
+{
+	"navigationBarTitleText": "入驻申请",
+  "usingComponents": {
+    "i-steps": "../../iview/steps/index",
+    "i-step": "../../iview/step/index",
+    "i-panel": "../../iview/panel/index",
+    "i-cell-group": "../../iview/cell-group/index",
+    "i-cell": "../../iview/cell/index",
+    "i-icon": "../../iview/icon/index",
+    "i-row": "../../iview/row/index",
+    "i-col": "../../iview/col/index",
+    "i-button": "../../iview/button/index",
+    "i-spin": "../../iview/spin/index",
+    "i-message": "../../iview/message/index",
+    "f-error": "../../components/f-error/index",
+    "f2-photo": "/components/f2-photo/index"
+  }
+}

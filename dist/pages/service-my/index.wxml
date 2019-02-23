@@ -1,0 +1,24 @@
+<view class="page">
+  <view class="list">
+    <view wx:for='{{list}}' class="item">
+      <navigator class="photo" url='/pages/service-detail/index?id={{item.id}}'>
+        <image src='{{item.cover}}'></image>
+      </navigator>
+      <view class="content">
+        <navigator url='/pages/service-detail/index?id={{item.id}}' class="title">{{item.name}}</navigator>
+        <view class="desc">
+          <view class="price">￥{{item.price}}</view>
+          <view class="operate">
+						<navigator class='edit' data-id='{{item.id}}' url='/pages/service-release/index?id={{item.id}}'>编辑</navigator>
+						<view class='delete' data-id='{{item.id}}' bindtap='deleteService'>删除</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <fixed-element show-service='{{true}}'></fixed-element>
+	
+  <i-message id='message'></i-message>
+  <i-load-more loading='{{bottom_loading}}' tip='{{bottom_loading ? "" : can_load_more ? "下拉获取更多": ""}}'></i-load-more>
+</view>

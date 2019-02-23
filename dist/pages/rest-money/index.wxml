@@ -1,0 +1,50 @@
+<view class="page">
+  <view class="container">
+    <view wx:if='{{has_shop}}' class="shoper">
+      <view class="left divider">
+        <view class="title">
+          <text>余额</text>
+        </view>
+        <view class="content">
+          <text>￥{{detail.business_balance || 0}}</text>
+        </view>
+      </view>
+      <view class="right">
+        <view class="title">
+          <text>保证金</text>
+        </view>
+        <view class="content">
+          <text>￥{{detail.bond_balance || 0}}</text>
+        </view>
+      </view>
+    </view>
+    <view wx:else class="user">
+      <view class="left text-left">
+        <view class="title">
+          <text>余额</text>
+        </view>
+        <view class="content">
+          <text>￥{{detail.balance || 0}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <i-panel i-class='gutter'>
+    <i-cell-group>
+      <i-cell title='提取余额' url='/pages/rest-money/withdraw?type=2&shop_id={{shop_id}}' is-link>
+      </i-cell>
+      <i-cell wx:if='{{has_shop}}' title='提取保证金' url='/pages/rest-money/withdraw?type=1&shop_id={{shop_id}}' is-link></i-cell>
+      <i-cell wx:if='{{has_shop}}' title='保证金充值' url='/pages/rest-money/recharge?type=1' is-link></i-cell>
+    </i-cell-group>
+  </i-panel>
+
+  <i-panel>
+    <i-cell-group>
+      <i-cell title='提现记录' is-link url='/pages/rest-money/withdraw-record'></i-cell>
+      <i-cell title='收支明细' is-link url='/pages/rest-money/common-record'></i-cell>
+    </i-cell-group>
+  </i-panel>
+
+  <view id='message'></view>
+</view>

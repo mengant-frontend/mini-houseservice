@@ -1,0 +1,54 @@
+<view class="page">
+  <i-panel title='店铺信息'>
+    <i-cell-group>
+			<i-cell title='店铺头像'>
+				<view slot='footer' class='f2-photo'>
+					<f2-photo type='avatar' shape='square' list='{{head_url_list}}' count='1'></f2-photo>
+				</view>
+			</i-cell>
+      <i-cell title='店铺名称'>
+        <input slot='footer' placeholder='请输入店铺名称' maxlength='10' value='{{form_data.name}}' data-form_key='name' bind:change='bindFormChange'></input>
+      </i-cell>
+      <i-cell title='商家手机号'>
+        <input slot='footer' type='number' placeholder='请输入店铺手机号' maxlength='11' value='{{form_data.phone}}' data-form_key='phone' bind:change='bindFormChange'></input>
+      </i-cell>
+      <i-cell title='服务区域'>
+        <picker slot='footer' mode='region' data-form_key='region' bind:change='bindFormChange' value='{{[form_data.province, form_data.city, form_data.area]}}'>
+          <view>
+            <text>{{form_data.province ? form_data.province + form_data.city + form_data.area : '请选择服务区域'}}</text>
+            <i-icon type='enter'></i-icon>
+          </view>
+        </picker>
+      </i-cell>
+      <i-cell title='商家地址'>
+        <view slot='footer' bindtap='chooseLocation' class='ellipsis'>
+          <text>{{form_data.address || '请选择商家地址'}}</text>
+          <i-icon type='enter'></i-icon>
+        </view>
+      </i-cell>
+      <i-cell title='商家简介'>
+        <view class="f-textarea">
+          <f-textarea maxLength='100' placeholder='请输入商家简介' value='{{form_data.des}}' data-form_key='des' bind:update='bindFormChange'></f-textarea>
+        </view>
+      </i-cell>
+    </i-cell-group>
+  </i-panel>
+
+	<i-panel title='编辑商家图片'>
+		<view class="f-photo">
+			<f2-photo count='5' url='/api/v1/shop/image/handel' params='{{delete_params}}' add='{{true}}' list='{{photo_list}}' shape='16-9' type='photo' bind:delete='confirmDelete'></f2-photo>
+		</view>
+	</i-panel>
+  <i-panel title='编辑员工头像'>
+    <view class="f-photo">
+			<!-- <f2-photo count='9' add='{{true}}' url='/api/v1/shop/staff/delete' params='{{staffs_delete_params}}' list='{{staffs_list}}' shape='square' bind:delete='staffsConfirmDelete'></f2-photo> -->
+      <f-photo count='9' add='{{false}}' bind:add='addstaffsAvatars' alaways_new='{{staffs}}' delete_url='/api/v1/shop/staff/delete' delete_params='{{["id", "face_token", "city"]}}' data-form_key='staffs' bind:update='bindFormChange'></f-photo>
+    </view>
+  </i-panel>
+
+  <view class="fixed">
+    <i-button type='primary' bind:click='modify' long>确认修改</i-button>
+  </view>
+
+  <i-message id='message'></i-message>
+</view>

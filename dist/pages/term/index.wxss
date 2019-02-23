@@ -1,0 +1,68 @@
+/*
+  全屏宽
+*/
+/*
+  两侧空白
+*/
+/*
+  元素间隔
+*/
+/*
+  边框颜色
+*/
+/*
+  背景色
+*/
+/*
+  分割线
+*/
+/*
+  标题颜色
+*/
+/*
+  正文颜色
+*/
+/*
+  辅助文本颜色
+*/
+/*
+  disabled下颜色
+*/
+/*
+  底部button的bottom值
+*/
+/*
+  通用阴影
+*/
+page {
+  width: 100%;
+  height: 100%;
+  background-color: #f8f8f9;
+  padding: 0 25rpx;
+  box-sizing: border-box;
+}
+.page {
+  width: 100%;
+  min-height: 100%;
+  padding: 20rpx 10rpx 64px;
+  box-sizing: border-box;
+  margin-bottom: 0 !important;
+  background-color: #fff;
+}
+.flex-btn {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+.container__btn {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+.checkbox {
+  font-size: 12px;
+  color: #80848f;
+}
+.strong {
+  font-size: 13px;
+  color: #1c2438;
+}

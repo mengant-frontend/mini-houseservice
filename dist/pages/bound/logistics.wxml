@@ -1,0 +1,16 @@
+<view class="page">
+    <view class="steps">
+        <i-steps direction="vertical">
+            <i-step wx:for="{{detail.data}}">
+                <view slot="title">
+                    {{item.context}}
+                </view>
+                <view slot="content">
+                    {{item.time}}
+                </view>
+            </i-step>
+        </i-steps>
+    </view>
+</view>
+
+<i-message id="message"></i-message>

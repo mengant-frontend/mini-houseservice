@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "订单评价",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "i-rate": "../../iview/rate/index",
+    "i-button": "../../iview/button/index",
+    "i-message": "../../iview/message/index",
+    "f-textarea": "../../components/f-textarea/index",
+    "f2-photo": "../../components/f2-photo/index"
+  }
+}

@@ -1,0 +1,67 @@
+.a-btn {
+  padding: 14rpx 20rpx;
+  font-size: 26rpx;
+  color: #fff;
+  letter-spacing: 1px;
+  line-height: 1.2;
+  min-width: 132rpx;
+}
+.a-btn.warning {
+  background-color: #f49940;
+}
+.a-btn.warning-ghost {
+  background-color: #fff;
+  color: #f49940;
+  border-color: #f49940;
+}
+.service-list {
+  background-color: #F3F3F3;
+}
+.service-item {
+  padding: 30rpx;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  background-color: #fff;
+  margin-bottom: 20rpx;
+}
+.cover {
+  width: 302rpx;
+  height: 182rpx;
+}
+.cover-img {
+  width: 100%;
+  height: 100%;
+}
+.desc {
+  margin-left: 20rpx;
+  flex-grow: 1;
+  flex-shrink: 1;
+  height: 182rpx;
+  display: flex;
+  flex-direction: column;
+}
+.desc-title {
+  font-size: 28rpx;
+  color: #2d2d2d;
+  font-weight: 600;
+  padding-bottom: 25rpx;
+}
+.desc-sales {
+  flex-grow: 1;
+  flex-shrink: 1;
+  font-size: 20rpx;
+  color: #949495;
+  font-family: MicrosoftYaHei;
+}
+.book {
+  flex-shrink: 0;
+  flex-grow: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.price {
+  color: #ef9547;
+}

@@ -1,0 +1,27 @@
+<view class="service-list">
+	<navigator class="service-item" wx:for='{{list}}' wx:key='id' url='{{item.url}}'>
+		<view class="cover">
+			<image class='cover-img' src='{{item.img_url}}'></image>
+		</view>
+		<view class="desc">
+			<view class="desc-title">
+				<text>{{item.title}}</text>
+			</view>
+			<view class="desc-sales">
+				<text wx:if='{{type == "shop"}}'>已售 {{item.sales}}</text>
+				<text wx:elif='{{type == "order"}}'>
+					服务时间: {{item.date}}
+				</text>
+			</view>
+			<view class="book">
+				<text wx:if='{{type == "shop"}}'>￥{{item.money}}/{{item.unit}}</text>
+				<text wx:elif='type == "order"' class='price'>
+					￥{{item.update_money ? item.update_money : item.origin_money}}
+				</text>
+				<view>
+					<button wx:for='{{btns}}' wx:for-item='t' class="a-btn {{t.type}}">{{t.value}}</button>
+				</view>
+			</view>
+		</view>
+	</navigator>
+</view>

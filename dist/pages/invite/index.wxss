@@ -1,0 +1,81 @@
+page {
+  width: 100%;
+  height: 100%;
+  background-color: #fef0c9;
+}
+.page {
+  width: 100%;
+  height: 100%;
+  padding: 0 30rpx;
+  box-sizing: border-box;
+}
+.container {
+  width: 100%;
+  height: 100%;
+  background-color: #ffbc5a;
+}
+.bg {
+  width: 100%;
+}
+.tips {
+  padding-top: 50rpx;
+}
+.line {
+  text-align: center;
+  margin-bottom: 20rpx;
+  font-size: 24rpx;
+  color: #fff;
+}
+.code-container {
+  padding: 50rpx 0 75rpx;
+}
+.code {
+  font-size: 40rpx;
+  font-weight: 600;
+  color: #fff;
+  text-align: center;
+}
+.tip-code-container {
+  padding: 75rpx 30rpx 50rpx;
+}
+.code-line {
+  border-bottom: 1px solid #fff;
+  padding-bottom: 30rpx;
+}
+.btn-container {
+  padding: 0 50rpx 20rpx;
+}
+.btn {
+  font-size: 30rpx;
+  color: #F29432;
+  border-radius: 30rpx;
+}
+.desc {
+  font-size: 22rpx;
+  color: #fff;
+  text-align: center;
+}
+.login-container {
+  padding-top: 50rpx;
+}
+.input-container {
+  padding: 0 30rpx;
+}
+.form-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10rpx 30rpx;
+  margin: 0 30rpx 50rpx;
+  background-color: #fff;
+}
+.label {
+  font-size: 26rpx;
+  color: #F19233;
+  margin-right: 20rpx;
+  width: 120rpx;
+}
+.input-container .btn {
+  background-color: #F19539;
+  color: #fff;
+}

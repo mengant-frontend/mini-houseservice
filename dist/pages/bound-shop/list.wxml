@@ -1,0 +1,31 @@
+<view class="page">
+    <view class="list">
+        <view class="item" wx:for="{{list}}">
+            <view class="item-img">
+                <image src="{{item.cover}}" class="img"></image>
+            </view>
+            <view class="item-desc">
+                <view class="title ellipsis">
+                    <text>{{item.name}}</text>
+                </view>
+                <view class="item-sub">
+                    <view class="sub-left">
+                        <view class="price">
+                            <text>￥{{item.money || 0}}</text>
+                        </view>
+                        <view class="bound">
+                            <text>{{item.score || 0}}积分</text>
+                        </view>
+                    </view>
+                    <view class="sub-right">
+                        <view class="btn" bindtap="goToDetail" data-id="{{item.id}}">
+                            <text>马上兑</text>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <i-load-more loading="{{loading}}" tip="{{load_end || loading ? '' : '上拉获取更多'}}"></i-load-more>
+</view>
+<i-message id="message"></i-message>

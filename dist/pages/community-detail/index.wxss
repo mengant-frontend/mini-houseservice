@@ -1,0 +1,84 @@
+page {
+  height: 100%;
+}
+/* 覆盖基础组件原样式 start */
+button {
+  padding: 0;
+  margin: 0;
+  border-radius: 0;
+  background-color: #fff;
+  line-height: 1;
+}
+button::after {
+  border: none;
+}
+/* 覆盖基础组件原样式 end */
+.container {
+  /* 还需设置 padding-bottom 除去 .input-bar 的高度，
+  剩下空间给 scroll-loading 组件继承高度；
+  由于 textarea 设置为自动增高，
+  所以在 style 中动态设置 padding-bottom；
+  .input-bar 的初始高度为 90 rpx */
+  height: 100%;
+  box-sizing: border-box;
+}
+.content-bar {
+  background: #fff;
+  padding: 40rpx 25rpx;
+  line-height: 2;
+  display: flex;
+  flex-direction: column;
+}
+.content-bar .title {
+  /* iview 推荐主标题样式 */
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #464c5b;
+}
+.total {
+  height: 90rpx;
+  line-height: 90rpx;
+  padding-left: 25rpx;
+}
+.head_img {
+  width: 100%;
+  height: 200rpx;
+}
+/* 输入框 start */
+.input-bar {
+  /* 固定在屏幕底部，并且设置具体高度 */
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 90rpx;
+  box-sizing: border-box;
+  padding: 0 25rpx;
+  background: #fff;
+}
+.input-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+.input-bar .input {
+  flex-grow: 1;
+  margin-right: 25rpx;
+  height: 60rpx;
+  padding: 10rpx 20rpx;
+  box-sizing: border-box;
+  border: 1rpx solid #dddee1;
+  border-radius: 10rpx;
+}
+.input-bar .btn {
+  width: 110rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  /* iview 推荐次级标题大小 */
+  font-size: 28rpx;
+  background: #108EE9;
+  color: #fff;
+  border-radius: 4rpx;
+}
+/* 输入框 end */

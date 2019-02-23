@@ -1,0 +1,177 @@
+<view class="page" style='padding-bottom: 118px;'>
+  <view class="card">
+    <i-panel>
+      <i-cell-group>
+        <!-- 非商家可以看到当前订单所服务的商家 -->
+        <view class='header__order'>
+          <view class="shop_name ellipsis">
+            <block wx:if='{{!has_shop && order_detail.shop_name}}' bindtap='goToShop'>
+              <text>{{order_detail.shop_name}}</text>
+              <i-icon type='enter'></i-icon>
+            </block>
+
+          </view>
+          <view class="state__order">
+            <!-- 商家 -->
+            <block wx:if='{{has_shop}}'>
+                <text wx:if='{{order_detail.confirm_id && order_detail.confirm_id != 99999}}'>已完成</text>
+                <text wx:elif='{{order_detail.service_begin == 1 && order_detail.pay_id && order_detail.pay_id != 99999}}'>待用户确认完工</text>
+                <text wx:elif='{{ order_detail.pay_id && order_detail.pay_id != 99999 }}'>待服务</text>
+                <text wx:elif='{{order_detail.shop_confirm ==1 && (!order_detail.pay_id || order_detail.pay_id == 99999)}}'>待用户支付</text>
+                <text wx:elif='{{order_detail.shop_confirm == 2}}'>待确认</text>
+            </block>
+            <!--  -->
+            <block wx:else>
+                <text wx:if='{{order_detail.comment_id && order_detail.comment_id != 99999}}'>已完成</text>
+                <text wx:elif='{{order_detail.confirm_id && order_detail.confirm_id != 99999}}'>待评价</text>
+                <text wx:elif='{{order_detail.pay_id && order_detail.pay_id != 99999}}'>{{order_detail.confirm_id == 2 ? '已协商' : '待确认'}}</text>
+                <text wx:elif='{{order_detail.shop_confirm == 1}}'>待付款</text>
+                <text wx:else>{{is_service_order ? '已预约' : '待接单'}}</text>
+            </block>
+          </view>
+        </view>
+        <i-cell>
+          <view class="flex">
+            <view class="flex-img">
+              <image class="img" src='{{order_detail.cover}}'></image>
+            </view>
+            <view class="flex-content">
+              <navigator class="order-title" url="{{source_url}}">{{order_detail.source_name}}</navigator>
+              <view class="order-price">
+                <text wx:if='{{order_detail.update_money && order_detail.update_money !== order_detail.origin_money}}' class="origin-price">￥{{order_detail.origin_money}}</text>
+                <text class="update-price">￥{{order_detail.update_money || order_detail.origin_money}}</text>
+              </view>
+            </view>
+          </view>
+        </i-cell>
+      </i-cell-group>
+    </i-panel>
+  </view>
+  <!-- 商家看到的内容 -->
+  <view class="card" wx:if='{{has_shop}}'>
+    <i-panel title='服务信息' i-class='card-title'>
+      <i-cell-group>
+        <i-cell title='客户'>
+          <view slot='footer'>{{order_detail.user_name}}</view>
+        </i-cell>
+        <i-cell title='客户电话'>
+          <view slot='footer'>
+            <text class="link" bindtap='makePhoneCall'>{{order_detail.user_phone}}</text>
+          </view>
+        </i-cell>
+        <i-cell title='服务时间'>
+          <view slot='footer' wx:if='{{order_detail.time_end}}'>
+            <view class="ellipsis">
+              {{order_detail.time_begin}}
+            </view>
+            <view class="ellipsis">
+              ~ {{order_detail.time_end}}
+            </view>
+          </view>
+        </i-cell>
+        <i-cell title='服务地址'>
+          <view slot='footer' class="ellipsis">
+            {{order_detail.area}}{{order_detail.address || order_detail.addess}}
+          </view>
+        </i-cell>
+      </i-cell-group>
+    </i-panel>
+  </view>
+  <!-- 用户看到的内容 -->
+  <view class="card" wx:if='{{!has_shop}}'>
+    <i-panel title='服务信息' i-class='card-title'>
+      <i-cell-group>
+        <i-cell title='服务商家'>
+          <view slot='footer'>{{order_detail.shop_name}}</view>
+        </i-cell>
+        <i-cell title='服务时间'>
+          <view slot='footer' wx:if='{{order_detail.time_end}}'>
+            <view class="ellipsis">
+              {{order_detail.time_begin}}
+            </view>
+            <view class="ellipsis">
+              ~ {{order_detail.time_end}}
+            </view>
+          </view>
+        </i-cell>
+        <i-cell title='服务地址'>
+          <view slot='footer' class="ellipsis">
+            {{order_detail.area}}{{order_detail.address || order_detail.addess}}
+          </view>
+        </i-cell>
+      </i-cell-group>
+    </i-panel>
+  </view>
+
+  <view class="card">
+    <i-panel title='订单信息' i-class='card-title'>
+      <i-cell-group>
+        <i-cell title='订单号码' value='{{order_detail.order_number}}'></i-cell>
+        <i-cell title='下单时间' value='{{order_detail.order_time}}'></i-cell>
+      </i-cell-group>
+    </i-panel>
+  </view>
+  <view class="card" wx:if='{{!has_shop && (!order_detail.pay_id || order_detail.pay_id == 99999)}}'>
+    <i-panel>
+      <i-cell-group>
+        <!-- 用户使用红包 -->
+        <i-cell title='红包' only-tap-footer>
+          <view slot='footer' bindtap='selectRedPacket'>
+            <text wx:if='{{red_packet}}'>-￥{{red_packet.money}}</text>
+            <text wx:else>{{red_packet_list.length || 0}}个可用</text>
+            <i-icon type='enter'></i-icon>
+          </view>
+        </i-cell>
+      </i-cell-group>
+    </i-panel>
+  </view>
+
+  <view class="card">
+    <i-panel title='备注' i-class='card-title'>
+      <i-cell-group>
+        <i-cell title='订单备注' value='{{order_detail.remark || "无"}}'></i-cell>
+        <i-cell title='修改价格备注' value='{{order_detail.price_remark || "无"}}'></i-cell>
+      </i-cell-group>
+    </i-panel>
+  </view>
+  <view class="fixed">
+    <!-- 商家的操作 -->
+    <block wx:if='{{has_shop}}'>
+			<block wx:if='{{order_detail.confirm_id && order_detail.confirm_id != 99999}}'>
+				<i-button type='ghost' long bind:click='deleteOrder'>删除订单</i-button>
+			</block>
+			<block wx:elif='{{order_detail.shop_confirm == 1 && order_detail.service_begin == 2 }}'>
+				<i-button type='primary' long bind:click='shoperGotoServe'>去服务</i-button>
+			</block>
+			<block wx:elif='{{order_detail.shop_confirm != 1}}'>
+				<i-button type='ghost' long bind:click='goToChangePrice'>修改价格</i-button>
+				<i-button type='primary' long bind:click='shoperConfirm'>确认订单</i-button>
+			</block>
+    </block>
+    <!-- 用户的操作 -->
+    <block wx:else>
+			<block wx:if='{{order_detail.comment_id && order_detail.comment_id != 99999}}'>
+				<i-button type='ghost' long bind:click='deleteOrder'>删除订单</i-button>
+			</block>
+			<block wx:elif='{{order_detail.confirm_id && order_detail.confirm_id != 99999}}'>
+				<i-button type='primary' long bind:click='gotoEvaluate'>去评价</i-button>
+				<i-button wx:if='{{order_detail.confirm_id == 2}}' type='ghost' long bind:click='customerChat' disabled='true'>将于{{order_detail.consult_time}}自动完工</i-button>
+			</block>
+			<block wx:elif='{{order_detail.pay_id && order_detail.pay_id != 99999}}'>
+				<i-button type='primary' long bind:click='customerFinish'>完工</i-button>
+				<i-button type='ghost' long bind:click='customerChat' disabled='{{!!chat_text}}'>{{chat_text || '协商'}}</i-button>
+			</block>
+			<block wx:elif='{{!order_detail.pay_id || order_detail.pay_id == 99999}}'>
+				<i-button type='primary' long bind:click='customerPayOrder'>确认付款</i-button>
+				<i-button type='ghost' long bind:click='customerCancelOrder' disabled='{{type == "2"}}'>取消订单</i-button>
+			</block>
+    </block>
+  </view>
+  <i-message id='message'></i-message>
+  <view class="container__home" wx:if='{{show_home}}'>
+    <view class="home" bindtap='goHome'>
+      <i-icon size='30' color='#fff' type='homepage_fill'></i-icon>
+    </view>
+  </view>
+</view>
+<red-packet-modal wx:if='{{red_money > 0}}' money='{{red_money}}' title='首次下单奖励' bind:close='closeRedPacketModal'></red-packet-modal>

@@ -1,0 +1,93 @@
+/*
+  全屏宽
+*/
+/*
+  两侧空白
+*/
+/*
+  元素间隔
+*/
+/*
+  边框颜色
+*/
+/*
+  背景色
+*/
+/*
+  分割线
+*/
+/*
+  标题颜色
+*/
+/*
+  正文颜色
+*/
+/*
+  辅助文本颜色
+*/
+/*
+  disabled下颜色
+*/
+/*
+  底部button的bottom值
+*/
+/*
+  通用阴影
+*/
+.container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-left: -10px;
+}
+.item {
+  padding: 5px 0 5px 10px;
+  box-sizing: border-box;
+  width: 100%;
+}
+.item_0 {
+  padding-left: 0;
+}
+.container__photo {
+  width: 100%;
+  padding-top: 100%;
+  position: relative;
+}
+.container__photo_0 {
+  margin-left: -10px;
+}
+.error__photo,
+.photo {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+.flex {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+}
+.status {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.group-add {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+image {
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+}
+.container__close {
+  position: absolute;
+  top: -7px;
+  right: -7px;
+}
+.four {
+  width: 25%;
+}

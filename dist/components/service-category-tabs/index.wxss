@@ -1,0 +1,66 @@
+.container {
+  width: 100%;
+  height: 42px;
+  border-top: 1rpx solid #dddee1;
+  border-bottom: 1rpx solid #dddee1;
+  background: #fff;
+  display: flex;
+  flex-direction: row;
+}
+.menu-toggle {
+  height: 100%;
+  padding: 0 20rpx;
+  /* iview 推荐 primary 主色 */
+  color: #2d8cf0;
+  white-space: nowrap;
+  font-size: 28rpx;
+  border-right: 1rpx solid #dddee1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+.menu-scroll {
+  flex-grow: 1;
+  flex-shrink: 1;
+  padding: 0 20rpx;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.scroll-view {
+  width: 375rpx;
+  background: #fff;
+}
+.item {
+  margin: 15rpx 15rpx 0;
+  line-height: 2.5;
+  text-align: center;
+  border: 1rpx solid #2d8cf0;
+  color: #2d8cf0;
+  font-size: 28rpx;
+  white-space: nowrap;
+  border-radius: 8rpx;
+}
+.scroll {
+  width: 100%;
+  height: 42px;
+  line-height: 42px;
+}
+.scroll-container {
+  width: 100%;
+  height: 100%;
+  line-height: 42px;
+  display: flex;
+  flex-direction: row;
+  overflow-x: scroll;
+}
+.scroll-item {
+  display: inline-block;
+  padding: 0 5rpx;
+  box-sizing: border-box;
+}
+.scroll-item-current {
+  color: #2d8cf0;
+  border-bottom: 1px solid #2d8cf0;
+}

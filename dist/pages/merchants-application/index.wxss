@@ -1,0 +1,158 @@
+/*
+  全屏宽
+*/
+/*
+  两侧空白
+*/
+/*
+  元素间隔
+*/
+/*
+  边框颜色
+*/
+/*
+  背景色
+*/
+/*
+  分割线
+*/
+/*
+  标题颜色
+*/
+/*
+  正文颜色
+*/
+/*
+  辅助文本颜色
+*/
+/*
+  disabled下颜色
+*/
+/*
+  底部button的bottom值
+*/
+/*
+  通用阴影
+*/
+/*
+  底部空白
+*/
+page {
+  width: 100%;
+  height: 100%;
+  background-color: #f8f8f9;
+}
+.page {
+  width: 100%;
+  min-height: 100%;
+  padding-bottom: 44px;
+  box-sizing: border-box;
+}
+.steps {
+  padding: 25rpx;
+  box-sizing: border-box;
+}
+.cell-index--i-cell-ft {
+  justify-content: flex-end;
+}
+.container__avatar {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+.avatar {
+  margin: 0 !important;
+}
+.container__photo {
+  padding: 10px 25rpx;
+}
+.tips {
+  padding: 10px 25rpx;
+  background-color: #f8f8f9;
+}
+.flex-tips {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.tips-title {
+  font-size: 13px;
+  color: #80848f;
+}
+.tip {
+  font-size: 12px;
+  color: #80848f;
+}
+.container_btn {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  box-sizing: border-box;
+  width: 100%;
+}
+.checking {
+  padding: 0 25rpx;
+}
+.tip__wait {
+  text-align: center;
+  padding: 25rpx 0;
+  font-size: 13px;
+  border-bottom: 1px dashed #dddee1;
+}
+.tip-text__wait::after,
+.tip-text__wait::before {
+  content: '~';
+}
+.checking-title {
+  text-align: right;
+  font-size: 13px;
+  color: #495060;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.checking-title::after {
+  content: '：';
+  font-size: 14px;
+  padding-right: 20rpx;
+}
+.checking-value {
+  text-align: left;
+  color: #1c2438;
+  font-size: 14px;
+  position: relative;
+}
+.checking-pictures {
+  vertical-align: text-bottom;
+  width: 468.75rpx;
+  margin-bottom: -25rpx;
+}
+.checking-photo {
+  width: 156.25rpx;
+  height: 156.25rpx;
+  margin: 0 25rpx 25rpx 0;
+}
+.checking-pictures-title {
+  vertical-align: top;
+}
+.table {
+  padding: 30rpx 0;
+}
+.table-cell {
+  padding-bottom: 20rpx;
+}
+.container__msg {
+  padding-top: 36px;
+}
+.container__result {
+  padding: 36px 25rpx;
+  text-align: center;
+}
+.container__icon {
+  margin-bottom: 30px;
+}
+.container__desc {
+  font-size: 14px;
+  color: #80848f;
+}

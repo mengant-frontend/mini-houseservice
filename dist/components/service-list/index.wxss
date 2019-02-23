@@ -1,0 +1,86 @@
+/*
+  全屏宽
+*/
+/*
+  两侧空白
+*/
+/*
+  元素间隔
+*/
+/*
+  边框颜色
+*/
+/*
+  背景色
+*/
+/*
+  分割线
+*/
+/*
+  标题颜色
+*/
+/*
+  正文颜色
+*/
+/*
+  辅助文本颜色
+*/
+/*
+  disabled下颜色
+*/
+/*
+  底部button的bottom值
+*/
+/*
+  通用阴影
+*/
+.container {
+  background: #fff;
+  padding: 0 35rpx 30rpx;
+  margin-bottom: 30rpx;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.item {
+  margin-top: 40rpx;
+  /* 以图片宽度为准 */
+  width: 320rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+.discount {
+  position: absolute;
+  top: 20rpx;
+  left: 0;
+  padding: 10rpx;
+  background: #ff9900;
+  color: #fff;
+  border-radius: 4px;
+}
+/* 给 fit-img 组件设置更多样式 */
+.img-style {
+  border-radius: 10rpx;
+}
+.title {
+  margin: 14rpx 0;
+  /* iview 推荐次级标题样式 */
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #464c5b;
+}
+.amount {
+  display: flex;
+  width: 100%;
+}
+.sales,
+.money {
+  flex-grow: 1;
+  text-align: center;
+}
+.num-color {
+  color: #ff9900;
+  /* iview 推荐 warning 辅助色 */
+}

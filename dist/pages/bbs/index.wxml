@@ -1,0 +1,17 @@
+<view class="page">
+  <i-panel title='您的留言'>
+    <f-textarea placeholder="请输入您的留言" data-form_key='msg' maxLength='500' bind:update='bindFormChange'></f-textarea>
+  </i-panel>
+
+  <i-panel title='联系方式'>
+    <i-input type='text' placeholder='手机号码' maxlength='11' value='{{form_data.phone}}' data-form_key='phone' bind:change='bindFormChange'></i-input>
+    <i-input type='text' placeholder="邮箱(选填)" maxlength='-1' value='{{form_data.email}}' data-form_key='email' bind:change='bindFormChange'></i-input>
+    <view class="tips">请留下您的联系方式，以便我们能够方便地了解问题以及向您反馈结果。</view>
+  </i-panel>
+
+  <view class="fixed">
+    <i-button type='primary' long bind:click='saveMessage'>提交留言</i-button>
+  </view>
+
+  <i-message id='message'></i-message>
+</view>

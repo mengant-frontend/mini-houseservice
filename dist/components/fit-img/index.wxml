@@ -1,0 +1,12 @@
+<!-- 图片加载后通过 imgLoad 计算显示大小，
+计算过程会让图片在页面上出现变化，
+所以初始 view_width 和 view_height 的值都为0，
+同时设置一个父节点先把位置占下来 -->
+<view style='width:{{width?width:height*ratio}}rpx;height:{{height?height:width/ratio}}rpx;'>
+  <image 
+    class='more-style' 
+    style='width:{{view_width}}rpx;height:{{view_height}}rpx;' 
+    src='{{src}}' 
+    bindtap='{{canPreview?"previewImg":""}}' 
+    bindload='imgLoad' />
+</view>

@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "我的积分",
+  "usingComponents": {
+    "sign-in": "./comp/sign-in",
+    "i-message": "/iview/message/index"
+  }
+}

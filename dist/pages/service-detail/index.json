@@ -1,0 +1,13 @@
+{
+  "navigationBarTitleText": "服务详情",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "scroll-loading": "/components/scroll-loading/index",
+    "banner-img": "/components/banner-img/index",
+    "comment-list": "/components/comment-list/index",
+    "i-icon": "/iview/icon/index",
+    "i-message": "/iview/message/index",
+    "standard-img-swiper": "/components/standard-img/swiper",
+    "i-load-more": "/iview/load-more/index"
+  }
+}

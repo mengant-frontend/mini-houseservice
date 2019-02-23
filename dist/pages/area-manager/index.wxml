@@ -1,0 +1,19 @@
+<view class="page">
+  <view class="container">
+    <view class="form">
+      <view class="item">
+        <i-icon type='mine' size='20' color='#5cadff'></i-icon>
+        <i-input class='outer-input' placeholder='请输入账号' maxlength='-1' value='{{form_data.phone}}' data-form_key='phone' bind:change='bindFormChange'></i-input>
+      </view>
+      <view class="item">
+        <i-icon type='lock' size='20' color='#5cadff'></i-icon>
+        <i-input class='outer-input' type='password' maxlength='-1' i-class='input' placeholder='请输入密码' value='{{form_data.pwd}}' data-form_key='pwd' bind:change='bindFormChange'></i-input>
+      </view>
+    </view>
+    <view class="container__btn">
+      <i-button type='primary' bind:click='login' long>登录</i-button>
+    </view>
+  </view>
+
+  <i-message id='message'></i-message>
+</view>

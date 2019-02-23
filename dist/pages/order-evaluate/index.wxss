@@ -1,0 +1,111 @@
+/*
+  全屏宽
+*/
+/*
+  两侧空白
+*/
+/*
+  元素间隔
+*/
+/*
+  边框颜色
+*/
+/*
+  背景色
+*/
+/*
+  分割线
+*/
+/*
+  标题颜色
+*/
+/*
+  正文颜色
+*/
+/*
+  辅助文本颜色
+*/
+/*
+  disabled下颜色
+*/
+/*
+  底部button的bottom值
+*/
+/*
+  通用阴影
+*/
+page {
+  background-color: #fff;
+  width: 100%;
+  min-height: 100%;
+  padding-bottom: 64px;
+  box-sizing: border-box;
+}
+.page {
+  padding: 0 25rpx;
+  width: 100%;
+  box-sizing: border-box;
+}
+.textarea {
+  width: 100%;
+  padding: 20rpx;
+  box-sizing: border-box;
+  background-color: #f8f8f9;
+}
+textarea {
+  background: #f8f8f9 !important;
+}
+.title {
+  font-size: 14px;
+  color: #1c2438;
+  padding-bottom: 25rpx;
+}
+.label {
+  font-size: 12px;
+  color: #80848f;
+  text-align: right;
+  white-space: nowrap;
+  overflow: hidden;
+  word-break: keep-all;
+}
+.label::after {
+  content: ':';
+  padding-left: 3px;
+  padding-right: 20rpx;
+}
+.content {
+  font-size: 13px;
+  color: #495060;
+  text-align: left;
+}
+.container__rate {
+  text-align: center;
+  padding: 50rpx 0;
+  background-color: #fff;
+}
+.rate {
+  width: 100%;
+}
+.container__message {
+  padding: 25rpx 0;
+  border-bottom: 1px solid #dddee1;
+  background-color: #fff;
+  box-sizing: border-box;
+}
+.content__main {
+  min-width: 400rpx;
+}
+.table-cell {
+  padding-bottom: 20rpx;
+}
+.evaluate {
+  display: flex;
+  flex-direction: row;
+  padding: 20rpx 75rpx;
+  box-sizing: border-box;
+  justify-content: space-around;
+}
+.img {
+  width: 98rpx;
+  height: 98rpx;
+}

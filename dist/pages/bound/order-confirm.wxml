@@ -1,0 +1,73 @@
+<view class="page">
+    <navigator class="address" url="/pages/bound/address?type=select">
+        <view class="icon-container">
+            <i-icon type="coordinates_fill" size="24" color="#4fcb9f"></i-icon>
+        </view>
+        <view class="desc">
+            <view class="user">
+                <view class="name">
+                    <text>{{address.name || '未设置收件信息'}}</text>
+                </view>
+                <view class="phone">
+                    <text>{{address.phone}}</text>
+                </view>
+            </view>
+            <view class="addr ellipsis">
+                <text>{{address.province}}{{address.city}}{{address.area}}{{address.detail}}</text>
+            </view>
+        </view>
+        <view class="icon-container">
+            <i-icon type="enter" size="24" color="#ddd"></i-icon>
+        </view>
+    </navigator>
+
+    <view class="goods">
+        <view class="goods-img">
+            <image src="{{detail.cover}}" class="goods-cover"></image>
+        </view>
+        <view class="goods-desc">
+            <view class="goods-name">
+                <text>{{detail.name}}</text>
+            </view>
+            <view class="price">
+                <text>￥{{detail.money || 0}}</text>
+            </view>
+            <view class="bound">
+                <text>{{detail.score || 0}}积分</text>
+            </view>
+            <view class="num">
+                <text>x{{sell_num}}</text>
+            </view>
+        </view>
+    </view>
+
+    <view class="operator">
+        <i-cell-group>
+            <i-cell title="选择数量">
+                <view slot="footer">
+                    <i-input-number value="{{sell_num}}" min="1" step="1" bindchange="updateSellNum"></i-input-number>
+                </view>
+            </i-cell>
+            <i-cell title="配送方式">
+                <view slot="footer">
+                    <text>快递 免邮</text>
+                    <i-icon type="enter" size="24" color="#ddd"></i-icon>
+                </view>
+            </i-cell>
+        </i-cell-group>
+    </view>
+
+    <view class="bottom-element">
+        <view class="confirm-container">
+            <view class="total">
+                <text>合计: </text>
+                <text class="bound">{{ total_bound || 0 }}积分</text>
+            </view>
+            <view class="btn" bindtap="confirmOrder">
+                <text>提交订单</text>
+            </view>
+        </view>
+    </view>
+</view>
+
+<i-message id="message"></i-message>

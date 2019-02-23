@@ -1,0 +1,5 @@
+<view class='standard-img__container'>
+	<view class="position__absolute">
+		<image class="standard-img" src='{{src}}'></image>
+	</view>
+</view>

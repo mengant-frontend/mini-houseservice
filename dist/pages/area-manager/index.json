@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "小区管理员登录",
+  "usingComponents": {
+    "i-input": "../../iview/input/index",
+    "i-icon": "../../iview/icon/index",
+    "i-cell-group": "../../iview/cell-group/index",
+    "i-cell": "../../iview/cell/index",
+    "i-button": "../../iview/button/index",
+    "i-message": "../../iview/message/index"
+  }
+}

@@ -1,0 +1,38 @@
+<tabs-swiper-page tabs-list='{{tabs_list}}' bind:swiperChange='swiperChange'>
+  <scroll-loading bg-color='#EFEFF4' wx:for='{{tabs_list}}' wx:key='id' slot='{{item.id}}' if-no-more='{{item.if_no_more}}' if-loading='{{if_loading}}' bind:scrolltolower='getOrderList'>
+    <!-- <c-list type='order' btns='{{item.btns}}' data='{{item.order_list}}' url='/pages/order-detail/index' params='{{params}}'></c-list> -->
+		
+		 <view>
+      <view class='item' wx:for='{{item.order_list}}' wx:key='order_id' wx:for-item='t'>
+        <navigator url='{{item.id === "ordered" ? "/pages/command-detail/index?id=" + t.order_id : "/pages/order-detail/index?type=2&state=" + (tabs_current + 1) + "&id=" + t.order_id}}' class='title'>{{t.title}}</navigator>
+        <view class='info'>
+          <view class='money-date'>
+            <view class='money'>
+              价格：
+              <block wx:if='{{t.update_money}}'>
+                <text class='origin-money'>{{t.origin_money}} 元 </text>
+                <text class='update-money' wx:if='{{t.update_money}}'> {{t.update_money}} 元</text>
+              </block>
+              <block wx:else>
+                <text class='update-money'> {{t.origin_money}} 元</text>
+              </block>
+            </view>
+            <text>服务时间：{{t.date}}</text>
+          </view>
+          <view class='btn-bar'>
+            <view class='cancel' wx:if='{{item.id === "ordered"}}' data-id='{{t.order_id}}' data-state='1' bindtap='cancelDemand'>取消订单</view>
+            <view class='pay' wx:if='{{item.id === "unpaid"}}' bindtap='doAction' data-state='2' data-id='{{t.order_id}}'>去付款</view>
+            <view class='consult' wx:if='{{item.id === "unconfirmed"}}' bindtap='doAction' data-state='3' data-id='{{t.order_id}}'>协商</view>
+            <view class='confirm' wx:if='{{item.id === "unconfirmed"}}' bindtap='doAction' data-state='3' data-id='{{t.order_id}}'>完工</view>
+            <view class='evaluate' wx:if='{{item.id === "unevaluated"}}' bindtap='doAction' data-state='4' data-id='{{t.order_id}}'>去评价</view>
+            <view class='cancel' wx:if='{{item.id === "completed"}}' bindtap='doAction' data-state='5' data-id='{{t.order_id}}'>删除订单</view>
+          </view>
+        </view>
+      </view>
+    </view> 
+  </scroll-loading>
+</tabs-swiper-page>
+
+<fixed-element show-command='{{true}}'></fixed-element>
+
+<i-message id='message'></i-message>

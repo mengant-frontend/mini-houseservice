@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "地址管理",
+  "enablePullDownRefresh": true,
+  "usingComponents":{
+    "i-message": "/iview/message/index",
+    "i-load-more": "/iview/load-more/index"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "navigationBarTitleText": "需求大厅",
+  "backgroundColor": "#EFEFF4",
+  "backgroundTextStyle": "light",
+  "usingComponents": {
+    "tabs-swiper-page": "/components/tabs-swiper-page/index",
+    "scroll-loading": "/components/scroll-loading/index",
+    "i-icon": "/iview/icon/index",
+    "i-message": "/iview/message/index",
+    "f-form-id": "/components/form-id/index",
+		"fixed-element": "/components/fixed-element/index"
+  }
+}

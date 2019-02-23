@@ -1,0 +1,106 @@
+page {
+  /* 以下是使用 tabs-swiper-page 组件需要的样式 */
+  padding-top: 42px;
+  box-sizing: border-box;
+  height: 100%;
+}
+/* 订单列表 start */
+.item {
+  background: #fff;
+  padding: 40rpx;
+  line-height: 1.8;
+  border-bottom: 1rpx solid #dddee1;
+  display: flex;
+  flex-direction: column;
+}
+.item .title {
+  /* 让文本单行溢出省略 */
+  width: 670rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  /* iview 推荐主标题样式 */
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #464c5b;
+}
+.item .info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.item .money-date {
+  display: flex;
+  flex-direction: column;
+}
+.item .money {
+  display: flex;
+}
+.item .origin-money {
+  text-decoration: line-through;
+  margin-right: 10rpx;
+}
+.item .update-money {
+  color: #ff9900;
+}
+.item .btn-bar {
+  display: flex;
+  line-height: 1;
+}
+.item .cancel,
+.item .pay,
+.item .consult,
+.item .confirm,
+.item .evaluate {
+  border-radius: 6rpx;
+  text-align: center;
+}
+.item .cancel,
+.item .consult,
+.item .confirm {
+  padding: 10rpx;
+}
+.item .pay,
+.item .evaluate {
+  padding: 15rpx 20rpx;
+}
+.item .cancel,
+.item .consult {
+  /* iview 推荐 warning 辅助色 */
+  border: 1rpx solid #ff9900;
+  color: #ff9900;
+}
+.item .pay,
+.item .confirm,
+.item .evaluate {
+  /* iview 推荐 primary 主色 */
+  border: 1rpx solid #2d8cf0;
+  color: #2d8cf0;
+  margin-left: 20rpx;
+}
+/* 订单列表 end */
+/* 发布按钮 start */
+.release-bar {
+  position: fixed;
+  right: 25rpx;
+  bottom: 170rpx;
+}
+.release-demand,
+.release-service {
+  box-shadow: 0 1rpx 2rpx 0;
+  border-radius: 8rpx;
+  padding: 15rpx;
+  background: #fff;
+}
+.release-demand {
+  margin-bottom: 20rpx;
+}
+.release-demand text {
+  /* iview 推荐 primary 主色 */
+  color: #2d8cf0;
+}
+.release-service text {
+  /* iview 推荐 warning 辅助色 */
+  color: #ff9900;
+}
+/* 发布按钮 end */

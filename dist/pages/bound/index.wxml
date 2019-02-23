@@ -1,0 +1,48 @@
+<view class="page">
+    <sign-in bind:score="getScore"></sign-in>
+    <view class="operator">
+        <view class="o-list">
+            <navigator class="o-item" url="/pages/bound/detail">
+                <text>积分明细</text>
+            </navigator>
+            <navigator class="o-item" url="/pages/bound/redeem-code">
+                <text>兑换码</text>
+            </navigator>
+            <navigator class="o-item" url="/pages/bound/buy">
+                <text>购买积分</text>
+            </navigator>
+            <navigator class="o-item" url="/pages/bound/record">
+                <text>兑换记录</text>
+            </navigator>
+            <navigator class="o-item" url="/pages/bound/address">
+                <text>地址管理</text>
+            </navigator>
+        </view>
+    </view>
+
+    <view class="shop">
+        <view class="container">
+            <view class="title">
+                <view class="title-main">
+                    <text>积分商城</text>
+                </view>
+                <navigator class="title-sub" url="/pages/bound-shop/list">
+                    <text>全部 >></text>
+                </navigator>
+            </view>
+            <view class="s-list">
+                <navigator class="s-item" wx:for="{{list}}" url="{{'/pages/bound-shop/detail?id=' + item.id}}">
+                    <view class="s-img">
+                        <image src="{{item.cover}}" class="img"></image>
+                    </view>
+                    <view class="s-name ellipsis">
+                        <text>{{item.name}}</text>
+                    </view>
+                    <view class="s-bound ellipsis">
+                        <text>{{item.score || 0}}积分</text>
+                    </view>
+                </navigator>
+            </view>
+        </view>
+    </view>
+</view>

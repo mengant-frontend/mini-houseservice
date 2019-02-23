@@ -1,0 +1,12 @@
+{
+  "navigationBarTitleText": "我的需求",
+  "backgroundColor": "#EFEFF4",
+  "backgroundTextStyle": "light",
+  "usingComponents": {
+    "tabs-swiper-page": "/components/tabs-swiper-page/index",
+    "scroll-loading": "/components/scroll-loading/index",
+    "i-message": "/iview/message/index",
+		"fixed-element":"/components/fixed-element/index",
+		"c-list": "/components/c-list/index"
+  }
+}

@@ -1,0 +1,70 @@
+<scroll-loading bg-color='#EFEFF4' if-no-more='{{if_no_more}}' if-loading='{{if_loading}}' bind:scrolltolower='getServiceList'>
+  <view>
+		<standard-img-swiper data='{{banner_img}}'></standard-img-swiper>
+		
+		<view class="message-list">
+			<view class="message-item">
+				<view class="left">
+					<text class='shop-name'>{{name}}</text>
+				</view>
+				<view class="right">
+					<button class="a-btn warning" bindtap='collect'>{{if_collected ? '已关注' : '关注' }}</button>
+				</view>
+			</view>
+			<view class="message-item">
+				<view class="left">
+					<i-rate count='5' value='{{score}}' disabled='{{true}}'></i-rate>
+				</view>
+				<navigator class="right" url='/pages/store-comment/index?store_id={{store_id}}'>
+					<text class='comment-count'>{{comment_count}}条评论</text>
+					<i-icon type='enter' size='18' color='#cfcfd1'></i-icon>
+				</navigator>
+			</view>
+			<view class="message-item location">
+				<view class="left">
+					<i-icon type='coordinates' size='18' color='#a0a4a7'></i-icon>
+					<text class='location__text'>{{location}}</text>
+				</view>
+				<view class="right">
+					<view class='phone'>
+						<image class='icon-phone' mode='aspectFit' src='/images/phone.png' bindtap='callPhone' />
+					</view>
+				</view>
+			</view>
+		</view>
+		
+		<view class="card">
+			<view class="card-title">
+				<text>TA的服务项目</text>
+			</view>
+			
+			<c-list data='{{service_list}}' url='/pages/service-detail/index' params='{{params}}'></c-list>
+			
+			<!-- <view class="service-list">
+				<navigator class="service-item" wx:for='{{service_list}}' wx:key='id' url='/pages/service-detail/index?id={{item.id}}'>
+					<view class="cover">
+						<image class='cover-img' src='{{item.img_url}}'></image>
+					</view>
+					<view class="desc">
+						<view class="desc-title">
+							<text>{{item.title}}</text>
+						</view>
+						<view class="desc-sales">
+							<text>已售 {{item.sales}}</text>
+						</view>
+						<view class="book">
+							<view>
+								<text>￥{{item.money}}/{{item.unit}}</text>
+							</view>
+							<view>
+								<button class="a-btn warning-ghost">我要预约</button>
+							</view>
+						</view>
+					</view>
+				</navigator>
+			</view> -->
+		</view>
+  </view>
+</scroll-loading>
+
+<i-message id='message'></i-message>

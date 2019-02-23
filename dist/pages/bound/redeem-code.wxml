@@ -1,0 +1,16 @@
+<view class="page">
+    <view class="container">
+        <view class="title">
+            <text>兑换码</text>
+        </view>
+        <view class="input-container">
+            <input bindinput="updateCode" type="text" class="input" placeholder="请输入兑换码" placeholder-style="font-size: 20rpx;"/>
+        </view>
+        <view class="btn-container">
+            <view class="btn" bindtap="exchargeCode">
+                <text>确定</text>
+            </view>
+        </view>
+    </view>
+</view>
+<i-message id="message"></i-message>

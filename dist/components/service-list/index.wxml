@@ -1,0 +1,19 @@
+<view class='container'>
+  <navigator class='item' wx:for='{{list}}' wx:key='id' url='/pages/service-detail/index?id={{item.id}}'>
+    <view class="discount" wx:if="{{item.extend == 1}}">
+      <text>折扣</text>
+    </view>
+    <fit-img more-style='img-style' width='320' can-preview='{{false}}' src='{{item.img_url}}'></fit-img>
+    <text class='title'>{{item.title}}</text>
+    <view class='amount'>
+      <view class='sales'>
+        总销量
+        <text class='num-color'> {{item.sales}}</text>
+      </view>
+      <view class='money'>
+        成交额
+        <text class='num-color'> {{item.money}}</text>
+      </view>
+    </view>
+  </navigator>
+</view>

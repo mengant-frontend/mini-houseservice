@@ -1,0 +1,14 @@
+{
+	"navigationBarTitleText": "需求发布",
+  "usingComponents": {
+    "i-panel": "../../iview/panel/index",
+    "i-cell-group": "../../iview/cell-group/index",
+    "i-cell": "../../iview/cell/index",
+    "f2-photo": "/components/f2-photo/index",
+    "i-message": "../../iview/message/index",
+    "i-icon": "../../iview/icon/index",
+    "f-date-time": "../../components/f-date-time/index",
+    "i-button": "../../iview/button/index",
+    "i-input-number": "/iview/input-number/index"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "商家订单",
+  "backgroundColor": "#EFEFF4",
+  "backgroundTextStyle": "light",
+  "usingComponents": {
+    "tabs-swiper-page": "/components/tabs-swiper-page/index",
+    "scroll-loading": "/components/scroll-loading/index",
+		"c-list": "/components/c-list/index"
+  }
+}

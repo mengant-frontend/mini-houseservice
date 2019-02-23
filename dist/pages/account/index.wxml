@@ -1,0 +1,68 @@
+<view class='page'>
+  <view class="container__avatar">
+    <view>
+      <image class="avatar" src='{{detail.userInfo.avatarUrl}}' bindtap='editProfile'></image>
+    </view>
+    <view class="nickname">
+      <text>{{detail.userInfo.nickName}}</text>
+    </view>
+  </view>
+
+  <view class='list'>
+    <view class="item" data-url='/pages/message/index' bindtap='goTo'>
+      <view class="desc">{{detail.msg_count || 0}}</view>
+      <view class="title">消息</view>
+    </view>
+    <view class="item" data-url='/pages/rest-money/index' bindtap='goTo'>
+      <view class="desc">{{detail.balance || 0}}</view>
+      <view class="title">余额</view>
+    </view>
+    <view class="item" data-url='/pages/command/index' bindtap='goTo'>
+      <view class="desc">{{detail.demand_count || 0}}</view>
+      <view class="title">需求</view>
+    </view>
+  </view>
+
+  <i-panel i-class='gutter'>
+    <i-cell-group>
+      <i-cell title='{{has_shop ? "进入商家" : "成为商家"}}' url='{{has_shop ? "/pages/shop/index" : "/pages/merchants-application/index"}}' is-link link-type='navigateTo'>
+        <i-icon type='shop_fill' slot='icon' size='20' color='#5cadff'></i-icon>
+      </i-cell>
+      <i-cell title='我的收藏' is-link link-type='navigateTo' url='/pages/collection/index'>
+        <i-icon type='collection_fill' slot='icon' size='20' color='#ff9900'></i-icon>
+      </i-cell>
+      <i-cell title='我的红包' is-link link-type='navigateTo' url='/pages/redpacket/index'>
+        <i-icon type='redpacket_fill' slot='icon' size='20' color='#ed3f14'></i-icon>
+      </i-cell>
+      <i-cell title='我的留言' is-link link-type='navigateTo' url='/pages/bbs/index'>
+        <i-icon type='interactive' slot='icon' size='20' color='#2b85e4'></i-icon>
+      </i-cell>
+      <i-cell title='我的积分' is-link link-type='navigateTo' url='/pages/bound/index'>
+        <i-icon type='commodity' slot='icon' size='20' color='#2b85e4'></i-icon>
+      </i-cell>
+      <i-cell title='邀请好友' is-link link-type='navigateTo' url='/pages/invite/index'>
+        <i-icon type='group_fill' slot='icon' size='20' color='#2b85e4'></i-icon>
+      </i-cell>
+      <i-cell wx:if="{{show_input_invite}}" title='输入邀请码' is-link link-type='navigateTo' url='/pages/invite/index?type=be_invited'>
+        <i-icon type='group_fill' slot='icon' size='20' color='#2b85e4'></i-icon>
+      </i-cell>
+      <i-cell title='小区管理员登录' url='/pages/area-manager/index' is-link link-type='navigateTo'>
+        <i-icon type='mine_fill' slot='icon' size='20' color='#5cadff'></i-icon>
+      </i-cell>
+    </i-cell-group>
+  </i-panel>
+  <i-panel>
+    <i-cell-group>
+      <i-cell title='用户指南' url='/pages/term/index?type=user_guide' is-link link-type='navigateTo'>
+        <i-icon type='document_fill' slot='icon' size='20' color='#5cadff'></i-icon>
+      </i-cell>
+      <i-cell title='关于我们' url='/pages/term/index?type=about_us' is-link link-type='navigateTo'>
+        <i-icon type='prompt_fill' slot='icon' size='20' color='#8e8e8e'></i-icon>
+      </i-cell>
+			<i-cell title='联系我们' i-class='cell-index--i-cell-access' bind:click='contract' only-tap-footer='{{false}}'>
+				<i-icon type='customerservice_fill' slot='icon' size='20' color='#5cadff'></i-icon>
+			</i-cell>
+    </i-cell-group>
+  </i-panel>
+  <i-message id='message'></i-message>
+</view>

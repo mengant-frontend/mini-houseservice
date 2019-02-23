@@ -1,0 +1,39 @@
+.bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9;
+  width: 750rpx;
+  background: #4fcb9f;
+}
+.sign-in-container {
+  position: relative;
+  z-index: 10;
+  background-color: transparent;
+}
+.btn {
+  width: 132rpx;
+  height: 132rpx;
+  line-height: 132rpx;
+  margin: 50rpx auto 0;
+  background-color: rgba(255, 255, 255, 0.9);
+  border: 2rpx solid #fff;
+  border-radius: 132rpx;
+  text-align: center;
+  font-size: 30rpx;
+  color: #417505;
+}
+.sign-in {
+  width: 320rpx;
+  margin: 50rpx auto 0;
+  text-align: center;
+}
+.sign-in-desc {
+  font-size: 20rpx;
+  color: #fff;
+}
+.sign-in-bound {
+  margin-top: 10rpx;
+  font-size: 48rpx;
+  color: #fff;
+}

@@ -1,0 +1,43 @@
+<view class="container">
+    <tabs-swiper-page tabs-list='{{tabs_list}}' bind:swiperChange='swiperChange'>
+        <scroll-loading bg-color='#EFEFF4' wx:for='{{tabs_list}}' wx:key='id' slot='{{item.id}}' if-no-more='{{item.if_no_more}}' if-loading='{{item.loading}}' bind:scrolltolower='reachBottom'>
+            <view class="list">
+                <view class="item" wx:for="{{item.list}}" wx:for-item="itm" wx:for-index="idx">
+                    <navigator class="img-container" url="{{'/pages/bound/order?id=' + itm.id}}">
+                        <image src="{{itm.cover}}" class="img"></image>
+                    </navigator>
+                    <view class="desc">
+                        <navigator class="title ellipsis" url="{{'/pages/bound/order?id=' + itm.id}}">
+                            <text>{{itm.goods_name}}</text>
+                        </navigator>
+                        <navigator class="bound" url="{{'/pages/bound/order?id=' + itm.id}}">
+                            <text>{{itm.score || 0}}积分</text>
+                        </navigator>
+                        <view class="operator">
+                            <view class="operator-left">
+                                <text>x{{itm.count}}</text>
+                            </view>
+                            <view class="operator-right">
+                                <block wx:if="{{itm.status === 2}}">
+                                    <navigator class="btn common" url="{{'/pages/bound/logistics?express_code=' + itm.express_code + '&express_no=' + itm.express_no}}">
+                                        <text>查看物流</text>
+                                    </navigator>
+                                    <navigator class="btn primary" url="{{'/pages/bound/order?id=' + itm.id}}">
+                                        <text>确认收货</text>
+                                    </navigator>
+                                </block>
+                                <block wx:elif="{{itm.status === 3 && itm.comment_id === 0}}">
+                                    <navigator class="btn primary" url="{{'/pages/bound/order?id=' + itm.id}}">
+                                        <text>去评价</text>
+                                    </navigator>
+                                </block>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </scroll-loading>
+    </tabs-swiper-page>
+</view>
+
+<i-message id="message"></i-message>

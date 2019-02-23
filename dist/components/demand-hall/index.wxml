@@ -1,0 +1,9 @@
+<navigator  url='/pages/demand-hall/index'>
+  <f-form-id>
+    <view class='container'>
+      <image class='img' mode='aspectFit' src='/images/hall.png' />
+      <text class='title'>需求大厅</text>
+      <text class='arrow'></text>
+    </view>
+  </f-form-id>
+</navigator>

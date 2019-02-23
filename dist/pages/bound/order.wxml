@@ -1,0 +1,110 @@
+<view class="page">
+    <navigator class="logistics" url="{{logistic_detail.express_no && logistic_detail.express_code ? '/pages/bound/logistics?express_no=' + logistic_detail.express_no + '&express_code=' + logistic_detail.express_code : ''}}">
+        <view class="icon-container">
+            <i-icon type="service" size="24" color="#ef6e69"></i-icon>
+        </view>
+        <view class="desc">
+            <view class="detail">
+                <text>{{logistic_detail.detail.context || '暂无物流信息'}}</text>
+            </view>
+            <view class="date" wx:if="{{!!logistic_detail.no}}">
+                <text>{{logistic_detail.detail.time}}</text>
+            </view>
+        </view>
+        <view class="icon-container">
+            <i-icon type="enter" size="24" color="#ddd"></i-icon>
+        </view>
+    </navigator>
+    <view class="address">
+        <view class="icon-container">
+            <i-icon type="coordinates_fill" size="24" color="#4fcb9f"></i-icon>
+        </view>
+        <view class="desc">
+            <view class="user">
+                <view class="name">
+                    <text>{{user_detail.name}}</text>
+                </view>
+                <view class="phone">
+                    <text>{{user_detail.phone}}</text>
+                </view>
+            </view>
+            <view class="addr ellipsis">
+                <text>{{user_detail.province}}{{user_detail.city}}{{user_detail.area}}{{user_detail.detail}}</text>
+            </view>
+        </view>
+    </view>
+
+    <view class="goods">
+        <view class="goods-img">
+            <image src="{{goods_detail.cover}}" class="goods-cover"></image>
+        </view>
+        <view class="goods-desc">
+            <view class="goods-name">
+                <text>{{goods_detail.name}}</text>
+            </view>
+            <view class="price">
+                <text>￥{{goods_detail.money}}</text>
+            </view>
+            <view class="bound">
+                <text>{{goods_detail.score}}积分</text>
+            </view>
+            <view class="num">
+                <text>x{{goods_detail.count}}</text>
+            </view>
+        </view>
+    </view>
+
+    <view class="order-detail">
+        <view class="order-title">
+            <text class="order-title-text">订单信息</text>
+        </view>
+        <view class="order-desc">
+            <view class="desc-item">
+                <view class="item-title">
+                    <text>订单编号: </text>
+                </view>
+                <view class="item-desc">
+                    <text>{{order_detail.code_number}}</text>
+                </view>
+            </view>
+            <view class="desc-item">
+                <view class="item-title">
+                    <text>创建时间: </text>
+                </view>
+                <view class="item-desc">
+                    <text>{{order_detail.create_time}}</text>
+                </view>
+            </view>
+            <view class="desc-item">
+                <view class="item-title">
+                    <text>发货时间: </text>
+                </view>
+                <view class="item-desc">
+                    <text>{{order_detail.send_time}}</text>
+                </view>
+            </view>
+            <view class="desc-item">
+                <view class="item-title">
+                    <text>成交时间: </text>
+                </view>
+                <view class="item-desc">
+                    <text>{{order_detail.receive_time}}</text>
+                </view>
+            </view>
+        </view>
+    </view>
+
+    <view class="order-detail" wx:if="{{comment_list.length}}">
+        <view class="order-title">
+            <text class="order-title-text">宝贝评价</text>
+        </view>
+        <view class="comment-container">
+            <comment-list list='{{comment_list}}'></comment-list>
+        </view>
+    </view>
+    <view class="bottom-element" wx:if="{{status === 2 || (status === 3 && comment_id <= 0)}}">
+        <view class="btn"  bindtap="ensure">
+            <text>{{status === 3 ? '评价' : '确认收货'}}</text>
+        </view>
+    </view>
+</view>

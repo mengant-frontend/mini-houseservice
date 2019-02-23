@@ -1,0 +1,148 @@
+/*
+  全屏宽
+*/
+/*
+  两侧空白
+*/
+/*
+  元素间隔
+*/
+/*
+  边框颜色
+*/
+/*
+  背景色
+*/
+/*
+  分割线
+*/
+/*
+  标题颜色
+*/
+/*
+  正文颜色
+*/
+/*
+  辅助文本颜色
+*/
+/*
+  disabled下颜色
+*/
+/*
+  底部button的bottom值
+*/
+/*
+  通用阴影
+*/
+page {
+  background-color: #f8f8f9;
+}
+.page {
+  padding: 25rpx 25rpx 0;
+}
+.card-title {
+  background-color: #fff;
+}
+.cell-index--i-cell-text::after {
+  content: ' ';
+}
+.flex {
+  display: flex;
+  flex-direction: row;
+}
+.flex-img {
+  height: 160rpx;
+  width: 240rpx;
+}
+.img {
+  width: 100%;
+  height: 100%;
+}
+.fixed {
+  position: fixed;
+  left: 0;
+  bottom: 10px;
+  width: 100%;
+  padding: 0 25rpx;
+  box-sizing: border-box;
+}
+button {
+  margin-top: 10px !important;
+}
+.footer {
+  height: 100%;
+  overflow: hidden;
+}
+.keep {
+  white-space: nowrap;
+}
+.flex-content {
+  padding-left: 20rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.order-title {
+  padding-bottom: 12.5rpx;
+}
+.origin-price {
+  text-decoration: line-through;
+  font-size: 13px;
+}
+.update-price {
+  font-size: 16px;
+  color: #ff9900;
+}
+.link {
+  color: #2d8cf0;
+}
+.shop-name .cell-index--i-cell-text {
+  font-family: iconfont;
+}
+.shop-name .cell-index--i-cell-text::after {
+  content: "\e707";
+}
+.btn__error {
+  color: #ed3f14 !important;
+}
+.header__order {
+  width: 100%;
+  padding: 25rpx;
+  display: flex;
+  flex-direction: row;
+  padding: 20px 25rpx 10px;
+  box-sizing: border-box;
+  background: #f8f8f9;
+}
+.shop_name {
+  flex-grow: 1;
+  flex-shrink: 1;
+  color: #1c2438;
+  font-size: 14px;
+  padding-right: 20rpx;
+}
+.state__order {
+  flex-grow: 0;
+  flex-shrink: 0;
+  white-space: nowrap;
+  color: #80848f;
+  font-size: 12px;
+}
+.container__home {
+  position: fixed;
+  bottom: 210rpx;
+  right: 50rpx;
+  z-index: 9999;
+  width: 50px;
+  height: 50px;
+  background-color: #2d8cf0;
+  border-radius: 60px;
+  overflow: hidden;
+}
+.home {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

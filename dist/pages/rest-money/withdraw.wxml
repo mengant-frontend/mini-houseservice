@@ -1,0 +1,20 @@
+<view class="page">
+  <view class="card">
+    <i-cell-group>
+      <i-cell title='{{type_text}}提现'></i-cell>
+    </i-cell-group>
+    <view class="container">
+      <view class="title">金额</view>
+      <view class='input__money'>
+        <i-icon type='coupons' size='48' color='#ff9900'></i-icon>
+        <input type='digit' class='input' value='{{money}}' placeholder='请输入提现金额' bindinput='updateMoney'/>
+      </view>
+      <view class="tips">总额￥{{balance}}，可提现￥{{balance}}, <text bindtap='withdrawAll' class="link">全部提现</text></view>
+      <view class="container__btn">
+        <i-button type='primary' disabled='{{!can_withdraw}}' bind:click='submit'>提现</i-button>
+      </view>
+    </view>
+  </view>
+
+  <i-message id='message'></i-message>
+</view>

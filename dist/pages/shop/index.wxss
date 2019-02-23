@@ -1,0 +1,102 @@
+/*
+  全屏宽
+*/
+/*
+  两侧空白
+*/
+/*
+  元素间隔
+*/
+/*
+  边框颜色
+*/
+/*
+  背景色
+*/
+/*
+  分割线
+*/
+/*
+  标题颜色
+*/
+/*
+  正文颜色
+*/
+/*
+  辅助文本颜色
+*/
+/*
+  disabled下颜色
+*/
+/*
+  底部button的bottom值
+*/
+/*
+  通用阴影
+*/
+.wrapper {
+  background-image: linear-gradient(to bottom, #D7FFFE 0%, #FFFEFF 40%, #fff 100%);
+}
+.container {
+  width: 600rpx;
+  margin: 0 auto;
+  padding-top: 100rpx;
+  padding-bottom: 20rpx;
+}
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.05);
+  border: 1px solid #dddee1;
+}
+.container__avatar {
+  position: relative;
+  left: 0;
+  top: 0;
+}
+.avatar {
+  position: absolute;
+  top: -80rpx;
+  left: 50%;
+}
+.container__image {
+  width: 150rpx;
+  height: 150rpx;
+  border-radius: 150rpx;
+  margin-left: -75rpx;
+  background: #dddee1;
+  overflow: hidden;
+}
+.image {
+  width: 100%;
+  height: 100%;
+}
+.editor {
+  box-sizing: border-box;
+  width: 100%;
+  height: 80rpx;
+  line-height: 80rpx;
+  padding: 0 20rpx;
+  text-align: right;
+}
+.icon__editor {
+  font-size: 42rpx !important;
+}
+.info {
+  padding: 25rpx;
+}
+.label {
+  text-align: right;
+  font-size: 12px;
+  color: #80848f;
+  padding-right: 20rpx;
+}
+.content {
+  font-size: 14px;
+  color: #1c2438;
+}
+.content,
+.label {
+  padding-bottom: 20rpx;
+}

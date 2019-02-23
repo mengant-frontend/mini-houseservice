@@ -1,0 +1,32 @@
+<view class="container">
+	<view class="center">
+		<view class="line-container">
+			<view class="line"></view>
+		</view>
+		<view class="title">
+			<text>{{serviceType=='2'?'家政服务':'维修服务'}}</text>
+		</view>
+		<view class="line-container">
+			<view class="line"></view>
+		</view>
+	</view>
+	
+	<navigator class="more" url='/pages/service/index?service_type={{serviceType}}'>
+		<text>更多</text>
+		<i-icon type='enter' size='12'></i-icon>
+	</navigator>
+</view>
+
+
+
+<!-- <view class='container'>
+  <text class='title'>{{serviceType=='2'?'家政服务':'维修服务'}}</text>
+  <navigator >
+    <f-form-id>
+      <text class='else'>查看更多</text>
+      <text class='arrow'></text>
+      <text class='arrow'></text>
+      <text class='arrow'></text>
+    </f-form-id>
+  </navigator>
+</view> -->

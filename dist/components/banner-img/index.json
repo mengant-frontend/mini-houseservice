@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "fit-img": "/components/fit-img/index"
+  }
+}

@@ -1,0 +1,119 @@
+/*
+  全屏宽
+*/
+/*
+  两侧空白
+*/
+/*
+  元素间隔
+*/
+/*
+  边框颜色
+*/
+/*
+  背景色
+*/
+/*
+  分割线
+*/
+/*
+  标题颜色
+*/
+/*
+  正文颜色
+*/
+/*
+  辅助文本颜色
+*/
+/*
+  disabled下颜色
+*/
+/*
+  底部button的bottom值
+*/
+/*
+  通用阴影
+*/
+.container {
+  padding-top: 200rpx;
+}
+.camera {
+  display: flex;
+  justify-content: center;
+}
+camera {
+  width: 376rpx;
+  height: 376rpx;
+  outline: none;
+  border: none;
+  overflow: visible !important;
+  font-size: 0;
+  vertical-align: top;
+  position: relative;
+}
+.container__outer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.container__circle {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+.circle {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  left: -188rpx;
+  top: -188rpx;
+  border: 188rpx solid #fff;
+  border-radius: 376rpx;
+  transform: translate(1px, 1px);
+  box-sizing: content-box;
+  background-color: transparent;
+}
+.polyfill {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 1px;
+  height: 100%;
+  background-color: #fff;
+}
+.container__btn {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  padding-top: 80rpx;
+  margin: 0 auto;
+}
+button {
+  width: 240rpx;
+}
+.container__photos {
+  width: 750rpx;
+  padding: 25rpx 25rpx;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.photo {
+  width: 25%;
+  padding: 5px 0 5px 10px;
+  box-sizing: border-box;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.photo_0 {
+  margin-left: -10px;
+}
+image {
+  height: 156.25rpx;
+  width: 156.25rpx;
+  border-radius: 4px;
+}

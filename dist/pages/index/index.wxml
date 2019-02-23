@@ -1,0 +1,102 @@
+<view class='header'>
+  <picker mode='region' value='{{location}}' bindchange='locationChoose'>
+    <f-form-id>
+      <view>
+        {{location[2]}}
+        <i-icon type='unfold' size='12' color='rgba(0,0,0,0.65)'></i-icon>
+      </view>
+    </f-form-id>
+  </picker>
+  <navigator class='search' url='/pages/search/index'>
+    <f-form-id class='search-form'>
+      <view>
+        <icon type='search' size='12' color='#bbbbbb' />
+        搜索
+      </view>
+    </f-form-id>
+  </navigator>
+  <navigator url='/pages/face-detect/index' wx:if='{{village === 1}}'>
+    <i-icon type='scan' size='30' color='#000000'></i-icon>
+  </navigator>
+</view>
+
+<standard-img-swiper data='{{banner_img}}'></standard-img-swiper>
+
+<view class='join-msg' wx:if='{{join_msg.length > 0}}'>
+  {{join_msg}}
+</view>
+
+<navigator url='/pages/redpacket/tip'>
+  <f-form-id>
+		<view class='test'>
+			<view class="notice">
+				<i-notice-bar i-class='red-packet' background-color='#fff' color='#f6843d' icon="systemprompt" loop speed='{{notice_content.length > 30 ? 1000 : 2000}}' wx:if='{{notice_content}}'>
+				  【红包攻略】{{notice_content}}
+				</i-notice-bar>
+			</view>
+			<i-icon type='enter' size='18'></i-icon>
+		</view>
+  </f-form-id>
+</navigator>
+
+<view class="memu-0107">
+	<navigator class="menu-item-0107" url='/pages/service/index?service_type=2'>
+		<view class="cover">
+			<image class="cover-img" src='/images/index_03.png'></image>
+		</view>
+		<view class="title">
+			<text>家政服务</text>
+		</view>
+	</navigator>
+	<navigator class="menu-item-0107" url='/pages/service/index?service_type=1'>
+		<view class="cover">
+			<image class="cover-img" src='/images/index_05.png'></image>
+		</view>
+		<view class="title">
+			<text>维修服务</text>
+		</view>
+	</navigator>
+	<navigator class="menu-item-0107" url='/pages/service-rank/index'>
+		<view class="cover">
+			<image class="cover-img" src='/images/index_07.png'></image>
+		</view>
+		<view class="title">
+			<text>服务排行</text>
+		</view>
+	</navigator>
+	<navigator class="menu-item-0107" url='/pages/demand-hall/index'>
+		<view class="cover">
+			<image class="cover-img" src='/images/index_09.png'></image>
+		</view>
+		<view class="title">
+			<text>需求大厅</text>
+		</view>
+	</navigator>
+</view>
+
+<carousel list="{{list}}"></carousel>
+
+<view class="img-nav-0107">
+	<navigator class="service_1" url='/pages/service/index?service_type=2'>
+		<image class="service-img" src='/images/index_000.png'></image>
+	</navigator>
+	<view class="block_0107">
+		<navigator class="service_rank" url='/pages/service-rank/index'>
+			<image src='/images/index_001.png' class='service-img'></image>
+		</navigator>
+		<navigator class="service_2" url='/pages/service/index?service_type=1'>
+			<image src='/images/index_002.png' class='service-img'></image>
+		</navigator>
+	</view>
+</view>
+
+<service-title-bar service-type='2'></service-title-bar>
+<service-list data='{{house_service_list}}'></service-list>
+
+<service-title-bar service-type='1'></service-title-bar>
+
+<!-- <category-tabs data='{{category_list}}' service-list='{{service_list}}' bind:select='tabsChange'></category-tabs> -->
+<service-list data='{{maintain_service_list}}'></service-list>
+<i-message id="message"></i-message>
+
+<red-packet-modal wx:if='{{red_money > 0}}' money='{{red_money}}' title='首次登陆奖励' bind:close='closeRedPacketModal'></red-packet-modal>

@@ -1,0 +1,23 @@
+<view class="component">
+	<view class="list">
+		<navigator url='/pages/service-detail/index?id={{item.id}}' class="item {{index % 2 !== 0 ? 'item-right' : 'item-left'}}" wx:for='{{data}}' wx:key='id'>
+			<view class="cover">
+				<image class="cover-img" src='{{item.img_url}}'></image>
+			</view>
+			<view class="title">
+				<text>{{item.title}}</text>
+			</view>
+			<view class="desc">
+				<view class="desc-item left">
+					<text class='desc-title'>总销量</text>
+					<text class='special'>{{item.sales}}</text>
+				</view>
+				<view class="desc-item">
+					<text class='desc-title'>成交额</text>
+					<text class='special'>{{item.money}}</text>
+				</view>
+			</view>
+		</navigator>
+	</view>
+	<slot></slot>
+</view>

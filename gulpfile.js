@@ -6,17 +6,12 @@ const babel = require('gulp-babel')
 const plumber = require('gulp-plumber')
 const rename = require('gulp-rename')
 const imagemin = require('gulp-imagemin')
-const uglify = require('gulp-uglify');
 //脚本
 const script_src = [
   './src/**/*.js'
 ]
 function script(cb) {
   return src(script_src)
-    .pipe(plumber())
-    .pipe(babel())
-    .pipe(plumber.stop())
-    .pipe(uglify())
     .pipe(dest('dist'))
 }
 //样式
@@ -25,7 +20,6 @@ function style(cb) {
   return src(style_src)
     .pipe(plumber())
     .pipe(less())
-    .pipe(postcss())
     .pipe(rename((path) => {
       path.extname = '.wxss';
     }))
@@ -43,9 +37,6 @@ function wxml(cb) {
 const json_src = ['./src/**/*.json']
 function json(cb) {
   return src(json_src)
-    .pipe(plumber())
-    .pipe(jsonmin())
-    .pipe(plumber.stop())
     .pipe(dest('dist'))
 }
 
@@ -55,7 +46,6 @@ const img_src = [
 ]
 function img(cb) {
   return src(img_src)
-    .pipe(imagemin())
     .pipe(dest('dist/images'))
 }
 //监听

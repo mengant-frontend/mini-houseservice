@@ -1,0 +1,6 @@
+<!-- indicator-active-color 为 iview 推荐 primary 主色 -->
+<swiper style='height:{{height}}rpx;' indicator-dots='{{list.length===1?false:true}}' indicator-active-color='#2d8cf0' autoplay>
+  <swiper-item wx:for='{{list}}' wx:key='*this' data-src='{{item}}' bindtap='previewImg'>
+   <fit-img width='750' can-preview='{{false}}' src='{{item}}' bind:imgLoad='imgLoad'></fit-img>
+  </swiper-item>
+</swiper>

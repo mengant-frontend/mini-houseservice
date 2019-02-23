@@ -1,0 +1,25 @@
+<view class="page">
+    <sign-in height="218"></sign-in>
+    <view class="container">
+        <tabs-swiper-page fixed="{{false}}" tabs-list='{{tabs_list}}' bind:swiperChange='swiperChange'>
+            <scroll-loading bg-color='#fff' wx:for='{{tabs_list}}' wx:key='id' slot='{{item.id}}' if-no-more='{{item.if_no_more}}' if-loading='{{item.loading}}' bind:scrolltolower='reachBottom'>
+                <view class="list" >
+                    <view class="item" wx:for="{{item.list}}" wx:for-item="itm" wx:for-index="idx">
+                        <view class="bound ellipsis">
+                            <text>{{itm.score}}</text>
+                        </view>
+                        <view class="desc">
+                            <view class="title">
+                                <text>{{itm.info}}</text>
+                            </view>
+                            <view class="date">
+                                <text>{{itm.update_time}}</text>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </scroll-loading>
+        </tabs-swiper-page>
+    </view>
+</view>
+<i-message id="message"></i-message>

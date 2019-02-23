@@ -1,0 +1,40 @@
+page {
+  /* 以下是使用 tabs-swiper-page 组件需要的样式 */
+  height: 100%;
+  padding-top: 42px;
+  box-sizing: border-box;
+}
+.item {
+  padding: 25rpx 30rpx;
+  border-bottom: 1rpx solid #dddee1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+/* 为 fit-img 组件设置更多样式 */
+.img-style {
+  border-radius: 8rpx;
+}
+.item .info {
+  margin-left: 30rpx;
+  line-height: 2;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  /* 750-30*2-270-30 给定宽度为了让文本单行溢出省略 */
+  width: 390rpx;
+}
+.item .title {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  /* iview 推荐主标题样式 */
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #464c5b;
+}
+.item .money {
+  margin-top: 20rpx;
+  /* iview 推荐 warning 辅助色 */
+  color: #ff9900;
+}

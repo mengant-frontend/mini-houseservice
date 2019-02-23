@@ -1,0 +1,18 @@
+{
+  "navigationBarTitleText": "服务",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "scroll-loading": "/components/scroll-loading/index",
+    "banner-img": "/components/banner-img/index",
+    "demand-hall": "/components/demand-hall/index",
+    "service-category-tabs": "/components/service-category-tabs/index",
+    "service-list": "/components/service-list/index",
+    "carousel": "/components/carousel/index",
+		"fixed-element": "/components/fixed-element/index",
+		"standard-img-swiper": "/components/standard-img/swiper",
+		"category-tabs": "/components/category-tabs/index",
+		
+		"i-icon": "/iview/icon/index",
+		"i-load-more": "/iview/load-more/index"
+  }
+}

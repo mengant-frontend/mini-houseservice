@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "兑换码",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "i-message": "/iview/message/index"
+  }
+}

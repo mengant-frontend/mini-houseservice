@@ -1,0 +1,28 @@
+<view class="page" style='padding-bottom: {{type === "select" ? "118" : "0"}}px'>
+  <view class="list">
+    <view class="item" catchtap='select' data-index='{{index}}' wx:for='{{list}}' wx:key='id'>
+      <view class="money">
+        <text>￥{{item.money}}</text>
+      </view>
+      <view class="container__message">
+        <view class="active" wx:if='{{active_index === index}}'>
+          <view class="triangle"></view>
+          <view class="congtainer__icon">
+            <i-icon type='right' size='20' color='#fff'></i-icon>
+          </view>
+        </view>
+        <view class="message">
+          <view class="title">{{item.detail.name}}</view>
+          <view class="desc">{{item.create_time}} ~ {{item.end_time}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <i-load-more loading='{{loading}}' tip='{{loading ? "loading..." : ""}}'></i-load-more>
+  <view class="fixed" wx:if='{{type === "select"}}'>
+    <i-button type='primary' bind:click='ensure'>确认选择</i-button>
+    <i-button type='ghost' bind:click='cancel'>取消选择</i-button>
+  </view>
+  <i-message id='message'></i-message>
+</view>

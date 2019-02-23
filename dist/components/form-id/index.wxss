@@ -1,0 +1,26 @@
+form,
+view {
+  color: inherit;
+  font-size: inherit;
+}
+.form-id__container {
+  color: inherit;
+  font-size: inherit;
+}
+.plain-btn {
+  display: block;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  box-sizing: content-box;
+  color: inherit;
+  font-size: inherit;
+  text-align: left;
+}
+.plain-btn::after {
+  display: none;
+}
+.plain-btn-container {
+  box-sizing: border-box;
+  margin: 1px;
+}
