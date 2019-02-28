@@ -25,12 +25,15 @@ Page({
     if_no_more: false,
     comment_list: [],
     if_collected: false,
-		can_call: false //是否可以联系商家
-  
+		can_call: false, //是否可以联系商家
+    show_home: false
 	},
 
   async onLoad(options) {
     let service_id = options.id
+    this.setData({
+      show_home: !!options.share
+    })
     wx.showNavigationBarLoading()
     // 获取服务详情
     let res = await app.get({
@@ -74,7 +77,7 @@ Page({
 	onShareAppMessage(){
 		return {
 			title: this.data.name,
-			path: "/pages/service-detail/index?id=" + this.data.service_id
+			path: "/pages/service-detail/index?share=true&id=" + this.data.service_id
 		}
 	},
 	onReachBottom(){

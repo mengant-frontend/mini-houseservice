@@ -1,6 +1,5 @@
 {
   "component": true,
   "usingComponents":{
-    "i-message": "/iview/message/index"
   }
 }

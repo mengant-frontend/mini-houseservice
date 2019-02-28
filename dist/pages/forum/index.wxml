@@ -1,3 +1,115 @@
 <view class="page">
-  hello world
+  <tabs-swiper-page tabs-current="{{current}}" tabs-list="{{tabs_list}}" bind:swiperChange="swiperChange">
+    <scroll-loading
+      wx:for='{{tabs_list}}'
+      wx:key='id'
+      slot='{{item.id}}'
+      bind:scrolltolower="handleScrolltolower"
+      if-no-more="item.ifNoMore"
+      bg-color='#EFEFF4'
+      scroll-top="{{item.scroll_top}}"
+      bind:scroll="bindScroll"
+    >
+      <view
+        class='item'
+        wx:for='{{item.list}}'
+        wx:for-item="itm"
+        wx:for-index="idx"
+        wx:key="id"
+        id="tab_{{index}}"
+      >
+        <view class="avatar-container">
+          <image class="avatar" src="{{itm.avatarUrl}}"></image>
+        </view>
+        <view class="content-container">
+          <view class="header">
+            <view class="user">
+              <text>{{itm.nickName}}</text>
+            </view>
+            <view class="date">
+              <text>{{itm.create_time}}</text>
+            </view>
+          </view>
+          <view class="content">
+            <view class="title">
+              <text>{{itm.title}}</text>
+            </view>
+            <view class="main" style="{{itm.active ? itm.height : ''}}">
+              <view class="main-text">
+                {{itm.content}}
+              </view>
+            </view>
+            <view class="more" wx:if="{{itm.show_more}}">
+              <text bindtap="getMore" data-index="{{idx}}">查看更多</text>
+            </view>
+          </view>
+          <view class="img-container">
+            <image wx:for="{{itm.imgs}}" wx:for-item="img" wx:key="id" class="img" src="{{img.url}}"></image>
+          </view>
+          <view class="comment-container">
+            <view
+              class="comment-count"
+              bindtap="inputComment"
+              data-index="{{idx}}"
+              data-can_reply="{{index === 0}}"
+              data-f_id="{{itm.id}}"
+              data-parent_id="0">
+              <i-icon type="message" size="20"></i-icon>
+              <text>{{itm.c_count}}</text>
+            </view>
+            <view class="comment-list" wx:if="{{index === 0 && itm.comment && itm.comment.total > 0}}">
+              <view
+                wx:for="{{itm.comment.data}}"
+                wx:for-item="c"
+                wx:key="id"
+                class="comment-item"
+                bindtap="inputComment"
+                data-index="{{idx}}"
+                data-can_reply="{{true}}"
+                data-f_id="{{itm.id}}"
+                data-parent_id="{{c.id}}"
+                data-nick_name="{{c.nickName}}">
+                <text class="comment-user">{{c.nickName}}</text>
+                <block wx:if="{{c.parent_id > 0}}">
+                  <text class="reply">回复</text>
+                  <text class="comment-user">{{c.parent_name}}</text>
+                </block>
+                <text class="comment-content">{{c.content}}</text>
+              </view>
+            </view>
+            <view class="more-comment">
+              <text
+                bindtap="closeComment"
+                data-index="{{idx}}"
+                wx:if="{{itm.comment.data.length > 5}}"
+              >收起评论
+              </text>
+              <text
+                bindtap="viewMoreComment"
+                data-index="{{idx}}"
+                class="comment-more"
+                wx:if="{{itm.comment.total > itm.comment.data.length}}">查看更多评论
+              </text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </scroll-loading>
+  </tabs-swiper-page>
 </view>
+<view class="comment-input" hidden="{{!comment.f_id}}">
+<input
+  class="input-comment"
+  placeholder="{{comment.parent_id > 0 ? '回复' + comment.nick_name : '请输入评论内容'}}"
+  focus="{{focus}}"
+  bindinput="updateCommentContent"
+  value="{{comment.content}}"
+></input>
+<text
+  class="btn-comment"
+  bindtap="addComment"
+>发送
+</text>
+</view>
+<i-message id="message"></i-message>
+<fixed-element show-forum="{{true}}"></fixed-element>

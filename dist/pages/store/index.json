@@ -9,6 +9,7 @@
 		"i-message": "/iview/message/index",
 		"standard-img-swiper": "/components/standard-img/swiper",
 		"i-rate": "/iview/rate/index",
-		"c-list": "/components/c-list/index"
+		"c-list": "/components/c-list/index",
+    "go-home": "/components/go-home/index"
   }
 }

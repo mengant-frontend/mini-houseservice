@@ -43,15 +43,14 @@ Page({
 		}
     this.wecropper.getCropperImage(async (src) => {
       if (src) {
-				await app.asyncApi(wx.showToast, {
+				await app.asyncApi(wx.showLoading, {
 					title: '上传中',
-					icon: 'loading',
 					mask: true
 				})
 				let server_res = await app._uploadFile({
 					filePath: src
 				})
-				await app.asyncApi(wx.hideToast)
+				await app.asyncApi(wx.hideLoading)
 				let { success, msg, data } = server_res
 				if(!success){
 					app._error(msg)

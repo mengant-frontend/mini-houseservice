@@ -23,3 +23,4 @@
 		</view>
   </scroll-loading>
 </tabs-swiper-page>
+<fixed-element show-forum-entry="{{true}}"></fixed-element>

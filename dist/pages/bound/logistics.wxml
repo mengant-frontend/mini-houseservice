@@ -1,6 +1,6 @@
 <view class="page">
     <view class="steps">
-        <i-steps direction="vertical">
+        <i-steps wx:if='{{detail.data.length > 0}}' direction="vertical" current='{{0}}'>
             <i-step wx:for="{{detail.data}}">
                 <view slot="title">
                     {{item.context}}
@@ -10,6 +10,7 @@
                 </view>
             </i-step>
         </i-steps>
+        <text wx:else>暂无物流信息</text>
     </view>
 </view>
 

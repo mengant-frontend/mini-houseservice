@@ -24,6 +24,10 @@ Page({
 			app._error('无效快递类别')
 			return
 		}
+    wx.showLoading({
+      title: 'loading',
+      mask: true
+    })
 		let res = await app.get({
 			url: '/api/v1/goods/express/info',
 			data: {
@@ -31,6 +35,7 @@ Page({
 				express_no: express_no
 			}
 		})
+    wx.hideLoading()
 		if(!res.success){
 			app._error(res.msg)
 			return

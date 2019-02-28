@@ -1,0 +1,5 @@
+<view class="container__home" wx:if='{{show}}'>
+  <view class="home" bindtap='goHome'>
+    <i-icon size='30' color='#fff' type='homepage_fill'></i-icon>
+  </view>
+</view>

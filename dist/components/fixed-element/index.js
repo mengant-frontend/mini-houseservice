@@ -21,6 +21,20 @@ Component({
 				this.reRender()
 			}
 		},
+		showForum:{
+			type: Boolean,
+			value: false,
+			observer(val){
+				this.reRender()
+			}
+		},
+		showForumEntry:{
+			type: Boolean,
+			value: false,
+			observer(val){
+				this.reRender()
+			}
+		},
 		backgroundColor: {
 			type: String,
 			value: '#EFEFF4'
@@ -39,11 +53,12 @@ Component({
 			const query = wx.createSelectorQuery().in(this)
 			query.select('#cover').boundingClientRect()
 			query.exec((res) => {
-			this.setData({
-				right: '25rpx',
-				width: res[0].width,
-				height: res[0].height
-			})
+				if(!res[0]) return false
+				this.setData({
+					right: '25rpx',
+					width: res[0].width,
+					height: res[0].height
+				})
 			})
 		},
 		goNextPage(e){

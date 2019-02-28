@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "f-textarea": "/components/f-textarea/index",
+    "i-panel": "/iview/panel/index",
+    "i-message": "/iview/message/index",
+    "f2-photo": "/components/f2-photo/index"
+  }
+}

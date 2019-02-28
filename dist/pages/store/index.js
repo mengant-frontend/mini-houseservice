@@ -27,11 +27,15 @@ Page({
 		can_call: false, //是否可以联系商家
 		params:{ 
 			id: 'id'
-		}
+		},
+    show_home: false
   },
 
   async onLoad(options) {
     let store_id = options.id
+    this.setData({
+      show_home: !!options.share
+    })
     wx.showNavigationBarLoading()
     // 获取店铺详情
     let res = await app.get({

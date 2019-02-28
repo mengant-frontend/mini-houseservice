@@ -3,7 +3,6 @@
     "pages/welcome/index",
     "pages/term/index",
     "pages/authorize/index",
-
     "pages/index/index",
     "pages/face-detect/index",
     "pages/search/index",
@@ -13,10 +12,8 @@
     "pages/service-rank/index",
     "pages/store/index",
     "pages/store-comment/index",
-
     "pages/community/index",
     "pages/community-detail/index",
-
     "pages/orders/index",
     "pages/account/index",
     "pages/account/edit",
@@ -47,7 +44,6 @@
     "pages/order-detail/index",
     "pages/avatar/index",
     "pages/cropper/upload",
-
     "pages/bound/index",
     "pages/bound/detail",
     "pages/bound/redeem-code",
@@ -63,12 +59,13 @@
     "pages/bound-shop/list",
     "pages/bound-shop/detail",
     "pages/bound-shop/comment",
-
     "pages/invite/index",
-
     "pages/status/index",
     "pages/booking/index",
-    "pages/expense-record/index"
+    "pages/expense-record/index",
+    "pages/forum/index",
+    "pages/forum/add",
+    "components/go-home/index"
   ],
   "window": {
     "navigationBarTitleText": "久房通",
@@ -76,29 +73,34 @@
   },
   "tabBar": {
     "color": "#80848f",
-		"backgroundColor": "#fff",
+    "backgroundColor": "#fff",
     "selectedColor": "#19be6b",
-    "list": [{
-      "pagePath": "pages/index/index",
-      "text": "首页",
-      "iconPath": "images/tabbar/index.png",
-      "selectedIconPath": "images/tabbar/index_01.png"
-    }, {
-      "pagePath": "pages/community/index",
-      "text": "圈子",
-      "iconPath": "images/tabbar/circle.png",
-      "selectedIconPath": "images/tabbar/circle_01.png"
-    }, {
-      "pagePath": "pages/orders/index",
-      "text": "订单",
-      "iconPath": "images/tabbar/order.png",
-      "selectedIconPath": "images/tabbar/order_01.png"
-    }, {
-      "pagePath": "pages/account/index",
-      "text": "我的",
-      "iconPath": "images/tabbar/me.png",
-      "selectedIconPath": "images/tabbar/me_01.png"
-    }]
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/tabbar/index.png",
+        "selectedIconPath": "images/tabbar/index_01.png"
+      },
+      {
+        "pagePath": "pages/community/index",
+        "text": "圈子",
+        "iconPath": "images/tabbar/circle.png",
+        "selectedIconPath": "images/tabbar/circle_01.png"
+      },
+      {
+        "pagePath": "pages/orders/index",
+        "text": "订单",
+        "iconPath": "images/tabbar/order.png",
+        "selectedIconPath": "images/tabbar/order_01.png"
+      },
+      {
+        "pagePath": "pages/account/index",
+        "text": "我的",
+        "iconPath": "images/tabbar/me.png",
+        "selectedIconPath": "images/tabbar/me_01.png"
+      }
+    ]
   },
   "debug": true
 }

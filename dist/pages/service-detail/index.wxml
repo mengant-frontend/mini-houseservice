@@ -57,3 +57,4 @@
 </view>
 
 <i-message id='message'></i-message>
+<go-home show='{{show_home}}'></go-home> 

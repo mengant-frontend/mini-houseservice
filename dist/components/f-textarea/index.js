@@ -21,6 +21,10 @@ Component({
     show_total: {
       type: Boolean,
       value: true
+    },
+    height: {
+      type: String,
+      value: '120px'
     }
   },
   externalClasses: [

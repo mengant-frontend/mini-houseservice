@@ -5,6 +5,10 @@ Component({
     height: {
       type: Number,
       value: 360
+    },
+    show: {
+      type: Boolean,
+      value: false
     }
   },
   data: {
@@ -27,14 +31,14 @@ Component({
       })
       if(!res.success){
         app._error(res.msg, {
-          selector: 'login-message'
+          selector: '#message'
         })
         return
       }
       let data = res.data
       this.setData({
         sign_in: data.sign_in > 0,
-        score: data.score
+        score: data.score || 0
       })
     },
     async login(){
@@ -52,12 +56,18 @@ Component({
       })
       if(!res.success){
         app._error(res.msg, {
-          selector: 'login-message'
+          selector: '#message'
         })
         return
       }
       let data = res.data,
         score = this.data.score
+      wx.showModal({
+        title: '签到成功',
+        content: '获得' + data + '积分',
+        showCancel: false,
+        mask: true
+      })
       this.setData({
         sign_in: true,
         score: parseFloat(score) + parseFloat(data.score)

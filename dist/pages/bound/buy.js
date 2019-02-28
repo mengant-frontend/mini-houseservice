@@ -68,7 +68,7 @@ Page({
 			return
 		}
 		wx.navigateTo({
-			url: '/pages/status/index?type=2&status=success&val' + score
+			url: '/pages/status/index?type=2&status=success&val=' + score
 		})
 	}
 })

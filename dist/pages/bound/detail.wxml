@@ -1,5 +1,5 @@
 <view class="page">
-    <sign-in height="218"></sign-in>
+    <sign-in height="218" show="{{true}}"></sign-in>
     <view class="container">
         <tabs-swiper-page fixed="{{false}}" tabs-list='{{tabs_list}}' bind:swiperChange='swiperChange'>
             <scroll-loading bg-color='#fff' wx:for='{{tabs_list}}' wx:key='id' slot='{{item.id}}' if-no-more='{{item.if_no_more}}' if-loading='{{item.loading}}' bind:scrolltolower='reachBottom'>

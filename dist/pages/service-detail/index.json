@@ -8,6 +8,7 @@
     "i-icon": "/iview/icon/index",
     "i-message": "/iview/message/index",
     "standard-img-swiper": "/components/standard-img/swiper",
-    "i-load-more": "/iview/load-more/index"
+    "i-load-more": "/iview/load-more/index",
+    "go-home": "/components/go-home/index"
   }
 }

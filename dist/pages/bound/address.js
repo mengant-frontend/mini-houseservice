@@ -57,8 +57,9 @@ Page({
 	},
 	select(e){
 		let { detail } = e,
-			id = detail.value[0],
+			id = detail.value,
 			{ list } = this.data
+
 		list.forEach(item => {
 			if(item.id == id){
 				item.checked = true

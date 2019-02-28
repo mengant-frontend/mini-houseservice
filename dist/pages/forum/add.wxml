@@ -1,0 +1,21 @@
+<view class="page">
+  <view class="input-container">
+    <input class="input" placeholder="请输入标题" data-form_key="title" bindchange="bindFormChange"></input>
+    <view class="textarea-container">
+      <f-textarea height="350px" max-length="500" data-form_key="content" bind:update="bindFormChange"></f-textarea>
+    </view>
+    <view class="title">
+      <text>添加图片</text>
+    </view>
+    <view class="imgs">
+      <f2-photo list="{{img_list}}" add='{{true}}'></f2-photo>
+    </view>
+  </view>
+
+  <view class="bottom-element">
+    <view class="btn" bindtap="add">
+      <text>保存</text>
+    </view>
+  </view>
+</view>
+<i-message id="message"></i-message>

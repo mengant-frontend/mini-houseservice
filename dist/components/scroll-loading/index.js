@@ -27,24 +27,43 @@ Component({
           })
         }
       }
+    },
+    scrollTop: {
+      type: String,
+      value: '',
+      observer(val){
+        console.log(35, val)
+      }
     }
   },
 
   data: {
     load_more: '上拉显示更多',
     no_more: '',
-    padding_bottom: '20px'
+    padding_bottom: '20px',
+    scroll_top: 0,
+    temp_scroll_top: 0
   },
 
   methods: {
     // 触发触底加载
     scrolltolower() {
       // 执行组件使用者绑定的 scrolltolower 监听事件
-      this.triggerEvent('scrolltolower')
+      console.log(this.data.temp_scroll_top)
+      this.setData({
+        scroll_top: this.data.temp_scroll_top + 'px'
+      })
+      console.log(this.data.scroll_top)
+      setTimeout(() => {
+        this.triggerEvent('scrolltolower')
+      })
     },
     // 滚动
     scroll({ detail }) {
       // 将 detail 传递给执行组件使用者绑定的 scroll 监听事件
+      this.setData({
+        temp_scroll_top: detail.scrollHeight
+      })
       this.triggerEvent('scroll', detail)
     }
   }

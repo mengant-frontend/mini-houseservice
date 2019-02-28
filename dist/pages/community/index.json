@@ -6,6 +6,7 @@
     "scroll-loading": "/components/scroll-loading/index",
     "fit-img": "/components/fit-img/index",
     "i-icon": "/iview/icon/index",
-		"standard-img-swiper": "/components/standard-img/swiper"
+		"standard-img-swiper": "/components/standard-img/swiper",
+    "fixed-element": "/components/fixed-element/index"
   }
 }
