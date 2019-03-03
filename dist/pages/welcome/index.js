@@ -14,27 +14,33 @@ Page({
 
   async onLoad(query) {
     let { code } = query
-		if(code){
-			app.bindUser()
-		}
     wx.showNavigationBarLoading()
     await app.asyncApi(wx.setNavigationBarTitle, {
-      title: '登录中...'
+      title: '加载中...'
     })
-    let res = await app.get({
+    let [ res, server_res ] = await Promise.all([app.get({
       url: this.data.api_url.get_guid_img
-    })
+    }), app.get({
+      url: '/api/v1/file/time',
+      token_required: false
+    })])
+    
     wx.hideNavigationBarLoading()
     if (!res.success) {
+      app._error(res.msg)
       return
+    }
+    await app.bindUser(code)
+    if (!app.global_data.had_save_user_info){
+     let res = await app.getUserInfo(2)
+     if(res === false){
+       return 
+     }
     }
     let last_modified_local
     try{
       last_modified_local = wx.getStorageSync('last_modified')
-    }catch(e){}
-    let server_res = await app.get({
-      url: '/api/v1/file/time'
-    })
+    }catch(e){} 
     if(!server_res.success){
       app._error(server_res.msg)
     }else{
@@ -55,7 +61,7 @@ Page({
       list.push(item.url)
     })
     if (!list.length) {
-      this.comeInto()
+      this.comeInto(code)
       return
     }
     this.setData({
@@ -64,7 +70,7 @@ Page({
   },
 
   // 进入首页
-  comeInto() {
+  comeInto(code) {
     wx.switchTab({
       url: '/pages/index/index'
     })

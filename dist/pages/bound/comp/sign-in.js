@@ -64,7 +64,7 @@ Component({
         score = this.data.score
       wx.showModal({
         title: '签到成功',
-        content: '获得' + data + '积分',
+        content: '获得' + data.score + '积分',
         showCancel: false,
         mask: true
       })

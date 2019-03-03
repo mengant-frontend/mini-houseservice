@@ -9,21 +9,20 @@ const qq_map = new QQMapSdk({
 let is_forbidden = false
 let login_promise = null
 App({
-  async onLaunch() {
-
-  },
-
   // 登录
-  async login() {
+  async login(no_tip) {
+    no_tip = no_tip || false
     if(is_forbidden){
       return {
         success: false
       }
     }
     let text = this.global_data.token ? '重新登录中...' : '登录中...'
-    await this.asyncApi(wx.showLoading, {
-      title: text
-    })
+    if(!no_tip){
+      await this.asyncApi(wx.showLoading, {
+        title: text
+      })
+    }
     let wx_res = await this.asyncApi(wx.login)
     if (!wx_res.success) { // 出错处理debug
       return {
@@ -43,7 +42,9 @@ App({
       })
     }
     let server_res = await login_promise
-    await this.asyncApi(wx.hideLoading)
+    if(!no_tip){
+      await this.asyncApi(wx.hideLoading)
+    }
     login_promise = null
     let { data } = server_res
     if (!server_res.success) { // 出错处理debug
@@ -61,7 +62,7 @@ App({
         this.asyncApi(wx.setNavigationBarTitle, {
           title: '登录失败'
         })
-        return {success: false}
+        return { success: false}
       }
       return {success: false}
     }
@@ -69,26 +70,63 @@ App({
     this.global_data.shop_id = data.shop_id
     this.global_data.red_money = data.red_money
 		this.global_data.code = data.code
-    // 获取用户信息
-    if (!this.global_data.user_info) {
-      await this.getUserInfo(Number(data.type))
-    }
-
+    this.global_data.had_save_user_info = data.type === 1 
     return server_res
   },
+  setTimer(try_times){
+    this.try_times = try_times
+    if(this.userInfoTimer){
+      return
+    }
+    this.userInfoTimer = setInterval(async () => {
+      if(this.try_times % 2 === 0){
+        await this.login(true)
+      }
+      this.getUserInfo(2, this.try_times, true)
+    }, 30000)
+  },
+  async updateUserInfo({ detail }, try_times){
+    let local_try_times = try_times || 0
+    let { userInfo = false, encryptedData, iv } = detail
+    if (userInfo) {
+      let server_res = await this.post({
+        url: '/api/v1/user/info',
+        data: {
+          encryptedData: encodeURI(encryptedData),
+          iv: encodeURI(iv)
+        }
+      })
+      this.global_data.had_save_user_info = true
+      if (!server_res.success) { // 出错处理debug
+        this.setTimer(++try_times)
+      }else{
+        this.userInfoTimer && clearInterval(this.userInfoTimer)
+        this.global_data.user_info = userInfo
+      }
+      if (local_try_times === 0){
+        this.asyncApi(wx.redirectTo, {
+          url: '/pages/welcome/index'
+        })
+      }
+    }
+  },
   // 获取用户信息
-  async getUserInfo(user_type) {
+  async getUserInfo(user_type, try_times, no_redirect) {
+    no_redirect = no_redirect || false
+    try_times = try_times || 0
     if (wx.canIUse('button.open-type.getUserInfo')) {
       let wx_res = await this.asyncApi(wx.getSetting)
       if (!wx_res.success) { // 出错处理debug
-        return
+        return false
       }
       if (!wx_res.authSetting['scope.userInfo']) {
         // 用户没有授权获取用户信息时跳转到授权页
-        await this.asyncApi(wx.redirectTo, {
-          url: '/pages/authorize/index?auth_type=userinfo&user_type=' + user_type
-        })
-        return
+        if (!no_redirect){
+          await this.asyncApi(wx.redirectTo, {
+            url: '/pages/authorize/index?auth_type=userinfo&user_type=' + user_type
+          })
+          return false
+        }
       }
     }
     // 用户已授权以及在没有 open-type=getUserInfo 版本直接调用
@@ -96,20 +134,9 @@ App({
       withCredentials: true
     })
     if (!wx_userinfo_res.success) { // 出错处理debug
-      return
+      return false
     }
-    let { userInfo, encryptedData, iv } = wx_userinfo_res
-    // 数据库未缓存用户信息
-    if (user_type === 2) {
-      let server_res = await this.post({
-        url: '/api/v1/user/info',
-        data: { encryptedData, iv }
-      })
-      if (!server_res.success) { // 出错处理debug
-        return
-      }
-    }
-    this.global_data.user_info = userInfo
+    await this.updateUserInfo({ detail: wx_userinfo_res }, try_times)
   },
   //使用promise包装了一下，跟async搭配
   asyncApi(api, options = {}) {

@@ -1,4 +1,5 @@
 {
+  "navigationBarTitleText": "协议",
   "usingComponents": {
     "i-button": "/iview/button/index",
     "i-message": "/iview/message/index"

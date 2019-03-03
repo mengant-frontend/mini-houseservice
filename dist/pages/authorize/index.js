@@ -15,24 +15,8 @@ Page({
     })
   },
   // 获取用户微信头像昵称，跳转欢迎页
-  async getUserInfo({detail}) {
-    let {userInfo = false, encryptedData, iv} = detail
-    if (userInfo) {
-      // 数据库未缓存用户信息
-      if (Number(this.data.user_type) === 2) {
-        let server_res = await app.post({
-          url: '/api/v1/user/info',
-          data: {encryptedData, iv}
-        })
-        if (!server_res.success) { // 出错处理debug
-          return
-        }
-      }
-      app.global_data.user_info = userInfo
-      app.asyncApi(wx.redirectTo, {
-        url: '/pages/welcome/index'
-      })
-    }
+  async getUserInfo(e) {
+    await app.updateUserInfo(e, 0)
   },
   
   // 打开设置，授权地理位置后跳转首页

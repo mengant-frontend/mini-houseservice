@@ -20,7 +20,10 @@ Page({
     red_money: 0
   },
 
-  async onLoad() {
+  async onLoad(query) {
+    if(query.code){
+      app.bindUser()
+    }
     this.setData({
       red_money: app.global_data.red_money || 0
     })
