@@ -30,7 +30,7 @@ Page({
     }
     await app.asyncApi(wx.showNavigationBarLoading)
     let server_res = await app.get({
-      url: '/api/v1/demand',
+      url: '/house/api/v1/demand',
       data: {
         id: id
       }
@@ -60,7 +60,7 @@ Page({
       mask: true
     })
     let res = await app.post({
-      url: '/api/v1/order/taking',
+      url: '/house/api/v1/order/taking',
       data: {
         id: id
       }
@@ -87,7 +87,7 @@ Page({
     if (!wx_res.confirm) {
       return
     }
-    let url = '/api/v1/demand/handel'
+    let url = '/house/api/v1/demand/handel'
     let { detail } = this.data
     let server_res = await app.post({
       url: url,

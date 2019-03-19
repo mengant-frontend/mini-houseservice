@@ -47,7 +47,7 @@ Page({
 			loading: true
 		})
     let server_res = await app.get({
-      url: '/api/v1/center/info'
+      url: '/house/api/v1/center/info'
     })
 		this.setData({
 			loading: false
@@ -87,7 +87,7 @@ Page({
   },
 	async loadPhone(){
 		this.phone_promise = app.get({
-			url: '/api/v1/system/phone'
+			url: '/house/api/v1/system/phone'
 		})
 		let server_res = await this.phone_promise
 		this.phone_promise = null

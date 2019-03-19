@@ -18,7 +18,7 @@ Page({
   async loadData() {
     await app.asyncApi(wx.showNavigationBarLoading)
     let server_res = await app.get({
-      url: '/api/v1/shop/info/edit'
+      url: '/house/api/v1/shop/info/edit'
     })
     await app.asyncApi(wx.hideNavigationBarLoading)
     let { success, msg, data } = server_res

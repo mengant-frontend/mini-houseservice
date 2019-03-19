@@ -98,7 +98,7 @@ Page({
 			mask: true
 		})
     let server_res = await app.get({
-      url: '/api/v1/order',
+      url: '/house/api/v1/order',
       data: {
         id: id,
         type: type
@@ -148,7 +148,7 @@ Page({
   },
   async getRedPacketList() {
     let server_res = await app.get({
-      url: '/api/v1/red/list'
+      url: '/house/api/v1/red/list'
     })
     let { success, msg, data } = server_res
     if (!success) {
@@ -184,7 +184,7 @@ Page({
   //获取协商提示语
   async getConsultMessage(){
     let server_res = await app.get({
-      url: '/api/v1/system/tip'
+      url: '/house/api/v1/system/tip'
     })
     let { success, msg, data } = server_res
     if(!success){
@@ -208,7 +208,7 @@ Page({
   async ensureOrder() {
     let { id, type } = this.data
     let server_res = await app.post({
-      url: '/api/v1/order/shop/confirm',
+      url: '/house/api/v1/order/shop/confirm',
       data: {
         id,
         type
@@ -251,7 +251,7 @@ Page({
   async checkPay() {
     let { id, type } = this.data
     let res = await app.post({
-      url: '/api/v1/order/pay/check',
+      url: '/house/api/v1/order/pay/check',
       data: {
         id,
         type
@@ -270,7 +270,7 @@ Page({
   },
 	checkOrderPaid({id, type}){
 		return app.post({
-			url: '/api/v1/order/pay/check',
+			url: '/house/api/v1/order/pay/check',
 			data: {
 				id,
 				type
@@ -316,7 +316,7 @@ Page({
       return
     }
     let res = await app.post({
-      url: '/api/v1/order/service/begin',
+      url: '/house/api/v1/order/service/begin',
       data: {
         id,
         type
@@ -339,10 +339,10 @@ Page({
     if (!wx_res.success || !wx_res.confirm) {
       return
     }
-    let url = '/api/v1/demand/handel'
+    let url = '/house/api/v1/demand/handel'
     let { id, is_service_order } = this.data
     if (is_service_order) {
-      url = '/api/v1/order/service/handel'
+      url = '/house/api/v1/order/service/handel'
     }
     let server_res = await app.post({
       url: url,
@@ -370,7 +370,7 @@ Page({
       params.r_id = red_packet.id
     }
     let server_res = await app.get({
-      url: '/api/v1/pay/getPreOrder',
+      url: '/house/api/v1/pay/getPreOrder',
       data: params
     })
     let { success, msg, data } = server_res
@@ -384,7 +384,7 @@ Page({
       return
     }
     let red_money_res = await app.get({
-      url: '/api/v1/red/order'
+      url: '/house/api/v1/red/order'
     })
     if(!red_money_res.success){
       app._error(wx_res.msg)
@@ -450,7 +450,7 @@ Page({
       }
     }
     return app.post({
-      url: '/api/v1/order/confirm',
+      url: '/house/api/v1/order/confirm',
       data: {
         id,
         type,
@@ -476,7 +476,7 @@ Page({
       mask: true
     })
     let server_res = await app.post({
-      url: '/api/v1/order/delete',
+      url: '/house/api/v1/order/delete',
       data: {
         id,
         type

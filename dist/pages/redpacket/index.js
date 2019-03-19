@@ -28,7 +28,7 @@ Page({
       loading: true
     })
     let server_res = await app.get({
-      url: '/api/v1/red/list'
+      url: '/house/api/v1/red/list'
     })
     await app.asyncApi(wx.hideLoading)
     let { success, msg, data } = server_res

@@ -8,6 +8,7 @@ const qq_map = new QQMapSdk({
 })
 let is_forbidden = false
 let login_promise = null
+let had_get_location = false
 App({
   // 登录
   async login(no_tip) {
@@ -35,7 +36,7 @@ App({
         auto: false,
         // 不用校验 token
         token_required: false,
-        url: '/api/v1/token/user',
+        url: '/house/api/v1/token/user',
         data: {
           code: wx_res.code
         }
@@ -90,7 +91,7 @@ App({
     let { userInfo = false, encryptedData, iv } = detail
     if (userInfo) {
       let server_res = await this.post({
-        url: '/api/v1/user/info',
+        url: '/house/api/v1/user/info',
         data: {
           encryptedData: encodeURI(encryptedData),
           iv: encodeURI(iv)
@@ -245,7 +246,7 @@ App({
   },
   // 推荐使用该方法上传图片
   _uploadFile(options = {}) {
-    let { url = '/api/v1/image/upload', success, fail, onProgressUpdate = () => {}, ...other } = options
+    let { url = '/house/api/v1/image/upload', success, fail, onProgressUpdate = () => {}, ...other } = options
     return new Promise(resolve => {
         let task = wx.uploadFile({
           url: domain + url,
@@ -416,7 +417,8 @@ App({
   async getLocation() {
     let location = this.global_data.location
     let success = true
-    if (!location.length) {
+    if (!location.length || !had_get_location) {
+      had_get_location = true
       let wx_res = await this.asyncApi(wx.getLocation)
       if (wx_res.success) {
         this.global_data.latitude = wx_res.latitude
@@ -462,9 +464,9 @@ App({
    * 返回data: { success: Boolean, msg: String, need: Number }
    */
   async checkBail(money) {
-    let err_msg = 'server api /api/v1/bond/check 调用失败:'
+    let err_msg = 'server api /house/api/v1/bond/check 调用失败:'
     let server_res = await this.get({
-      url: '/api/v1/bond/check',
+      url: '/house/api/v1/bond/check',
       data: {
         money: money
       }
@@ -487,7 +489,7 @@ App({
 	//check绑定关系
 	async checkBindUser(){
   	let res = await this.get({
-			url: '/api/v1/user/bind/check'
+			url: '/house/api/v1/user/bind/check'
 		})
 		return res
 	},
@@ -507,7 +509,7 @@ App({
 			}
 		}
   	res = await this.post({
-			url: '/api/v1/user/bind',
+			url: '/house/api/v1/user/bind',
 			data: {
 				code: code
 			}

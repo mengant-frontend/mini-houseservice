@@ -26,7 +26,7 @@ Page({
       loading: true
     })
     let server_res = await app.get({
-      url: '/api/v1/center/msgs',
+      url: '/house/api/v1/center/msgs',
       data: {
         size: size,
         page: page
@@ -76,7 +76,7 @@ Page({
       mask: true
     })
     let server_res = await app.post({
-      url: '/api/v1/center/msg/handel',
+      url: '/house/api/v1/center/msg/handel',
       data: {
         id: id,
         state: state

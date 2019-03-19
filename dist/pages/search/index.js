@@ -7,7 +7,7 @@ Page({
     // 接口地址
     api_url: {
       // 获取列表
-      get_list: '/api/v1/index/search'
+      get_list: '/house/api/v1/index/search'
     },
     // 请求锁
     request_lock: {

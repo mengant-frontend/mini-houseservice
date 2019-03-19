@@ -31,7 +31,7 @@ Page({
 	//加载地址列表
 	async getAddress(){
 		let res = await app.get({
-			url: '/api/v1/address/list'
+			url: '/house/api/v1/address/list'
 		})
 		if(!res.success){
 			app._error(res.msg)
@@ -59,7 +59,7 @@ Page({
 			return
 		}
 		let res = await app.get({
-			url: '/api/v1/goods/info',
+			url: '/house/api/v1/goods/info',
 			data: {
 				id: id
 			}
@@ -106,7 +106,7 @@ Page({
 			mask: true
 		})
 		let res = await app.post({
-			url: '/api/v1/goods/order/save',
+			url: '/house/api/v1/goods/order/save',
 			data:{
 				g_id: id,
 				score: total_bound,

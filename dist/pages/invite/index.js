@@ -22,7 +22,7 @@ Page({
 	onShareAppMessage(){
 		let { code } = this.data
 		return {
-			title: '邀请您一起来用久房通 让您省心、放心、安心',
+			title: '邀请您一起来用盟蚁家政维修平台 让您省心、放心、安心',
 			path: '/pages/welcome/index?code=' + code
 		}
 	},

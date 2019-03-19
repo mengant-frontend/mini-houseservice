@@ -19,7 +19,7 @@ Component({
         index: this.data.index
       })
       let server_res = await app.post({
-        url: '/api/v1/token/formid',
+        url: '/house/api/v1/token/formid',
         data: {
           id: formId
         }

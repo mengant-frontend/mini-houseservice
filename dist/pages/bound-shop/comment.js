@@ -5,7 +5,7 @@ Page({
 		// 接口地址
 		api_url: {
 			// 获取评论列表
-			get_comment_list: '/api/v1/goods/comment'
+			get_comment_list: '/house/api/v1/goods/comment'
 		},
 		// 请求锁
 		request_lock: {

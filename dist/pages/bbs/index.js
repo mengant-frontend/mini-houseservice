@@ -27,7 +27,7 @@ Page({
       title: '提交中...'
     })
     let server_res = await app.post({
-      url: '/api/v1/message/save',
+      url: '/house/api/v1/message/save',
       data: form_data
     })
     await app.asyncApi(wx.hideLoading)

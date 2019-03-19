@@ -62,7 +62,7 @@ Page({
       tabs_list: tabs_list
     })
     let res = await app.get({
-      url: '/api/v1/forum/mini/list',
+      url: '/house/api/v1/forum/mini/list',
       data: {
         page: tab.page,
         size: size,
@@ -137,7 +137,7 @@ Page({
       { id, comment } = f
     let p = page || comment.current_page + 1
     let res = await app.get({
-      url: '/api/v1/forum/comments/mini',
+      url: '/house/api/v1/forum/comments/mini',
       data: {
         page: p,
         size: 5,
@@ -246,7 +246,7 @@ Page({
       return false
     }
     let res = await app.post({
-      url: '/api/v1/forum/comment/save',
+      url: '/house/api/v1/forum/comment/save',
       data: {
         f_id: comment.f_id,
         content: comment.content,

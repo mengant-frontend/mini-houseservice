@@ -53,7 +53,7 @@ Page({
 			tabs_list: tabs_list
 		})
     let res = await app.get({
-			url: '/api/v1/goods/order/list/mini',
+			url: '/house/api/v1/goods/order/list/mini',
 			data: {
 				type: tab.type,
 				page: tab.page,

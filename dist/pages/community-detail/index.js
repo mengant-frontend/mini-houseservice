@@ -7,13 +7,13 @@ Page({
     // 接口地址
     api_url: {
       // 获取圈子内容
-      get_community: '/api/v1/circle/mini',
+      get_community: '/house/api/v1/circle/mini',
       // 获取评论列表
-      get_comment_list: '/api/v1/circle/comment/list',
+      get_comment_list: '/house/api/v1/circle/comment/list',
       // 点赞
-      like: '/api/v1/circle/comment/zan',
+      like: '/house/api/v1/circle/comment/zan',
       // 提交评论
-      send: '/api/v1/circle/comment/save'
+      send: '/house/api/v1/circle/comment/save'
     },
     // 请求锁
     request_lock: {

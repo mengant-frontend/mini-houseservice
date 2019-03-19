@@ -7,11 +7,11 @@ Page({
         // 接口地址
         api_url: {
             // 获取轮播图
-            get_banner_img: '/api/v1/banner/mini/list',
+            get_banner_img: '/house/api/v1/banner/mini/list',
             // 获取服务类别
-            get_service_category: '/api/v1/category/mini/list',
+            get_service_category: '/house/api/v1/category/mini/list',
             // 获取服务列表
-            get_service_list: '/api/v1/service/mini/list'
+            get_service_list: '/house/api/v1/service/mini/list'
         },
         // 请求锁
         request_lock: {
@@ -158,7 +158,7 @@ Page({
         let { service_type, location } = this.data
 
         let server_res = await app.get({
-            url: '/api/v1/order/banner',
+            url: '/house/api/v1/order/banner',
             data: {
                 province: location[0],
                 city: location[1],

@@ -27,7 +27,7 @@ Page({
   },
   async getBalance() {
     let server_res = await app.get({
-      url: '/api/v1/withdraw/balance'
+      url: '/house/api/v1/withdraw/balance'
     })
     let { success, msg, data } = server_res
     if (!success) {
@@ -58,7 +58,7 @@ Page({
       return
     }
     let server_res = await app.get({
-      url: '/api/v1/withdraw/check',
+      url: '/house/api/v1/withdraw/check',
       data: {
         type: type
       }
@@ -123,12 +123,12 @@ Page({
       app._error('不可超过可提现金额')
       return
     }
-    app.showLoading({
+    wx.showLoading({
       title: '提交中...',
       mask: true
     })
     let server_res = await app.post({
-      url: '/api/v1/withdraw/apply',
+      url: '/house/api/v1/withdraw/apply',
       data: {
         type: type,
         money: money

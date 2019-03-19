@@ -37,7 +37,7 @@ Page({
 			loading: true
 		})
 		let res = await app.get({
-			url: '/api/v1/address/list',
+			url: '/house/api/v1/address/list',
 			// data: {
 			// 	page: page,
 			// 	size: 10

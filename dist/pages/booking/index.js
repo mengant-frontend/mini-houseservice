@@ -57,7 +57,7 @@ Page({
       return false
     }
     let server_res = await app.get({
-      url: '/api/v1/extend/mini/service',
+      url: '/house/api/v1/extend/mini/service',
       data: {
         id: s_id
       }
@@ -155,7 +155,7 @@ Page({
 			title: '提交中...'
 		})
     let server_res = await app.post({
-      url: '/api/v1/service/booking',
+      url: '/house/api/v1/service/booking',
       data: form_data
     })
 		await app.asyncApi(wx.hideLoading)

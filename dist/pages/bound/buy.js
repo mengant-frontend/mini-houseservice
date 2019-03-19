@@ -10,7 +10,7 @@ Page({
 	},
 	async getList(){
 		let res = await app.get({
-			url: '/api/v1/score/rule/list'
+			url: '/house/api/v1/score/rule/list'
 		})
 		if(!res.success){
 			app._error(res.msg)
@@ -37,7 +37,7 @@ Page({
 			return
 		}
 		let res = await app.post({
-			url: '/api/v1/score/buy',
+			url: '/house/api/v1/score/buy',
 			data: {
 				id: id
 			}
@@ -49,7 +49,7 @@ Page({
 		let order_id = res.data.o_id
 		//获取支付数据
 		res = await app.get({
-			url: '/api/v1/pay/getPreOrder',
+			url: '/house/api/v1/pay/getPreOrder',
 			data:{
 				id: order_id,
 				// 4为购买积分支付

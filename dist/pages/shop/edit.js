@@ -85,7 +85,7 @@ Page({
   async loadData() {
     await app.asyncApi(wx.showNavigationBarLoading)
     let server_res = await app.get({
-      url: '/api/v1/shop/info/edit'
+      url: '/house/api/v1/shop/info/edit'
     })
     await app.asyncApi(wx.hideNavigationBarLoading)
     let { success, msg, data } = server_res
@@ -254,7 +254,7 @@ Page({
       mask: true
     })
     let server_res = await app.post({
-      url: '/api/v1/shop/update',
+      url: '/house/api/v1/shop/update',
       data: form_data
     })
     await app.asyncApi(wx.hideLoading)

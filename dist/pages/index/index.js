@@ -7,11 +7,11 @@ Page({
     // 接口地址
     api_url: {
       // 获取轮播图
-      get_banner_img: '/api/v1/banner/mini/list',
+      get_banner_img: '/house/api/v1/banner/mini/list',
       // 获取红包攻略
-      get_strategy: '/api/v1/red/strategy',
+      get_strategy: '/house/api/v1/red/strategy',
       // 获取推广的服务列表
-      get_service_list: '/api/v1/service/index'
+      get_service_list: '/house/api/v1/service/index'
     },
     location: [],
     // 获取加盟消息
@@ -30,6 +30,7 @@ Page({
     wx.showNavigationBarLoading()
     // 获取地理位置
     let res = await app.getLocation()
+    console.log('res', res)
     if (res.success) {
       await this.setData({
         location: res.location
@@ -116,7 +117,7 @@ Page({
   async getJoinMsg() {
     let location = this.data.location
     let server_res = await app.get({
-      url: '/api/v1/check/join',
+      url: '/house/api/v1/check/join',
       data: {
         province: location[0],
         city: location[1],
@@ -135,7 +136,7 @@ Page({
   async getCarouselOrder() {
     let location = this.data.location
     let server_res = await app.get({
-      url: '/api/v1/order/banner',
+      url: '/house/api/v1/order/banner',
       data: {
         province: location[0],
         city: location[1],

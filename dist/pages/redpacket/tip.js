@@ -7,7 +7,7 @@ Page({
   },
   onShareAppMessage() {
     let obj = {
-      title: '久房通',
+      title: '盟蚁家政维修平台',
       path: '/pages/index/index'
     }
     return obj

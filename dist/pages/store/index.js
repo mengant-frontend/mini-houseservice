@@ -7,13 +7,13 @@ Page({
     // 接口地址
     api_url: {
       // 获取店铺详情
-      get_store_detail: '/api/v1/shop/info/normal',
+      get_store_detail: '/house/api/v1/shop/info/normal',
       // 获取服务列表
-      get_service_list: '/api/v1/shop/service/normal/list',
+      get_service_list: '/house/api/v1/shop/service/normal/list',
       // 收藏
-      collect: '/api/v1/collection/save',
+      collect: '/house/api/v1/collection/save',
       // 取消收藏
-      collect_cancel: '/api/v1/collection/handel'
+      collect_cancel: '/house/api/v1/collection/handel'
     },
     // 请求锁
     request_lock: {

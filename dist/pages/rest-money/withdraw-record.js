@@ -25,7 +25,7 @@ Page({
       loading: true
     })
     let server_res = await app.get({
-      url: '/api/v1/withdraws',
+      url: '/house/api/v1/withdraws',
       data: {
         page: page,
         size: size

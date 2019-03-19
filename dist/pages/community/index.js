@@ -7,9 +7,9 @@ Page({
     // 接口地址
     api_url: {
       // 获取圈子类别
-      get_community_type: '/api/v1/circle/mini/category/list',
+      get_community_type: '/house/api/v1/circle/mini/category/list',
       // 获取圈子列表
-      get_community_list: '/api/v1/circle/mini/list'
+      get_community_list: '/house/api/v1/circle/mini/list'
     },
     // 请求锁
     request_lock: {

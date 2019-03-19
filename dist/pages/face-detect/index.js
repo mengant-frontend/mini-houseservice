@@ -7,9 +7,9 @@ Page({
     // 接口地址
     api_url: {
       // 人脸识别
-      detect: '/api/v1/image/search',
+      detect: '/house/api/v1/image/search',
       // 确认订单
-      confirm_order: '/api/v1/village/confirm'
+      confirm_order: '/house/api/v1/village/confirm'
     },
     // 请求锁
     request_lock: {

@@ -41,7 +41,7 @@
 	</i-panel>
   <i-panel title='请添加图片，用于介绍服务内容。'>
     <view class="container__pictures">
-      <f2-photo shape='16-9' list='{{photo_list}}' url='/api/v1/service/image/handel' params='{{delete_params}}' count='5' bind:delete='confirmDelete'></f2-photo>
+      <f2-photo shape='16-9' list='{{photo_list}}' url='/house/api/v1/service/image/handel' params='{{delete_params}}' count='5' bind:delete='confirmDelete'></f2-photo>
     </view>
   </i-panel>
   <i-panel>

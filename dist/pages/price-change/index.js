@@ -88,7 +88,7 @@ Page({
   async ensureModify() {
     let { id, type, form_data } = this.data
     let server_res = await app.post({
-      url: '/api/v1/order/price/update',
+      url: '/house/api/v1/order/price/update',
       data: {
         id: id,
         type: type,
@@ -107,7 +107,7 @@ Page({
   async ensureOrder() {
     let { id, type } = this.data
     let server_res = await app.post({
-      url: '/api/v1/order/shop/confirm',
+      url: '/house/api/v1/order/shop/confirm',
       data: {
         id,
         type

@@ -141,7 +141,7 @@ Page({
       return
     }
     let server_res = await app.post({
-      url: '/api/v1/demand/save',
+      url: '/house/api/v1/demand/save',
       data: form_data
     })
     let { success, msg } = server_res

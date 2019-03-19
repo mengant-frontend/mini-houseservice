@@ -30,7 +30,7 @@ Page({
       mask: true
     })
     let res = await app.get({
-      url: '/api/v1/goods/info',
+      url: '/house/api/v1/goods/info',
       data: {
         id: id
       }
@@ -76,7 +76,7 @@ Page({
       return
     }
     let res = await app.get({
-      url: '/api/v1/goods/comment',
+      url: '/house/api/v1/goods/comment',
       data: {
         id: id,
         page: 1,

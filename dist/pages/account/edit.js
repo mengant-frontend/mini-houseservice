@@ -30,7 +30,7 @@ Page({
   //获取个人信息
   async getInfo() {
     let server_res = await app.get({
-      url: '/api/v1/center/info'
+      url: '/house/api/v1/center/info'
     })
     let { success, msg, data } = server_res
     if (!success) {
@@ -97,7 +97,7 @@ Page({
       return
     }
     let server_res = await app.post({
-      url: '/api/v1/user/update',
+      url: '/house/api/v1/user/update',
       data: form_data
     })
     let { success, msg } = server_res

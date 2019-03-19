@@ -23,7 +23,7 @@ Page({
   //只取前九条
   async getList(){
     let res = await app.get({
-      url: '/api/v1/goods/list/mini',
+      url: '/house/api/v1/goods/list/mini',
       data: {
         page: 1,
         size: 9

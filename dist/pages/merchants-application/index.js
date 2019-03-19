@@ -122,7 +122,7 @@ Page({
     await app.asyncApi(wx.showNavigationBarLoading)
 
     let server_res = await app.get({
-      url: '/api/v1/shop/info'
+      url: '/house/api/v1/shop/info'
     })
     await app.asyncApi(wx.hideNavigationBarLoading)
     await app.asyncApi(wx.hideLoading)
@@ -207,7 +207,7 @@ Page({
     })
     await app.asyncApi(wx.showNavigationBarLoading)
     let server_res = await app.get({
-      url: '/api/v1/system/tip'
+      url: '/house/api/v1/system/tip'
     })
     await app.asyncApi(wx.hideLoading)
     await app.asyncApi(wx.hideNavigationBarLoading)
@@ -355,7 +355,7 @@ Page({
   sumbit() {
     let {form_data} = this.data
     return app.post({
-      url: '/api/v1/shop/apply',
+      url: '/house/api/v1/shop/apply',
       data: form_data
     })
   },
@@ -381,7 +381,7 @@ Page({
       title: 'loading...'
     })
     let server_res = await app.get({
-      url: '/api/v1/shop/handel',
+      url: '/house/api/v1/shop/handel',
       data: {
         state: 4,
         id: shop_id

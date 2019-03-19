@@ -7,7 +7,7 @@ Page({
     // 接口地址
     api_url: {
       // 获取引导图
-      get_guid_img: '/api/v1/guid/list'
+      get_guid_img: '/house/api/v1/guid/list'
     },
     list: []
   },
@@ -21,7 +21,7 @@ Page({
     let [ res, server_res ] = await Promise.all([app.get({
       url: this.data.api_url.get_guid_img
     }), app.get({
-      url: '/api/v1/file/time',
+      url: '/house/api/v1/file/time',
       token_required: false
     })])
     

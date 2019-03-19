@@ -94,7 +94,7 @@ Page({
   // 获取店铺信息
   async getInfo() {
     let server_res = await app.get({
-      url: '/api/v1/shop/info'
+      url: '/house/api/v1/shop/info'
     })
     let { success, msg, data } = server_res
     if (!success) {
@@ -131,7 +131,7 @@ Page({
     let type = this.data.type
     await app.asyncApi(wx.showNavigationBarLoading)
     let server_res = await app.get({
-      url: '/api/v1/category/mini/list',
+      url: '/house/api/v1/category/mini/list',
       data: {
         type: type
       }
@@ -152,7 +152,7 @@ Page({
 			mask: true
 		})
 		let server_res = await app.get({
-			url: '/api/v1/extend/mini/service',
+			url: '/house/api/v1/extend/mini/service',
 			data: {
 				id: id
 			}
@@ -267,7 +267,7 @@ Page({
   async getPriceKeys() {
     await app.asyncApi(wx.showNavigationBarLoading)
     let server_res = await app.get({
-      url: '/api/v1/units/mini',
+      url: '/house/api/v1/units/mini',
       data: {
         id: app.global_data.shop_id
       }
@@ -374,7 +374,7 @@ Page({
       title: '提交中...'
     })
     let server_res = await app.post({
-      url: this.data.is_edit ? '/api/v1/shop/service/update' : '/api/v1/shop/service/save',
+      url: this.data.is_edit ? '/house/api/v1/shop/service/update' : '/house/api/v1/shop/service/save',
       data: form_data
     })
     await app.asyncApi(wx.hideLoading)
@@ -398,7 +398,7 @@ Page({
       title: 'loading...'
     })
     let server_res = await app.get({
-      url: '/api/v1/bond/check',
+      url: '/house/api/v1/bond/check',
       data: {
         money: money
       }

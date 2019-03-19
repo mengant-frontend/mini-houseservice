@@ -27,7 +27,7 @@ Component({
   methods: {
     async checkLoginStatus(){
       let res = await app.get({
-        url: '/api/v1/sign/in/check'
+        url: '/house/api/v1/sign/in/check'
       })
       if(!res.success){
         app._error(res.msg, {
@@ -49,7 +49,7 @@ Component({
         loading: true
       })
       let res = await app.post({
-        url: '/api/v1/sign/in'
+        url: '/house/api/v1/sign/in'
       })
       this.setData({
         loading: false

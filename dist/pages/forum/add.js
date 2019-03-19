@@ -39,7 +39,7 @@ Page({
       return false
     }
     let res = await app.post({
-      url: '/api/v1/forum/save',
+      url: '/house/api/v1/forum/save',
       data: {
         title,
         content,

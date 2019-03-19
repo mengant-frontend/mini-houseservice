@@ -7,7 +7,7 @@ Page({
     // 接口地址
     api_url: {
       // 获取服务列表
-      get_service_list: '/api/v1/service/mini/list'
+      get_service_list: '/house/api/v1/service/mini/list'
     },
     tabs_current: 0,
     // tabs 列表数据

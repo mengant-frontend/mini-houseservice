@@ -32,7 +32,7 @@ Page({
     }
     await app.asyncApi(wx.showNavigationBarLoading)
     let server_res = await app.get({
-      url: '/api/v1/shop/service/list',
+      url: '/house/api/v1/shop/service/list',
       data: {
         page: page,
         size: size
@@ -81,7 +81,7 @@ Page({
     }
     let { currentTarget: { dataset: { id } } } = e
     let server_res = await app.post({
-      url: '/api/v1/shop/service/delete',
+      url: '/house/api/v1/shop/service/delete',
       data: {
         id: id
       }

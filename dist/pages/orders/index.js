@@ -7,7 +7,7 @@ Page({
     // 接口地址
     api_url: {
       // 获取订单列表
-      get_order_list: '/api/v1/order/service/list'
+      get_order_list: '/house/api/v1/order/service/list'
     },
     // 请求锁
     request_lock: {

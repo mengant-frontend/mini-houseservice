@@ -99,7 +99,7 @@ Page({
 			title: 'loading...'
 		})
 		let server_res = await app.post({
-			url: '/api/v1/goods/order/comment',
+			url: '/house/api/v1/goods/order/comment',
 			data: {
 				score: rate,
 				o_id: id,

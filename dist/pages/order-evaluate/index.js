@@ -53,7 +53,7 @@ Page({
     }
 
     let server_res = await app.get({
-      url: '/api/v1/order',
+      url: '/house/api/v1/order',
       data: {
         id: id,
         type
@@ -137,7 +137,7 @@ Page({
       title: 'loading...'
     })
     let server_res = await app.post({
-      url: '/api/v1/order/comment',
+      url: '/house/api/v1/order/comment',
       data: {
         score: rate,
         o_id: id,

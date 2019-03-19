@@ -37,7 +37,7 @@ Page({
       })
     }
     let res = await app.get({
-      url: '/api/v1/goods/list/mini',
+      url: '/house/api/v1/goods/list/mini',
       data: {
         page: page,
         size: 10

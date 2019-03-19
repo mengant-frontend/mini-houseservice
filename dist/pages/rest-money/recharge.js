@@ -30,7 +30,7 @@ Page({
   // 获取当前保证金
   async getBalance() {
     let server_res = await app.get({
-      url: '/api/v1/withdraw/balance'
+      url: '/house/api/v1/withdraw/balance'
     })
     let { success, msg, data } = server_res
     if (!success) {
@@ -61,7 +61,7 @@ Page({
     }
 
     let server_res = await app.post({
-      url: '/api/v1/bond/save',
+      url: '/house/api/v1/bond/save',
       data: {
         type: type,
         money: money
@@ -78,7 +78,7 @@ Page({
   async pay(id) {
     // 首先去服务器获取支付信息
     let server_res = await app.get({
-      url: '/api/v1/pay/getPreOrder',
+      url: '/house/api/v1/pay/getPreOrder',
       data: {
         id: id,
         type: 3

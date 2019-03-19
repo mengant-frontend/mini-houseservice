@@ -28,7 +28,7 @@ Page({
 			loading: true
 		})
 		let res = await app.get({
-			url: '/api/v1/goods/order/info/mini',
+			url: '/house/api/v1/goods/order/info/mini',
 			data: {
 				id: id
 			}
@@ -102,7 +102,7 @@ Page({
 				return
 			}
 			let res = await app.get({
-				url: '/api/v1/goods/order/receive/confirm',
+				url: '/house/api/v1/goods/order/receive/confirm',
 				data: {
 					id: id
 				}

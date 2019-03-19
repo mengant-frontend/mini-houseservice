@@ -18,7 +18,7 @@ Page({
 			return
 		}
 		let res = await app.post({
-			url: '/api/v1/recharge/exchange',
+			url: '/house/api/v1/recharge/exchange',
 			data:{
 				code: code
 			}

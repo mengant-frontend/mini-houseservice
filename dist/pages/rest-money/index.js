@@ -23,7 +23,7 @@ Page({
   },
   async getBalance() {
     let server_res = await app.get({
-      url: '/api/v1/withdraw/balance'
+      url: '/house/api/v1/withdraw/balance'
     })
     let { success, msg, data } = server_res
     if (!success) {

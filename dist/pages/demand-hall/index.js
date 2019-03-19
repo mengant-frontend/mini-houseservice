@@ -7,7 +7,7 @@ Page({
     // 接口地址
     api_url: {
       // 获取需求列表
-      get_demand_list: '/api/v1/demand/list'
+      get_demand_list: '/house/api/v1/demand/list'
     },
     // 请求锁
     request_lock: {
@@ -163,7 +163,7 @@ Page({
       mask: true
     })
     let server_res = await app.post({
-      url: '/api/v1/order/taking',
+      url: '/house/api/v1/order/taking',
       data: {
         id: demand.demand_id
       }

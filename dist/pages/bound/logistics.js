@@ -29,7 +29,7 @@ Page({
       mask: true
     })
 		let res = await app.get({
-			url: '/api/v1/goods/express/info',
+			url: '/house/api/v1/goods/express/info',
 			data: {
 				express_code: express_code,
 				express_no: express_no

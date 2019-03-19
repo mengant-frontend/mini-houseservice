@@ -29,7 +29,7 @@ Page({
 			mask: true
 		})
 		let res = await app.get({
-			url: '/api/v1/address/list'
+			url: '/house/api/v1/address/list'
 		})
 		wx.hideLoading()
 		if(!res.success){
@@ -93,9 +93,9 @@ Page({
  		let { address } = this.data,
 			url, msg
 		if(address.id){
-			url = '/api/v1/address/update'
+			url = '/house/api/v1/address/update'
 		}else{
-			url = '/api/v1/address/save'
+			url = '/house/api/v1/address/save'
 		}
 		let params = [{
 			key: 'name',

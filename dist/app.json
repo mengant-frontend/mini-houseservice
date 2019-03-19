@@ -68,7 +68,7 @@
     "components/go-home/index"
   ],
   "window": {
-    "navigationBarTitleText": "久房通",
+    "navigationBarTitleText": "盟蚁家政维修平台",
     "enablePullDownRefresh": true
   },
   "tabBar": {
@@ -102,5 +102,10 @@
       }
     ]
   },
-  "debug": true
+  "debug": true,
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序为你提供所在地区的服务"
+    }
+  }
 }

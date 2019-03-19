@@ -15,7 +15,7 @@ Page({
       wx.setStorageSync('last_modified', moment().format('YYYY-MM-DD HH:mm:SS'))
       let wx_res = await app.asyncApi(wx.showModal, {
         title: '温馨提示',
-        content: '点击去使用即表示您已同意《久房通服务协议》和《久房通隐私权政策》',
+        content: '点击去使用即表示您已同意《盟蚁家政维修平台服务协议》和《盟蚁家政维修平台隐私权政策》',
         cancelText: '查看协议',
         confirmText: '去使用'
       })

@@ -7,13 +7,13 @@ Page({
     // 接口地址
     api_url: {
       // 获取服务详情
-      get_service_detail: '/api/v1/extend/mini/service',
+      get_service_detail: '/house/api/v1/extend/mini/service',
       // 获取评论列表
-      get_comment_list: '/api/v1/comment/service',
+      get_comment_list: '/house/api/v1/comment/service',
       // 收藏
-      collect: '/api/v1/collection/save',
+      collect: '/house/api/v1/collection/save',
       // 取消收藏
-      collect_cancel: '/api/v1/collection/handel'
+      collect_cancel: '/house/api/v1/collection/handel'
     },
     // 请求锁
     request_lock: {
